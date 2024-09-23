@@ -1,0 +1,20 @@
+﻿@model NoncomplianceDetailSampleSummaryModel
+
+@inject IStringLocalizer<Teram.QC.Module.FinalProduct.Controllers.EditFinalProductNoncomplianceController> localizer
+
+<input type="hidden" id="FinalProductNonComplianceId" value="@Model.FinalProductNonComplianceId" />
+
+<div class="row">
+    <text-box reverse="true" title="@localizer["Comment"]" id="Comments" validation-type=Number is-readonly="false"
+              div-class="col-md-12 col-lg-12 mb-3 d-flex flex-column-reverse align-items-start" />
+</div>
+<div class="form-row ">
+    <div class="form-group col-xs-12 col-md-12 col-lg-12" style="text-align:left;">
+        <button type="button" id="btnSendBackToProductionManagerFromQCManager" class="btn btn-warning">@localizer["SendBackToProductionManager"] </button>
+        <button type="button" id="FinalApproveOfNonCompliance" class="btn btn-success">@localizer["FinalApproveOfNonCompliance"] </button>
+    </div>
+</div>
+
+
+
+

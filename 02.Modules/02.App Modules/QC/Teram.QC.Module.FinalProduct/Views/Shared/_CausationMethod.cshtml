@@ -1,0 +1,32 @@
+﻿@model CausationModel
+@inject IStringLocalizer<Teram.QC.Module.FinalProduct.Controllers.CausationController> localizer
+
+<fieldset class="border p-2 m-2 mthodFieldSet">
+    <legend class="h6 w-auto">
+        @localizer["HasMethodCause"]
+    </legend>
+    <div class="row">
+
+        <div class=" col-xs-12 col-md-12 col-lg-4 mt-2">
+            <label class="forms-label mb-0">ریشه عدم انظباق</label>
+            <select asp-for="@Model.RootCauseId" name="RootCauseId"
+                    class="form-control select2"
+                    asp-items=@ViewBag.RoorCauses>
+                <option value="">موردی انتخاب کنید</option>
+            </select>
+        </div>
+        <div class="col-xs-12 col-md-12 col-lg-4 instructionSection d-none">
+            <text-box asp-for="InstructionDescription" reverse="true" validation-type="None" title="@localizer["InstructionDescription"]" validation-required-message="@localizer["Please enter InstructionDescription"]" div-class="d-flex flex-column-reverse align-items-start" />
+        </div>
+
+        <div class=" col-xs-12 col-md-12 col-lg-4 mt-2 unitSection d-none">
+            <label class="forms-label mb-0">واحد خاطی</label>
+            <select asp-for="@Model.UnitId" name="UnitId"
+                    class="form-control select2"
+                    asp-items=@ViewBag.Units>
+                <option value="">موردی انتخاب کنید</option>
+            </select>
+        </div>
+
+    </div>
+</fieldset>

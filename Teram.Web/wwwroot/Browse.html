@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Browse</title>
+    <link href="/lib/JQueryUi/jquery-ui.css" rel="stylesheet" />
+    <link href="/lib/JQueryUi/themes/base/theme.css" rel="stylesheet" />
+    <link href="/lib/elFinder/css/elfinder.full.css" rel="stylesheet" />
+    <link href="/lib/elFinder/css/theme.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div id="elfinder"></div>
+
+
+    <script src="/lib/jquery/dist/jquery.js"></script>
+    <script src="/lib/JQueryUi/jquery-ui.js"></script>
+    <script src="/lib/elFinder/js/elfinder.min.js"></script>
+
+    <script type="text/javascript">
+        function getUrlParam(paramName) {
+            var reParam = new RegExp('(?:[\?&]|&amp;)' + paramName + '=([^&]+)', 'i');
+            var match = window.location.search.match(reParam);
+
+            return (match && match.length > 1) ? match[1] : '';
+        }
+
+
+        $(function () {
+            var myCommands = elFinder.prototype._options.commands;
+            var disabled = ['extract', 'archive', 'resize', 'help', 'select']; // Not yet implemented commands in ElFinder.Net
+            $.each(disabled, function (i, cmd) {
+                (idx = $.inArray(cmd, myCommands)) !== -1 && myCommands.splice(idx, 1);
+            });
+            var options = {
+                url: '/Filemanager/connector', // Default (Local File System)
+                //url: '/el-finder/azure-storage/connector', // Microsoft Azure Connector
+                rememberLastDir: false, // Prevent elFinder saving in the Browser LocalStorage the last visited directory
+                commands: myCommands,
+                lang: 'fa', // elFinder supports UI and messages localization. Check the folder Content\elfinder\js\i18n for all available languages. Be sure to include the corresponding .js file(s) in the JavaScript bundle.
+                uiOptions: { // UI buttons available to the user
+                    toolbar: [
+                        ['back', 'forward'],
+                        ['reload'],
+                        ['home', 'up'],
+                        ['mkdir', 'mkfile', 'upload'],
+                        ['open', 'download'],
+                        ['undo', 'redo'],
+                        ['info'],
+                        ['quicklook'],
+                        ['copy', 'cut', 'paste'],
+                        ['rm'],
+                        ['duplicate', 'rename', 'edit'],
+                        ['selectall', 'selectnone', 'selectinvert'],
+                        ['view', 'sort']
+                    ]
+                },
+                getFileCallback: function (file) {
+                    //file.path
+                    if (getUrlParam("plain")==="true") {
+                        window.opener.SetBrowserFile(file, getUrlParam("target"),true);
+
+                    } else {
+                        window.opener.SetBrowserFile(file, getUrlParam("target"));
+
+                    }
+                    //console.log(file);
+                    window.close();
+                }
+                , resizable: false
+            };
+            $('#elfinder').elfinder(options).elfinder('instance');
+        });
+    </script>
+</body>
+</html>

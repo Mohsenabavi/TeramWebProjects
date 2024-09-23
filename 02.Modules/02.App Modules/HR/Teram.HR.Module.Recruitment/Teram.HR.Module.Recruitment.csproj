@@ -1,0 +1,104 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <OutputType>Library</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Jobs\ExcelImportJob.cs~RF2eb6ef5d.TMP" />
+    <None Remove="Resources\Controllers\JobApplicantControlPanelController.resx~RF1d2ea598.TMP" />
+    <None Remove="Scripts\AdditionalDocuments.js" />
+    <None Remove="Scripts\BackgroundJobRequest.js" />
+    <None Remove="Scripts\BaseInformation.js" />
+    <None Remove="Scripts\EmployeeJobBackground.js" />
+    <None Remove="Scripts\GeographicalDistribution.js" />
+    <None Remove="Scripts\HSEApprove.js" />
+    <None Remove="Scripts\HSEApproveHistory.js" />
+    <None Remove="Scripts\Introsuction.js" />
+    <None Remove="Scripts\JobApplicant.js" />
+    <None Remove="Scripts\JobApplicantApproveHistory.js" />
+    <None Remove="Scripts\JobApplicantControlPanel.js" />
+    <None Remove="Scripts\Major.js" />
+    <None Remove="Scripts\PreviewBaseInformation.js" />
+    <None Remove="Scripts\signalr.js" />
+    <None Remove="Scripts\UserAdmission.js" />
+    <None Remove="Scripts\ViewRegisteredPeopleByDayChart.js" />
+    <None Remove="Scripts\ViewRegistredPeopleByProcessStatusChart.js" />
+    <None Remove="Scripts\ViewSteps.js" />
+    <None Remove="Scripts\ViewWorkerJobBackgroundInfo.js" />
+    <None Remove="Scripts\WorkerJobBackground.js" />
+    <None Remove="Scripts\WorkWithUs.js" />
+    <None Remove="Style\HighChart.css" />
+    <None Remove="Style\Preview.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\AdditionalDocuments.js" />
+    <EmbeddedResource Include="Scripts\BackgroundJobRequest.js" />
+    <EmbeddedResource Include="Scripts\BaseInformation.js" />
+    <EmbeddedResource Include="Scripts\HSEApproveHistory.js" />
+    <EmbeddedResource Include="Scripts\PreviewBaseInformation.js" />
+    <EmbeddedResource Include="Scripts\ViewRegistredPeopleByProcessStatusChart.js" />
+    <EmbeddedResource Include="Scripts\WorkerJobBackground.js" />
+    <EmbeddedResource Include="Scripts\EmployeeJobBackground.js" />
+    <EmbeddedResource Include="Scripts\GeographicalDistribution.js" />
+    <EmbeddedResource Include="Scripts\HSEApprove.js" />
+    <EmbeddedResource Include="Scripts\Introsuction.js" />
+    <EmbeddedResource Include="Scripts\JobApplicantApproveHistory.js" />
+    <EmbeddedResource Include="Scripts\JobApplicantControlPanel.js" />
+    <EmbeddedResource Include="Scripts\signalr.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\JobApplicant.js" />
+    <EmbeddedResource Include="Scripts\Major.js" />
+    <EmbeddedResource Include="Scripts\UserAdmission.js" />
+    <EmbeddedResource Include="Scripts\ViewRegisteredPeopleByDayChart.js" />
+    <EmbeddedResource Include="Scripts\ViewSteps.js" />
+    <EmbeddedResource Include="Scripts\ViewWorkerJobBackgroundInfo.js" />
+    <EmbeddedResource Include="Scripts\WorkWithUS.js" />
+    <EmbeddedResource Include="Style\HighChart.css" />
+    <EmbeddedResource Include="Style\Preview.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.24" />
+    <PackageReference Include="DinkToPdf" Version="1.0.8" />
+    <PackageReference Include="DocX" Version="2.5.0" />
+    <PackageReference Include="Hangfire.AspNetCore" Version="1.8.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="PDFsharp" Version="6.0.0" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.0" />
+    <PackageReference Include="Teram.Framework.Core" Version="3.1.0" />
+    <PackageReference Include="Teram.ServiceContracts" Version="3.1.0" />
+    <PackageReference Include="Teram.Web.Core" Version="3.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\01.Core\Teram.GlobalConfiguration\Teram.GlobalConfiguration.csproj" />
+    <ProjectReference Include="..\..\..\01.Core Modules\Teram.Module.AttachmentsManagement\Teram.Module.AttachmentsManagement.csproj" />
+    <ProjectReference Include="..\..\..\01.Core Modules\Teram.Module.Authentication\Teram.Module.Authentication.csproj" />
+    <ProjectReference Include="..\..\..\01.Core Modules\Teram.Module.FileUploader\Teram.Module.FileUploader.csproj" />
+    <ProjectReference Include="..\..\..\01.Core Modules\Teram.Module.GeographicRegion\Teram.Module.GeographicRegion.csproj" />
+    <ProjectReference Include="..\..\..\01.Core Modules\Teram.Module.SmsSender\Teram.Module.SmsSender.csproj" />
+    <ProjectReference Include="..\..\Shared\ModuleSharedContracts\ModuleSharedContracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Entities\Map\" />
+  </ItemGroup>
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="xcopy  /Y /R  &quot;$(ProjectDir)$(OutDir)$(TargetName)*.dll&quot;  &quot;$(SolutionDir)Teram.Web\bin\$(ConfigurationName)\net8.0\Plugins\HR Modules\&quot;" />
+	</Target>
+</Project>

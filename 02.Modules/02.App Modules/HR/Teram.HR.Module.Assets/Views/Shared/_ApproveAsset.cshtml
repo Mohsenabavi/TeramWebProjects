@@ -1,0 +1,38 @@
+﻿@model RahkaranAssetModel
+@inject IStringLocalizer<Teram.HR.Module.Assets.Controllers.RahkaranAssetController> localizer
+<form asp-action="UpdateAssetStatus" method="post" data-ajax="true" data-ajax-method="post" data-ajax-success="onSuccess">
+    <input type="hidden" asp-for="RahkaranAssetId" />
+    <div class="row">
+        <div class="form-group col-xs-12 col-lg-2 col-md-2 form-group required">
+            <label class="forms-label form-check-label text-bold">@localizer["FinalApproveText"]</label>
+            <div class="text-right">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input"
+                           type="radio"
+                           name="ApproveStatus"
+                           id="rdGendermale"
+                           asp-for="ApproveStatus"
+                           value="True">
+                    <label class="form-check-label m-2" tabindex="1">@localizer["IsApprove"]</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input"
+                           type="radio"
+                           name="ApproveStatus"
+                           asp-for="ApproveStatus"
+                           id="rdGenderFemale"
+                           value="False">
+                    <label class="form-check-label m-2" tabindex="2">@localizer["IsNotApprove"]</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-12">
+            <textarea class="form-control z-depth-1 commnets" rows="3" style="width:100%;height:200px" name="ApproverRemarks" asp-for="ApproverRemarks" placeholder="توضیحات را وارد نمایید"></textarea>
+        </div>
+    </div>
+    <div class="form-row" style="margin-top:20px;">
+        <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+            <button type="submit" class="btn btn-danger btnAddComment">ثبت </button>
+        </div>
+    </div>
+</form>

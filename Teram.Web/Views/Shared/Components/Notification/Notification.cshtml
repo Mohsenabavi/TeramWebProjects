@@ -1,0 +1,16 @@
+﻿@model List<INotification>
+
+<ul class="navbar-nav ml-auto">
+    @foreach (var item in Model)
+    {
+        <li class="nav-item dropdown">
+            <a class="nav-link" data-bs-toggle ="dropdown" href="#">
+                <i class="far @item.Icon"></i>
+                <span class="badge badge-@item.BadgeType navbar-badge">@item.Badge</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                @await Component.InvokeAsync(item.Name)
+            </div>
+        </li>
+    }
+</ul>

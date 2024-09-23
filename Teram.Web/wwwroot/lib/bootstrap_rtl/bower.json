@@ -1,0 +1,32 @@
+{
+  "name": "bootstrap-rtl",
+  "homepage": "https://github.com/p3ym4n/bootstrap-rtl",
+  "version": "3.3.6",
+  "authors": [
+    "p3ym4n (http://github.com/p3ym4n)"
+  ],
+  "description": "Right to Left (RTL) version of twitter's bootstrap html framework.",
+  "main": [
+    "dist/css/bootstrap.css"
+  ],
+  "moduleType": "globals",
+  "keywords": [
+    "bootstrap",
+    "rtl",
+    "bootstrap-rtl",
+    "bootstrap.rtl",
+    "bootstraprtl",
+    "rtl-bootstrap"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "1.9.1 - 2"
+  }
+}

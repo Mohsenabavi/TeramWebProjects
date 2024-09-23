@@ -1,0 +1,79 @@
+﻿@using Teram.HR.Module.FileUploader.Models
+@model FinalProductNoncomplianceModel
+@inject IStringLocalizer<Teram.QC.Module.FinalProduct.Controllers.FinalProductNoncomplianceController> localizer
+
+
+@if (Model.IsEmpty)
+{
+    <div class="alert alert-danger mt-3" role="alert">
+        @Model.ErrorMessage
+    </div>
+}
+else
+{
+    <form id="frmIncomingGoods" asp-action="Save" class="form" asp-controller="FinalProductNoncompliance" method="post" data-ajax="true" data-ajax-method="post" enctype="multipart/form-data" data-ajax-success="finalProductInspectionOnSuccess">
+
+        <input type="hidden" asp-for="ControlPlanDefectId" />
+        <input type="hidden" asp-for="Key" />
+        <input type="hidden" asp-for="Number" />
+        <input type="hidden" asp-for="FinalProductInspectionId" />
+        <input type="hidden" asp-for="ControlPlan" />
+        <input type="hidden" asp-for="OrderTitle" />
+        <input type="hidden" asp-for="FinalProductNoncomplianceNumber" />
+        
+        <div class="row">
+            <text-box asp-for="ControlPlanDefectTitle" is-readonly="true" reverse="true" title="@localizer["ControlPlanDefectTitle"]" validation-required-message="@localizer["Please enter ProductName"]" div-class="col-xs-12 col-md-12 col-lg-12  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+        </div>
+        <div class="row @(Model.IsNew ? "" : "d-none")">
+            <text-box asp-for="OrderNo" is-readonly="true" reverse="true" title="@localizer["OrderNo"]" validation-required-message="@localizer["Please enter OrderNo"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box asp-for="ProductCode" is-readonly="true" reverse="true" title="@localizer["ProductCode"]" validation-required-message="@localizer["Please enter ProductCode"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box asp-for="ProductName" is-readonly="true" reverse="true" title="@localizer["ProductName"]" validation-required-message="@localizer["Please enter ProductName"]" div-class="col-xs-12 col-md-6 col-lg-6  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+        </div>
+        <div class="row @(Model.IsNew ? "" : "d-none")">
+            <text-box asp-for="Remarks" is-readonly="@Model.IsNew ? false :true" reverse="true" title="@localizer["Remarks"]" validation-required-message="@localizer["Please enter Remarks"]" div-class="col-xs-12 col-md-12 col-lg-12  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+        </div>
+        <div class="row d-none">
+            <text-box asp-for=NewFirstSample is-readonly="@Model.IsNew ? true :false" reverse="true" title="@localizer["FirstSample"]" validation-required-message="@localizer["Please enter FirstSample"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box asp-for="NewSecondSample" is-readonly="@Model.IsNew ? true :false" reverse="true" title="@localizer["SecondSample"]" validation-required-message="@localizer["Please enter SecondSample"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box asp-for="NewThirdSample" is-readonly="@Model.IsNew ? true :false" reverse="true" title="@localizer["ThirdSample"]" validation-required-message="@localizer["Please enter ThirdSample"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box asp-for="NewForthSample" is-readonly="@Model.IsNew ? true :false" reverse="true" title="@localizer["ForthSample"]" validation-required-message="@localizer["Please enter ForthSample"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+        </div>
+        <div class="row @(Model.IsNew ? "" : "d-none")">
+            @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.FinalGoods1, FileAccept = ".jpg, .png, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+            @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.FinalGoods2, FileAccept = ".jpg, .png, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+            @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.FinalGoods3, FileAccept = ".jpg, .png, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+            @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.FinalGoods4, FileAccept = ".jpg, .png, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+        </div>
+        <div class="form-row">
+            <div class="form-group col-xs-12 col-md-12 col-lg-12" style="text-align:center;">
+                <button type="submit" class="btn btn-info">@localizer["Submit"] </button>
+            </div>
+        </div>
+    </form>
+    <div class="form-row">
+        @if (Model.FinalProductNoncomplianceFiles != null && Model.FinalProductNoncomplianceFiles.Count > 0)        
+        {
+            @foreach (var item in Model.FinalProductNoncomplianceFiles)
+            {
+                <div class="col-12 col-xs-12 col-md-6 col-lg-3 p-2" style="border:1px solid #aaa">
+                    <div class='d-flex flex-column aligh-items-center justify-content-center text-center' style="position:relative;">
+                        <a href="@item.ImageSrc" target="_blank" style="overflow:hidden">
+
+                            @if (@item.FileExtension.ToString().ToLower() == "pdf")
+                            {
+                                <img src="/icons/pdfIcon.png" style="height:150px; object-fit:cover">
+                            }
+                            else
+                            {
+                                <img src="@item.ImageSrc" style="height:150px; object-fit:cover">
+                            }
+                        </a>
+                    </div>
+                </div>
+            }        
+        }        
+    </div>
+}
+
+
+

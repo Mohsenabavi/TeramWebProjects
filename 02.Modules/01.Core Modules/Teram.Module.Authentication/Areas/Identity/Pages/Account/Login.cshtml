@@ -1,0 +1,79 @@
+﻿@page
+
+@model LoginModel
+@inject IOptions<RecaptchaSettings> RecaptchaSettings
+
+@inject IStringLocalizer<SharedResource> Localizer
+@inject IStringLocalizer<AuthenticationSharedResource> Localizer2
+@{
+    ViewData["Title"] = @Localizer2["Login"];
+}
+
+@* <h6>@ViewData["Title"]</h6> *@
+<div class="row row justify-content-center">
+    <div class="col-md-6" style="background-color:aliceblue;margin-top:120px;color:black;border-radius:20px;margin-left:30px">
+        <section>
+            <form id="account" method="post" data-ajax="true" data-ajax-method="post" data-ajax-success="onSuccess">
+                <div asp-validation-summary="All" class="text-light"></div>              
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <label asp-for="Input.NationalCode">@Localizer2["UserName"]</label>
+                        <input asp-for="Input.NationalCode" tabindex="1" class="form-control" />
+                        <span asp-validation-for="Input.NationalCode" class="text-light"></span>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label asp-for="Input.Password"></label>
+                        <input asp-for="Input.Password" tabindex="2" id="input-pwd" class="form-control text-left" dir="ltr" />
+                        <span toggle="#input-pwd" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                        <span asp-validation-for="Input.Password" class="text-light"></span>
+                    </div>
+                </div>
+                <div>
+                    <div class="dNTCaptchaToken mt-2">
+                        <dnt-captcha asp-captcha-generator-max="30"
+                                     asp-captcha-generator-min="1"
+                                     asp-captcha-generator-language="Persian"
+                                     asp-captcha-generator-display-mode="SumOfTwoNumbersToWords"
+                                     asp-use-relative-urls="true"
+                                     asp-placeholder="جمع دو عدد را به صورت عددی وارد نمایید"
+                                     asp-validation-error-message="تکمیل فیلد Captcha اجباری است."
+                                     asp-font-name="Tahoma"
+                                     asp-font-size="20"
+                                     asp-fore-color="#333333"
+                                     asp-back-color="#FCF6F5FF"
+                                     asp-text-box-class="form-control"
+                                     asp-text-box-template="<div class='input-group'><span class='input-group-text'><i class='fa fa-lock'></i></span>{0}</div>"
+                                     asp-validation-message-class="text-light"
+                                     asp-refresh-button-class="fas fa-redo btn-sm"
+                                     asp-show-refresh-button="true"
+                                     asp-dir="ltr" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label asp-for="Input.RememberMe">
+                            <input asp-for="Input.RememberMe" tabindex="3" />
+                            @Html.DisplayNameFor(m => m.Input.RememberMe)
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <input type="submit" tabindex="4" class="btn btn-success" value="@Localizer["Login"]" />
+                </div>
+                <div class="form-group">
+                  @*   <p>
+                        <a id="forgot-password" tabindex="6" asp-page="./ForgotPassword">@Localizer["ForgetPassword"]</a>
+                    </p> *@
+                    <p>
+                        @*<a asp-page="./Register" tabindex="7" asp-route-returnUrl="@Model.ReturnUrl">@Localizer["RegisterNewUser"]</a>*@
+                    </p>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+
+@section scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

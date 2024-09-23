@@ -1,0 +1,9 @@
+﻿@page
+@model ConfirmEmailChangeModel
+@inject IStringLocalizer<SharedResource> Localizer
+@{
+    ViewData["Title"] = Localizer["Confirm email change"];
+}
+
+<h6>@ViewData["Title"]</h6>
+<partial name="_StatusMessage" model="Model.StatusMessage" />

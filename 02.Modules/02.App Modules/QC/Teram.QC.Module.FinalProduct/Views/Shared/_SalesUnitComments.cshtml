@@ -1,0 +1,39 @@
+﻿@model List<FinalProductNonComplianceCartableItemModel>
+@inject IStringLocalizer<Teram.QC.Module.FinalProduct.Controllers.EditFinalProductNoncomplianceController> localizer
+
+<div class="card">
+    <div class="card-header bg-info" style="font-weight:bold">
+        @localizer["SalesUnitComments"]
+    </div>
+    <div class="card-body bg-light">
+        @if (Model.Count>0)
+        {
+            foreach (var item in Model)
+            {
+                <div class='row'>
+                    <div class="form-group col-xs-12 col-lg-4 col-md-2 form-group">
+                        <label class="forms-label mb-0">@localizer["SourceUserName"] </label>
+                        <input value="@item.SourceUserName" readonly type="text" class=" form-control" />
+                    </div>
+                    <div class="form-group col-xs-12 col-lg-4 col-md-2 form-group">
+                        <label class="forms-label mb-0">@localizer["DestinationUserName"] </label>
+                        <input value="@item.DestinationUserName" readonly type="text" class=" form-control" />
+                    </div>
+                    <div class="form-group col-xs-12 col-lg-4 col-md-2 form-group">
+                        <label class="forms-label mb-0">@localizer["PersianInputDate"] </label>
+                        <input value="@item.InputDatePersian" readonly type="text" class=" form-control" />
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class="form-group col-xs-12 col-lg-12 col-md-6 form-group">
+                        <label class="forms-label mb-0">@localizer["Comments"] </label>
+                        <input value="@item.Comments" readonly type="text" class="form-control text-bold" style="color:#8a0c0c" />
+                    </div>
+                </div>
+            }          
+        }        
+    </div>
+</div>
+
+
+

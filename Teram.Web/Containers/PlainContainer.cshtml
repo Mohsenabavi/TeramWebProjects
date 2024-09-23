@@ -1,0 +1,6 @@
+﻿@model Teram.Web.Core.Page.ContainerInformation
+
+
+<div class="container-plain-body">
+    @await Component.InvokeAsync(Model.ModuleName, new { PageModuleId = Model.PageModuleId })
+</div>

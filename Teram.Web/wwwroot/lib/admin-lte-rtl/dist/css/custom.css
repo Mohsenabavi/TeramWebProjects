@@ -1,0 +1,265 @@
+* {
+    direction: rtl !important;
+}
+
+.attachmentLabel {
+    background-color: #003B71;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px 10px 0px 0px;
+    color: white;
+}
+
+table {
+    border-radius: 30px 30px 0 0;
+    overflow: hidden;
+}
+
+tbody tr {
+    opacity: 0.9;
+}
+
+    tbody tr:hover {
+        opacity: 1;
+        background-color: #cccccc !important;
+    }
+
+#BackupHistory td {
+    text-align: left !important;
+    direction: ltr !important;
+}
+
+.delIcon {
+    background-image: url('/icons/delete.png') !important;
+    background-size: contain !important;
+    width: 24px !important;
+    height: 24px !important;
+    display: inline-block !important;
+    margin-top: 4px !important;
+}
+
+.bootbox-largest .modal-dialog {
+    max-width: none; /* Remove the maximum width */
+    max-height: none; /* Remove the maximum height */
+    width: 70%; /* Set a high width percentage or any value you prefer */
+    height: 70%; /* Set a high height percentage or any value you prefer */
+}
+
+.form-check-inline {
+    margin-right: 0 !important;
+}
+
+.form-control {
+    font-size: 0.75rem !important;
+}
+
+.highcharts-title {
+    font-family: iransans !important;
+}
+
+.highcharts-data-labels {
+    font-family: iransans !important;
+}
+
+.line-container {
+    width: 100%;
+    overflow: hidden;
+}
+
+.elevation-3 {
+    box-shadow: none !important;
+    width: 30%;
+    margin-top: 5px;
+}
+
+.fa-times-circle {
+    font-size: 24px !important;
+}
+
+.fa-edit {
+    font-size: 24px !important;
+}
+
+.line {
+    display: inline-block;
+    width: 100%;
+    border-bottom: 1px dashed #000; /* You can customize the border color and style */
+    margin-top: 10px;
+}
+
+.btn-danger {
+    background-color: #E4032E !important;
+}
+
+.btn-file {
+    background-color: #003B71 !important;
+}
+
+.form-check-input {
+    margin-top: 10px !important;
+}
+
+.nav-treeview {
+    background-color: #001931 !important;
+    opacity: 0.9 !important;
+    border-radius: 10px !important;
+}
+
+.bg-info {
+    background-color: #4A4A49 !important;
+}
+
+.btn-success {
+    background-color: #57C732 !important;
+}
+
+body {
+    margin: 0;
+    font-family: "iransans", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 0.8rem;
+    font-weight: 300;
+    line-height: 1.5;
+    color: #212529;
+    text-align: right !important;
+    background-color: #ffffff;
+}
+
+.card-header > .card-tools {
+    float: left;
+}
+
+.layout-fixed .main-sidebar {
+    right: 0;
+}
+
+.control-sidebar, .control-sidebar::before {
+    left: 0;
+    right: auto !important;
+}
+
+.sidebar-dark-primary {
+    background-color: #003B71 !important
+}
+
+.bg-dark {
+    background-color: #003B71 !important
+}
+
+.paginate_button {
+    padding: 0 !important;
+}
+
+.dataTables_paginate {
+    float: left !important;
+}
+
+table.datatableGrid thead {
+    background-color: #003B71 !important;
+    color: white !important
+}
+
+.brand-image {
+    float: right;
+}
+
+.mr-auto, .mx-auto {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+}
+
+.content-wrapper, .main-footer, .main-header {
+    margin-left: 0px;
+    margin-right: 250px;
+}
+
+.mr-auto-navbav {
+    margin-right: auto !important;
+}
+
+.navbar-expand .navbar-nav .nav-link {
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+
+[class*=icheck-] > input:first-child:checked + input[type=hidden] + label::after,
+[class*=icheck-] > input:first-child:checked + label::after {
+    right: 15px;
+    left: auto;
+}
+
+.nav-sidebar .nav-link > .right,
+.nav-sidebar .nav-link > p > .right {
+    left: 1rem;
+    right: auto;
+}
+
+    .nav-sidebar .nav-link > .right:nth-child(2),
+    .nav-sidebar .nav-link > p > .right:nth-child(2) {
+        left: 2.2rem;
+        right: auto;
+    }
+
+.small-box .icon > i {
+    left: 15px;
+    right: auto;
+}
+
+.card-title {
+    float: right !important;
+}
+
+.btn {
+    font-size: 0.8rem !important;
+}
+
+.file-input {
+    text-align: center !important;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+.file-preview-frame {
+    width: 95% !important;
+}
+
+.notificationMenu {
+    min-width: 20rem !important;
+}
+
+    .notificationMenu span {
+        font-size: 0.7rem;
+        padding: 4px;
+    }
+
+@media (min-width: 992px) {
+    .sidebar-mini.sidebar-collapse .content-wrapper, .sidebar-mini.sidebar-collapse .main-footer, .sidebar-mini.sidebar-collapse .main-header {
+        margin-right: 4.6rem !important;
+    }
+
+    .sidebar-mini.sidebar-collapse .content-wrapper, .sidebar-mini.sidebar-collapse .main-footer, .sidebar-mini.sidebar-collapse .main-header {
+        margin-right: 4.6rem !important;
+        margin-left: 0 !important;
+    }
+}
+
+@media (min-width:768x) {
+    .control-sidebar-open .control-sidebar, .control-sidebar-open .control-sidebar::before {
+        right: auto !important;
+        left: -250px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .main-sidebar, .main-sidebar::before {
+        box-shadow: none !important;
+        margin-right: -250px;
+    }
+
+    .content-wrapper, .content-wrapper::before, .main-footer, .main-footer::before, .main-header, .main-header::before {
+        margin-right: 0;
+    }
+
+    .sidebar-open .main-sidebar, .sidebar-open .main-sidebar::before {
+        margin-right: 0;
+    }
+}

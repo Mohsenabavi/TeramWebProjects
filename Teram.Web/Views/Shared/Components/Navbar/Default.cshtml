@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ControlPanelMenuAttribute>
+
+@{
+
+    var rightNavbar = Model.Where(x => x.Position == Teram.Web.Core.Enums.ControlPanelMenuPosition.RightNavbar);
+    var leftNavbar = Model.Where(x => x.Position == Teram.Web.Core.Enums.ControlPanelMenuPosition.LeftNavbar);
+
+}
+
+<ul class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+    </li>
+  @*   @if (Model.Any(x => x.Name == "Home"))
+    {
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="@Model.FirstOrDefault(x=> x.Name == "Home").GetLink()" class="nav-link">@Model.FirstOrDefault(x=> x.Name == "Home").Title</a>
+        </li>
+    } *@
+ 
+    @foreach(var item in rightNavbar)
+    {
+         @await Component.InvokeAsync(item.Name, new { panelType = item.PanelType })
+    }
+
+</ul>
+
+<ul class="navbar-nav mr-auto">
+    @foreach(var item in leftNavbar)
+    {
+         @await Component.InvokeAsync(item.Name, new { panelType = item.PanelType })
+    }
+</ul>

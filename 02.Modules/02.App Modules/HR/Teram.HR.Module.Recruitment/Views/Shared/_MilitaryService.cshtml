@@ -1,0 +1,21 @@
+﻿@using Teram.HR.Module.Recruitment.Models.WorkWithUs;
+@model BaseInformationModel
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.WorkWithUsController> localizer
+@{
+    var settingModel = ViewBag.WorkWithUsSettingModel;
+}
+<div class="row mt-2">
+    <div class="form-group col-xs-12 col-lg-6 col-md-6 form-group ">
+        <label class="forms-label" asp-for="MilitaryServiceStatus">@localizer["military service status"] </label>
+        <select asp-for="MilitaryServiceStatus"
+                class="form-control" id="MilitaryServiceStatus"
+                asp-items="Html.GetEnumSelectList<MilitaryServiceStatus>()">
+            <option>@localizer["select item"]</option>
+        </select>
+    </div>
+    <date-picker Name="StartDateMilitaryService" Id="StartDateMilitaryService" asp-for="StartDateMilitaryService" asp-for-text="PersianStartDateMilitaryService" reverse="true" auto-complete="off" show-label="true" title="@localizer["military service start date"]" div-class="form-group col d-flex flex-column-reverse align-items-start" />
+    <date-picker Name="EndDateMilitaryService" Id="EndDateMilitaryService" asp-for="EndDateMilitaryService" asp-for-text="PersianEndDateMilitaryService" reverse="true" auto-complete="off" show-label="true" title="@localizer["military service end date"]" div-class="form-group col d-flex flex-column-reverse align-items-start" />
+</div>
+<div class="row mt-2 d-none medicalExemptionReasonDiv">
+    <text-box asp-for="MedicalExemptionReason" reverse="true" validation-type="Persian" title="@localizer["MedicalExemptionReason"]" validation-required-message="@localizer["Please enter MedicalExemptionReason"]" div-class="col-xs-12 col-md-12 col-lg-12  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+</div>

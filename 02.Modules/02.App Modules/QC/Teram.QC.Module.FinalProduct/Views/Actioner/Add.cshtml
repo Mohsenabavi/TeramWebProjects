@@ -1,0 +1,28 @@
+﻿@model ActionerModel
+@inject IStringLocalizer<Teram.QC.Module.FinalProduct.Controllers.ActionerController> localizer
+
+<div class="formInfo">
+    <form asp-action="Save" method="post" data-ajax="true" data-ajax-method="post" data-ajax-success="onSuccess">
+        <input type="hidden" asp-for="Key" />
+        <div class="row">
+            <text-box asp-for="FirstName" reverse="true" validation-type="None" title="@localizer["FirstName"]" validation-required-message="@localizer["Please enter FirstName"]" div-class="col-4 col-md-4 col-lg-4 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box asp-for="LastName" reverse="true" validation-type="None" title="@localizer["LastName"]" validation-required-message="@localizer["Please enter LastName"]" div-class="col-4 col-md-4 col-lg-4 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box asp-for="PersonnelCode" reverse="true" validation-type="None" title="@localizer["PersonnelCode"]" validation-required-message="@localizer["Please enter PersonnelCode"]" div-class="col-4 col-md-4 col-lg-4 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box asp-for="PostTitle" reverse="true" validation-type="None" title="@localizer["PostTitle"]" validation-required-message="@localizer["Please enter PostTitle"]" div-class="col-4 col-md-4 col-lg-4 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <select-box style="justify-content: flex-end;" reverse="true" asp-for="UserId"
+                        not-selected-option-title="-- یک کاربر بندی انتخاب کنید --" title="کاربری"
+                        selected-value="@Model?.UserId"
+                        validation-required-message="@localizer["Please select a User"]"
+                        class="mb-2 col-12 col-md-12 col-lg-8 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2 provinceSelector" value="@ViewBag.UsersList">
+            </select-box>
+            <check-box asp-for="IsActive" name="IsActive" reverse="true" title="@localizer["IsActive"]" value="true" div-class="col-12 col-md-2 col-lg-2 d-flex flex-column-reverse align-items-start" />
+        </div>
+        <div class="form-row" style="margin-top:20px;">
+            <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                <button type="submit" class="btn btn-success">@localizer["Save"] </button>
+                <button type="button" class="btn btn-secondary resetForm resetButton">@localizer["New"] </button>
+            </div>
+        </div>
+    </form>
+</div>
+

@@ -1,0 +1,16 @@
+﻿@using Teram.HR.Module.Recruitment.Models.WorkWithUs;
+@model BaseInformationModel
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.WorkWithUsController> localizer
+
+<div class="form-row mt-3">
+    <div class="form-group col-xs-12 col-lg-4 col-md-4 form-group">
+        <label class="forms-label">@localizer["partner education grade"] </label>
+        <select asp-for="PartnerEducationLevel" name="PartnerEducationLevel"
+                class="form-control select2"
+                asp-items="Html.GetEnumSelectList<EducationGrade>()">
+            <option>@localizer["select item"]</option>
+        </select>
+    </div>
+    <text-box asp-for="PartnerJob" reverse="true" validation-type="Persian" title="@localizer["partnerJob"]" validation-required-message="@localizer["Please enter  partnerJob"]" div-class="col-xs-12 col-md-4 col-lg-4  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+    <text-box asp-for="ChildCount" reverse="true" validation-type="Number" title="@localizer["childCount"]" validation-required-message="@localizer["Please enter  childCount"]" div-class="col-xs-12 col-md-4 col-lg-4  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+</div>

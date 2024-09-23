@@ -1,0 +1,38 @@
+﻿@model RoleModel
+@inject IStringLocalizer<Teram.Module.Authentication.Controllers.RoleControlPanelController> localizer
+@inject IStringLocalizer<SharedResource> sharedResourceLocalizer
+
+<div id="formInfo">
+
+    <form asp-action="Save" method="post" data-ajax="true" data-ajax-method="post" data-ajax-success="onSuccess">
+        <input type="hidden" asp-for="Key" />
+        <input type="hidden" id="Key" asp-for="Key" />
+        @*<input type="hidden" asp-for="ConcurrencyStamp" />*@
+
+        <div class="form-row">
+            <div class="col-xs-12 col-lg-4 col-md-4 form-group">
+                <label for="Name">@localizer["Name"]</label>
+                <input type="text" asp-for="Name" class="form-control" data-val-required="@localizer["Please enter Name"]" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="col-xs-12 col-lg-4 col-md-4 form-group">
+                <label for="Title">@localizer["Title"]</label>
+                <input type="text" asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="col-xs-12 col-lg-4 col-md-4 form-group" style="margin-top: 2rem; padding-right:2rem;">
+                <input type="checkbox" asp-for="IsDefaultRole" class="form-check-input" />
+                <label for="IsDefaultRole" class="form-check-label">@localizer["Default"]</label>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                <button type="submit" class="btn btn-success">@localizer["Save"] </button>
+                <input type="button" id="reset" class="btn btn-secondary resetForm" value="@localizer["New"]" />
+            </div>
+        </div>
+    </form>
+
+</div>

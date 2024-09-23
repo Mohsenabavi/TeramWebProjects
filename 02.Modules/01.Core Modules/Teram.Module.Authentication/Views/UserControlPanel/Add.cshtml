@@ -1,0 +1,86 @@
+﻿@model UserViewModel
+@inject IStringLocalizer<Teram.Module.Authentication.Controllers.UserControlPanelController> localizer
+@inject IStringLocalizer<SharedResource> sharedResourceLocalizer
+
+<div id="formInfo">
+    <form asp-action="Save" method="post" data-ajax="true" data-ajax-method="post" data-ajax-success="onSuccess">
+        <input type="hidden" asp-for="Id" />
+        @*<input type="hidden" id="Key" asp-for="Key" />*@
+        @*<input type="hidden" asp-for="ConcurrencyStamp" />
+        <input type="hidden" asp-for="SecurityStamp" />*@
+
+        <div class="form-row">
+            <div class="col-xs-12 col-lg-4 col-md-4 form-group">
+                <label>@localizer["Name"] :</label>
+                <input type="text" required="required" data-required="required" data- asp-for="Name" placeholder="@localizer["Name"]" class="form-control" data-val-required="@sharedResourceLocalizer["Name is required"]" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="col-xs-12 col-lg-4 col-md-4 form-group">
+                <label>@localizer["User Name"] :</label>
+                <input type="text" required="required" autocomplete="off" data-required="required" data- asp-for="UserName" placeholder="@localizer["User Name"]" class="form-control" data-val-required="@sharedResourceLocalizer["UserName is required"]" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="col-xs-12 col-lg-4 col-md-4 form-group">
+                <label>@localizer["Email"] :</label>
+                <input type="text" required="required" data-required="required" asp-for="Email" placeholder="@localizer["Email"]" class="form-control" data-val-required="@sharedResourceLocalizer["Emial is required"]" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            @{
+                var isNewMode = (Model.Id == null || Model.Id == Guid.Empty);
+                if (!isNewMode)
+                {
+                    <div class="col-xs-12 col-lg-4 col-md-4 form-group">
+                        <label>@localizer[isNewMode ? "Password" : "Old Password"] :</label>
+                        <input type="password" data-required="required" asp-for="OldPassword" placeholder="@localizer[isNewMode?"Password":"Old Password"]" id="OldPassword" class="form-control" />
+                        <span asp-validation-for="OldPassword" for="OldPassword" class="text-danger"></span>
+                    </div>
+                }
+            }
+            <div class="col-xs-12 col-lg-4 col-md-4 form-group">
+                <label>@localizer[isNewMode ? "Password" : "New Password"] :</label>
+                <input type="password" data-required="required" asp-for="NewPassword" placeholder="@localizer[isNewMode?"Password":"New Password"]" id="NewPassword" class="form-control" />
+                <span asp-validation-for="NewPassword" for="NewPassword" class="text-danger"></span>
+            </div>
+            <div class="col-xs-12 col-lg-4 col-md-4 form-group">
+                <label>@localizer[isNewMode ? "Confirm Password" : "Confirm New Password"] :</label>
+                <input type="password" data-required="required" asp-for="ConfirmPassword" placeholder="@localizer[isNewMode?"Confirm Password":"Confirm New Password"]" id="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="col-xs-12 col-lg-4 col-md-4 form-group">
+                <label for="PhoneNumber">@localizer["Phone Number"]</label>
+                <input type="text" asp-for="PhoneNumber" placeholder="@localizer["Phone Number"]" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-xs-12 col-lg-4 col-md-4 form-group" style="margin-top: 2rem; padding-right:2rem;">
+                <input type="checkbox" asp-for="EmailConfirmed" class="form-check-input " />
+                <label for="EmailConfirmed" class="form-check-label">@localizer["Email is Confirmed"]  </label>
+            </div>
+
+            <div class="col-xs-12 col-lg-4 col-md-4 form-group" style="margin-top: 2rem; padding-right:2rem;">
+                <input type="checkbox" asp-for="PhoneNumberConfirmed" data-class-name="" class="form-check-input  " />
+                <label for="PhoneNumberConfirmed" class="form-check-label">@localizer["PhoneNumber is Confirmed"] </label>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-xs-12 col-md-12 col-lg-12" style="text-align:center;">
+                <button type="submit" class="btn btn-success">@localizer["Save"] </button>
+                <input type="button" id="reset" class="btn btn-secondary  " value="@localizer["New"]" />
+                <button id="btnSearch" type="button" class="btn btn-info"><i class="fa fa-search ml-1"></i>@localizer["Search"] </button>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+@section Styles{
+    <link rel="stylesheet" href="~/lib/md.bootstrappersiandatetimepicker/jquery.md.bootstrap.datetimepicker.style.css" asp-append-version="true">
+
+} 

@@ -1,0 +1,23 @@
+﻿@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.WorkWithUsController> localizer
+
+@{
+    Layout = "~/Views/Shared/_ControlPanelLayout.fa-IR.cshtml";
+}
+@await Component.InvokeAsync("ViewStepsComponent")
+<div class="card card-primary card-outline border-info">
+    <div class="card-header bg-dark text-light p-1">
+        <h5 class="card-title mt-2 mr-2"><i class=" text-info"></i> @localizer["Your Information Saved"]</h5>
+        <div class="card-tools">
+        </div>
+    </div>
+    <div class="card-body">
+        <div id="formInfo">
+            <div class="alert alert-info alert-message-primary" role="alert">
+                <h3>اطلاعات شما با موفقیت در سامانه منابع انسانی شرکت ترام چاپ سپاهان ذخیره شد ، به محض تایید اطلاعات و صدور معرفی نامه ها از طریق پیامک به شما اطلاع رسانی خواهد شد   </h3>
+            </div>
+            <div class="alert alert-warning alert-message-primary" role="alert">
+                <h3>لطفاً با در دست داشتن کارت ملی و مراجعه به یکی از دفاتر خدمات قضایی نسبت به دریافت گواهی عدم سوء پیشنیه اقدام فرمایید    </h3>
+            </div>
+        </div>
+    </div>
+</div>

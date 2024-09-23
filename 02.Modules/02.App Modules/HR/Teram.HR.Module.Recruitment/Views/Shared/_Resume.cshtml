@@ -1,0 +1,44 @@
+﻿@model ResumeModel
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.WorkWithUsController> localizer
+
+@{
+    int index = ViewBag.index == null ? 0 : ViewBag.index;
+    List<ResumeModel> resumeModel = new List<ResumeModel>();
+    for (int i = 0; i <= index; i++)
+    {
+        resumeModel.Add(new ResumeModel());
+    }
+}
+<div class="resume-row">
+    <i class="fas fa-times-circle text-danger mt-2 mr-2 removeInfo" id="removeTrainingRecord"></i>
+    <div class="row">
+        <text-box asp-for="CompanyName" is-required="true" name="resumes[@index].CompanyName" reverse="true" validation-type="None" title="@localizer["Company name"]" validation-required-message="@localizer["Please enter Company name"]" div-class="col-xs-12 col-md-6 col-lg-2  d-flex flex-column-reverse align-items-start" />
+        <text-box asp-for="OrganizationalPosition" is-required="true" name="resumes[@index].OrganizationalPosition" reverse="true" validation-type="None" title="@localizer["OrganizationalPosition"]" validation-required-message="@localizer["Please enter OrganizationalPosition"]" div-class="col-xs-12 col-md-6 col-lg-2  d-flex flex-column-reverse align-items-start" />
+        <div class="form-group col-xs-12 col-lg-2 col-md-2 form-group">
+            <label class="forms-label mb-0">@localizer["start date"] </label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text cursor-pointer"><i class="fa fa-calendar"></i></span>
+                </div>
+                <input type="text" asp-for="StartPersianDate" class="form-control pDatePicker startDateResume" name="resumes[@index].StartPersianDate" autocomplete="off" />
+                <input id="StartDateResume-@index" class="StartDateResume[@index]" type="hidden" name="resumes[@index].StartDate">
+            </div>          
+        </div>
+        <div class="form-group col-xs-12 col-lg-2 col-md-2 form-group">
+            <label class="forms-label mb-0">@localizer["finishe date"] </label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text cursor-pointer"><i class="fa fa-calendar"></i></span>
+                </div>
+                <input type="text" asp-for="FinishPersianDate" class="form-control pDatePicker endDateResume" name="resumes[@index].FinishPersianDate" autocomplete="off" />
+                <input id="EndDateResume-@index" type="hidden" name="resumes[@index].FinishDate">
+            </div>            
+        </div>
+        <text-box asp-for="Activity" is-required="true" name="resumes[@index].Activity" reverse="true" validation-type="None" title="@localizer["activity"]" validation-required-message="@localizer["Please enter activity"]" div-class="col-xs-12 col-md-6 col-lg-2  d-flex flex-column-reverse align-items-start" />
+        <text-box asp-for="EndCooperationReason" name="resumes[@index].EndCooperationReason" reverse="true" validation-type="None" title="@localizer["end cooperation reason"]" validation-required-message="@localizer["Please enter activity"]" div-class="col-xs-12 col-md-6 col-lg-2  d-flex flex-column-reverse align-items-start" />     
+    </div>
+</div>
+
+
+
+

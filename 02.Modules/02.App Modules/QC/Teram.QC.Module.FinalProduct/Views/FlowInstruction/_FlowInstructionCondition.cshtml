@@ -1,0 +1,42 @@
+﻿@model List<FlowInstructionConditionModel>
+@inject IStringLocalizer<Teram.QC.Module.FinalProduct.Controllers.FlowInstructionController> localizer
+
+@foreach (var item in Model)
+{
+    <input type="hidden" asp-for="@item.FlowInstructionConditionId" />
+    <div class="flowInstructionConditionRowContainer form-row  defectRow">
+        <div class="FlowInstructionConditionsection col-md-1">
+            <div class="text-center actionButtonContainer mt-4">
+                <div class="border-top border-right border-bottom d-inline-block px-1 pt-1 addButton" data-newrow="FlowInstructionConditionRow">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                </div>
+                <div class="border-top border-right border-bottom d-inline-block px-1 pt-1 mt-1 removeButton" data-finalProductInspectionDefectId="0">
+                    <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-11">
+            <div class="form-row">
+                <input type="hidden" asp-for="@item.FlowInstructionConditionId" name="FlowInstructionConditions[0].FinalProductInspectionDefectId" />               
+                <select-box reverse="true" not-selected-option-title="-  انتخاب کنید -" name="FlowInstructionConditions[0].FieldName"
+                            selected-value="@item.FieldName"
+                            title="@localizer["FieldName"]" class="form-group  required col-md-3 mb-3 d-flex flex-column-reverse align-items-start fieldsSelectList"
+                            select-class="inputBox" value="@ViewData["FieldName"] as List<SelectListItem>"
+                            div-class="col-md-3 mb-3 d-flex flex-column-reverse align-items-start">
+                </select-box>
+                <select-box reverse="true" not-selected-option-title="-  انتخاب کنید -" name="FlowInstructionConditions[0].FieldValue"
+                            selected-value="@item.FieldValue"
+                            title="@localizer["FieldValue"]" class="form-group  required col-md-3 mb-3 d-flex flex-column-reverse align-items-start fieldsSelectList"
+                            select-class="inputBox" value="@ViewData["FieldValue"] as List<SelectListItem>"
+                            div-class="col-md-3 mb-3 d-flex flex-column-reverse align-items-start">
+                </select-box>              
+                <hr />
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+

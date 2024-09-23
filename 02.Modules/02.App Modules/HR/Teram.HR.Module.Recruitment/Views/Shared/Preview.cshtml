@@ -1,0 +1,66 @@
+﻿@model BaseInformationModel
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.WorkWithUsController> localizer
+
+
+<div id="accordion" style="font-family:'iransans'">
+    <h6>اطلاعات شخصی</h6>
+    <div>
+        <partial name="PreviewPersonalInfo" model="Model" />
+    </div>
+    <h6>اطلاعات تماس</h6>
+    <div>
+        <partial name="PreviewContactInfo" model="Model" />
+    </div>
+    <h6>اطلاعات نظام وظیفه</h6>
+    <div>
+        <partial name="MilitaryServiceInfo" model="Model" />
+    </div>
+    @if (Model.TrainingRecords!=null && Model.TrainingRecords.Any())
+    {
+        <h6>سوابق تحصیلی</h6>
+        <div>
+            <partial name="PreviewTrainingRecordsInfo" model="Model.TrainingRecords" />
+        </div>
+    }
+    @if (Model.Resumes != null && Model.Resumes.Any())
+    {
+        <h6>سوابق کاری</h6>
+        <div>
+            <partial name="PreviewResumeInfo" model="Model.Resumes" />
+        </div>
+    }
+    @if (Model.EmergencyContacts != null && Model.EmergencyContacts.Any())
+    {
+        <h6>اطلاعات تماس در مواقع اضطراری</h6>
+        <div>
+            <partial name="PreviewIntroducersInfo" model="Model.EmergencyContacts" />
+        </div>
+    }
+    @if (Model.Educations != null && Model.Educations.Any())
+    {
+        <h6>سوابق آموزشی</h6>
+        <div>
+            <partial name="PreviewEducationInfo" model="Model.Educations" />
+        </div>
+    }
+    @if (Model.PersonnelLanguages != null && Model.PersonnelLanguages.Any())
+    {
+        <h6>مهارت های زبان </h6>
+        <div>
+            <partial name="PreviewPersonnelLanguages" model="Model.PersonnelLanguages" />
+        </div>
+    }
+    @if (Model.PersonnelComputerSkills != null && Model.PersonnelComputerSkills.Any())
+    {
+        <h6>مهارت های کامپیوتری </h6>
+        <div>
+            <partial name="PreviewPersonnelComputerSkill" model="Model.PersonnelComputerSkills" />
+        </div>
+    }
+    <h6>سایر اطلاعات </h6>
+    <div>
+        <partial name="PreviewOtherInfo" model="Model" />
+    </div>
+</div>
+
+

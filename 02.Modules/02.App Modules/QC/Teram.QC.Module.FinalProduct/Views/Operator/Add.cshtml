@@ -1,0 +1,25 @@
+﻿@model OperatorModel
+@inject IStringLocalizer<Teram.QC.Module.FinalProduct.Controllers.OperatorController> localizer
+
+<div class="formInfo">
+    <form asp-action="Save" method="post" data-ajax="true" data-ajax-method="post" data-ajax-success="onSuccess">
+        <input type="hidden" asp-for="Key" />
+        <div class="row">
+            <text-box asp-for="FirstName" reverse="true" validation-type="None" title="@localizer["FirstName"]" validation-required-message="@localizer["Please enter FirstName"]" div-class="col-4 col-md-4 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box asp-for="LastName" reverse="true" validation-type="None" title="@localizer["LastName"]" validation-required-message="@localizer["Please enter LastName"]" div-class="col-4 col-md-4 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box asp-for="MobileNumber" reverse="true" validation-type="Mobile" title="@localizer["MobileNumber"]" validation-required-message="@localizer["Please enter MobileNumber"]" div-class="col-4 col-md-4 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box asp-for="PersonnelCode" reverse="true" validation-type="Number" title="@localizer["PersonnelCode"]" validation-required-message="@localizer["Please enter PersonnelCode"]" div-class="col-4 col-md-4 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+        </div>
+        <div class="row">
+            <text-box asp-for="Remarks" reverse="true" validation-type="None" title="@localizer["Remarks"]" validation-required-message="@localizer["Please enter Remarks"]" div-class="col-4 col-md-4 col-lg-10 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <check-box asp-for="IsActive" name="IsActive" reverse="true" title="@localizer["IsActive"]" value="true" div-class="col-12 col-md-2 col-lg-2 d-flex flex-column-reverse align-items-start" />
+        </div>
+        <div class="form-row" style="margin-top:20px;">
+            <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                <button type="submit" class="btn btn-success">@localizer["Save"] </button>
+                <button type="button" class="btn btn-secondary resetForm resetButton">@localizer["New"] </button>
+            </div>
+        </div>
+    </form>
+</div>
+

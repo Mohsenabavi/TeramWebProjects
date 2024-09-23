@@ -1,0 +1,22 @@
+﻿@using Teram.Web.Core.Helper
+@model List<AreaModel>
+
+@{
+    Layout = "~/Views/Shared/_ControlPanelLayout.fa-IR.cshtml";
+}
+
+<div class="row p-4">
+
+    @foreach (var item in Model)
+    {
+        <div class="btn btn-success areaBtn" id="@item.AreaId">
+
+            @item.Title
+
+        </div>
+    }
+</div>
+
+<div id="ParentDiv"></div>
+
+@Html.AddResource(PageResourceType.JavaScript, @<script src="/ExternalModule/HR/Module/TicketRegister/Scripts/TicketRegister.js"></script>)

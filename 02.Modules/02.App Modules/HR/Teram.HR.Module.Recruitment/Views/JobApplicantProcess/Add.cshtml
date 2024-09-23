@@ -1,0 +1,156 @@
+﻿@using Teram.Web.Core.Helper
+@model JobApplicantModel
+@{
+    Layout = "_ControlPanelLayout.fa-IR";
+    string componentName = ViewBag.name;
+}
+<input id="FormStatus" type="hidden" value="0" />
+<div class="card">
+    <div class="row">
+        <div class="col-12">
+            <div class="my-steps" id="steps">
+                <ul class="my-step-progress">
+                    <li class="fa"><div class="outer">ثبت اطلاعات پایه</div></li>
+                    <li class="fa"><div class="outer">فرآیند<br />بارگذاری مدارک هویتی</div></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    @if (string.IsNullOrEmpty(componentName))
+    {
+        <div id="container" class="p-3 p-lg-5">
+        </div>
+    }
+    else if (componentName.StartsWith("url"))
+    {
+        <script>var url = "@componentName.Split(':')[1]"</script>
+        <div id="container" class="p-3 p-lg-5">
+        </div>
+    }
+    else
+    {
+        <div id="container" class="p-3 p-lg-5">
+            @await Component.InvokeAsync(componentName);
+        </div>
+    }
+</div>
+@* <input type="hidden" id="JobApplicantId" value="@Model.JobApplicantId" /> *@
+<script>
+    var step = @ViewBag.step;
+</script>
+@Html.AddResource(PageResourceType.JavaScript, @<script src="/ExternalModule/HR/Module/Recruitment/Scripts/JobApplicantProcess.js"></script>)
+<style>
+    .my-steps .my-step {
+        width: 100%;
+        margin: 10px auto 0 auto;
+    }
+
+    .my-steps .my-step-progress {
+    }
+
+        .my-steps .my-step-progress li {
+            list-style-type: none;
+            width: 8.1%;
+            float: right;
+            position: relative;
+            text-align: center;
+            color: #444972;
+        }
+
+            .my-steps .my-step-progress li.passed:before {
+                content: "\f00c";
+                border: 5px solid #338b2f;
+                color: #20781e;
+            }
+
+            .my-steps .my-step-progress li:before {
+                width: 40px;
+                height: 40px;
+                content: "\f017";
+                line-height: 32px;
+                border: 5px solid #cfcfcf;
+                display: block;
+                text-align: center;
+                margin: -3px auto 10px auto;
+                border-radius: 50%;
+                background-color: white;
+                font-size: 20px;
+                color: #a4a4a4;
+                font-family: 'Font Awesome 5 Free';
+                z-index: 1;
+                position: inherit;
+            }
+
+            .my-steps .my-step-progress li.active:before {
+                border-color: #4ba0d1 !important;
+                color: #4ba0d1;
+            }
+
+            .my-steps .my-step-progress li.edit:before {
+                border-color: #d1954b !important;
+                color: #d1954b;
+            }
+
+            .my-steps .my-step-progress li.reject:before {
+                border-color: #df7272 !important;
+                color: #c85c5c;
+            }
+
+            .my-steps .my-step-progress li.reject:before {
+                content: "\eda2" !important;
+            }
+
+            .my-steps .my-step-progress li.disabled:before {
+                content: "\f04d" !important;
+            }
+
+            .my-steps .my-step-progress li.passed:after {
+                background-color: #20781e !important;
+            }
+
+            .my-steps .my-step-progress li:not(:first-child):after {
+                width: 100%;
+                height: 6px;
+                content: '';
+                position: absolute;
+                background-color: #cfcfcf;
+                top: 18px;
+                right: -50%;
+            }
+
+            .my-steps .my-step-progress li.active:not(:first-child):after {
+                background-color: #20781e !important;
+            }
+
+            .my-steps .my-step-progress li.edit:not(:first-child):after {
+                background-color: #20781e !important;
+            }
+
+            .my-steps .my-step-progress li.reject:not(:first-child):after {
+                background-color: #20781e !important;
+            }
+
+    .my-steps .my-step-progress-last:after {
+        width: 100%;
+        height: 3px;
+        content: '';
+        position: absolute;
+        background-color: #cfcfcf;
+        top: 15px;
+        right: -50%;
+        z-index: -1;
+    }
+
+    .my-steps .my-step-progress-last.passed:after {
+        background-color: #20781e;
+    }
+
+    .my-steps .my-step-progress-last:before {
+        display: none;
+    }
+
+    .my-steps .my-step-progress {
+        position: relative;
+    }
+</style>

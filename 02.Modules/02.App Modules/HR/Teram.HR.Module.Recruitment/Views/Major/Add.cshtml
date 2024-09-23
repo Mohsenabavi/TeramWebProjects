@@ -1,0 +1,24 @@
+﻿@using Teram.Web.Core.Helper;
+@model MajorModel
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.MajorController> localizer
+<div class="formInfo">
+    <form asp-action="Save" method="post" data-ajax="true" data-ajax-method="post" data-ajax-success="onSuccess">
+        <input type="hidden" asp-for="MajorId" />
+        <div class="d-flex flex-row p-0">
+            <text-box asp-for="Title" reverse="true" title="@localizer["Title"]" validation-required-message="@localizer["Please enter Title"]" div-class="col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+        </div>
+        <div class="form-row" style="margin-top:20px;">
+            <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                <button type="submit" class="btn btn-success">@localizer["Save"] </button>
+                <button type="button" class="btn btn-secondary resetForm resetButton">@localizer["New"] </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@Html.AddResource(PageResourceType.JavaScript,@<script src="/ExternalModule/HR/Module/Recruitment/Scripts/signalr.js"></script>)
+@Html.AddResource(PageResourceType.JavaScript,@<script src="/ExternalModule/HR/Module/Recruitment/Scripts/Major.js"></script>)
+
+
+
+

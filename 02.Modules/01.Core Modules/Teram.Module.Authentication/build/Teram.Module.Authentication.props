@@ -1,0 +1,18 @@
+<Project>
+	<Target Name="Teram_Module_Authentication_GetFiles">
+		<ItemGroup>
+			<Teram_Module_AuthenticationFiles Include="$(MSBuildThisFileDirectory)..\lib\net7.0\**\*.dll"></Teram_Module_AuthenticationFiles>
+			<Teram_Module_AuthenticationFiles>
+				<Destination>$(OutDir)Plugins\Core Modules\</Destination>
+				<RootFiles>$(OutputPath)\%(FileName)%(Extension)</RootFiles>
+			</Teram_Module_AuthenticationFiles>
+		</ItemGroup>
+	</Target>
+	<Target Name="Teram_Module_Authentication_CopyFiles" BeforeTargets="Build" DependsOnTargets="Teram_Module_Authentication_GetFiles">
+		<!--It will copy the plugins output files into the Plugins folder of the goal project-->
+		<Copy SourceFiles="@(Teram_Module_AuthenticationFiles)" DestinationFolder="@(Teram_Module_AuthenticationFiles->'%(Destination)')" />
+	</Target>
+	<Target Name="Teram_Module_Authentication_Cleaning" DependsOnTargets="Teram_Module_Authentication_CopyFiles" AfterTargets="Build">
+		<Delete Files="@(Teram_Module_AuthenticationFiles->'%(RootFiles)')"  />
+	</Target>
+</Project>

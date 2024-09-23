@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <partial name="_defaultStyle" />
+
+    <link href="~/Themes/Default/CSS/Theme.min.css" rel="stylesheet" />
+    @RenderSection("Styles", false)
+</head>
+<body >
+   
+    <div class="wrapper">
+                   
+            @RenderBody()
+        <div class="container-fluid mainContainer text-center">
+            <a href="/" class="btn defaultButton">بازگشت به صفحه اصلی</a>
+        </div>  </div>
+     
+
+
+    @RenderSection("Scripts", required: false)
+    @Html.RenderResources(PageResourceType.CSS)
+    @Html.RenderResources(PageResourceType.JavaScript)
+</body>
+</html>

@@ -1,0 +1,34 @@
+﻿@inject IStringLocalizer<Teram.QC.Module.FinalProduct.Controllers.EditFinalProductNoncomplianceController> localizer
+@model FinalProductNoncomplianceModel
+
+<div class="card">
+    <div class="card-header bg-info" style="font-weight:bold">
+        @localizer["FilterData"] <small class="searchStatus"></small>
+    </div>
+    <div class="card-body bg-light">
+        <div class="row">
+            <input type="hidden" id="ViewInprogressStatus" />
+            <text-box id="OrderNo" name="OrderNo" reverse="true" validation-type="Number" title="@localizer["OrderNo"]" div-class="col-12 col-md-6 col-lg-2 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box id="ProductCode" name="ProductCode" reverse="true" validation-type="Number" title="@localizer["ProductCode"]" div-class="col-12 col-md-6 col-lg-2 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box id="FinalProductNoncomplianceNumber" name="FinalProductNoncomplianceNumber" reverse="true" validation-type="None" title="@localizer["FinalProductNoncomplianceNumber"]" div-class="col-12 col-md-6 col-lg-2 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <select-box style="justify-content: flex-end;" id="FormStatus" reverse="true" name="FormStatus" not-selected-option-title="-- یک وضعیت انتخاب کنید --" title="وضعیت فرم"
+                        validation-required-message="@localizer["Please select a Status"]" value="Html.GetEnumSelectList<FormStatus>().ToList()"
+                        class="col-12 col-md-6 col-lg-3 d-flex flex-column-reverse align-items-start" select-class="inputBox select2">
+            </select-box>
+            <select-box style="justify-content: flex-end;" id="ReferralStatus" reverse="true" name="ReferralStatus" not-selected-option-title="-- یک وضعیت انتخاب کنید --" title="وضعیت ارجاع"
+                        validation-required-message="@localizer["Please select a Status"]" value="Html.GetEnumSelectList<ReferralStatus>().ToList()"
+                        class="col-12 col-md-6 col-lg-3 d-flex flex-column-reverse align-items-start" select-class="inputBox select2">
+            </select-box>
+            <secure-content controller="EditFinalProductNoncompliance" action="ViewAllPermission">
+                <check-box name="ViewAll" id="ViewAll" reverse="true" is-required="false" title="@localizer["ViewAll"]" div-class="col-12 col-md-2 col-lg-2 d-flex flex-column-reverse align-items-start" />
+            </secure-content>
+        </div>
+        <div class="form-row" style="margin-top:20px;">
+            <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                <button id="btnSearch" type="button" class="btn btn-success shouldReloadGrid"><i class="fa fa-search"></i>@localizer["Search"] </button>
+                <button id="reset" class="btn btn-danger resetForm shouldReloadGrid" type="reset">@localizer["Remove Filter"]</button>
+                <button id="exportexel" type="button" class="btn btn-success">@localizer["ExcelPrint"] </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+﻿@page
+@model LogoutModel
+@inject IStringLocalizer<SharedResource> Localizer
+
+@{
+
+    ViewData["Title"] = Localizer["Log out"];
+}
+
+<header>
+    <h6>@ViewData["Title"]</h6>
+    <p>@Localizer["You have successfully logged out of the application."]</p>
+</header>

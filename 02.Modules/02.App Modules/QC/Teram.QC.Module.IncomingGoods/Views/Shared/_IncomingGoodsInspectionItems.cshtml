@@ -1,0 +1,232 @@
+﻿@model IncomingGoodsInspectionModel
+@inject IStringLocalizer<Teram.QC.Module.IncomingGoods.Controllers.IncomingGoodsInspectionController> localizer
+
+<input type="hidden" class="IncomingGoodsInspectionId" id="IncomingGoodsInspectionId" name="IncomingGoodsInspectionId" value="@Model.IncomingGoodsInspectionId" />
+
+<ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">@localizer["InspectionItemDetails"]</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">@localizer["References"]</button>
+    </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+        <div class="card">
+            <div class="card-header  bg-dark" style="font-weight:bold">
+                @localizer["InspectionItemDetails"]
+            </div>
+            <div class="card-body bg-light">
+                <div class='row'>
+                    <text-box asp-for="PersianCreateDate" is-readonly="true" title="@localizer["PersianCreateDate"]" div-class="col-xs-12 col-md-6 col-lg-4   align-items-start pl-lg-2 pl-md-2" />
+                    <text-box asp-for="CreatedByUserName" is-readonly="true" title="@localizer["CreatedByUserName"]" div-class="col-xs-12 col-md-6 col-lg-4   align-items-start pl-lg-2 pl-md-2" />
+                    <text-box asp-for="GoodsCode" is-readonly="true" title="@localizer["GoodsCode"]" div-class="col-xs-12 col-md-6 col-lg-4   align-items-start pl-lg-2 pl-md-2" />
+                    <text-box asp-for="VendorName" is-readonly="true" title="@localizer["VendorName"]" div-class="col-xs-12 col-md-6 col-lg-6   align-items-start pl-lg-2 pl-md-2" />
+                    <text-box asp-for="GoodsTitle" is-readonly="true" title="@localizer["GoodsTitle"]" div-class="col-xs-12 col-md-6 col-lg-6   align-items-start pl-lg-2 pl-md-2" />
+                    <text-box asp-for="IsConsignmentText" is-readonly="true" title="@localizer["IsConsignmentText"]" div-class="col-xs-12 col-md-6 col-lg-4   align-items-start pl-lg-2 pl-md-2" />
+                    <text-box asp-for="IsSampleGoodsText" is-readonly="true" title="@localizer["IsSampleGoodsText"]" div-class="col-xs-12 col-md-6 col-lg-4   align-items-start pl-lg-2 pl-md-2" />
+                    <text-box asp-for="HasFunctionalTestText" is-readonly="true" title="@localizer["HasFunctionalTestText"]" div-class="col-xs-12 col-md-6 col-lg-4   align-items-start pl-lg-2 pl-md-2" />
+                    <text-box asp-for="Quantity" is-readonly="true" title="@localizer["Quantity"]" div-class="col-xs-12 col-md-6 col-lg-6   align-items-start pl-lg-2 pl-md-2" />
+                    <text-box asp-for="TotalDefectiveCount" is-readonly="true" title="@localizer["TotalDefectiveCount"]" div-class="col-xs-12 col-md-6 col-lg-6   align-items-start pl-lg-2 pl-md-2" />
+                </div>
+            </div>
+        </div>
+        <hr />
+        @if (Model.IncomingGoodsInspectionItems!=null && Model.IncomingGoodsInspectionItems.ToList().Any())
+        {
+            <div class="card">
+                <div class="card-header  bg-dark" style="font-weight:bold">
+                    @localizer["IncomingGoodsInspectionItems"]
+                </div>
+                <div class="card-body bg-light">
+                    @if (Model.IncomingGoodsInspectionItems!=null && Model.IncomingGoodsInspectionItems.ToList().Any())
+                    {
+                        @foreach (var item in Model.IncomingGoodsInspectionItems)
+                        {
+                            <div class="controlPlan-row">
+                                <div class="row">
+                                    <input type="hidden" value="@item.ControlPlanId" />
+                                    <div class="form-group col-xs-12 col-lg-2 col-md-2 form-group">
+                                        <label class="forms-label mb-0">@localizer["ControlPlanParameter"] </label>
+                                        <input value="@item.ControlPlanControlPlanParameter" readonly type="text" class=" form-control font-weight-bold text-lg-right" />
+                                    </div>
+                                    <div class="form-group col-xs-12 col-lg-2 col-md-2 form-group">
+                                        <label class="forms-label mb-0">@localizer["QuantityDescription"] </label>
+                                        <input value="@item.ControlPlanQuantityDescription" readonly type="text" class=" form-control" />
+                                    </div>
+                                    <div class="form-group col-xs-12 col-lg-2 col-md-2 form-group">
+                                        <label class="forms-label mb-0">@localizer["AcceptanceCriteria"] </label>
+                                        <input asp-for="@item.ControlPlanAcceptanceCriteria" readonly type="text" class=" form-control" />
+                                    </div>
+                                    <div class="form-group col-xs-12 col-lg-2 col-md-2 form-group">
+                                        <label class="forms-label mb-0">@localizer["InspectionResult"] </label>
+                                        <input asp-for="@item.InspectionResult" readonly required type="text" class=" form-control" />
+                                    </div>
+                                    <div class="form-group col-xs-12 col-lg-2 col-md-2 form-group">
+                                        <label class="forms-label mb-0">@localizer["AmountOfDefects"] </label>
+                                        <input asp-for="@item.AmountOfDefects" readonly required type="text" class=" form-control" />
+                                    </div>
+                                    <div class="form-group col-xs-12 col-lg-2 col-md-2 form-group">
+                                        <label class="forms-label mb-0">@localizer["IsMatchText"] </label>
+                                        <input asp-for="@item.IsMatchText" readonly required type="text" class=" form-control" />
+                                    </div>                                    
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-xs-12 col-lg-12 col-md-12 form-group">
+                                        <label class="forms-label mb-0">@localizer["InspectionResultRemarks"] </label>
+                                        <input asp-for="@item.InspectionResultRemarks" readonly type="text" class=" form-control" />
+                                    </div>
+                                </div>
+                                <hr />
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        }
+
+        @if (Model.IncomingGoodsInspectionFiles != null && Model.IncomingGoodsInspectionFiles.ToList().Any())
+        {
+            <div class="card">
+                <div class="card-header  bg-dark" style="font-weight:bold">
+                    @localizer["IncomingGoodsInspectionFiles"]
+                </div>
+                <div class="card-body bg-light">
+                    <div class="row">
+                        @foreach (var item in Model.IncomingGoodsInspectionFiles)
+                        {
+                            <div class="col-xs-12 col-lg-3 col-md-3">
+                                <a href="@item.DownloadUrl" target="_blank">
+                                    <img src="@item.DownloadUrl" style="max-width:100%;height:auto" />
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+        @if (Model.IncomingGoodsInspectionCartableItems != null && Model.IncomingGoodsInspectionCartableItems.ToList().Any())
+        {
+            <div class="card">
+                <div class="card-header  bg-dark" style="font-weight:bold">
+                    @localizer["IncomingGoodsInspectionCartableItems"]
+                </div>
+                <div class="card-body bg-light">
+                    @foreach (var item in Model.IncomingGoodsInspectionCartableItems.OrderBy(x => x.InputDate))
+                    {
+                        <div class='row'>
+                            <div class="form-group col-xs-12 col-lg-2 col-md-2 form-group">
+                                <label class="forms-label mb-0">@localizer["ReferredByName"] </label>
+                                <input value="@item.ReferredByName" readonly type="text" class=" form-control" />
+                            </div>
+                            <div class="form-group col-xs-12 col-lg-2 col-md-2 form-group">
+                                <label class="forms-label mb-0">@localizer["PersianInputDate"] </label>
+                                <input value="@item.PersianInputDate" readonly type="text" class=" form-control" />
+                            </div>
+                            <div class="form-group col-xs-12 col-lg-8 col-md-8 form-group">
+                                <label class="forms-label mb-0">@localizer["Comments"] </label>
+                                <input value="@item.Comments" readonly type="text" class=" form-control" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+
+        <div class="card">
+            <div class="card-header  bg-dark" style="font-weight:bold">
+                @localizer["Referral"]
+            </div>
+            <div class="card-body bg-light">
+
+                <Partial name="_Comment" />
+
+            </div>
+        </div>
+
+        @if (Model.InspectionFormStatus == Teram.QC.Module.IncomingGoods.Enums.InspectionFormStatus.ReferralToCreator)
+        {
+            <div class="card">
+                <div class="card-header  bg-dark" style="font-weight:bold">
+                    @localizer["Referral"]
+                </div>
+                <div class="card-body bg-light">
+                    <div class="row finalApproveSection">
+                        <div class="form-group col-xs-12 col-lg-2 col-md-2 form-group required">
+                            <label class="forms-label form-check-label text-bold">@localizer["FinalApproveText"]</label>
+                            <div class="text-right">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input"
+                                           type="radio"
+                                           name="FinalApproveStatus"
+                                           id="rdGendermale"
+                                           value="True">
+                                    <label class="form-check-label m-2" tabindex="1">@localizer["IsApprove"]</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input"
+                                           type="radio"
+                                           name="FinalApproveStatus"
+                                           id="rdGenderFemale"
+                                           value="False">
+                                    <label class="form-check-label m-2" tabindex="2">@localizer["IsNotApprove"]</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row" style="margin-top:20px;">
+                        <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                            <button type="button" class="btn btn-danger btnSaveFinalApprove">ثبت و تایید نهایی </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="card">
+            <div class="card-header bg-info" style="font-weight:bold">
+                @localizer["References"]
+            </div>
+            <div class="card-body bg-light">
+                @if (Model.IncomingGoodsInspectionCartableItems != null && Model.IncomingGoodsInspectionCartableItems.ToList().Any())
+                {
+                    foreach (var item in Model.IncomingGoodsInspectionCartableItems.OrderBy(x => x.InputDate))
+                    {
+                        <div class='row'>
+                            <div class="form-group col-xs-12 col-lg-2 col-md-2 form-group">
+                                <label class="forms-label mb-0">@localizer["ReferredByName"] </label>
+                                <input value="@item.ReferredByName" readonly type="text" class=" form-control" />
+                            </div>
+                            <div class="form-group col-xs-12 col-lg-2 col-md-2 form-group">
+                                <label class="forms-label mb-0">@localizer["ReferredToName"] </label>
+                                <input value="@item.ReferredToName" readonly type="text" class=" form-control" />
+                            </div>
+                            <div class="form-group col-xs-12 col-lg-2 col-md-2 form-group">
+                                <label class="forms-label mb-0">@localizer["PersianInputDate"] </label>
+                                <input value="@item.PersianInputDate" readonly type="text" class=" form-control" />
+                            </div>
+                            <div class="form-group col-xs-12 col-lg-6 col-md-6 form-group">
+                                <label class="forms-label mb-0">@localizer["Comments"] </label>
+                                <input value="@item.Comments" readonly type="text" class=" form-control" />
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="card-body">
+                        <div id="formInfo">
+                            <div class="alert alert-info alert-message-primary" role="alert">
+                                <h3>ارجاعاتی برای  این  فرم یافت نشد</h3>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,54 @@
+﻿@model JobApplicantModel
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.AdditionalDocumentsController> localizer
+
+<div class="formInfo">
+    <form asp-action="SaveFiles" method="post" data-ajax="true" data-ajax-method="post" data-ajax-success="onSuccess" enctype="multipart/form-data">
+        <input type="hidden" asp-for="JobApplicantId" name="JobApplicantId" />
+        <div class="row" style="margin-top:20px;">
+            @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.PromissoryNote, FileAccept = ".jpg, .png, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+            @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.NoBadBackground, FileAccept = ".jpg, .png, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+            @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.NoAddictionForm, FileAccept = ".jpg, .png, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+            @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.InterviewEvaluation, FileAccept = ".jpg, .png, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+            @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.EysenckFormFront, FileAccept = ".jpg, .png, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+            @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.EysenckFormBehind, FileAccept = ".jpg, .png, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+            @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.OnEmploymentQuestionnaire, FileAccept = ".jpg, .png, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+            @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.BehindEmploymentQuestionnaire, FileAccept = ".jpg, .png, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+        </div>
+        <div class="form-row" style="margin-top:20px;">
+            <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                <button type="submit" class="btn btn-success">@localizer["Save"] </button>
+            </div>
+        </div>
+    </form>
+    <div class="card">
+        <div class="card-header bg-info" style="font-weight:bold">
+            @localizer["FilterData"] <small class="searchStatus"></small>
+        </div>
+        <div class="card-body bg-light">
+            <div class="row">
+                <input type="hidden" id="ViewInprogressStatus" />
+                <text-box id="FirstNameFilter" name="NationalCodeFilter" reverse="true" validation-type="Persian" title="@localizer["FirstName"]" div-class="col-12 col-md-6 col-lg-2 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+                <text-box id="LastNameFilter" name="NationalCodeFilter" reverse="true" validation-type="Persian" title="@localizer["LastName"]" div-class="col-12 col-md-6 col-lg-2 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+                <text-box id="PersonnelCodeFilter" name="PersonnelCodeFilter" reverse="true" validation-type="Number" title="@localizer["PersonnelCode"]" div-class="col-12 col-md-6 col-lg-2 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+                <text-box id="NationalCodeFilter" name="NationalCodeFilter" reverse="true" validation-type="Number" title="@localizer["NationalCode"]" div-class="col-12 col-md-6 col-lg-2 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+                <select-box style="justify-content: flex-end;" id="FlowTypeFilter" reverse="true" name="InspectionFormStatus" not-selected-option-title="-- یک وضعیت انتخاب کنید --" title="وضعیت"
+                            validation-required-message="@localizer["Please select a Status"]" value="Html.GetEnumSelectList<FlowType>().ToList()"
+                            class="col-12 col-md-6 col-lg-2 d-flex flex-column-reverse align-items-start" select-class="inputBox select2">
+                </select-box>
+                <select-box style="justify-content: flex-end;" id="ProcessStatusFilter" reverse="true" name="InspectionFormStatus" not-selected-option-title="-- یک وضعیت انتخاب کنید --" title="وضعیت"
+                            validation-required-message="@localizer["Please select a Status"]" value="Html.GetEnumSelectList<ProcessStatus>().ToList()"
+                            class="col-12 col-md-6 col-lg-2 d-flex flex-column-reverse align-items-start" select-class="inputBox select2">
+                </select-box>
+            </div>
+            <div class="form-row" style="margin-top:20px;">
+                <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                    <button id="btnSearch" type="button" class="btn btn-success shouldReloadGrid"><i class="fa fa-search"></i>@localizer["Search"] </button>
+                    <button id="reset" class="btn btn-danger resetForm shouldReloadGrid" type="reset">@localizer["Remove Filter"]</button>
+                    <button id="ViewAll" type="button" class="btn btn-info">@localizer["ViewAll"] </button>
+                    <button id="ViewInprogress" type="button" class="btn btn-warning">@localizer["ViewInprogress"] </button>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

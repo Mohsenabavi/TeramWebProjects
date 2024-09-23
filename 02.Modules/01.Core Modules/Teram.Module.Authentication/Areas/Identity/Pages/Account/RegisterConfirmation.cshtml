@@ -1,0 +1,12 @@
+﻿@page
+@model RegisterConfirmationModel
+@inject IStringLocalizer<SharedResource> Localizer
+
+@{
+    ViewData["Title"] = Localizer["Register confirmation"];
+}
+
+<h6>@ViewData["Title"]</h6>
+<p>
+    @Localizer["Please check your email to confirm your account."]
+</p>

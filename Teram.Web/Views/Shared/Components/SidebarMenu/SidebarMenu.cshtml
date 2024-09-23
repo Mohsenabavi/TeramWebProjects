@@ -1,0 +1,24 @@
+﻿@model SidebarMenu
+
+<li class="nav-item @(Model.SubMenu.Any() ? "has-treeview" : "")">
+    <a href="@Model.Link" class="nav-link" >
+        <i class="nav-icon fas @Model.Icon"></i>
+        <p>
+            @Model.Title
+            @if (Model.SubMenu.Any())
+            {
+                <i class="right fas fa-angle-left"></i>
+            }
+        </p>
+    </a>
+        @if (Model.SubMenu.Any())
+        {
+            <ul class="nav nav-treeview">
+
+                @foreach (var item in Model.SubMenu)
+                {
+                    @await Component.InvokeAsync("SidebarMenu", item)
+                }
+            </ul>
+        }
+</li>

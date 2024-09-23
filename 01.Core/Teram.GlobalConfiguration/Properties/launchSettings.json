@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Teram.GlobalConfiguration": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:13662;http://localhost:13665"
+    }
+  }
+}

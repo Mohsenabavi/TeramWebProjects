@@ -1,0 +1,296 @@
+﻿body, html {
+    height: 100%;
+}
+
+body {
+    font-family: 'IranSans';
+    color: #FFF;
+    background-color: #f4f4f4;
+    font-size: 0.7rem;
+}
+
+.form-control {
+    font-size: 0.7rem;
+}
+
+.main-icon {
+    text-align: center;
+    margin: auto;
+    margin-bottom: 30px;
+}
+
+.btn-blue {
+    background: #007cc0;
+    color: #fff;
+    font-size: 15px;
+    text-transform: uppercase;
+    padding: .8em 2em;
+    letter-spacing: 1px;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    width: 100%;
+}
+
+.loginPage, .registerPage {
+    margin: auto;
+}
+
+.externalService {
+    margin: 20px auto;
+    font-size: 0.9rem;
+}
+
+a {
+    color: rgba(219, 225, 222, 0.72);
+}
+
+.otherLink a {
+    color: white;
+}
+
+a:hover {
+    color: #5b5a5f;
+    text-decoration: none;
+}
+
+.mainContainer {
+    direction: rtl;
+    text-align: right;
+    margin: auto;
+    background: #fff;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.cover {
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+    .cover:before {
+        content: "";
+        background-color: #e4ebe7;
+        background-image: url('../themes/default/images/gear.jpg');
+        background-size: cover;
+        position: absolute;
+        bottom: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+.identityBox {
+    background-color: rgba(219, 225, 222, 0.72);
+    color: black;
+    border: 1px solid #747776;
+    padding-top: 120px;
+    text-align: center;
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.47);
+}
+
+@media (min-width: 767px) {
+    .identityBox {
+        width: 40%;
+    }
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+#cover-spin {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(255,255,255,0.7);
+    z-index: 9999;
+    display: none;
+}
+
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#cover-spin::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 48%;
+    top: 40%;
+    width: 40px;
+    height: 40px;
+    border-style: solid;
+    border-color: black;
+    border-top-color: transparent;
+    border-width: 4px;
+    border-radius: 50%;
+    -webkit-animation: spin .8s linear infinite;
+    animation: spin .8s linear infinite;
+}
+
+/*
+    ------------------ Loding spin
+*/
+
+.select2-container {
+    width: 100% !important;
+    padding: 0;
+}
+
+.permissionItems {
+    margin-top: 10px
+}
+
+
+.externalLogin {
+    font-size: 18px;
+    display: inline-block;
+    background: #373737;
+    color: #fff;
+    line-height: 1;
+    padding: 8px 0;
+    margin-right: 4px;
+    border-radius: 50%;
+    text-align: center;
+    width: 36px;
+    height: 36px;
+    transition: 0.3s;
+}
+
+    .externalLogin:hover {
+        background: #f31948;
+        color: #fff;
+        text-decoration: none;
+    }
+
+
+.input-group > .input-group-append > .btn, .input-group > .input-group-append > .input-group-text, .input-group > .input-group-prepend:first-child > .btn:not(:first-child), .input-group > .input-group-prepend:first-child > .input-group-text:not(:first-child), .input-group > .input-group-prepend:not(:first-child) > .btn, .input-group > .input-group-prepend:not(:first-child) > .input-group-text {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-group > .custom-select:not(:last-child), .input-group > .form-control:not(:last-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.login-box-msg {
+    margin: 0;
+    padding: 8px 20px 20px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.LoginBtn {
+    color: black;
+    padding: 0.3em 1.0em;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+}
+
+.notification {
+    border: 1px solid #856404 !important;
+    line-height: 1.7rem;
+    font-size: 0.79rem
+}
+
+.warning-note {
+    display: block;
+    text-align: center;
+    font-size: 1.0rem;
+    font-weight: bold;
+}
+
+.registerContainer {
+    content: "";
+    background-color: #e4ebe7;
+    background-image: url('../themes/default/images/LoginBackGround.jpg');
+    background-size: contain;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: repeat;
+    min-height: 100%;
+    padding-top: 30px;
+}
+
+.backBtn {
+    width: 119px;
+    height: 30px;
+    background-color: #838182;
+    color: white;
+    font-family: Tahoma;
+    border: 1px solid
+}
+
+.btn {
+    font-size: 13px !important;
+}
+
+input[type=email] {
+    direction: ltr;
+}
+
+
+span.field-icon {
+    cursor: pointer;
+    float: right;
+    margin-right: 15px;
+    margin-top: -20px;
+    position: relative;
+    z-index: 2;
+}
+
+span.field-icon-confirm {
+    position: absolute;
+    cursor: pointer;
+    padding-right: 15px;
+    padding-top: 10px;
+    z-index: 2;
+}
+.defaultBtn {
+    border-radius: 5px;
+    background-color: gray;
+    color: white;
+    width: auto;
+    padding: 12px;
+}
+.defaultBtn:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.defaultBtn:hover {
+    color: white;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}

@@ -1,0 +1,180 @@
+﻿@using Teram.Framework.Core.Extensions
+@using Teram.Web.Core.Helper
+@model ViewWorkerJobBackgroundInfoModel
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.ViewWorkerJobBackgroundInfoController> localizer
+
+@{
+    Layout = "~/Views/Shared/_ControlPanelLayout.fa-IR.cshtml";
+}
+
+<div id="printContent">
+    <div class="container mt-5">
+        <div class="border border-secondary" style="padding:20px;">
+            <div class="row border-bottom">
+                <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+                    <h2>@localizer["JobBackground"]</h2>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-4 col-md-3 col-lg-3 text-right">
+                    <span style="font-size:11pt;font-weight:bold">@localizer["FullName"] : @Model.FullName</span>
+                </div>
+                <div class="col-3 col-md-3 col-lg-3 text-right">
+                    <span style="font-size:11pt;font-weight:bold">@localizer["JobTitle"] : @Model.JobTitle</span>
+                </div>
+                <div class="col-3 col-md-3 col-lg-3 text-right">
+                    <span style="font-size:11pt;font-weight:bold">@localizer["Date"] : @DateTime.Now.ToPersianDate()</span>
+
+                </div>
+                <div class="col-3 col-md-3 col-lg-3 text-left">
+                    <image-box src="@Model.ImageSrc" style="width:80%;height:auto;float:left" />
+                </div>
+            </div>
+            <div class="border border-secondary" style="padding:20px;margin-top:10px">
+                <div class="row mt-4">
+                    <div class="col-4 col-md-4 col-lg-4">
+                        <span style="font-size:11pt;font-weight:bold">@localizer["LastJobsApprove"]</span>
+                    </div>
+                    <div class="col-2 col-md-2 col-lg-2">
+                        <div class="form-check form-check-inline">
+                            <label style="font-size:12pt;font-weight:bold" class="form-check-label" for="inlineCheckbox1">@localizer["Positive"]</label>
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                        </div>
+                    </div>
+                    <div class="col-2 col-md-2 col-lg-2">
+                        <label style="font-size:12pt;font-weight:bold" class="form-check-label" for="inlineCheckbox2">@localizer["Negative"]</label>
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                    </div>
+                    <div class="col-4 col-md-4 col-lg-4">
+                        <div class="line-container">
+                            <span class="line"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-4 col-md-4 col-lg-4">
+                        <span style="font-size:11pt;font-weight:bold">@localizer["PerformanceIsApproved"]</span>
+                    </div>
+                    <div class="col-2 col-md-2 col-lg-2">
+                        <div class="form-check form-check-inline">
+                            <label style="font-size:12pt;font-weight:bold" class="form-check-label" for="inlineCheckbox1">@localizer["Positive"]</label>
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                        </div>
+                    </div>
+                    <div class="col-2 col-md-2 col-lg-2">
+                        <label style="font-size:12pt;font-weight:bold" class="form-check-label" for="inlineCheckbox2">@localizer["Negative"]</label>
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                    </div>
+                    <div class="col-4 col-md-4 col-lg-4">
+                        <div class="line-container">
+                            <span class="line"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-4 col-md-4 col-lg-4">
+                        <span style="font-size:11pt;font-weight:bold">@localizer["DisciplineIsApproved"]</span>
+                    </div>
+                    <div class="col-2 col-md-2 col-lg-2">
+                        <div class="form-check form-check-inline">
+                            <label style="font-size:12pt;font-weight:bold" class="form-check-label" for="inlineCheckbox1">@localizer["Positive"]</label>
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                        </div>
+                    </div>
+                    <div class="col-2 col-md-2 col-lg-2">
+                        <label style="font-size:12pt;font-weight:bold" class="form-check-label" for="inlineCheckbox2">@localizer["Negative"]</label>
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                    </div>
+                    <div class="col-4 col-md-4 col-lg-4">
+                        <div class="line-container">
+                            <span class="line"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-4 col-md-4 col-lg-4">
+                        <span style="font-size:11pt;font-weight:bold">@localizer["MoralityIsApproved"]</span>
+                    </div>
+                    <div class="col-2 col-md-2 col-lg-2">
+                        <div class="form-check form-check-inline">
+                            <label style="font-size:12pt;font-weight:bold" class="form-check-label" for="inlineCheckbox1">@localizer["Positive"]</label>
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                        </div>
+                    </div>
+                    <div class="col-2 col-md-2 col-lg-2">
+                        <label style="font-size:12pt;font-weight:bold" class="form-check-label" for="inlineCheckbox2">@localizer["Negative"]</label>
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                    </div>
+                    <div class="col-4 col-md-4 col-lg-4">
+                        <div class="line-container">
+                            <span class="line"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-2 col-md-2 col-lg-2">
+                        <span style="font-size:14pt;margin-top:10px;">@localizer["mrOrms"]</span>
+                    </div>
+                    <div class="col-4 col-md-4 col-lg-4">
+                        <div class="line-container">
+                            <span class="line"></span>
+                        </div>
+                    </div>
+                    <div class="col-1 col-md-1 col-lg-1">
+                        <span style="font-size:14pt;margin-top:10px;">@localizer["Statement"]</span>
+                    </div>
+                    <div class="col-5 col-md-5 col-lg-5">
+                        <div class="line-container">
+                            <span class="line"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-2 col-md-2 col-lg-2">
+                        <span style="font-size:14pt;margin-top:10px;">@localizer["FinalStatement"]</span>
+                    </div>
+                    <div class="col-10 col-md-10 col-lg-10">
+                        <div class="line-container">
+                            <span class="line"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-12 col-md-12 col-lg-12">
+                        <div class="line-container">
+                            <span class="line"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-12 col-md-12 col-lg-12">
+                        <div class="line-container">
+                            <span class="line"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4 mb-5">
+                    <div class="col-5 col-md-5 col-lg-5">
+                        <span style="font-size:14pt;margin-top:10px;">@localizer["HRSupervisorName"]</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row text-center mt-2">
+        <button style="width:100px;margin:0 auto" class="btn btn-info" id="printButton">چاپ فرم</button>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    @Html.AddResource(PageResourceType.JavaScript, @<script src="/ExternalModule/HR/Module/Recruitment/Scripts/ViewWorkerJobBackgroundInfo.js"></script>)
+

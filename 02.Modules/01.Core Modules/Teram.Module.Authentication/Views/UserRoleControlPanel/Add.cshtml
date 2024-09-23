@@ -1,0 +1,38 @@
+﻿@model Teram.Module.Authentication.Models.UserRoleModel 
+@inject IStringLocalizer<Teram.Module.Authentication.Controllers.UserRoleControlPanelController> localizer
+@inject IStringLocalizer<SharedResource> sharedResourceLocalizer
+
+<div id="formInfo">
+    <form  data-ajax="true">
+         
+        <input type="hidden" asp-for="Key" />
+        <div class="form-row">
+
+            <div class="col-xs-12 col-lg-4 col-md-4 form-group">
+                <label class="forms-label" asp-for="Key">@localizer["User"]  </label>
+                <select id="UserId" asp-for="Key" asp-items=ViewBag.Users class="form-control select2" data-val-required="@localizer["Select One User"]" name="Key">
+                    <option value="" selected="selected" disabled>@localizer["Select One User"]</option>
+                </select>
+                <span asp-validation-for="Key" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-xs-12 col-md-8 col-lg-8 required">
+                <label class="forms-label" asp-for="Roles">@localizer["Roles"]  </label>
+                <select id="RoleId" asp-items="ViewBag.Roles" class="form-control select2" multiple="multiple" name="Roles">
+                </select>
+            </div>
+
+        </div>
+
+
+
+        <div class="form-row">
+            <div class="form-group col-xs-12 col-md-12 col-lg-12" style="text-align:center;">
+                <button id="submit" class="btn btn-info">@sharedResourceLocalizer["SaveTitle"] </button>
+                <button type="reset" class="btn btn-secondary resetForm">@localizer["New"] </button>
+            </div>
+        </div>
+         
+    </form>
+</div>
+

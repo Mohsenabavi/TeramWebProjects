@@ -1,0 +1,58 @@
+﻿@model List<PersonnelLanguageModel>
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.WorkWithUsController> localizer
+
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12 text-center background-color-blue color-white border-bottom border-dark infoItem">
+            @localizer["Languages"]
+        </div>
+    </div>
+    <div class="row background-color-blue-light">
+        <div class="col-md-1 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["Row Number"]</span>
+        </div>
+        <div class="col-md-11">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-4 col-xs-6 text-center border-right border-bottom border-dark report-label pt-2 infoItem">
+                            <span> @localizer["Language"]</span>
+                        </div>
+                        <div class="col-md-4 col-xs-6 text-center border-right border-bottom border-dark report-label pt-2 infoItem">
+                            <span> @localizer["SkillLevel"]</span>
+                        </div>                      
+                        <div class="col-md-4 col-xs-6 text-center border-right border-left border-bottom border-dark report-label pt-2 infoItem">
+                            <span>@localizer["Description"]</span>
+                        </div>                      
+                    </div>
+                </div>              
+            </div>
+        </div>
+    </div>
+    @foreach (var item in Model.Select((value, index) => (value, index)))
+    {
+        <div class="row infoRow">
+            <div class="col-md-1 col-xs-6  text-center  border-bottom border-right border-dark infoItem">
+                <span>@(item.index + 1)</span>
+            </div>
+            <div class="col-md-11">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-4 col-xs-6 text-center border-right border-bottom border-dark infoItem">
+                                <span>@(item.value.LanguageTitle)</span>
+                            </div>
+                            <div class="col-md-4 col-xs-6 text-center border-right border-bottom border-dark infoItem">
+                                <span>@(item.value.SkillLevelTitle)</span>
+                            </div>
+                            <div class="col-md-4 col-xs-6 text-center border-right border-left border-bottom border-dark infoItem">
+                                <span>@(item.value.Description != "" ? item.value.Description : "-")</span>
+                            </div>                           
+                        </div>
+                    </div>                  
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

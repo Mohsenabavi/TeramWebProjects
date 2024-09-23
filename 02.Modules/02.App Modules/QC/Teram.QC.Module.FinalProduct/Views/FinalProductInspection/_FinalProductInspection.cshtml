@@ -1,0 +1,30 @@
+﻿@model FinalProductInspectionModel
+@inject IStringLocalizer<Teram.QC.Module.FinalProduct.Controllers.FinalProductInspectionController> localizer
+
+<input type="hidden" asp-for="FinalProductInspectionId" />
+<input type="hidden" asp-for="Key" />
+<input type="hidden" asp-for="StartInterval" />
+<input type="hidden" asp-for="EndInterval" />
+
+<div class="col-lg-12 IncomingGoodsInspectionContainer">
+    <div class="row">
+        <text-box asp-for="Number" name="Number" reverse="true" validation-type="Number" title="@localizer["Number"]" validation-required-message="@localizer["Please enter Number"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+        <div class="col-xs-2 col-md-2 col-lg-2  align-items-start" style="margin-top:30px!important">
+            <button type="button" id="btnFetchData" class="btn btn-success w-100">@localizer["LoadData"] </button>
+        </div>
+    </div>
+    <div class="row">
+        <text-box asp-for="OrderNo" is-readonly="true" title="@localizer["OrderNo"]" validation-required-message="@localizer["Please enter OrderNo"]" div-class="col-xs-12 col-md-6 col-lg-3 align-items-start pl-lg-2 pl-md-2" />
+        <text-box asp-for="TracingCode" title="@localizer["TracingCode"]" validation-required-message="@localizer["Please enter TracingCode"]" div-class="col-xs-12 col-md-6 col-lg-2 align-items-start pl-lg-2 pl-md-2" />
+        <text-box asp-for="OrderTitle" is-readonly="true" title="@localizer["OrderTitle"]" validation-required-message="@localizer["Please enter OrderTitle"]" div-class="col-xs-12 col-md-6 col-lg-6 align-items-start pl-lg-2 pl-md-2 d-none"  />
+    </div>
+    <div class="row">
+        <text-box asp-for="ProductCode" is-readonly="true" title="@localizer["ProductCode"]" validation-required-message="@localizer["Please enter ProductCode"]" div-class="col-xs-12 col-md-6 col-lg-3 align-items-start pl-lg-2 pl-md-2" />
+        <text-box asp-for="ProductName" is-readonly="true" title="@localizer["ProductName"]" validation-required-message="@localizer["Please enter ProductName"]" div-class="col-xs-12 col-md-6 col-lg-9 align-items-start pl-lg-2 pl-md-2" />
+    </div>
+    <div class="row">
+        <text-box asp-for="ControlPlan" is-readonly="true" title="@localizer["ControlPlan"]" validation-required-message="@localizer["Please enter ControlPlan"]" div-class="col-xs-12 col-md-6 col-lg-4 align-items-start pl-lg-2 pl-md-2" />
+        <text-box asp-for="SampleCount" is-readonly="true" title="@localizer["SampleCount"]" validation-required-message="@localizer["Please enter SampleCount"]" div-class="col-xs-12 col-md-6 col-lg-4 align-items-start pl-lg-2 pl-md-2" />
+        <text-box asp-for="TotalCount" is-readonly="true" title="@localizer["TotalCount"]" validation-required-message="@localizer["Please enter TotalCount"]" div-class="col-xs-12 col-md-6 col-lg-4 align-items-start pl-lg-2 pl-md-2" />
+    </div>
+</div>

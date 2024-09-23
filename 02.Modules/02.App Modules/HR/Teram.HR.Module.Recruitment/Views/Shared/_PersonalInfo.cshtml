@@ -1,0 +1,72 @@
+﻿@using Teram.HR.Module.Recruitment.Models.WorkWithUs;
+@model BaseInformationModel
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.WorkWithUsController> localizer
+
+<div class="row">
+
+    <text-box asp-for="NationalCode" is-readonly="true" reverse="true" validation-type="NationalCode" title="@localizer["national code"]" validation-required-message="@localizer["Please enter national code"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+    <text-box asp-for="Name" is-readonly="true" reverse="true" validation-type="Persian" title="@localizer["name"]" validation-required-message="@localizer["Please enter name"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+    <text-box asp-for="Lastname" is-readonly="true" reverse="true" validation-type="Persian" title="@localizer["last name"]" validation-required-message="@localizer["Please enter last name"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+    <text-box asp-for="FatherName" is-readonly='@(Model.FlowType == FlowType.Employed ? true : false)' reverse="true" validation-type="Persian" title="@localizer["father name"]" validation-required-message="@localizer["Please enter father name"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+    <text-box asp-for="IdentityNumber" is-required="true" is-readonly='@(Model.FlowType == FlowType.Employed ? true : false)' reverse="true" validation-type="None" title="@localizer["identity number"]" validation-required-message="@localizer["Please enter identity number"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+    <text-box asp-for="IdentitySerialNumber" reverse="true" validation-type="None" title="@localizer["Identity Serial Number"]" validation-required-message="@localizer["Please enter Identity Serial Number"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+    <text-box asp-for="Nationality" reverse="true" validation-type="Persian" title="@localizer["Nationality"]" validation-required-message="@localizer["Please enter Nationality"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+    <text-box asp-for="Citizenship" reverse="true" validation-type="Persian" title="@localizer["Citizenship"]" validation-required-message="@localizer["Please enter Citizenship"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+
+    <div class=" form-group col-xs-12 col-lg-3 col-md-6 form-group ">
+        <label class="forms-label" asp-for="BloodGroup">@localizer["blood group"] </label>
+        <select asp-for="BloodGroup"
+                class="form-control select2"
+                asp-items="Html.GetEnumSelectList<BloodGroup>()">
+            <option>@localizer["select item"]</option>
+        </select>
+    </div>  
+    <div class="col-xs-12 col-lg-3 form-group">
+        <label for="Title">@localizer["BirthProvince"]</label>
+        <select id="ProvinceId" required="required" name="ProvinceId" class="form-control select2" data-val="true" asp-items=@ViewBag.Provinces>
+            <option value="-1" selected="selected">@localizer["select item"]</option>
+        </select>
+    </div>
+    <div class="col-xs-12 col-lg-3 form-group">
+        <label for="Title">@localizer["BirthTownship"]</label>
+        <select id="BirthLocationId" required name="BirthLocationId" asp-for="BirthLocationId" class="form-control select2" data-val="true">
+            <option value="-1" selected="selected">@localizer["select item"]</option>
+        </select>
+        <span asp-validation-for="BirthLocationId" class="text-danger"></span>
+    </div>
+    <date-picker reverse="true" asp-for-text="BirthPersianDate" id="BirthDate" show-label="true" title="@localizer["birth date"]" div-class="col-12 col-md-3 form-group col d-flex flex-column-reverse align-items-start " />
+    <div class="row w-100">
+        <div class="form-group col-xs-12 col-lg-3 col-md-6 form-group required">
+            <div class=" text-right">
+                <label class="forms-label form-check-label">@localizer["gender"]</label>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Gender" asp-for="Gender" id="rdGendermale" value="1" data-required="required" data-val-required="@localizer["Please enter gender"]">
+                    <label class="form-check-label m-2" tabindex="1">@localizer["male"]</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Gender" asp-for="Gender" id="rdGenderFemale" value="2" data-required="required" data-val-required="@localizer["Please enter gender"]">
+                    <label class="form-check-label m-2" tabindex="2">@localizer["female"]</label>
+                </div>
+            </div>
+            <span asp-validation-for="Gender" class="text-danger"></span>
+        </div>
+        <div class="form-group col-xs-12 col-lg-3 col-md-6 form-group required">
+            <div class=" text-right">
+                <label class="forms-label form-check-label">@localizer["marriage status"]</label>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="MarriageStatus" asp-for="MarriageStatus" value="1" data-required="required" data-val-required="@localizer["Please enter marriage status"]">
+                    <label class="form-check-label m-2" tabindex="1">@localizer["single"]</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="MarriageStatus" asp-for="MarriageStatus" value="2" data-required="required" data-val-required="@localizer["Please enter marriage status"]">
+                    <label class="form-check-label m-2" tabindex="2">@localizer["married"]</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="MarriageStatus" asp-for="MarriageStatus" value="3" data-required="required" data-val-required="@localizer["Please enter marriage status"]">
+                    <label class="form-check-label m-2" tabindex="2">@localizer["Divorced"]</label>
+                </div>
+            </div>
+            <span asp-validation-for="MarriageStatus" class="text-danger"></span>
+        </div>
+    </div>
+</div>

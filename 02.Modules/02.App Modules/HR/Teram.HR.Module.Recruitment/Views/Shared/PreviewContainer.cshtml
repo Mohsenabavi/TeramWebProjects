@@ -1,0 +1,27 @@
+﻿@model BaseInformationModel
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.WorkWithUsController> localizer
+
+<div class="alert alert-info alert-message-primary" role="alert">
+    <strong>@localizer["Before completing the form, pay attention to the following pointsItem"]</strong>
+    <ul>
+        <li>@localizer["If you click on the final registration, the information will no longer be editable."]</li>
+    </ul>
+</div>
+
+
+<div class="container-fluid" dir="rtl">
+    <div class="preview">       
+        <Partial name="Preview" model="Model" />
+        <div class="form-row">
+            <div class="form-check form-check-inline" style="margin-top:2rem">
+                <input name="IsAgreed" id="IsAgreed" asp-for="IsAgreed" style="display:inline-flex;margin-top:-9px;margin-right:18px;" type="checkbox" class="form-check-input mx-3 chkAgreed1">
+                <label class="forms-label">@localizer["Agreement"]</label>
+            </div>
+        </div>
+        <div class="mt-2 d-flex flex-column flex-md-row align-items-center justify-content-center">
+            <button type="button" id="btnReturn" class="btn btn-danger ml-md-3">@localizer["ReturnTo"] </button>
+            <button type="submit" id="btnFinalSave" class="btn btn-info mt-3 mt-md-0">@localizer["FinalRegistrationInformation"] </button>
+        </div>
+    </div>
+</div>
+

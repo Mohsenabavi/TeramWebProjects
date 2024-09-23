@@ -1,0 +1,72 @@
+﻿@using Teram.Web.Core.Helper;
+@model UserAdmissionModel
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.UserAdmissionController> localizer
+@await Component.InvokeAsync("ViewStepsComponent")
+
+@if (!@Model.IsShow)
+{
+    <div id="formInfo">
+        <div role="alert">
+            <h6 class="alert alert-danger">پیش از تایید اولیه اطلاعات توسط کارشناسان منابع انسانی امکان اعلام مراحل وجود ندارد </h6>
+        </div>
+    </div>
+}
+
+else
+{
+    <div class="formInfo">
+        <form asp-action="Save" method="post" data-ajax="true" data-ajax-method="post" data-ajax-success="onSuccess">
+            <input type="hidden" asp-for="JobApplicantId" />
+            <div class="row">
+                <check-box asp-for="NoAddictionDone" name="NoAddictionDone" reverse="true" title="@localizer["NoAddictionDone"]" value="true" div-class="col-12 col-md-5 col-lg-5 d-flex flex-column-reverse align-items-start" />
+                <date-picker reverse="true" asp-for="NoAddictionDate" asp-for-text="PersianNoAddictionDate" id="NoAddictionDate" show-label="true" title="@localizer["NoAddictionDate"]" div-class="col-12 col-md-4 form-group col d-flex flex-column-reverse align-items-start " />
+            </div>
+            <div class="row">
+                <check-box asp-for="NoBadBackgroundDone" name="NoBadBackgroundDone" reverse="true" title="@localizer["NoBadBackgroundDone"]" value="true" div-class="col-12 col-md-5 col-lg-5 d-flex flex-column-reverse align-items-start" />
+                <date-picker reverse="true" asp-for="NoBadBackgroundDate" asp-for-text="PersianNoBadBackgroundDate" id="NoBadBackgroundDate" show-label="true" title="@localizer["NoBadBackgroundDate"]" div-class="col-12 col-md-4 form-group col d-flex flex-column-reverse align-items-start " />
+            </div>
+            <div class="row">
+                <check-box asp-for="OccupationalMedicineDone" name="OccupationalMedicineDone" reverse="true" title="@localizer["OccupationalMedicineDone"]" value="true" div-class="col-12 col-md-5 col-lg-5 d-flex flex-column-reverse align-items-start" />
+                <date-picker reverse="true" asp-for="OccupationalMedicineDate" asp-for-text="PersianOccupationalMedicineDate" id="OccupationalMedicineDate" show-label="true" title="@localizer["PersianOccupationalMedicineDate"]" div-class="col-12 col-md-4 form-group col d-flex flex-column-reverse align-items-start " />
+            </div>
+            <div class="form-row" style="margin-top:20px;">
+                <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                    <button type="submit" class="btn btn-success">@localizer["Save"] </button>
+                </div>
+            </div>
+        </form>
+    </div>
+}
+
+@if (Model.IsAdmin)
+{
+    <div class="card">
+        <div class="card-header bg-info" style="font-weight:bold">
+            @localizer["FilterData"] <small class="searchStatus"></small>
+        </div>
+        <div class="card-body bg-light">
+            <div class="row">
+                <input type="hidden" id="ViewInprogressStatus" />
+                <text-box id="FirstNameFilter" name="NationalCodeFilter" reverse="true" validation-type="Persian" title="@localizer["FirstName"]" div-class="col-12 col-md-6 col-lg-2 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+                <text-box id="LastNameFilter" name="NationalCodeFilter" reverse="true" validation-type="Persian" title="@localizer["LastName"]" div-class="col-12 col-md-6 col-lg-2 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+                <text-box id="PersonnelCodeFilter" name="PersonnelCodeFilter" reverse="true" validation-type="Number" title="@localizer["PersonnelCode"]" div-class="col-12 col-md-6 col-lg-2 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+                <text-box id="NationalCodeFilter" name="NationalCodeFilter" reverse="true" validation-type="Number" title="@localizer["NationalCode"]" div-class="col-12 col-md-6 col-lg-2 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+                <select-box style="justify-content: flex-end;" id="ProcessStatusFilter" reverse="true" name="InspectionFormStatus" not-selected-option-title="-- یک وضعیت انتخاب کنید --" title="وضعیت"
+                            validation-required-message="@localizer["Please select a Status"]" value="Html.GetEnumSelectList<ProcessStatus>().ToList()"
+                            class="col-12 col-md-6 col-lg-4 d-flex flex-column-reverse align-items-start" select-class="inputBox select2">
+                </select-box>
+            </div>
+            <div class="form-row" style="margin-top:20px;">
+                <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                    <button id="btnSearch" type="button" class="btn btn-success shouldReloadGrid"><i class="fa fa-search"></i>@localizer["Search"] </button>
+                    <button id="reset" class="btn btn-danger resetForm shouldReloadGrid" type="reset">@localizer["Remove Filter"]</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+

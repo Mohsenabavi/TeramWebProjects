@@ -1,0 +1,134 @@
+﻿@model NoncomplianceDetailSampleSummaryModel
+@inject IStringLocalizer<Teram.QC.Module.FinalProduct.Controllers.EditFinalProductNoncomplianceController> localizer
+
+
+<input type="hidden" id="FinalProductNonComplianceId" value="@Model.FinalProductNonComplianceId" />
+
+@{
+
+    var opinionList = Html.GetEnumSelectList<OpinionType>().ToList().Where(x => x.Value == ((int)OpinionType.Leniency).ToString() || x.Value == ((int)OpinionType.Waste).ToString() || x.Value == ((int)OpinionType.Seperation).ToString()).ToList();
+}
+
+
+@if (Model.FirstSampleOpinionCEO>0)
+{
+    <fieldset class="border p-2 m-2">
+        <h6 class="bg-info  p-2 rounded text-light text-center"> @localizer["Sample1"]</h6>
+        <div class="row">
+            <text-box reverse="true" title="@localizer["SamplePercent"]" asp-for="@Model.FirstSamplePercent" validation-type=Number is-readonly="true"
+                      div-class="col-md-6 col-lg-2 mb-3 d-flex flex-column-reverse align-items-start" />
+            <text-box reverse="true" title="@localizer["FirstSamplePalletCount"]" asp-for="@Model.FirstSamplePalletCount" validation-type=Number is-readonly="true"
+                      div-class="col-md-6 col-lg-2 mb-3 d-flex flex-column-reverse align-items-start" />
+            <text-box reverse="true" title="@localizer["Total"]" asp-for="@Model.FirstSampleTotalCount" validation-type=Number is-readonly="true"
+                      div-class="col-md-6 col-lg-2 mb-3 d-flex flex-column-reverse align-items-start" />
+
+            <text-box reverse="true" title="@localizer["FirstSampleOpinionText"]" asp-for="@Model.FirstSampleOpinionText" validation-type=None is-readonly="true"
+                      div-class="col-md-6 col-lg-3 mb-3 d-flex flex-column-reverse align-items-start" />
+
+            <div class=" col-xs-12 col-md-6 col-lg-3 mt-2">
+                <label class="forms-label mb-0">@localizer["FirstSampleOpinionCEO"] </label>
+                <select asp-for="@Model.FirstSampleOpinionCEO" name="FirstSampleOpinionCEO" required
+                        class="form-control select2 opinionList"
+                        asp-items="@opinionList">
+                    <option value="">@localizer["select item"]</option>
+                </select>
+            </div>
+        </div>
+    </fieldset>
+    <hr />
+}
+
+@if (Model.SecondSampleOpinionCEO>0)
+{
+    <fieldset class="border p-2 m-2">
+        <h6 class="bg-info  p-2 rounded text-light text-center"> @localizer["Sample2"]</h6>
+        <div class="row">
+            <text-box reverse="true" title="@localizer["SamplePercent"]" asp-for="@Model.SecondSamplePercent" validation-type=Number is-readonly="true"
+                      div-class="col-md-6 col-lg-2 mb-3 d-flex flex-column-reverse align-items-start" />
+            <text-box reverse="true" title="@localizer["SecondSamplePalletCount"]" asp-for="@Model.SecondSamplePalletCount" validation-type=Number is-readonly="true"
+                      div-class="col-md-6 col-lg-2 mb-3 d-flex flex-column-reverse align-items-start" />
+
+            <text-box reverse="true" title="@localizer["Total"]" asp-for="@Model.SecondSampleTotalCount" validation-type=Number is-readonly="true"
+                      div-class="col-md-6 col-lg-2 mb-3 d-flex flex-column-reverse align-items-start" />
+
+            <text-box reverse="true" title="@localizer["SecondSampleOpinionText"]" asp-for="@Model.SecondSampleOpinionText" validation-type=None is-readonly="true"
+                      div-class="col-md-6 col-lg-3 mb-3 d-flex flex-column-reverse align-items-start" />
+
+            <div class=" col-xs-12 col-md-6 col-lg-3 mt-2">
+                <label class="forms-label mb-0">@localizer["SecondSampleOpinionCEO"] </label>
+                <select asp-for="@Model.SecondSampleOpinionCEO" name="SecondSampleOpinionCEO" required
+                        class="form-control select2 opinionList"
+                        asp-items="@opinionList">
+                    <option value="">@localizer["select item"]</option>
+                </select>
+            </div>
+        </div>
+    </fieldset>
+    <hr />
+}
+
+@if (Model.ThirdSampleOpinionCEO>0)
+{
+    <fieldset class="border p-2 m-2">
+        <h6 class="bg-info  p-2 rounded text-light text-center"> @localizer["Sample3"]</h6>
+        <div class="row">
+            <text-box reverse="true" title="@localizer["SamplePercent"]" asp-for="@Model.ThirdSamplePercent" validation-type=Number is-readonly="true"
+                      div-class="col-md-6 col-lg-2 mb-3 d-flex flex-column-reverse align-items-start" />
+            <text-box reverse="true" title="@localizer["ThirdSamplePalletCount"]" asp-for="@Model.ThirdSamplePalletCount" validation-type=Number is-readonly="true"
+                      div-class="col-md-6 col-lg-2 mb-3 d-flex flex-column-reverse align-items-start" />
+            <text-box reverse="true" title="@localizer["Total"]" asp-for="@Model.ThirdSampleTotalCount" validation-type=Number is-readonly="true"
+                      div-class="col-md-6 col-lg-2 mb-3 d-flex flex-column-reverse align-items-start" />
+
+            <text-box reverse="true" title="@localizer["ThirdSampleOpinionText"]" asp-for="@Model.ThirdSampleOpinionText" validation-type=None is-readonly="true"
+                      div-class="col-md-6 col-lg-3 mb-3 d-flex flex-column-reverse align-items-start" />
+
+            <div class=" col-xs-12 col-md-6 col-lg-3 mt-2">
+                <label class="forms-label mb-0">@localizer["ThirdSampleOpinionCEO"] </label>
+                <select asp-for="@Model.ThirdSampleOpinionCEO" name="ThirdSampleOpinionCEO" required
+                        class="form-control select2 opinionList"
+                        asp-items="@opinionList">
+                    <option value="">@localizer["select item"]</option>
+                </select>
+            </div>
+        </div>
+    </fieldset>
+    <hr />
+}
+@if (Model.ForthSampleOpinionCEO>0)
+{
+    <fieldset class="border p-2 m-2">
+        <h6 class="bg-info  p-2 rounded text-light text-center"> @localizer["Sample4"]</h6>
+        <div class="row">
+            <text-box reverse="true" title="@localizer["SamplePercent"]" asp-for="@Model.ForthSamplePercent" validation-type=Number is-readonly="true"
+                      div-class="col-md-6 col-lg-2 mb-3 d-flex flex-column-reverse align-items-start" />
+            <text-box reverse="true" title="@localizer["ForthSamplePalletCount"]" asp-for="@Model.ForthSamplePalletCount" validation-type=Number is-readonly="true"
+                      div-class="col-md-6 col-lg-2 mb-3 d-flex flex-column-reverse align-items-start" />
+            <text-box reverse="true" title="@localizer["Total"]" asp-for="@Model.ForthSampleTotalCount" validation-type=Number is-readonly="true"
+                      div-class="col-md-6 col-lg-2 mb-3 d-flex flex-column-reverse align-items-start" />
+            <text-box reverse="true" title="@localizer["ForthSampleOpinionText"]" asp-for="@Model.ForthSampleOpinionText" validation-type=None is-readonly="true"
+                      div-class="col-md-6 col-lg-3 mb-3 d-flex flex-column-reverse align-items-start" />
+
+            <div class=" col-xs-12 col-md-6 col-lg-3 mt-2">
+                <label class="forms-label mb-0">@localizer["ForthSampleOpinionCEO"] </label>
+                <select asp-for="@Model.ForthSampleOpinionCEO" name="ForthSampleOpinionCEO" required
+                        class="form-control select2 opinionList"
+                        asp-items="@opinionList">
+                    <option value="">@localizer["select item"]</option>
+                </select>
+            </div>
+        </div>
+    </fieldset>
+    <hr />
+}
+
+<div class="row">
+    <text-box reverse="true" title="@localizer["Comment"]" id="RefferalComments" validation-type=Number is-readonly="false"
+              div-class="col-md-12 col-lg-12 mb-3 d-flex flex-column-reverse align-items-start" />
+</div>
+
+<div class="form-row ">
+    <div class="form-group col-xs-12 col-md-12 col-lg-12" style="text-align:center;">
+        <button type="button" id="btnRefferalFromCEOAfterFirstRevise" class="btn btn-info">@localizer["Submit"] </button>
+    </div>
+</div>
+

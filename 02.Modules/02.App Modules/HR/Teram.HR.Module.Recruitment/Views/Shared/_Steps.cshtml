@@ -1,0 +1,24 @@
+﻿@model List<StepModel>;
+@using Teram.Framework.Core.Logic;
+
+
+<div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-xs-12 alert alert-success" role="alert">
+        خلاصه وضعیت پرونده
+    </div>
+</div>
+
+@if (Model.Any())
+{
+    var index = 1;
+
+    @foreach (var item in Model)
+    {
+        <div class="row justify-content-right d-flex pr-4 pl-2">
+            <span class="alert @(item.IsDone? "alert-success": "alert-danger") w-100 col-12 col-sm-12 col-md-12 col-xs-12">@string.Concat(index, "-", item.Step, " => ", item.Message)</span>
+        </div>
+        index++;
+    }
+}
+
+

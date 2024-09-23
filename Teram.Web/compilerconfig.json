@@ -1,0 +1,22 @@
+﻿[
+  {
+    "outputFile": "wwwroot/Themes/IT/css/Theme.css",
+    "inputFile": "wwwroot/Themes/IT/css/Theme.scss"
+  },
+  {
+    "outputFile": "wwwroot/lib/admin-lte/build/scss/_main-sidebar.css",
+    "inputFile": "wwwroot/lib/admin-lte/build/scss/_main-sidebar.scss"
+  },
+  {
+    "outputFile": "wwwroot/lib/admin-lte/build/scss/_variables.css",
+    "inputFile": "wwwroot/lib/admin-lte/build/scss/_variables.scss"
+  },
+  {
+    "outputFile": "wwwroot/lib/fontawesome/scss/_animated.css",
+    "inputFile": "wwwroot/lib/fontawesome/scss/_animated.scss"
+  },
+  {
+    "outputFile": "wwwroot/lib/bootstrap-fileinput/js/fileinput.es5.js",
+    "inputFile": "wwwroot/lib/bootstrap-fileinput/js/fileinput.js"
+  }
+]

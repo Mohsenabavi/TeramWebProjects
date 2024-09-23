@@ -1,0 +1,133 @@
+﻿@model BaseInformationModel
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.WorkWithUsController> localizer
+
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12 text-center background-color-blue color-white border-bottom border-dark infoItem">
+            @localizer["other"]
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["insurance number"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-right border-bottom border-dark infoItem">
+            <span>@(Model.InsuranceNumber!=null?@Model.InsuranceNumber:'-')</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center  border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["insurance duration(month)"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-left border-right border-bottom border-dark infoItem">
+            <span>@(Model.InsuranceMonths !=null?@Model.InsuranceMonths:'-')</span>
+        </div>      
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["ReadyToWorkDate"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-right border-bottom border-dark infoItem">
+            <span>@Model.PersianReadyToWorkDate</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["FreeTimeActivities"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-right border-left border-bottom border-dark infoItem">
+            <span>@Model.FreeTimeActivities</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["ThesisTitle"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-right border-bottom border-dark infoItem">
+            <span>@Model.ThesisTitle</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["SpecialAcademicAchievements"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-left border-right border-bottom border-dark infoItem">
+            <span>@Model.SpecialAcademicAchievements</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["SpecialWorkSuccesses"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-right border-bottom border-dark infoItem">
+            <span>@Model.SpecialWorkSuccesses</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["CurrentJobActivity"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-left border-right border-bottom border-dark infoItem">
+            <span>@Model.CurrentJobActivity</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["CurrntSalary"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-right border-bottom border-dark infoItem">
+            <span>@Model.CurrntSalary</span>
+        </div>
+
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["HasSpecialDisease"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-left border-right border-bottom border-dark infoItem">
+            <span>@Model.HasSpecialDiseaseText</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["SpecialDisease"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-right border-bottom border-dark infoItem">
+            <span>@Model?.SpecialDisease</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["HasCriminalRecord"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-left border-right border-bottom border-dark infoItem">
+            <span>@Model?.HasCriminalRecordText</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["CriminalRecord"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-right border-bottom border-dark infoItem">
+            <span>@Model?.CriminalRecord</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["CanWorkInShifts"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-left border-right border-bottom border-dark infoItem">
+            <span>@Model?.CanWorkInShiftsText</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["BusinessMissionAbility"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-right border-bottom border-dark infoItem">
+            <span>@Model?.BusinessMissionAbilityText</span>
+        </div>     
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["HasWorkingRelatives"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-left border-right border-bottom border-dark infoItem">
+            <span>@Model?.HasWorkingRelativesText</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["WorkingRelatives"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-right border-bottom border-dark infoItem">
+            <span>@Model?.WorkingRelatives</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["HasWorkingRelativeInPackingCompanies"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-left border-right border-bottom border-dark infoItem">
+            <span>@Model?.HasWorkingRelativeInPackingCompaniesText</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["WorkingRelativeInPackingCompanyName"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-right border-bottom border-dark infoItem">
+            <span>@Model?.WorkingRelativeInPackingCompanyName</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["HasIntentionToMigrate"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break  border-left border-right border-bottom border-dark infoItem">
+            <span>@Model?.HasIntentionToMigrateText</span>
+        </div>
+    </div>
+</div>

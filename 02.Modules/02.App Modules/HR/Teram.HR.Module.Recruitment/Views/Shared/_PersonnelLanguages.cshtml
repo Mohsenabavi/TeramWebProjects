@@ -1,0 +1,33 @@
+﻿@using Teram.HR.Module.Recruitment.Models.WorkWithUs;
+@model PersonnelLanguageModel
+
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.WorkWithUsController> localizer
+
+@{
+    int index = ViewBag.index == null ? 0 : ViewBag.index;
+    List<PersonnelLanguageModel> personnelLanguageModel = new List<PersonnelLanguageModel>();
+    for (int i = 0; i <= index; i++)
+    {
+        personnelLanguageModel.Add(new PersonnelLanguageModel());
+    }
+}
+<div class="languages-row">
+    <i class="fas fa-times-circle text-danger removeInfo" id="removeTrainingRecord"></i>
+    <div class="row">
+        <select-box style="justify-content: flex-end;" reverse="true" asp-for="Language" name="PersonnelLanguages[@index].Language"
+                    not-selected-option-title="@localizer["select item"]" title="@localizer["Language"]"
+                    validation-required-message="@localizer["select item"]"
+                    class="col-xs-12 col-md-6 col-lg-4 mt-22 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2 provinceSelector" value="Html.GetEnumSelectList<Language>().ToList()">
+        </select-box> 
+        <select-box style="justify-content: flex-end;" reverse="true" asp-for="SkillLevel" name="PersonnelLanguages[@index].SkillLevel"
+                    not-selected-option-title="@localizer["select item"]" title="@localizer["SkillLevel"]"
+                    validation-required-message="@localizer["select item"]"
+                    class="col-xs-12 col-md-6 col-lg-4 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2 provinceSelector" value="Html.GetEnumSelectList<SkillLevel>().ToList()">
+        </select-box>
+        <text-box asp-for="Description" name="PersonnelLanguages[@index].Description" reverse="true" validation-type="Persian" title="@localizer["Description"]" validation-required-message="@localizer["Please enter Description"]" div-class="col-xs-12 col-md-6 col-lg-4 mt-2  d-flex flex-column-reverse align-items-start" />
+    </div>
+</div>
+
+
+
+

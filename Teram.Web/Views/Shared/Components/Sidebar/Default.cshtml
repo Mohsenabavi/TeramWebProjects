@@ -1,0 +1,27 @@
+﻿<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <a href="/" class="brand-link" style="text-align:center;">
+        <img src="~/Images/Teram-Logo.png" alt="rugeast" class="brand-image  elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">@GlobalConfigurations.Title</span>
+    </a>
+
+    <div class="sidebar">
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="@Model.ProfileImage" class="img-circle elevation-2" alt="@Model.UserName">
+            </div>
+            <div class="info">
+                <a href="#" class="d-block">@Model.UserName</a>
+            </div>
+        </div>
+
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                @foreach (var item in Model.Menu)
+                {
+                  
+                    @await Component.InvokeAsync("SidebarMenu", item)                    
+                }
+            </ul>
+        </nav>
+    </div>
+</aside>

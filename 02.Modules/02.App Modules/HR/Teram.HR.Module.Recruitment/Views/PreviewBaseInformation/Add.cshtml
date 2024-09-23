@@ -1,0 +1,16 @@
+﻿@using Teram.Web.Core.Helper
+@model BaseInformationModel
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.WorkWithUsController> localizer
+@{
+    Layout = "~/Views/Shared/_ControlPanelLayout.fa-IR.cshtml";
+}
+<div class="container-fluid" dir="rtl">
+    <div class="preview">
+        <Partial name="Preview" model="Model" />      
+    </div>
+</div>
+
+@Html.AddResource(PageResourceType.CSS, @<link href="/ExternalModule/HR/Module/Recruitment/Style/Preview.css" rel="stylesheet" />)
+@Html.AddResource(PageResourceType.JavaScript, @<script src="/ExternalModule/HR/Module/Recruitment/Scripts/PreviewBaseInformation.js"></script>)
+
+

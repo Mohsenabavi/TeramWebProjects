@@ -1,0 +1,34 @@
+﻿@inject IStringLocalizer<Teram.HR.Module.Assets.Controllers.RahkaranAssetController> localizer
+
+<div class="card">
+    <div class="card-header bg-secondary" style="cursor:pointer">
+        @localizer["FilterData"]
+    </div>
+    <div class="card-body bg-light">
+        <div class="row">
+            <text-box is-required="true" id="PersonnelCode" name="PersonnelCode" reverse="true" validation-type="Number" title="@localizer["PersonnelCode"]" div-class="col-12 col-md-3 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box is-required="true" id="AssetID" name="AssetID" reverse="true" validation-type="Number" title="@localizer["AssetID"]" div-class="col-12 col-md-3 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box is-required="true" id="FullName" name="FullName" reverse="true" validation-type="Persian" title="@localizer["FullName"]" div-class="col-12 col-md-3 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box is-required="true" id="Title" name="Title" reverse="true" validation-type="Number" title="@localizer["Title"]" div-class="col-12 col-md-3 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+        </div>
+        <div class="row">
+            <text-box is-required="true" id="Code" name="Code" reverse="true" validation-type="Number" title="@localizer["Code"]" div-class="col-12 col-md-3 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box is-required="true" id="PlaqueNumber" name="PlaqueNumber" reverse="true" validation-type="Number" title="@localizer["PlaqueNumber"]" div-class="col-12 col-md-3 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box is-required="true" id="GroupTitle" name="GroupTitle" reverse="true" validation-type="None" title="@localizer["GroupTitle"]" div-class="col-12 col-md-3 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box is-required="true" id="DepreciatedMethodTitle" name="DepreciatedMethodTitle" reverse="true" validation-type="Persian" title="@localizer["DepreciatedMethodTitle"]" div-class="col-12 col-md-3 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />           
+        </div>
+        <div class="row">
+            <text-box is-required="true" id="CostCenter" name="CostCenter" reverse="true" validation-type="Persian" title="@localizer["CostCenter"]" div-class="col-12 col-md-3 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box is-required="true" id="SettlementPlace" name="SettlementPlace" reverse="true" validation-type="None" title="@localizer["SettlementPlace"]" div-class="col-12 col-md-3 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box is-required="true" id="Collector" name="Collector" reverse="true" validation-type="None" title="@localizer["Collector"]" div-class="col-12 col-md-3 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box is-required="true" id="Cost" name="Cost" reverse="true" validation-type="Persian" title="@localizer["Cost"]" div-class="col-12 col-md-3 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+        </div>
+        <div class="form-row" style="margin-top:20px;">
+            <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                <button id="btnSearch" type="button" class="btn btn-info shouldReloadGrid"><i class="fa fa-search"></i>@localizer["Search"] </button>
+                <button id="exportexel" type="button" class="btn btn-info">@localizer["ExcelPrint"] </button>
+                <button id="reset" class="btn btn-danger resetForm shouldReloadGrid" type="reset">@localizer["Remove Filter"]</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+﻿
+@{
+     //Layout = "/Pages/Shared/_Identity.cshtml";
+     //For Use Another Theme
+    var defaultThemeName = "Default";
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name;
+    Layout = "~/wwwroot/Themes/" + defaultThemeName + "/Layouts/" + culture + "/Identity/_Identity.cshtml";
+}

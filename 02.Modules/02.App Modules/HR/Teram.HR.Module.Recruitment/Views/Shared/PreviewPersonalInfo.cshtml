@@ -1,0 +1,117 @@
+﻿@model BaseInformationModel
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.WorkWithUsController> localizer
+
+<div class="col-md-12 border-dark">
+    <div class="row">
+        <div class="col-md-12 text-center background-color-blue color-white border-bottom border-dark">
+            @localizer["personal info"]
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["name"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-right border-bottom border-dark infoItem">
+            <span>@Model.Name</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["last name"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-left border-right border-bottom border-dark infoItem">
+            <span>@Model.Lastname</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["father name"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-right border-bottom border-dark infoItem">
+            <span>@Model.FatherName</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["national code"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-right border-left border-bottom border-dark infoItem">
+            <span>@Model.NationalCode</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["identity number"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-right border-bottom border-dark infoItem">
+            <span>@Model.IdentityNumber</span>
+        </div>
+
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["Identity Serial Number"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-right border-left border-bottom border-dark infoItem">
+            <span>@Model.IdentitySerialNumber</span>
+        </div>
+
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["Nationality"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-right border-bottom border-dark infoItem">
+            <span>@Model.Nationality</span>
+        </div>
+
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["Citizenship"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-left border-right border-bottom border-dark infoItem">
+            <span>@Model.Citizenship</span>
+        </div>
+
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["blood group"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-right border-bottom border-dark infoItem">
+            <span>@Model.BloodGroupTitle</span>
+        </div>       
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["birth location"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-left border-right border-bottom border-dark infoItem">
+            <span>@Model.BirthLocationName</span>
+        </div>
+
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["birth date"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-right border-bottom border-dark infoItem">
+            <span>@Model.BirthPersianDate</span>
+        </div>
+
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["gender"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-right border-left border-bottom border-dark infoItem">
+            <span>@Model.GenderTitle</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["marriage status"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-right border-bottom border-dark infoItem">
+            <span>@Model.MarriageStatusTilte</span>
+        </div>
+
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["partner education grade"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-right border-left border-bottom border-dark infoItem">
+            <span>@Model.PartnerEducationLevelTitle</span>
+        </div>
+
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["partnerJob"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-right border-bottom border-dark infoItem">
+            <span>@Model.PartnerJob</span>
+        </div>
+
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["childCount"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-right border-left border-bottom border-dark infoItem">
+            <span>@Model.ChildCount</span>
+        </div>       
+    </div>
+</div>

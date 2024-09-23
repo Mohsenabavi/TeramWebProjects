@@ -1,0 +1,142 @@
+﻿@model JobApplicantModel
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.JobApplicantController> localizer
+<div class="formInfo">
+    @await Component.InvokeAsync("ViewStepsComponent")
+
+    @if (!@Model.IsShow)
+    {
+        <div id="formInfo">
+            <div role="alert">
+                <h6 class="alert alert-danger">پیش از ثبت اطلاعات اولیه امکان بارگذاری فایل ها نمی باشد لطفاً نخست اطلاعات پایه را وارد نمایید</h6>
+            </div>
+        </div>
+    }
+
+    @if (!Model.IsAdmin && @Model.IsShow)
+
+    {
+        <div class="alert alert-info alert-message-primary" role="alert">
+            <h6>ضمیمه های  اجباری  </h6>
+            @if (@Model.Gender == GenderType.Male)
+            {
+                <ul>
+                    <li>روی کارت ملی</li>
+                    <li>پشت کارت ملی</li>
+                    <li>صفحات شناسنامه</li>
+                    <li>پایان خدمت</li>
+                    <li>عکس پرسنلی</li>
+                </ul>
+            }
+            else
+            {
+                <ul>
+                    <li>روی کارت ملی</li>
+                    <li>پشت کارت ملی</li>
+                    <li>صفحات شناسنامه</li>
+                    <li>عکس پرسنلی</li>
+                </ul>
+            }
+            <hr />
+            <span>فرمت های مجاز فایل : jpg / jpeg / png / pdf / jfif</span>
+            <hr />
+            <span>فرمت های مجاز عکس پرسنلی : jpg / jpeg / png / jfif</span>
+        </div>
+    }
+
+    @if (@Model.IsShow)
+    {
+        <form asp-action="SaveJobApplicant" method="post" data-ajax="true" data-ajax-method="post" data-ajax-success="onSuccess" enctype="multipart/form-data">
+            <input type="hidden" asp-for="JobApplicantId" />
+            <input type="hidden" asp-for="Gender" />
+            <input type="hidden" asp-for="NationalCode" />
+            <div class="row" style="margin-top:20px;">
+                @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.OnNationalCard, FileAccept = ".jpg, .png,.jfif, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+                @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.BehindNationalCard, FileAccept = ".jpg, .png,.jfif, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+                @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.BirthCertificateFirstPage, FileAccept = ".jpg, .png,.jfif, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+                @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.BirthCertificateSecondPage, FileAccept = ".jpg, .png,.jfif, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+                @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.BirthCertificateThirdPage, FileAccept = ".jpg, .png,.jfif, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+                @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.BirthCertificateForthPage, FileAccept = ".jpg, .png,.jfif, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+
+                @if (@Model.Gender == GenderType.Male)
+                {
+                    @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.MilitaryService, FileAccept = ".jpg, .png,.jfif, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+                }
+                @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.EducationCertificate, FileAccept = ".jpg, .png,.jfif, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+                @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.InsuranceCard, FileAccept = ".jpg, .png,.jfif, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+                @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.PersonalImage, FileAccept = ".jpg, .png,.jfif, .jpeg|image/*,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+
+                @if (@Model.MarriageStatus==MaritalStatus.Married)
+                {
+                    @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.PartnerBirthCertFirstPage, FileAccept = ".jpg, .png,.jfif, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+                    @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.PartnerBirthCertSecondPage, FileAccept = ".jpg, .png,.jfif, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+                    @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.PartnerMelliCard, FileAccept = ".jpg, .png,.jfif, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+                }
+                @if (@Model.ChildCount >0)
+                {
+                    @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.FirstChildBirthCert, FileAccept = ".jpg, .png,.jfif, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+                }
+                @if (@Model.ChildCount >1)
+                {
+                    @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.SecondChildBirthCert, FileAccept = ".jpg, .png,.jfif, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+                }
+                @if (@Model.ChildCount >2)
+                {
+                    @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.ThirdChildBirthCert, FileAccept = ".jpg, .png,.jfif, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+                }
+                @if (@Model.ChildCount >3)
+                {
+                    @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.ForthChildBirthCert, FileAccept = ".jpg, .png,.jfif, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+                }
+                @if (@Model.ChildCount >4)
+                {
+                    @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.FifthChildBirthCert, FileAccept = ".jpg, .png,.jfif, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+                }
+                @if (@Model.ChildCount >5)
+                {
+                    @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.SixthChildBirthCert, FileAccept = ".jpg, .png,.jfif, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+                }
+            </div>
+            <div class="form-row" style="margin-top:20px;">
+                <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                    <button type="submit" class="btn btn-success">@localizer["Save"] </button>
+                </div>
+            </div>
+        </form>
+    }
+    @if (Model.IsAdmin)
+    {
+        <div class="card">
+            <div class="card-header bg-info" style="font-weight:bold">
+                @localizer["FilterData"] <small class="searchStatus"></small>
+            </div>
+            <div class="card-body bg-light">
+                <div class="row">
+                    <input type="hidden" id="ViewInprogressStatus" />
+                    <text-box id="FirstNameFilter" name="NationalCodeFilter" reverse="true" validation-type="Persian" title="@localizer["FirstName"]" div-class="col-12 col-md-6 col-lg-2 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+                    <text-box id="LastNameFilter" name="NationalCodeFilter" reverse="true" validation-type="Persian" title="@localizer["LastName"]" div-class="col-12 col-md-6 col-lg-2 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+                    <text-box id="PersonnelCodeFilter" name="PersonnelCodeFilter" reverse="true" validation-type="Number" title="@localizer["PersonnelCode"]" div-class="col-12 col-md-6 col-lg-2 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+                    <text-box id="NationalCodeFilter" name="NationalCodeFilter" reverse="true" validation-type="Number" title="@localizer["NationalCode"]" div-class="col-12 col-md-6 col-lg-2 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+                    <select-box style="justify-content: flex-end;" id="FlowTypeFilter" reverse="true" name="InspectionFormStatus" not-selected-option-title="-- یک وضعیت انتخاب کنید --" title="وضعیت"
+                                validation-required-message="@localizer["Please select a Status"]" value="Html.GetEnumSelectList<FlowType>().ToList()"
+                                class="col-12 col-md-6 col-lg-2 d-flex flex-column-reverse align-items-start" select-class="inputBox select2">
+                    </select-box>
+                    <select-box style="justify-content: flex-end;" id="ProcessStatusFilter" reverse="true" name="InspectionFormStatus" not-selected-option-title="-- یک وضعیت انتخاب کنید --" title="وضعیت"
+                                validation-required-message="@localizer["Please select a Status"]" value="Html.GetEnumSelectList<ProcessStatus>().ToList()"
+                                class="col-12 col-md-6 col-lg-2 d-flex flex-column-reverse align-items-start" select-class="inputBox select2">
+                    </select-box>
+                </div>
+                <div class="form-row" style="margin-top:20px;">
+                    <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                        <button id="btnSearch" type="button" class="btn btn-success shouldReloadGrid"><i class="fa fa-search"></i>@localizer["Search"] </button>
+                        <button id="reset" class="btn btn-danger resetForm shouldReloadGrid" type="reset">@localizer["Remove Filter"]</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+
+

@@ -1,0 +1,26 @@
+﻿@model UploaderModel
+
+<div class="required col-lg-3 col-md-6 col-xs-12 d-flex flex-column-reverse align-items-star div_@Model?.DocumentType">
+    <div class="file-input">
+        <label for="attachmentImage" class="forms-label attachmentLabel">@(Model?.Title ?? @Model?.DocumentType.GetDescription())<span class="fa fa-arrow-down" style="margin-right:5%"></span> <span class="approveStatusIcon"></span> </label>
+        <input type="file" id="@Model?.Name" name="@Model?.Name" data-entityId="@Model?.Id" class="fileuploader (@Model?.Index!=null)? @string.Concat("fileuploader_",@Model?.DocumentType,Model?.Index) :  fileuploader_@Model?.DocumentType @Model?.Id" accept="@Model?.FileAccept"
+               data-language="fa" data-theme="fa"
+               data-show-caption="false"
+               data-show-upload="false"
+               data-browse-label="انتخاب فایل" data-remove-label="حذف"
+               data-show-remove="true" data-multiple="false"
+               data-upload-async="false"
+               data-maxfile-size="25600"
+               data-maxfile-previewsize="25600" data-rtl="true"
+               data-initialpreview-downloadurl="true"
+               data-enable-resumable-upload="false"
+               data-drop-zone-enabled="true"
+               data-initial-preview-as-data="true"
+               data-overwrite-initial="false"
+               data-prefer-Iconic-preview="true"
+               data-purify-html="true"
+               data-autoupload="false"
+               data-deleteurl="@Model?.RemoveUploadedFilesUrl">
+    </div>
+</div>
+@Html.AddResource(PageResourceType.JavaScript,@<script src="/ExternalModule/Module/FileUploader/Scripts/FileUploader.js"></script>)

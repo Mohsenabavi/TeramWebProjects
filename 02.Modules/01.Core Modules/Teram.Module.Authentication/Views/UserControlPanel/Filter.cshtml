@@ -1,0 +1,23 @@
+﻿
+@inject IViewLocalizer localizer
+@inject IStringLocalizer<Teram.Module.Authentication.Controllers.UserControlPanelController> userProfileLocalizer
+@inject IStringLocalizer<SharedResource> sharedResourceLocalizer
+
+<div id="formInfo" style="direction:rtl;">
+    <div class="form-row">
+
+        <div class="col-xs-12 col-md-6 col-lg-4">
+            <label class="forms-label">@localizer["User"] </label>
+            <select2 asp-for="UserId" id="UserId" url="/User/GetAllUsersByFilter" language="fa" allow-clearable="true" close-on-select="true" minimum-length="2" query-delay="1000"></select2>
+
+        </div> 
+        
+    </div>
+    <div class="row m-2">
+        <div class="form-group col-xs-12 col-md-12 col-lg-12" style="text-align:center;">
+            <button id="btnSearch" type="button" class="btn btn-info"><i class="fa fa-search"></i>@localizer["Search"] </button>
+            <button class="btn btn-secondary resetForm shouldReloadGrid">@localizer["Remove Filter"]</button>
+        </div>
+    </div>
+
+</div>

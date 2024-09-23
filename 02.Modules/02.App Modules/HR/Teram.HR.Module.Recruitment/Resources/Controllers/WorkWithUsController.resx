@@ -1,0 +1,621 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="activity" xml:space="preserve">
+    <value>فعالیت ها</value>
+  </data>
+  <data name="add education" xml:space="preserve">
+    <value>جهت اضافه کردن ردیف جدید برای سوابق آموزشی اینجا را کلیک کنید - در صورت نداشتن سوابق آموزشی کلیه ردیف ها را حذف نمایید</value>
+  </data>
+  <data name="add education background" xml:space="preserve">
+    <value>جهت اضافه کردن ردیف جدید برای سوابق تحصیلی اینجا را کلیک کنید - در صورت نداشتن سوابق تحصیلی کلیه ردیف ها را حذف نمایید</value>
+  </data>
+  <data name="add Emeregancy Contact" xml:space="preserve">
+    <value> جهت اضافه کردن ردیف جدید برای اطلاعات تماس در موقع ضروری اینجا را کلیک کنید </value>
+  </data>
+  <data name="Add Error" xml:space="preserve">
+    <value>خطایی رخ داد </value>
+  </data>
+  <data name="add Language" xml:space="preserve">
+    <value>جهت اضافه کردن ردیف جدید برای زبان جدید اینجا را کلیک کنید - در صورت نداشتن اطلاعات زبان کلیه ردیف ها را حذف نمایید</value>
+  </data>
+  <data name="add resume" xml:space="preserve">
+    <value>جهت اضافه کردن ردیف جدید برای سابقه کاری اینجا را کلیک کنید - در صورت نداشتن سابقه کاری کلیه ردیف ها را حذف نمایید</value>
+  </data>
+  <data name="add Skill" xml:space="preserve">
+    <value>جهت اضافه کردن ردیف جدید برای اضافه کردن مهارت نرم افزاری اینجا را کلیک کنید - در صورت نداشتن مهارت نرم افزاری کلیه ردیف ها را حذف نمایید</value>
+  </data>
+  <data name="address" xml:space="preserve">
+    <value>آدرس</value>
+  </data>
+  <data name="Agreement" xml:space="preserve">
+    <value>از صحت اطلاعات اطمینان دارم</value>
+  </data>
+  <data name="average" xml:space="preserve">
+    <value>معدل</value>
+  </data>
+  <data name="Base Information" xml:space="preserve">
+    <value>اطلاعات پایه افراد</value>
+  </data>
+  <data name="Before completing the form, pay attention to the following pointsItem" xml:space="preserve">
+    <value>قبل از ثبت نهایی فرم از صحت اطلاعات وارد شده اطمینان حاصل فرمایید</value>
+  </data>
+  <data name="birth date" xml:space="preserve">
+    <value>تاریخ تولد</value>
+  </data>
+  <data name="birth location" xml:space="preserve">
+    <value>محل تولد</value>
+  </data>
+  <data name="BirthProvince" xml:space="preserve">
+    <value>استان محل تولد</value>
+  </data>
+  <data name="BirthTownship" xml:space="preserve">
+    <value>شهر محل تولد</value>
+  </data>
+  <data name="blood group" xml:space="preserve">
+    <value>گروه خونی</value>
+  </data>
+  <data name="BusinessMissionAbility" xml:space="preserve">
+    <value>آیا امکان رفتن به ماموریت را دارید ؟</value>
+  </data>
+  <data name="CanWorkInShifts" xml:space="preserve">
+    <value>آیا امکان و توانایی کار در شیفت را دارید ؟</value>
+  </data>
+  <data name="childCount" xml:space="preserve">
+    <value>تعداد فرزندان</value>
+  </data>
+  <data name="Citizenship" xml:space="preserve">
+    <value>تابعیت</value>
+  </data>
+  <data name="collage name" xml:space="preserve">
+    <value>نام موسسه /دانشگاه</value>
+  </data>
+  <data name="Company name" xml:space="preserve">
+    <value>نام شرکت / موسسه</value>
+  </data>
+  <data name="Computer Skills" xml:space="preserve">
+    <value>میزان آشنایی با کامپیوتر</value>
+  </data>
+  <data name="Computer Skills Description" xml:space="preserve">
+    <value>در صورتیکه به نرم افزارهای دیگری جز آنچه که در جدول آورده شده است ، تسلط دارید آنها را ذکر نمایید</value>
+  </data>
+  <data name="ComputerSkill" xml:space="preserve">
+    <value>نام نرم افزار</value>
+  </data>
+  <data name="contact info" xml:space="preserve">
+    <value>اطلاعات تماس</value>
+  </data>
+  <data name="country" xml:space="preserve">
+    <value>کشور</value>
+  </data>
+  <data name="CriminalRecord" xml:space="preserve">
+    <value>سوابق کیفری</value>
+  </data>
+  <data name="CurrentJobActivity" xml:space="preserve">
+    <value>شرح وظایف شغل فعلی</value>
+  </data>
+  <data name="CurrntSalary" xml:space="preserve">
+    <value>حقوق دریافتی</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>تاریخ</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>توضیحات</value>
+  </data>
+  <data name="Divorced" xml:space="preserve">
+    <value>متارکه</value>
+  </data>
+  <data name="Education" xml:space="preserve">
+    <value>سوابق آموزشی</value>
+  </data>
+  <data name="education duration hour" xml:space="preserve">
+    <value>مدت دوره ( ساعت )</value>
+  </data>
+  <data name="education grade" xml:space="preserve">
+    <value>مقطع تحصیلی</value>
+  </data>
+  <data name="education Subject" xml:space="preserve">
+    <value>عنوان دوره</value>
+  </data>
+  <data name="education Year" xml:space="preserve">
+    <value>سال آموزش</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>آدرس ایمیل</value>
+  </data>
+  <data name="Emeregancy Contact" xml:space="preserve">
+    <value>اطلاعات تماس در موقع ضروری</value>
+  </data>
+  <data name="end cooperation reason" xml:space="preserve">
+    <value>علت قطع همکاری</value>
+  </data>
+  <data name="end date" xml:space="preserve">
+    <value>تاریخ پایان</value>
+  </data>
+  <data name="Error in Upload Some Files" xml:space="preserve">
+    <value>در بارگذاری فایل خطایی رخ داد</value>
+  </data>
+  <data name="father name" xml:space="preserve">
+    <value>نام پدر</value>
+  </data>
+  <data name="female" xml:space="preserve">
+    <value>زن</value>
+  </data>
+  <data name="field" xml:space="preserve">
+    <value>رشته تحصیلی</value>
+  </data>
+  <data name="Fields marked with an asterisk (*) are required" xml:space="preserve">
+    <value>فیلدهای دارای * الزامی می باشند</value>
+  </data>
+  <data name="FinalRegistrationInformation" xml:space="preserve">
+    <value>ثبت نهایی</value>
+  </data>
+  <data name="finishe date" xml:space="preserve">
+    <value>تاریخ پایان</value>
+  </data>
+  <data name="FreeTimeActivities" xml:space="preserve">
+    <value>اوقات فراغت خود را چگونه می گذرانید ؟ ( ورزش ، مطالعه ، کارهای هنری و ... )</value>
+  </data>
+  <data name="gender" xml:space="preserve">
+    <value>جنسیت</value>
+  </data>
+  <data name="HasCriminalRecord" xml:space="preserve">
+    <value>آیا سابقه کیفری خاصی دارید ؟</value>
+  </data>
+  <data name="HasIntentionToMigrate" xml:space="preserve">
+    <value>آیا قصد مهاجرت دارید ؟</value>
+  </data>
+  <data name="HasSpecialDisease" xml:space="preserve">
+    <value>آیا به بیماری خاصی مبتلا هستید ؟</value>
+  </data>
+  <data name="HasWorkingRelativeInPackingCompanies" xml:space="preserve">
+    <value>آیا از بستگان شما کسی در شرکت چاپ و بسته بندی مشغول به کار است ؟</value>
+  </data>
+  <data name="HasWorkingRelatives" xml:space="preserve">
+    <value>آیا از بستگان یا دوستان شما کسی در شرکت ترام چاپ مشغول به کار است ؟ ( نام ایشان را ذکر بفرمایید )</value>
+  </data>
+  <data name="identity number" xml:space="preserve">
+    <value>شماره شناسنامه</value>
+  </data>
+  <data name="Identity Serial Number" xml:space="preserve">
+    <value>سریال شناسنامه</value>
+  </data>
+  <data name="If you click on the final registration, the information will no longer be editable." xml:space="preserve">
+    <value>پس از ثبت نهایی امکان ویرایش اطلاعات توسط شما وجود ندارد </value>
+  </data>
+  <data name="insurance duration(month)" xml:space="preserve">
+    <value>سابقه بیمه ( تعدا ماه )</value>
+  </data>
+  <data name="insurance number" xml:space="preserve">
+    <value>شماره بیمه</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>زبان</value>
+  </data>
+  <data name="Language Description" xml:space="preserve">
+    <value>لطفاً در تعیین سطح ، معیار شما برای درجه عالی ، یک فرد بومی همان زبان باشد</value>
+  </data>
+  <data name="Languages" xml:space="preserve">
+    <value>میزان آشنایی با زبان های خارجه</value>
+  </data>
+  <data name="last name" xml:space="preserve">
+    <value>نام خانوادگی</value>
+  </data>
+  <data name="Latitude" xml:space="preserve">
+    <value>طول جغرافیایی</value>
+  </data>
+  <data name="Longitude" xml:space="preserve">
+    <value>عرض جغرافیایی</value>
+  </data>
+  <data name="male" xml:space="preserve">
+    <value>مرد</value>
+  </data>
+  <data name="map info" xml:space="preserve">
+    <value>در وارد کردن مختصات ( لوکیشن ) خود دقت فرمایید این اطلاعات مبنای خدمات سرویس ایاب و ذهاب شما خواهد بود </value>
+  </data>
+  <data name="marriage status" xml:space="preserve">
+    <value>وضعیت تاهل</value>
+  </data>
+  <data name="married" xml:space="preserve">
+    <value>متاهل</value>
+  </data>
+  <data name="MedicalExemptionReason" xml:space="preserve">
+    <value>دلیل معافیت پزشکی را وارد نمایید</value>
+  </data>
+  <data name="military service" xml:space="preserve">
+    <value>وضعیت نظام وظیفه</value>
+  </data>
+  <data name="military service end date" xml:space="preserve">
+    <value>تاریخ پایان خدمت</value>
+  </data>
+  <data name="military service start date" xml:space="preserve">
+    <value>تاریخ شروع خدمت</value>
+  </data>
+  <data name="military service status" xml:space="preserve">
+    <value>وضعیت نظام وظیفه</value>
+  </data>
+  <data name="mobile" xml:space="preserve">
+    <value>شماره همراه</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>نام</value>
+  </data>
+  <data name="national code" xml:space="preserve">
+    <value>کد ملی</value>
+  </data>
+  <data name="Nationality" xml:space="preserve">
+    <value>ملیت</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>خیر</value>
+  </data>
+  <data name="organization name" xml:space="preserve">
+    <value>موسسه / آموزشگاه</value>
+  </data>
+  <data name="organization position" xml:space="preserve">
+    <value>سمت سازمانی</value>
+  </data>
+  <data name="OrganizationalPosition" xml:space="preserve">
+    <value>سمت سازمانی</value>
+  </data>
+  <data name="OrganizationName" xml:space="preserve">
+    <value>موسسه / آموزشگاه</value>
+  </data>
+  <data name="other" xml:space="preserve">
+    <value>سایر اطلاعات</value>
+  </data>
+  <data name="partner education grade" xml:space="preserve">
+    <value>سطح تحصیلات همسر</value>
+  </data>
+  <data name="partner personal info" xml:space="preserve">
+    <value> اطلاعات همسر</value>
+  </data>
+  <data name="partnerJob" xml:space="preserve">
+    <value>شغل همسر</value>
+  </data>
+  <data name="personal info" xml:space="preserve">
+    <value>اطلاعات شخصی</value>
+  </data>
+  <data name="phone" xml:space="preserve">
+    <value>تلفن ثابت</value>
+  </data>
+  <data name="Please Define Your Location on Map" xml:space="preserve">
+    <value>لطفاً لوکیشن خود را روی نقشه انتخاب نمایید</value>
+  </data>
+  <data name="Please enter activity" xml:space="preserve">
+    <value>فعالیت ها را وارد نمایید</value>
+  </data>
+  <data name="Please enter address" xml:space="preserve">
+    <value>آدرس را وارد نمایید</value>
+  </data>
+  <data name="Please enter average" xml:space="preserve">
+    <value>معدل ؟</value>
+  </data>
+  <data name="Please enter Citizenship" xml:space="preserve">
+    <value>تابعیت را وارد نمایید</value>
+  </data>
+  <data name="Please enter collage name" xml:space="preserve">
+    <value>نام دانشگاه ؟</value>
+  </data>
+  <data name="Please enter Company name" xml:space="preserve">
+    <value>نام شرکت را وارد نمایید</value>
+  </data>
+  <data name="Please enter CriminalRecord" xml:space="preserve">
+    <value>لطفاً شرح سابقه را وارد نمایید</value>
+  </data>
+  <data name="Please enter education duration hour" xml:space="preserve">
+    <value>مدت دوره را وارد نمایید</value>
+  </data>
+  <data name="Please enter education Subject" xml:space="preserve">
+    <value>عنوان دوره را وارد نمایید</value>
+  </data>
+  <data name="Please enter eeducation Year" xml:space="preserve">
+    <value>سال آموزش را وارد نمایید</value>
+  </data>
+  <data name="Please enter email" xml:space="preserve">
+    <value>ایمیل را وارد نمایید</value>
+  </data>
+  <data name="Please enter father name" xml:space="preserve">
+    <value>نام پدر را وارد نمایید</value>
+  </data>
+  <data name="Please enter field" xml:space="preserve">
+    <value>رشته تحصیلی ؟</value>
+  </data>
+  <data name="Please enter FreeTimeActivities" xml:space="preserve">
+    <value>لطفاً شرح اوقات فراغت خود را وارد نمایید</value>
+  </data>
+  <data name="Please enter gender" xml:space="preserve">
+    <value>جنسیت را مشخص نمایید</value>
+  </data>
+  <data name="Please enter identity number" xml:space="preserve">
+    <value>شماره شناسنامه را وارد نمایید</value>
+  </data>
+  <data name="Please enter Identity Serial Number" xml:space="preserve">
+    <value>سریال شناسنامه را وارد نمایید</value>
+  </data>
+  <data name="Please enter insurance duration(month)" xml:space="preserve">
+    <value>سابقه بیمه بر اساس تعداد ماه را وارد نمایید</value>
+  </data>
+  <data name="Please enter insurance number" xml:space="preserve">
+    <value>شماره بیمه را وارد نمایید</value>
+  </data>
+  <data name="Please enter last name" xml:space="preserve">
+    <value>نام خانوادگی را وارد نمایید</value>
+  </data>
+  <data name="Please enter Location" xml:space="preserve">
+    <value>موقعیت منزل را روی نقشه انتخاب نمایید</value>
+  </data>
+  <data name="Please enter marriage status" xml:space="preserve">
+    <value>وضعیت تاهل را مشخص نمایید</value>
+  </data>
+  <data name="Please enter MedicalExemptionReason" xml:space="preserve">
+    <value>دلیل معافیت پزشکی را وارد نمایید</value>
+  </data>
+  <data name="Please enter mobile" xml:space="preserve">
+    <value>شماره همراه را وارد نمایید</value>
+  </data>
+  <data name="Please enter name" xml:space="preserve">
+    <value>نام را وارد نمایید</value>
+  </data>
+  <data name="Please enter national code" xml:space="preserve">
+    <value>کد ملی را وارد نمایید</value>
+  </data>
+  <data name="Please enter Nationality" xml:space="preserve">
+    <value>ملیت را وارد نمایید</value>
+  </data>
+  <data name="Please enter OrganizationalPosition" xml:space="preserve">
+    <value>سمت سازمانی را وارد نمایید</value>
+  </data>
+  <data name="Please enter OrganizationName" xml:space="preserve">
+    <value>نام موسسه یا آموزشگاه را وارد نمایید</value>
+  </data>
+  <data name="Please enter phone" xml:space="preserve">
+    <value>شماره ثابت را وارد نمایید</value>
+  </data>
+  <data name="Please enter relation" xml:space="preserve">
+    <value>نسبت را وارد نمایید</value>
+  </data>
+  <data name="Please enter requset salary" xml:space="preserve">
+    <value>حقوق مورد درخواست را وارد نمایید</value>
+  </data>
+  <data name="Please enter sect" xml:space="preserve">
+    <value>مذهب را وارد نمایید</value>
+  </data>
+  <data name="Please enter SpecialDisease" xml:space="preserve">
+    <value>لطفا نام بیماری (ها) را وارد نمایید</value>
+  </data>
+  <data name="Please enter SpecialWorkSuccesses" xml:space="preserve">
+    <value>موفقیت های ویژه کاری خود را وارد نمایید</value>
+  </data>
+  <data name="Please enter WorkingRelativeInPackingCompanyName" xml:space="preserve">
+    <value>نام شرکت را وارد نمایید</value>
+  </data>
+  <data name="Please enter WorkingRelatives" xml:space="preserve">
+    <value>لطفا نام افراد را وارد نمایید</value>
+  </data>
+  <data name="Please select a city" xml:space="preserve">
+    <value>شهر را انتخاب کنید</value>
+  </data>
+  <data name="Please select a province" xml:space="preserve">
+    <value>استان را انتخاب نمایید</value>
+  </data>
+  <data name="PostalCode" xml:space="preserve">
+    <value>کد پستی</value>
+  </data>
+  <data name="province" xml:space="preserve">
+    <value>استان</value>
+  </data>
+  <data name="ReadyToWorkDate" xml:space="preserve">
+    <value>زمان آمادگی برای شروع به کار </value>
+  </data>
+  <data name="recieved salary" xml:space="preserve">
+    <value>حقوق دریافتی</value>
+  </data>
+  <data name="relation" xml:space="preserve">
+    <value>نسبت</value>
+  </data>
+  <data name="religion" xml:space="preserve">
+    <value>دین</value>
+  </data>
+  <data name="requset salary" xml:space="preserve">
+    <value>حقوق درخواستی</value>
+  </data>
+  <data name="Resume" xml:space="preserve">
+    <value>سوابق کاری</value>
+  </data>
+  <data name="ReturnTo" xml:space="preserve">
+    <value>بازگشت به فرم ورود اطلاعات</value>
+  </data>
+  <data name="Row Number" xml:space="preserve">
+    <value>ردیف</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>ذخیره</value>
+  </data>
+  <data name="sect" xml:space="preserve">
+    <value>مذهب</value>
+  </data>
+  <data name="select item" xml:space="preserve">
+    <value>یک مورد انتخاب نمایید</value>
+  </data>
+  <data name="single" xml:space="preserve">
+    <value>مجرد</value>
+  </data>
+  <data name="SkillLevel" xml:space="preserve">
+    <value>میزان مهارت</value>
+  </data>
+  <data name="SpecialAcademicAchievements" xml:space="preserve">
+    <value>موفقیت های ویژه تحصیلی ( قبل و بعد از دانشگاه )</value>
+  </data>
+  <data name="SpecialDisease" xml:space="preserve">
+    <value>نام بیماری ها</value>
+  </data>
+  <data name="SpecialWorkSuccesses" xml:space="preserve">
+    <value>موفقیت های ویژه کاری </value>
+  </data>
+  <data name="start date" xml:space="preserve">
+    <value>تاریخ شروع</value>
+  </data>
+  <data name="subject" xml:space="preserve">
+    <value>عنوان</value>
+  </data>
+  <data name="submitInformation" xml:space="preserve">
+    <value>تایید اطلاعات</value>
+  </data>
+  <data name="The agreement section has not been approved" xml:space="preserve">
+    <value>بخش توافقنامه تایید نشده است </value>
+  </data>
+  <data name="ThesisTitle" xml:space="preserve">
+    <value>عنوان پایان نامه آخرین مقطع تحصیلی</value>
+  </data>
+  <data name="township" xml:space="preserve">
+    <value>شهرستان</value>
+  </data>
+  <data name="Training Records" xml:space="preserve">
+    <value>سوابق تحصیلی</value>
+  </data>
+  <data name="unit of military service" xml:space="preserve">
+    <value>یگان </value>
+  </data>
+  <data name="upload file" xml:space="preserve">
+    <value>بارگذاری فایل رزومه</value>
+  </data>
+  <data name="WorkingRelativeInPackingCompanyName" xml:space="preserve">
+    <value>نام شرکت را ذکر بفرمایید</value>
+  </data>
+  <data name="WorkingRelatives" xml:space="preserve">
+    <value>نام افراد</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>بله</value>
+  </data>
+  <data name="You Must Upload Your Resume File" xml:space="preserve">
+    <value>آپلود فایل رزومه کاری الزامی است</value>
+  </data>
+  <data name="Your data has been saved" xml:space="preserve">
+    <value>اطلاعات شما با موفقیت در سامانه ثبت گردید</value>
+  </data>
+  <data name="Your information is already registered in the system." xml:space="preserve">
+    <value>اطلاعات شما قبلا در سامانه ثبت شده است</value>
+  </data>
+  <data name="Your Information Saved" xml:space="preserve">
+    <value>ثبت موفق</value>
+  </data>
+</root>

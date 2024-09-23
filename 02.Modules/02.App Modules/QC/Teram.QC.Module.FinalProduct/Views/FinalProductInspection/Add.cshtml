@@ -1,0 +1,80 @@
+﻿@model FinalProductInspectionModel
+@inject IStringLocalizer<Teram.QC.Module.FinalProduct.Controllers.FinalProductInspectionController> localizer
+
+<form id="frmIncomingGoods" asp-action="SaveForm" asp-controller="FinalProductInspection" method="post" data-ajax="true" data-ajax-method="post" enctype="multipart/form-data" data-ajax-success="finalProductInspectionOnSuccess">
+    <partial name="_FinalProductInspection" model="@Model" />
+    <fieldset class="m-1 p-1">
+        <div class="content finalProductInspectionDefects">
+            @if (Model?.FinalProductInspectionDefects == null || Model?.FinalProductInspectionDefects.Count == 0)
+            {
+                <partial name="_FinalProductInspectionDefect" model="new List<FinalProductInspectionDefectModel>()" view-data="ViewData" />
+            }
+            else
+            {
+                <partial name="_FinalProductInspectionDefect" model="Model?.FinalProductInspectionDefects" view-data="ViewData" />
+            }
+        </div>
+        <input type="button" class="btn btn-secondary btnCreateRow d-none" value="@localizer["AddDefect"]" />
+    </fieldset>
+
+    <div class="form-row">
+        <div class="form-group col-xs-12 col-md-12 col-lg-12" style="text-align:center;">
+            <button type="submit" class="btn btn-info">@localizer["Submit"] </button>
+            <button class="btn btn-secondary SpecialresetForm shouldReloadGrid" type="button" id="resetForm">@localizer["New"]</button>
+        </div>
+    </div>
+</form>
+
+<div class="card">
+    <div class="card-header bg-info" style="font-weight:bold">
+        @localizer["FilterData"]
+    </div>
+    <div class="card-body bg-light">
+        <div class="row">
+            <text-box id="OrderNoFilter" name="OrderNoFilter" reverse="true" validation-type="Number" title="@localizer["OrderNo"]" div-class="col-12 col-md-6 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box id="NumberFilter" name="NumberFilter" reverse="true" validation-type="None" title="@localizer["Number"]" div-class="col-12 col-md-6 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box id="ProductCodeFilter" name="ProductCodeFilter" reverse="true" validation-type="Number" title="@localizer["ProductCode"]" div-class="col-12 col-md-6 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box id="TracingCodeFilter" name="TracingCodeFilter" reverse="true" validation-type="Number" title="@localizer["TracingCode"]" div-class="col-12 col-md-6 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+        </div>
+        <div class="row">
+            <text-box id="OrderTitleFilter" name="OrderTitleFilter" reverse="true" validation-type="Number" title="@localizer["OrderTitle"]" div-class="col-12 col-md-6 col-lg-6 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box id="ProductNameFilter" name="ProductNameFilter" reverse="true" validation-type="Number" title="@localizer["ProductName"]" div-class="col-12 col-md-6 col-lg-6 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+        </div>
+        <div class="form-row" style="margin-top:20px;">
+            <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                <button id="btnSearch" type="button" class="btn btn-success shouldReloadGrid"><i class="fa fa-search"></i>@localizer["Search"] </button>
+                <button id="reset" class="btn btn-danger resetForm shouldReloadGrid" type="reset">@localizer["Remove Filter"]</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="finalProductInspectionDefectRowContainer form-row finalProductInspectionDefectRow defectRow d-none">
+    <div class="finalProductInspectionDefectSection col-md-1">
+        <div class="text-center actionButtonContainer mt-4">
+            <div class="border-top border-right border-bottom d-inline-block px-1 pt-1 addButton" data-newrow="finalProductInspectionDefectRow">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+            </div>
+            <div class="border-top border-right border-bottom d-inline-block px-1 pt-1 mt-1 removeButton" data-finalProductInspectionDefectId="0">
+                <i class="fa fa-minus-circle" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-11">
+        <div class="form-row">
+            <select-box name="FinalProductInspectionDefects[-1].ControlPlanDefectId" reverse="true"
+                        id="FinalProductInspectionDefects[-1].ControlPlanDefectId" title="@localizer["Defect"]"
+                        class="form-group  required col-md-3 mb-3 d-flex flex-column-reverse align-items-start defectsSelectList" is-select2="true" select-class="inputBox">
+            </select-box>
+            <text-box reverse="true" title="@localizer["Sample1"]" validation-type=Number name="FinalProductInspectionDefects[-1].FirstSample"
+                      div-class="col-md-2 mb-3 d-flex flex-column-reverse align-items-start" />
+            <text-box reverse="true" title="@localizer["Sample2"]" validation-type=Number name="FinalProductInspectionDefects[-1].SecondSample"
+                      div-class="col-md-2 mb-3 d-flex flex-column-reverse align-items-start" />
+            <text-box reverse="true" title="@localizer["Sample3"]" validation-type=Number name="FinalProductInspectionDefects[-1].ThirdSample"
+                      div-class="col-md-2 mb-3 d-flex flex-column-reverse align-items-start" />
+            <text-box reverse="true" title="@localizer["Sample4"]" validation-type=Number name="FinalProductInspectionDefects[-1].ForthSample"
+                      div-class="col-md-2 mb-3 d-flex flex-column-reverse align-items-start" />
+        </div>
+    </div>
+</div>

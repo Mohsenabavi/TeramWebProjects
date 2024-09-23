@@ -1,0 +1,21 @@
+﻿@model FinalProductNoncomplianceModel
+@inject IStringLocalizer<Teram.QC.Module.FinalProduct.Controllers.EditFinalProductNoncomplianceController> localizer
+
+
+<form asp-action="Save" method="post" data-ajax="true" data-ajax-method="post" data-ajax-success="onSuccessAfterEditControlPlanDefectId">
+    <input type="hidden" asp-for="@Model.FinalProductNoncomplianceId" />
+    <input type="hidden" asp-for="LastComment" value="" />
+    <text-box reverse="true" title="@localizer["LastComment"]" asp-for="@Model.FinalProductNonComplianceCartableItems.LastOrDefault().Comments" validation-type=None is-readonly="true"
+              div-class="col-md-12 col-lg-12 mb-3 d-flex flex-column-reverse align-items-start" />
+
+    <select-box style="justify-content: flex-end;" asp-for="@Model.ControlPlanDefectId" reverse="true" not-selected-option-title="-- یک ایراد انتخاب کنید --" title="کد ایراد"
+                validation-required-message="@localizer["Please select a Status"]" value="@ViewBag.RelatedDefects" selected-value="@Model?.ControlPlanDefectId"
+                class="col-12 col-md-6 col-lg-12 d-flex flex-column-reverse align-items-start" select-class="inputBox select2 defectList" is-select2="false">
+    </select-box>
+    <div class="form-row ">
+        <div class="form-group col-xs-12 col-md-12 col-lg-12" style="text-align:center;">
+            <button type="submit"  class="btn btn-info">@localizer["Submit"] </button>
+        </div>
+    </div>
+</form>
+

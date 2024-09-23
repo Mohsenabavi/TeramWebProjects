@@ -1,0 +1,10 @@
+﻿@model Teram.Web.Core.Page.ContainerInformation
+
+    <div class="tuba-container">
+        <div class="no-border container-noborder-header">
+            <span>@Model.Title</span>
+        </div>
+        <div class="container-noborder-body">
+            @await Component.InvokeAsync(Model.ModuleName, new { PageModuleId=Model.PageModuleId})
+        </div>
+    </div>

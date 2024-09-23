@@ -1,0 +1,10 @@
+﻿@page
+@model ConfirmEmailModel
+@inject IStringLocalizer<SharedResource> Localizer
+@{
+    ViewData["Title"] = Localizer["Confirm email"];
+}
+
+<h5>@ViewData["Title"]</h5>
+<partial name="_StatusMessage" model="Model.StatusMessage" />
+<input type="button" value="بازگشت" onclick="window.location.href('/')" class="backBtn" />

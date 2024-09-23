@@ -1,0 +1,68 @@
+﻿@model List<TrainingRecordModel>
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.WorkWithUsController> localizer
+
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12 text-center background-color-blue color-white border-bottom border-dark infoItem">
+            @localizer["Training Records"]
+        </div>
+    </div>
+    <div class="row background-color-blue-light">
+        <div class="col-md-1 col-xs-6 text-center border-right border-bottom border-dark  report-label infoItem">
+            <span>@localizer["Row Number"]</span>
+        </div>
+        <div class="col-md-11">
+            <div class="row">
+                <div class="col-md-2 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+                    <span> @localizer["education grade"]</span>
+                </div>
+                <div class="col-md-2 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+                    <span> @localizer["collage name"]</span>
+                </div>
+                <div class="col-md-2 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+                    <span> @localizer["field"]</span>
+                </div>
+                <div class="col-md-2 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+                    <span>@localizer["average"]</span>
+                </div>
+                <div class="col-md-2 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+                    <span> @localizer["start date"]</span>
+                </div>
+                <div class="col-md-2 col-xs-6 text-center border-right border-left border-bottom border-dark report-label infoItem">
+                    <span>@localizer["end date"]</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    @foreach (var item in Model.Select((value, index) => (value, index)))
+    {
+        <div class="row infoRow">
+            <div class="col-md-1 col-xs-6  text-center  border-bottom border-right border-dark infoItem">
+                <span>@(item.index + 1)</span>
+            </div>
+            <div class="col-md-11">
+                <div class="row">
+                    <div class="col-md-2 col-xs-6 text-center border-right border-bottom border-dark infoItem">
+                        <span>@(item.value.EducationGradeTitle != null ? item.value.EducationGradeTitle:"-") </span>
+                    </div>
+                    <div class="col-md-2 col-xs-6 text-center border-right border-bottom border-dark infoItem">
+                        <span>@(item.value.CollegeName != null ? item.value.CollegeName :"-")</span>
+                    </div>
+                    <div class="col-md-2 col-xs-6 text-center border-right border-bottom border-dark infoItem">
+                        <span>@(item.value.Field != null ? item.value.Field:"-")</span>
+                    </div>
+                    <div class="col-md-2 col-xs-6 text-center border-right border-bottom border-dark infoItem">
+                        <span>@(item.value.Average != null ? item.value.Average:"-") </span>
+                    </div>
+                    <div class="col-md-2 col-xs-6 text-center border-right border-bottom border-dark infoItem">
+                        <span>@(item.value.PersianStartDate != null? item.value.PersianStartDate:"-")</span>
+                    </div>
+                    <div class="col-md-2 col-xs-6 text-center border-right border-left border-bottom border-dark infoItem">
+                        <span>@(item.value.PersianEndDate != null? item.value.PersianEndDate:"-")</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

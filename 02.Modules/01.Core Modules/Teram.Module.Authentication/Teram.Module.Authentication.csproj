@@ -1,0 +1,126 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\**\*.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Migrations\20200510053912_AuthenticationMigration.cs" />
+    <Compile Remove="Migrations\20200510053912_AuthenticationMigration.Designer.cs" />
+    <Compile Remove="Migrations\20200527105004_removeUserData.cs" />
+    <Compile Remove="Migrations\20200527105004_removeUserData.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Views\PermissionControlPanel\Index.cshtml" />
+    <EmbeddedResource Remove="Views\PermissionControlPanel\_permissions.cshtml" />
+    <EmbeddedResource Remove="Views\RoleControlPanel\Add.cshtml" />
+    <EmbeddedResource Remove="Views\RoleControlPanel\Detail.cshtml" />
+    <EmbeddedResource Remove="Views\TokenParameter\Add.cshtml" />
+    <EmbeddedResource Remove="Views\TokenProvider\Add.cshtml" />
+    <EmbeddedResource Remove="Views\UserControlPanel\Add.cshtml" />
+    <EmbeddedResource Remove="Views\UserControlPanel\ChangePassword.cshtml" />
+    <EmbeddedResource Remove="Views\UserControlPanel\_adminToolbar.cshtml" />
+    <EmbeddedResource Remove="Views\UserProfile\ChangePassword.cshtml" />
+    <EmbeddedResource Remove="Views\UserProfile\Index.cshtml" />
+    <EmbeddedResource Remove="Views\UserRoleControlPanel\Add.cshtml" />
+    <EmbeddedResource Remove="Views\_ViewImports.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Scripts\PermissionControlPanel.js" />
+    <None Remove="Scripts\RoleControlPanel.js" />
+    <None Remove="Scripts\TokenParameter.js" />
+    <None Remove="Scripts\TokenProvider.js" />
+    <None Remove="Scripts\UserControlPanel.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\PermissionControlPanel.js" />
+    <EmbeddedResource Include="Scripts\RoleControlPanel.js" />
+    <EmbeddedResource Include="Scripts\TokenParameter.js" />
+    <EmbeddedResource Include="Scripts\TokenProvider.js" />
+    <EmbeddedResource Include="Scripts\UserControlPanel.js" />
+    <EmbeddedResource Include="Scripts\UserRoleControlPanel.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DNTCaptcha.Core" Version="4.9.2" />
+    <PackageReference Include="Hangfire.Core" Version="1.8.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.0" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.0" />
+    <PackageReference Include="reCAPTCHA.AspNetCore" Version="3.0.10" />
+    <PackageReference Include="System.ServiceModel.Primitives" Version="6.2.0" />
+    <PackageReference Include="Teram.Framework.Core" Version="3.1.0" />
+    <PackageReference Include="Teram.ServiceContracts" Version="3.1.0" />
+    <PackageReference Include="Teram.Web.Core" Version="3.2.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Logic\Interface\" />
+    <Folder Include="Service\" />
+    <Folder Include="Pages\Shared\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\01.Core\Teram.GlobalConfiguration\Teram.GlobalConfiguration.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Resources\AuthenticationSharedResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AuthenticationSharedResource.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Controllers\PermissionControlPanelController.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PermissionControlPanelController.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Controllers\RoleControlPanelController.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>RoleControlPanelController.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Controllers\UserControlPanelController.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>UserControlPanelController.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="Views\UserControlPanel\_adminToolbar.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\AuthenticationSharedResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AuthenticationSharedResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers\PermissionControlPanelController.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PermissionControlPanelController.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers\RoleControlPanelController.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RoleControlPanelController.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers\UserControlPanelController.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UserControlPanelController.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

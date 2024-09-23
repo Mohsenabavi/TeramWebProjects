@@ -1,0 +1,137 @@
+﻿@model CausationModel
+@inject IStringLocalizer<Teram.QC.Module.FinalProduct.Controllers.CausationController> localizer
+
+<div class="row">
+    <check-box name="NotRelatedToProduction" id="NotRelatedToProduction" is-required="false" reverse="true" title="@localizer["NotRelatedToProduction"]" div-class="col-12 col-md-4 col-lg-4 d-flex flex-column-reverse align-items-start mb-4" />
+    <select-box name="ActionerId" asp-for="ActionerId" reverse="true" value="@ViewBag.Actioners"
+                title="@localizer["ActionerId"]" selected-value="@Model?.ActionerId" is-required="true" value="@ViewBag.Actioners"
+                class="form-group  chooseActioners required col-md-6 d-flex flex-column-reverse align-items-start" is-select2="false" select-class="inputBox  select2">
+    </select-box>
+    <div class="col-md-2 col-xs-2 d-flex mt-4 align-items-start">
+        <button type="button" id="btnRefferToOtherActioner" class="btn btn-success w-100">@localizer["RefferToOtherActioner"] </button>
+    </div>
+</div>
+<div class="InputForm">
+    <div class="formInfo">
+        <div class="row hasNeedToRefferToOthersSection">
+            <select-box id="hasNeedToRefferToOthers" style="justify-content: flex-end;" is-select2="true" reverse="true"
+                        not-selected-option-title="-- انتخاب کنید --" title="نیاز به نظر مشورتی" value="Html.GetEnumSelectList<YesNoStatus>().ToList()"
+                        class="NeedToAdvisoryOpinion  mb-2  col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2">
+            </select-box>
+        </div>
+        <div class="row refferFromProductionManagerSection d-none">
+            <select-box style="justify-content: flex-end;" is-select2="false" reverse="true" id="OthersList" name="OthersList"
+                        not-selected-option-title="-- انتخاب کنید --" title="ارجاع به نفر انتخابی"
+                        class="othersList mb-2 col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2">
+            </select-box>
+            <text-box id="productionManagerComment" reverse="true" validation-type="None" title="@localizer["productionManagerComment"]" validation-required-message="@localizer["Please enter productionManagerComment"]" div-class="col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <div class="form-row" style="margin-top:20px;">
+                <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                    <button type="button" class="btnRefferFromProuctionManager btn btn-success">@localizer["RefferalForm"] </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="causationSection d-none">
+        <form asp-action="Save" asp-controller="Causation" id="frmCausation" method="post" data-ajax="true" data-ajax-method="post" data-ajax-success="onSuccessAfterCausation">
+
+            <div class="lockedSection">
+
+                <input type="hidden" asp-for="FinalProductNoncomplianceId" value="@Model?.FinalProductNoncomplianceId" />
+                <input type="hidden" asp-for="CausationId" value="@Model?.CausationId" />
+                <input type="hidden" asp-for="IsEditMode" value="@Model?.IsEditMode" />
+                <input type="hidden" asp-for="HasPermissionForSave" value="@Model?.HasPermissionForSave" />
+                <div class="row">
+                    <select-box style="justify-content: flex-end;" reverse="true" asp-for="WorkStationId"
+                                not-selected-option-title="-- یک ایستگاه انتخاب کنید --" title="ایستگاه کاری" is-required="true"
+                                selected-value="@Model?.WorkStationId"
+                                validation-required-message="@localizer["Please select a WorkStationId"]"
+                                class="d-none mb-2 col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2" value="@ViewBag.WorkStations">
+                    </select-box>
+                    <check-box asp-for="HasHRCause" name="HasHRCause" reverse="true" is-required="false" title="@localizer["HasHRCause"]" div-class="col-12 col-md-2 col-lg-2 d-flex flex-column-reverse align-items-start" />
+                    <check-box asp-for="HasMethodCause" name="HasMethodCause" is-required="false" reverse="true" title="@localizer["HasMethodCause"]" div-class="col-12 col-md-2 col-lg-2 d-flex flex-column-reverse align-items-start" />
+                    <check-box asp-for="HasRawMaterialCause" name="HasRawMaterialCause" is-required="false" reverse="true" title="@localizer["HasRawMaterialCause"]" div-class="col-12 col-md-2 col-lg-2 d-flex flex-column-reverse align-items-start" />
+                    <check-box asp-for="HasEssentialCause" name="HasEssentialCause" is-required="false" reverse="true" title="@localizer["HasEssentialCause"]" div-class="col-12 col-md-2 col-lg-2 d-flex flex-column-reverse align-items-start" />
+                    <check-box asp-for="HasEquipmentCause" name="HasEquipmentCause" is-required="false" reverse="true" title="@localizer["HasEquipmentCause"]" div-class="col-12 col-md-2 col-lg-2 d-flex flex-column-reverse align-items-start" />
+                </div>
+                <div class="hrSection d-none">
+                    <partial name="_CausationHR" model="@Model" />
+                </div>
+                <div class="methodSection d-none">
+                    <partial name="_CausationMethod" model="@Model" />
+                </div>
+                <div class="rawMaterialSection d-none">
+                    <fieldset class="border p-2 m-2">
+                        <h4>.......................................</h4>
+                    </fieldset>
+                </div>
+                <div class="essentialSection d-none">
+                    <partial name="_CausationEssentials" model="@Model" />
+                </div>
+                <div class="equipmentSection d-none">
+                    <partial name="_CausationEquipment" model="@Model" />
+                </div>
+            </div>
+            <fieldset class="m-1 p-1">
+                <div class="content correctiveActions">
+                    @if (Model?.CorrectiveActions == null || Model?.CorrectiveActions.Count == 0)
+                    {
+                        <partial name="_CorrectiveActions" model="new List<CorrectiveActionModel>()" />
+                    }
+                    else
+                    {
+                        <partial name="_CorrectiveActions" model="Model?.CorrectiveActions" />
+                    }
+                </div>
+                <input type="button" class="btn btn-secondary btnCreateRow d-none" value="@localizer["AddCorrectiveAction"]" />
+            </fieldset>
+            <div class="form-row" style="margin-top:20px;">
+                <div class="form-group col-xs-12 col-md-12 col-lg-12 text-left">
+                    <button type="button" id="btnSubmitCausation" class="btn btn-success">@localizer["Save"] </button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="correctiveActionRowContainer form-row correctiveActionRow d-none mb-5">
+        <div class="correctiveActionSection col-md-1">
+            <div class="actionButtonContainer mt-4 mb-4 col-xs-12 col-md-12 col-lg-4">
+                <div class="border-top border-right border-bottom d-inline-block px-1 pt-1 addButton" data-newrow="correctiveActionRow">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                </div>
+                <div class="border-top border-right border-bottom d-inline-block px-1 pt-1 mt-1 removeButton" data-correctiveActionId="0">
+                    <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-11">
+            <div class="form-row">
+                <text-box name="CorrectiveActions[-1].Descriiption" is-required="true" reverse="true" validation-type="None" title="@localizer["Descriiption"]" validation-required-message="@localizer["Please enter Description"]" div-class="col-xs-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+                <select-box name="CorrectiveActions[-1].ActionerId" reverse="true" value="@ViewBag.Actioners" is-required="true"
+                            id="CorrectiveActions[-1].ActionerId" title="@localizer["Actioner"]"
+                            class="form-group  required col-md-4 mb-3 d-flex flex-column-reverse align-items-start" select-class="inputBox actioners select2">
+                </select-box>
+                <div class="form-group col-xs-12 col-lg-4 col-md-4 form-group  mt-2">
+                    <label class="forms-label mb-0">@localizer["ActionDate"] </label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text cursor-pointer"><i class="fa fa-calendar"></i></span>
+                        </div>
+                        <input type="text" name="CorrectiveActions[-1].ActionDatePersian" class="form-control pDatePicker actionDate" autocomplete="off" required="true" />
+                        <input type="hidden" name="CorrectiveActions[-1].ActionDate" required="true">
+                    </div>
+                </div>
+                <select-box name="CorrectiveActions[-1].ApproverId" reverse="true" value="@ViewBag.Actioners" is-required="true"
+                            id="CorrectiveActions[-1].ApproverId" title="@localizer["Approver"]"
+                            class="form-group  required col-md-4 mb-3 d-flex flex-column-reverse align-items-start" select-class="inputBox actioners select2">
+                </select-box>
+            </div>
+        </div>
+        <hr />
+    </div>
+</div>
+
+
+
+

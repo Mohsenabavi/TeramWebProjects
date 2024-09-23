@@ -1,0 +1,30 @@
+﻿@using Teram.HR.Module.Recruitment.Models.WorkWithUs;
+@model BaseInformationModel
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.WorkWithUsController> localizer
+
+<div class="form-row mt-2">
+    <select-box style="justify-content: flex-end;" data-id="HomeProvinceId" data-cityId="HomeCityId" name="HomeProvinceId" reverse="true"
+                id="HomeProvinceId" is-required="true" not-selected-option-title="-- یک استان انتخاب کنید --" title="استان"
+                validation-required-message="@localizer["Please select a province"]"
+                class="col-12 col-md-6 col-lg-6 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2 provinceSelector" value="@ViewBag.provinces">
+    </select-box>
+    <select-box style="justify-content: flex-end;" data-provinceid="HomeProvinceId" is-required="true" id="HomeCityId" reverse="true" asp-for="HomeCityId" name="HomeCityId" not-selected-option-title="-- یک شهر انتخاب کنید --" title="شهر"
+                validation-required-message="@localizer["Please select a city"]"
+                class="col-12 col-md-3 col-lg-6 d-flex flex-column-reverse align-items-start pr-lg-2 pr-md-2" select-class="inputBox select2 citySelector">
+    </select-box>
+    <text-box asp-for="Address" is-required="true" reverse="true" validation-type="None" title="@localizer["address"]" validation-required-message="@localizer["Please enter address"]" div-class="col-xs-12 col-md-12 col-lg-12  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+    <text-box asp-for="Phone" reverse="true" validation-type="PhoneNumber" title="@localizer["phone"]" validation-required-message="@localizer["Please enter phone"]" div-class="col-xs-12 col-md-3 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+    <text-box asp-for="Mobile" is-readonly='@(Model?.FlowType == FlowType.Employed ? false : true)' reverse="true" validation-type="PhoneNumber" title="@localizer["mobile"]" validation-required-message="@localizer["Please enter mobile"]" div-class="col-xs-12 col-md-3 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+    <text-box asp-for="Email" is-required="false" reverse="true" validation-type="Email" title="@localizer["email"]" validation-required-message="@localizer["Please enter email"]" div-class="col-xs-12 col-md-3 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+    <text-box asp-for="PostalCode" is-required="false" reverse="true" validation-type="PostalCode" title="@localizer["PostalCode"]" validation-required-message="@localizer["Please enter PostalCode"]" div-class="col-xs-12 col-md-3 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+</div>
+<h6 class="bg-info small  p-2 rounded text-light pr-3 text-right">
+    @localizer["map info"]
+</h6>
+<div id="map" style="height: 300px">
+</div>
+<div class="row">
+    <input type="hidden" asp-for="Latitude" required />
+    <input type="hidden" asp-for="Longitude" required />
+</div>
+

@@ -1,0 +1,375 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Actions" xml:space="preserve">
+    <value>عملیات</value>
+  </data>
+  <data name="Attachments" xml:space="preserve">
+    <value>عکس های ضمیمه شده</value>
+  </data>
+  <data name="By Changing Control Plan Defect Duplicate Values Will Be Created" xml:space="preserve">
+    <value>با تغییر  به این کد ایراد ، ایراد تکراری در فرم بازرسی ایجاد خواهد شد ، عملیات امکان پذیر نیست</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>نظر</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>توضیحات</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>تایید</value>
+  </data>
+  <data name="ControlPlanDefectTitle" xml:space="preserve">
+    <value>ایراد</value>
+  </data>
+  <data name="Defect Changed In NonCompliances And Related Inspection Forms" xml:space="preserve">
+    <value>کد ایراد مربوطه در عدم انطباق و کلیه ی فرم های بازرسی مرتبط با موفقیت به روز رسانی شد</value>
+  </data>
+  <data name="DestinationUserName" xml:space="preserve">
+    <value>به</value>
+  </data>
+  <data name="EditFinalProductNoncompliance" xml:space="preserve">
+    <value>لیست عدم انطباق</value>
+  </data>
+  <data name="EditFinalProductNoncomplianceController" xml:space="preserve">
+    <value>ایراد</value>
+  </data>
+  <data name="ExcelPrint" xml:space="preserve">
+    <value>خروجی اکسل</value>
+  </data>
+  <data name="FilterData" xml:space="preserve">
+    <value>فیلتر کردن اطلاعات</value>
+  </data>
+  <data name="FinalApproveOfNonCompliance" xml:space="preserve">
+    <value>تایید نهایی عدم انطباق و علت یابی</value>
+  </data>
+  <data name="FinalProductNoncomplianceNumber" xml:space="preserve">
+    <value>شماره عدم انطباق</value>
+  </data>
+  <data name="FirstSampleOpinionCEO" xml:space="preserve">
+    <value>نظر اولیه مدیرعامل</value>
+  </data>
+  <data name="FirstSampleOpinionCEOFinal" xml:space="preserve">
+    <value>نظر نهایی مدیرعامل</value>
+  </data>
+  <data name="FirstSampleOpinionCEOFinalText" xml:space="preserve">
+    <value>نظرنهایی مدیرعامل</value>
+  </data>
+  <data name="FirstSampleOpinionCEOText" xml:space="preserve">
+    <value>نظر اولیه مدیرعامل</value>
+  </data>
+  <data name="FirstSampleOpinionText" xml:space="preserve">
+    <value>نظر مدیر کنترل کیفی</value>
+  </data>
+  <data name="FirstSamplePalletCount" xml:space="preserve">
+    <value>تعداد پالت</value>
+  </data>
+  <data name="FirstSampleSeparatedCount" xml:space="preserve">
+    <value>جداسازی شده نمونه اول</value>
+  </data>
+  <data name="FirstSampleSum" xml:space="preserve">
+    <value>نمونه اول</value>
+  </data>
+  <data name="ForthSampleOpinionCEO" xml:space="preserve">
+    <value>نظر اولیه مدیرعامل</value>
+  </data>
+  <data name="ForthSampleOpinionCEOFinal" xml:space="preserve">
+    <value>نظر نهایی مدیرعامل</value>
+  </data>
+  <data name="ForthSampleOpinionCEOFinalText" xml:space="preserve">
+    <value>نظرنهایی مدیرعامل</value>
+  </data>
+  <data name="ForthSampleOpinionCEOText" xml:space="preserve">
+    <value>نظر اولیه مدیرعامل</value>
+  </data>
+  <data name="ForthSampleOpinionText" xml:space="preserve">
+    <value>نظر مدیر کنترل کیفی</value>
+  </data>
+  <data name="ForthSamplePalletCount" xml:space="preserve">
+    <value>تعداد پالت </value>
+  </data>
+  <data name="ForthSampleSeparatedCount" xml:space="preserve">
+    <value>جداسازی شده نمونه چهارم</value>
+  </data>
+  <data name="ForthSampleSum" xml:space="preserve">
+    <value>نمونه چهارم</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>اطلاعات نمونه ها</value>
+  </data>
+  <data name="InspectionItemDetails" xml:space="preserve">
+    <value>خلاصه اطلاعات و عملیات</value>
+  </data>
+  <data name="LastComment" xml:space="preserve">
+    <value>جزییات آخرین ارجاع</value>
+  </data>
+  <data name="NeedToReviseByCEO" xml:space="preserve">
+    <value>نیاز به بازنگری توسط مدیر عامل دارد </value>
+  </data>
+  <data name="NonComplianeSummary" xml:space="preserve">
+    <value>خلاصه وضعیت عدم انطباق</value>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>شماره پالت</value>
+  </data>
+  <data name="OrderNo" xml:space="preserve">
+    <value>شماره سفارش</value>
+  </data>
+  <data name="OrderNonCompliancePercent" xml:space="preserve">
+    <value>درصد عدم انطباق کل سفارش</value>
+  </data>
+  <data name="OutputDatePersian" xml:space="preserve">
+    <value>تاریخ اقدام</value>
+  </data>
+  <data name="PalletCount" xml:space="preserve">
+    <value>تعداد کل پالت تولیدی</value>
+  </data>
+  <data name="PalletDetails" xml:space="preserve">
+    <value>جزییات پالت ها</value>
+  </data>
+  <data name="PersianCreateDate" xml:space="preserve">
+    <value>تاریخ و ساعت ایجاد</value>
+  </data>
+  <data name="PersianInputDate" xml:space="preserve">
+    <value>تاریخ ارجاع</value>
+  </data>
+  <data name="ProductCode" xml:space="preserve">
+    <value>کد محصول</value>
+  </data>
+  <data name="ProductName" xml:space="preserve">
+    <value>نام محصول</value>
+  </data>
+  <data name="References" xml:space="preserve">
+    <value>تاریخچه ارجاعات</value>
+  </data>
+  <data name="Remove Filter" xml:space="preserve">
+    <value>حذف فیلترها</value>
+  </data>
+  <data name="ReturnedCount" xml:space="preserve">
+    <value>تعداد محصول مرجوع شده</value>
+  </data>
+  <data name="ReturnedNonCompliancePercent" xml:space="preserve">
+    <value>درصد عدم انطباق در پالت های مرجوعی</value>
+  </data>
+  <data name="ReturnedPalletsCount" xml:space="preserve">
+    <value>تعداد پالت مرجوع شده</value>
+  </data>
+  <data name="SalesUnitComments" xml:space="preserve">
+    <value>نظرات واحد فروش</value>
+  </data>
+  <data name="Sample1" xml:space="preserve">
+    <value>نمونه اول</value>
+  </data>
+  <data name="Sample2" xml:space="preserve">
+    <value>نمونه دوم</value>
+  </data>
+  <data name="Sample3" xml:space="preserve">
+    <value>نمونه سوم</value>
+  </data>
+  <data name="Sample4" xml:space="preserve">
+    <value>نمونه چهارم</value>
+  </data>
+  <data name="SamplePercent" xml:space="preserve">
+    <value>درصد معیوب </value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>جستجو</value>
+  </data>
+  <data name="SecondSampleOpinionCEO" xml:space="preserve">
+    <value>نظر اولیه مدیرعامل</value>
+  </data>
+  <data name="SecondSampleOpinionCEOFinal" xml:space="preserve">
+    <value>نظر نهایی مدیرعامل</value>
+  </data>
+  <data name="SecondSampleOpinionCEOFinalText" xml:space="preserve">
+    <value>نظرنهایی مدیرعامل</value>
+  </data>
+  <data name="SecondSampleOpinionCEOText" xml:space="preserve">
+    <value>نظر اولیه مدیرعامل</value>
+  </data>
+  <data name="SecondSampleOpinionText" xml:space="preserve">
+    <value>نظر مدیر کنترل کیفی</value>
+  </data>
+  <data name="SecondSamplePalletCount" xml:space="preserve">
+    <value>تعداد پالت </value>
+  </data>
+  <data name="SecondSampleSeparatedCount" xml:space="preserve">
+    <value>جداسازی شده نمونه دوم</value>
+  </data>
+  <data name="SecondSampleSum" xml:space="preserve">
+    <value>نمونه دوم</value>
+  </data>
+  <data name="select item" xml:space="preserve">
+    <value>انتخاب کنید</value>
+  </data>
+  <data name="SendBackToProductionManager" xml:space="preserve">
+    <value>بازگرداندن به مدیر تولید</value>
+  </data>
+  <data name="SendInfoToCEO" xml:space="preserve">
+    <value>ارسال نظر به مدیر عامل</value>
+  </data>
+  <data name="SourceUserName" xml:space="preserve">
+    <value>از</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>ثبت</value>
+  </data>
+  <data name="ThirdSampleOpinionCEO" xml:space="preserve">
+    <value>نظر اولیه مدیرعامل</value>
+  </data>
+  <data name="ThirdSampleOpinionCEOFinal" xml:space="preserve">
+    <value>نظر نهایی مدیرعامل</value>
+  </data>
+  <data name="ThirdSampleOpinionCEOFinalText" xml:space="preserve">
+    <value>نظرنهایی مدیرعامل</value>
+  </data>
+  <data name="ThirdSampleOpinionCEOText" xml:space="preserve">
+    <value>نظر اولیه مدیرعامل</value>
+  </data>
+  <data name="ThirdSampleOpinionText" xml:space="preserve">
+    <value>نظر مدیر کنترل کیفی</value>
+  </data>
+  <data name="ThirdSamplePalletCount" xml:space="preserve">
+    <value>تعداد پالت </value>
+  </data>
+  <data name="ThirdSampleSeparatedCount" xml:space="preserve">
+    <value>جداسازی شده  نمونه سوم</value>
+  </data>
+  <data name="ThirdSampleSum" xml:space="preserve">
+    <value>نمونه سوم</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>تعداد در پالت ها</value>
+  </data>
+  <data name="TotalCount" xml:space="preserve">
+    <value>تعداد کل محصول تولیدی</value>
+  </data>
+  <data name="TracingCodes" xml:space="preserve">
+    <value>کدهای ردیابی ( هر کد ردیابی با - از هم جدا شده است )</value>
+  </data>
+  <data name="View All" xml:space="preserve">
+    <value>نمایش همه</value>
+  </data>
+  <data name="ViewAll" xml:space="preserve">
+    <value>نمایش همه</value>
+  </data>
+  <data name="WasteDocumentNumber" xml:space="preserve">
+    <value>شماره سند ضایعات</value>
+  </data>
+</root>

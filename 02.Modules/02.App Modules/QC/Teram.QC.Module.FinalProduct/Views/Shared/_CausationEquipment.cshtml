@@ -1,0 +1,14 @@
+﻿@model CausationModel
+@inject IStringLocalizer<Teram.QC.Module.FinalProduct.Controllers.CausationController> localizer
+
+<fieldset title="Test" class="border p-2 m-2 equipmentFieldSet">
+    <legend class="h6 w-auto">
+        @localizer["HasEquipmentCause"]
+    </legend>
+    <div class="row">
+        <check-box asp-for="HasNotification" is-required="false" name="HasNotification" reverse="true" title="@localizer["HasNotification"]" div-class="col-12 col-md-4 col-lg-4 d-flex flex-column-reverse align-items-start" />
+        <div class="NotificationNumberSection d-none">
+            <text-box asp-for="NotificationNumber" validation-type="Number" reverse="true" title="@localizer["NotificationNumber"]" validation-required-message="@localizer["Please enter NotificationNumber"]" div-class="col-12 col-md-12 col-lg-12 d-flex mt-2 flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+        </div>
+    </div>
+</fieldset>

@@ -1,0 +1,60 @@
+﻿@model List<EmergencyContactModel>
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.WorkWithUsController> localizer
+
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12 text-center background-color-blue color-white border-bottom border-dark infoItem">
+            @localizer["Emeregancy Contact"]
+        </div>
+    </div>
+    <div class="row background-color-blue-light">
+        <div class="col-md-1 col-xs-12 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["Row Number"]</span>
+        </div>
+        <div class="col-md-11">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-3 col-xs-12 text-center border-right border-bottom border-dark report-label pt-2 infoItem">
+                            <span> @localizer["name"]</span>
+                        </div>
+                        <div class="col-md-3 col-xs-12 text-center border-right border-bottom border-dark report-label pt-2 infoItem">
+                            <span> @localizer["last name"]</span>
+                        </div>
+                        <div class="col-md-3 col-xs-12 text-center border-right border-bottom border-dark report-label pt-2 infoItem">
+                            <span> @localizer["mobile"]</span>
+                        </div>
+                        <div class="col-md-3 col-xs-12 text-center border-right border-left border-bottom border-dark report-label pt-2 infoItem">
+                            <span>@localizer["relation"]</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @foreach (var item in Model.Select((value, index) => (value, index)))
+    {
+        <div class="row">
+            <div class="col-md-1 col-xs-6  text-center  border-bottom border-right border-dark infoItem">
+                <span>@(item.index + 1)</span>
+            </div>
+            <div class="col-md-11">
+                <div class="row">
+                    <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark infoItem">
+                        <span>@(item.value.Name != null ? item.value.Name : "-")</span>
+                    </div>
+                    <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark infoItem">
+                        <span>@(item.value.LastName != null ? item.value.LastName : "-")</span>
+                    </div>
+                    <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark infoItem">
+                        <span>@(item.value.Mobile != null ? item.value.Mobile : "-")</span>
+                    </div>
+                    <div class="col-md-3 col-xs-6 text-center border-left border-right border-bottom border-dark infoItem">
+                        <span>@(item.value.Relation != null ? item.value.Relation : "-")</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

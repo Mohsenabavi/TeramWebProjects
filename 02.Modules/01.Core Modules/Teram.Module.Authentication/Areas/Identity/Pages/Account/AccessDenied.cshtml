@@ -1,0 +1,12 @@
+﻿@page
+@model AccessDeniedModel
+@inject IStringLocalizer<SharedResource> Localizer
+@{
+    ViewData["Title"] = Localizer["Access denied"];
+}
+
+<header>
+    <h2 class="text-danger">@ViewData["Title"]</h2>
+    <p class="text-danger">@Localizer["You do not have access to this resource."]</p>
+    <input  type="button" value="بازگشت" onclick="window.history.go(-1); return false;"  class="backBtn"/>
+</header>

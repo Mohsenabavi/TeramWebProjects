@@ -1,0 +1,28 @@
+﻿
+@model ServerPathModel
+
+@inject IStringLocalizer<Teram.IT.Module.BackupManagement.Controllers.ServerPathController> localizer
+
+<div class="formInfo">
+    <form asp-action="Save" method="post" data-ajax="true" data-ajax-method="post" data-ajax-success="onSuccess" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Key" />
+        <div class="row">         
+            <text-box asp-for="SourcePath" style="direction:ltr" reverse="true" validation-type="None" title="@localizer["SourcePath"]" validation-required-message="@localizer["Please enter SourcePath"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box asp-for="DestinationPath" style="direction:ltr" reverse="true" validation-type="None" title="@localizer["DestinationPath"]" validation-required-message="@localizer["Please enter DestinationPath"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <select-box asp-for="ApplicationId" reverse="true" show-not-selected-option-title="false"
+                        title="@localizer["ApplicationId"]"
+                        select-class="inputBox" value="@ViewBag.Applications"
+                        selected-value="@(Model?.ApplicationId)"
+                        div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2">
+            </select-box>
+            <text-box asp-for="Description" reverse="true" validation-type="None" title="@localizer["Description"]" validation-required-message="@localizer["Please enter Description"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box asp-for="FileName" reverse="true" validation-type="None" title="@localizer["FileName"]" validation-required-message="@localizer["Please enter FileName"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+        </div>      
+        <div class="form-row" style="margin-top:20px;">
+            <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                <button type="submit" class="btn btn-success">@localizer["Save"] </button>
+                <button type="button" class="btn btn-secondary resetForm resetButton">@localizer["New"] </button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,56 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Teram.Module.Authentication.Models
+
+@inject SignInManager<TeramUser> SignInManager
+@inject UserManager<TeramUser> UserManager
+
+    <ul class="navbar-nav navbar-expand-lg navbar-nav-flex" id="navBarExtraItemsShrink" >
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-light" id="navbarUserInfo" data-bs-toggle ="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                    <i class="text-light fas fa-user-alt text-light"></i>
+                    <i class="text-light d-none d-md-inline-flex">کد ملی/شناسه ملی،@UserManager.GetUserName(User) خوش آمدید</i>
+                    <span>@*@User.Claims.FirstOrDefault(x => x.Type == Teram.Module.Authentication.Constant.ConstantPolicies.PersonTypeClaim)?.Value*@</span>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-right dropdown-default userInfo" aria-labelledby="navbarUserInfo">
+                    <div class="userinfo-body">
+                        <ul class="navbar-nav navbar-nav-flex-col">
+                            <li class="nav-item d-md-none">
+                                <span>کد ملی/شناسه ملی،@UserManager.GetUserName(User)خوش آمدید </span>
+                            </li>
+                            <li class="nav-item nav-item-padding">
+                                <a href="/my">
+                                    <i class="fas fa-user-circle"></i>
+                                    <span>پنل کاربری</span>
+                                </a>
+                            </li>
+                            <li class="nav-item nav-item-padding">
+                                <form id="logoutForm" class="form-inline form-padding" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "My", new { area = "" })">
+                                    <button id="logout" type="submit" class="nav-link btn btn-link text-dark smallBtn">خروج از سیستم</button> 
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </li>
+        }
+        else
+        {
+            <li class="nav-item ml-2">
+                <a class="text-light btn btn-outline-primary  nav-btn-fontsize" id="call" asp-controller="Call" asp-action="CallIndex">فراخوان</a>
+            </li>
+            <li class="nav-item ml-2">
+                <a class="text-light btn btn-outline-primary nav-btn-fontsize" id="login"  href="/my">ورود به سامانه</a>
+
+            </li>
+            <li class="nav-item ml-2">
+                <a class="text-light btn btn-outline-primary nav-btn-fontsize" id="login" asp-area="Identity" asp-page="/Account/Register">ثبت نام</a>
+            </li>
+
+        }
+
+    </ul>

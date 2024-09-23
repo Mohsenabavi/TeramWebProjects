@@ -1,0 +1,223 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "admin-lte@3.1.0",
+      "destination": "wwwroot/lib/admin-lte/"
+    },
+    {
+      "library": "bootstrap@5.1.3",
+      "destination": "wwwroot/lib/bootstrap/"
+
+    },
+    {
+      "library": "jquery@3.6.0",
+      "destination": "wwwroot/lib/jquery/"
+
+    },
+    {
+      "library": "font-awesome@5.15.4",
+      "destination": "wwwroot/lib/fontawesome/"
+    },
+    {
+      "library": "font-awesome@6.4.2",
+      "destination": "wwwroot/lib/fontawesome6/"
+    },
+    {
+      "library": "datatables@1.10.21",
+      "destination": "wwwroot/lib/datatables/"
+
+    },
+    {
+      "library": "datatables.net-select@1.3.4",
+      "destination": "wwwroot/lib/datatables.net-select/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "datatables.net-responsive@2.2.9",
+      "destination": "wwwroot/lib/datatables.net-responsive/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "datatables.net-colreorder@1.5.5",
+      "destination": "wwwroot/lib/datatables.net-colreorder/"
+    },
+    {
+      "library": "jquery.i18n@1.0.7",
+      "destination": "wwwroot/lib/jquery-i18n/"
+    },
+    {
+      "library": "jquery-ajax-unobtrusive@3.2.6",
+      "destination": "wwwroot/lib/jquery-ajax-unobtrusive/"
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "aos@2.3.4",
+      "destination": "wwwroot/lib/aos/"
+
+    },
+    {
+      "library": "jquery-easing@1.4.1",
+      "destination": "wwwroot/lib/jquery-easing/"
+    },
+
+    {
+      "library": "jquery.isotope@3.0.6",
+      "destination": "wwwroot/lib/jquery-isotope/"
+    },
+    {
+      "library": "select2@4.0.13",
+      "destination": "wwwroot/lib/select2/"
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "boxicons@2.1.1",
+      "destination": "wwwroot/lib/BoxIcons"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "OwlCarousel2@2.3.4",
+      "destination": "wwwroot/lib/owl-carousel/"
+    },
+    {
+      "library": "jquery-file-upload@4.0.11",
+      "destination": "wwwroot/lib/jquery-file-upload"
+    },
+    {
+      "provider": "filesystem",
+      "library": "node_modules/persian-date/dist/persian-date.js",
+      "destination": "wwwroot/lib/Persian-Date"
+    },
+    {
+      "provider": "filesystem",
+      "library": "node_modules/persian-datepicker/dist/js/persian-datepicker.js",
+      "destination": "wwwroot/lib/Persian-Date"
+    },
+    {
+      "provider": "filesystem",
+      "library": "node_modules/persian-datepicker/dist/css/persian-datepicker.css",
+      "destination": "wwwroot/lib/Persian-Date"
+    },
+    {
+      "provider": "filesystem",
+      "library": "node_modules/persian-datepicker/dist/css/theme/persian-datepicker-blue.min.css",
+      "destination": "wwwroot/lib/Persian-Date"
+    },
+    {
+      "provider": "filesystem",
+      "library": "node_modules/persian-datepicker/dist/css/theme/persian-datepicker-cheerup.min.css",
+      "destination": "wwwroot/lib/Persian-Date"
+    },
+    {
+      "provider": "filesystem",
+      "library": "node_modules/persian-datepicker/dist/css/theme/persian-datepicker-dark.min.css",
+      "destination": "wwwroot/lib/Persian-Date"
+    },
+    {
+      "provider": "filesystem",
+      "library": "node_modules/persian-datepicker/dist/css/theme/persian-datepicker-redblack.min.css",
+      "destination": "wwwroot/lib/Persian-Date"
+    },
+    {
+      "provider": "filesystem",
+      "library": "node_modules/notiflix/dist/",
+      "destination": "wwwroot/lib/notiflix/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "jstree@3.3.12",
+      "destination": "wwwroot/lib/jstree"
+    },
+    {
+      "provider": "unpkg",
+      "library": "bootstrap-fileinput@5.1.2",
+      "destination": "wwwroot/lib/bootstrap-fileinput"
+    },
+    {
+      "provider": "unpkg",
+      "library": "ckeditor5@31.1.0",
+      "destination": "wwwroot/lib/ckeditor5-31"
+    },
+    {
+      "provider": "unpkg",
+      "library": "@ckeditor/ckeditor5-alignment@31.1.0",
+      "destination": "wwwroot/lib/ckeditor5-alignment"
+    },
+    {
+      "provider": "unpkg",
+      "library": "@ckeditor/ckeditor5-core@31.1.0",
+      "destination": "wwwroot/lib/ckeditor5-core"
+    },
+    {
+      "library": "elfinder@2.1.60",
+      "destination": "wwwroot/lib/elFinder/"
+
+    },
+    {
+      "library": "jqueryui@1.12.1",
+      "destination": "wwwroot/lib/JQueryUi/"
+
+    },
+    {
+      "library": "jquery-validate@1.19.3",
+      "destination": "wwwroot/lib/jquery-validation/"
+
+    },
+    {
+      "library": "jquery.sticky@1.0.4",
+      "destination": "wwwroot/lib/jquery-sticky/"
+
+    },
+    {
+      "library": "bootbox.js@5.5.2",
+      "destination": "wwwroot/lib/bootBox/"
+
+    },
+
+    {
+      "library": "animate.css@4.1.1",
+      "destination": "wwwroot/lib/Animate.css"
+    },
+    {
+      "library": "bootstrap-tagsinput@0.8.0",
+      "destination": "wwwroot/lib/bootstrap-tagsinput"
+
+    },
+    {
+      "library": "typeahead.js@0.11.1",
+      "destination": "wwwroot/lib/Typeahead/"
+    },
+    {
+      "library": "magicsuggest@2.1.5",
+      "destination": "wwwroot/lib/MagicSuggest"
+
+    },
+    {
+      "library": "spectrum@1.8.1",
+      "destination": "wwwroot/lib/spectrum"
+    },
+    {
+      "library": "bootbox.js@5.5.2",
+      "destination": "wwwroot/lib/bootBox/"
+
+    },
+    {
+      "library": "leaflet@1.7.1",
+      "destination": "wwwroot/lib/leaflet"
+    },
+    {
+      "library": "qrcodejs@1.0.0",
+      "destination": "wwwroot/lib/QRCodeJs"
+    },
+    {
+      "library": "treant-js@1.0",
+      "destination": "wwwroot/lib/TreantChart"
+
+    },
+    {
+      "library": "jquery.ui-contextmenu@1.18.1",
+      "destination": "wwwroot/lib/jquery.ui-contextmenu/"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+﻿/* Module Selector
+-------------------------------------------------- */
+.moduleSelector {
+    background: #000;
+    color: #fff;
+    min-height: 70px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+.paddingRight{
+    padding-right:75px;
+}
+.moduleSelectorItem, .moduleIcon {
+    width: 64px;
+    height: 64px;
+    background: url("/Images/Package.png") no-repeat;
+}
+
+.moduleListView {
+    list-style: none;
+    display: inline-block;
+    width: 100px;
+}
+.moduleListView a{
+    color:black;
+}
+.editablePaneHover {
+    background: #b94a48 !important
+}
+
+.editablePane {
+    min-height: 64px;
+    border: dotted 1px #333;
+    background: #ccc
+}
+
+.setting, .trash, .move {
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+}
+
+.setting {
+    background: url("/images/setting.png");
+    margin-right: 15px;
+}
+
+.trash {
+    background: url("/Images/full_trash.png") no-repeat;
+}
+
+.move {
+    background: url("/Images/move.png") no-repeat;
+}

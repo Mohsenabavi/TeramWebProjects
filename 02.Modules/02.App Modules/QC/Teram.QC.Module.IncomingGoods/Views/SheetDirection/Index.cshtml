@@ -1,0 +1,36 @@
+﻿@inject IStringLocalizer<Teram.QC.Module.IncomingGoods.Controllers.SheetDirectionController> localizer
+@{
+
+    Layout = "/Views/Shared/_ControlPanelLayout.fa-IR.cshtml";
+}
+
+<div style="padding:10px">
+    <div class="card">
+        <div class="card-header bg-dark" style="font-weight:bold">
+            @localizer["CalculateDirection"]
+        </div>
+        <div class="card-body bg-light">
+            <div class="row">
+                <div class="form-group col-xs-12 col-lg-2 col-md-2 form-group">
+                    <label class="forms-label mb-0">@localizer["FirstDimension"] </label>
+                    <input id="FirstDimension" name="FirstDimension" type="number" class=" form-control" />
+                </div>
+                <div class="form-group col-xs-12 col-lg-2 col-md-2 form-group">
+                    <label class="forms-label mb-0">@localizer["SecondDimension"] </label>
+                    <input id="SecondDimension" name="SecondDimension" type="number" class=" form-control" />
+                </div>
+            </div>
+            <div class="form-row" style="margin-top:20px;">
+                <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                    <button id="btnView" type="button" class="btn btn-success"><i class="fa fa-search"></i>@localizer["Calculate"] </button>
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <img id="ImgHelp" class="d-none" style="width:50%;height:auto" />
+        </div>
+    </div>
+</div>
+
+
+@Html.AddResource(PageResourceType.JavaScript, @<script src="/ExternalModule/QC/Module/IncomingGoods/Scripts/SheetDirection.js"></script>)

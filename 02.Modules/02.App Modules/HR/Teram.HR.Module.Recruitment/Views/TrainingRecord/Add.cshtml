@@ -1,0 +1,40 @@
+﻿@using Teram.Web.Core.Helper;
+@model TrainingRecordModel
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.TrainingRecordController> localizer
+<div class="formInfo">
+    <form asp-action="Save" method="post" data-ajax="true" data-ajax-method="post" data-ajax-success="onSuccess">
+        <input type="hidden" asp-for="Key" />
+        <div class="row">
+            <select-box style="justify-content: flex-end;" reverse="true" asp-for="BaseInformationId"
+                        not-selected-option-title="-- یک پرونده انتخاب کنید --" title="پرونده پرسنلی"
+                        selected-value="@Model?.BaseInformationId"
+                        validation-required-message="@localizer["Please select a Base Information"]"
+                        class="mb-2 col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2 provinceSelector" value="@ViewBag.BaseInformationList">
+            </select-box>
+        </div>
+        <div class="row">
+            <text-box asp-for="CollegeName" reverse="true" title="@localizer["CollegeName"]" validation-required-message="@localizer["Please enter CollegeName"]" div-class="col-12 col-md-6 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <div class=" col-xs-12 col-md-6 col-lg-3 mt-2">
+                <label class="forms-label mb-0">@localizer["education grade"] </label>
+                <select asp-for="EducationGrade" name="EducationGrade"
+                        class="form-control select2"
+                        asp-items="Html.GetEnumSelectList<EducationGrade>()">
+                    <option>@localizer["select item"]</option>
+                </select>
+            </div>
+            <text-box asp-for="Average" reverse="true" validation-type="Decimal" title="@localizer["Average"]" validation-required-message="@localizer["Please enter Average"]" div-class="col-12 col-md-6 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />           
+            <text-box asp-for="Field" reverse="true" validation-type="Persian" title="@localizer["Field"]" validation-required-message="@localizer["Please enter Field"]" div-class="col-12 col-md-6 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+        </div>
+        <div class="row">
+            <date-picker reverse="true" asp-for="StartDate" asp-for-text="PersianStartDate" id="StartDate" show-label="true" title="@localizer["StartDate"]" div-class="col-12 col-md-3 form-group col d-flex flex-column-reverse align-items-start " />
+            <date-picker reverse="true" asp-for="EndDate" asp-for-text="PersianEndDate" id="EndDate" show-label="true" title="@localizer["EndDate"]" div-class="col-12 col-md-3 form-group col d-flex flex-column-reverse align-items-start " />
+        </div>
+        <div class="form-row" style="margin-top:20px;">
+            <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                <button type="submit" class="btn btn-success">@localizer["Save"] </button>
+                <button type="button" class="btn btn-secondary resetForm resetButton">@localizer["New"] </button>
+            </div>
+        </div>
+    </form>
+</div>
+

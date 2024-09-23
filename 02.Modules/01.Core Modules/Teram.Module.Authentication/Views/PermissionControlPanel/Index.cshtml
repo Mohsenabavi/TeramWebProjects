@@ -1,0 +1,71 @@
+﻿@*@model List<PermissionModel>*@
+@model Teram.Web.Core.ControlPanel.ViewInformation
+@using Teram.Web.Core.TagHelpers
+@inject IViewLocalizer localizer
+@inject IStringLocalizer<Teram.Module.Authentication.Controllers.PermissionControlPanelController> sharedLocalizer
+@{
+    ViewData["Title"] = localizer["ControlPanel Page"];
+    Layout = Model.Layout;
+    
+}
+
+@{
+    var plugin = new List<string> { "'checkbox'", "'json_data'", "'state'" };
+}
+
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            <i class="fas fa-edit"></i>
+                            @sharedLocalizer["Permission"]
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-row">
+
+                            <div class="form-group col-xs-12 col-md-8 col-lg-8">
+                                <label class="forms-label">@sharedLocalizer["Role"]  </label>
+
+                                <select id="Role" asp-items="ViewBag.Roles" class="form-control select2" name="Roles">
+                                    <option value="" selected="selected" disabled>@sharedLocalizer["Select A Role"]</option>
+                                </select>
+                            </div>
+
+                            @*<div class=" col-xs-12 col-md-4 col-lg-4" style="text-align:center;margin-top: 2rem;">
+                                    <button id="submit" class="btn btn-info">@sharedLocalizer["Save"] </button>
+                                </div>*@
+                        </div>
+                        <div class="row" style="margin-top: 10px">
+                            <div class="col-12 col-sm-12">
+                                <Jstree Id="permissions" Url="/PermissionControlPanel/GetTreeJson" data-checkcallback="false" data-multiple="false" plugins="@plugin" />
+                            </div>
+                        </div>
+
+                        @*  <div class="row permissions">
+                                //<partial name="_permissions"  model="Model"/>
+                            </div>*@
+                        <div class="form-row">
+                            <div class=" col-xs-12 col-md-4 col-lg-4" style="text-align:center;margin-top: 2rem;">
+                                <button id="submit" class="btn btn-info">@sharedLocalizer["Save"] </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="@Model.ExtraScripts" type="text/javascript"></script>
+}
+ 
+@*@Html.AddResource(PageResourceType.JavaScript, @<script src="/ExternalModule/Module/Authentication/Scripts/PermissionControlPanel.js" type="text/javascript"></script>)*@

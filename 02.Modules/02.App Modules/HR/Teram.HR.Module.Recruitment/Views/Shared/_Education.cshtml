@@ -1,0 +1,26 @@
+﻿@using Teram.HR.Module.Recruitment.Models.WorkWithUs;
+@model EducationModel
+
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.WorkWithUsController> localizer
+
+@{
+    int index = ViewBag.index == null ? 0 : ViewBag.index;
+    List<EducationModel> educationsModel = new List<EducationModel>();
+    for (int i = 0; i <= index; i++)
+    {
+        educationsModel.Add(new EducationModel());
+    }
+}
+<div class="education-row">
+    <i class="fas fa-times-circle text-danger mt-2 mr-2 removeInfo" id="removeEducation"></i>
+    <div class="row">
+        <text-box asp-for="Subject" is-required="true" name="Educations[@index].Subject" reverse="true" validation-type="None" title="@localizer["education Subject"]" validation-required-message="@localizer["Please enter education Subject"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start" />
+        <text-box asp-for="OrganizationName" is-required="true" name="Educations[@index].OrganizationName" reverse="true" validation-type="None" title="@localizer["OrganizationName"]" validation-required-message="@localizer["Please enter OrganizationName"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start" />
+        <text-box asp-for="EducationDurationHour" is-required="true" name="Educations[@index].EducationDurationHour" reverse="true" validation-type="Number" title="@localizer["education duration hour"]" validation-required-message="@localizer["Please enter education duration hour"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start" />
+        <text-box asp-for="EducationYear" is-required="true" name="Educations[@index].EducationYear" reverse="true" validation-type="Number" title="@localizer["education Year"]" validation-required-message="@localizer["Please enter eeducation Year"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start" />              
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,70 @@
+﻿@model FlowInstructionModel
+@inject IStringLocalizer<Teram.QC.Module.FinalProduct.Controllers.FlowInstructionController> localizer
+
+<input type="hidden" asp-for="FlowInstructionId" />
+<input type="hidden" asp-for="Key" />
+
+
+<div class="card">
+    <div class="card-header bg-info" style="font-weight:bold">
+        @localizer["FilterData"]
+    </div>
+    <div class="card-body bg-light">
+        <div class="row">
+            <select-box id="FromStatusFilter" reverse="true" title="@localizer["FromStatus"]"
+                        div-class="form-group col-12 col-md-4 col-lg-4   d-flex flex-column-reverse align-items-start pr-lg-2 pl-lg-2 pr-md-2 mt-3 mt-md-0"
+                        selected-value="@(Model == null ? null : (int)Model?.FromStatus)"
+                        select-class="inputBox select2" value="Html.GetEnumSelectList<ReferralStatus>().ToList()">
+            </select-box>
+            <select-box id="ToStatusFilter" reverse="true" title="@localizer["ToStatus"]"
+                        div-class="form-group col-12 col-md-4 col-lg-4   d-flex flex-column-reverse align-items-start pr-lg-2 pl-lg-2 pr-md-2 mt-3 mt-md-0"
+                        selected-value="@(Model == null ? null : (int)Model?.ToStatus)"
+                        select-class="inputBox select2" value="Html.GetEnumSelectList<ReferralStatus>().ToList()">
+            </select-box>
+            <select-box id="FormStatusFilter" reverse="true" title="@localizer["FormStatus"]"
+                        div-class="form-group col-12 col-md-4 col-lg-4   d-flex flex-column-reverse align-items-start pr-lg-2 pl-lg-2 pr-md-2 mt-3 mt-md-0"
+                        selected-value="@(Model == null ? null : (int)Model?.FormStatus)"
+                        select-class="inputBox select2" value="Html.GetEnumSelectList<FormStatus>().ToList()">
+            </select-box>
+        </div>
+        <div class="form-row" style="margin-top:20px;">
+            <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                <button id="btnSearch" type="button" class="btn btn-success shouldReloadGrid"><i class="fa fa-search"></i>@localizer["Search"] </button>
+                <button id="reset" class="btn btn-danger resetForm shouldReloadGrid" type="reset">@localizer["Remove Filter"]</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-lg-12 IncomingGoodsInspectionContainer">
+    <div class="row">
+        <select-box id="FromStatus" asp-for="FromStatus" name="FromStatus" reverse="true" title="@localizer["FromStatus"]"
+                    div-class="form-group col-12 col-md-4 col-lg-4   d-flex flex-column-reverse align-items-start pr-lg-2 pl-lg-2 pr-md-2 mt-3 mt-md-0"
+                    selected-value="@(Model == null ? null : (int)Model?.FromStatus)"
+                    select-class="inputBox select2" value="Html.GetEnumSelectList<ReferralStatus>().ToList()">
+        </select-box>
+        <select-box id="ToStatus" asp-for="ToStatus" name="ToStatus" reverse="true" title="@localizer["ToStatus"]"
+                    div-class="form-group col-12 col-md-4 col-lg-4   d-flex flex-column-reverse align-items-start pr-lg-2 pl-lg-2 pr-md-2 mt-3 mt-md-0"
+                    selected-value="@(Model == null ? null : (int)Model?.ToStatus)"
+                    select-class="inputBox select2" value="Html.GetEnumSelectList<ReferralStatus>().ToList()">
+        </select-box>
+        <select-box id="FormStatus" asp-for="FormStatus" name="FormStatus" reverse="true" title="@localizer["FormStatus"]"
+                    div-class="form-group col-12 col-md-4 col-lg-4   d-flex flex-column-reverse align-items-start pr-lg-2 pl-lg-2 pr-md-2 mt-3 mt-md-0"
+                    selected-value="@(Model == null ? null : (int)Model?.FormStatus)"
+                    select-class="inputBox select2" value="Html.GetEnumSelectList<FormStatus>().ToList()">
+        </select-box>
+    </div>
+    <div class="row">
+        <select-box id="CurrentCartableRoleId" asp-for="CurrentCartableRoleId" name="CurrentCartableRoleId" reverse="true" title="@localizer["CurrentCartableRoleId"]"
+                    div-class="form-group col-12 col-md-4 col-lg-6   d-flex flex-column-reverse align-items-start pr-lg-2 pl-lg-2 pr-md-2 mt-3 mt-md-0"
+                    selected-value="@Model?.CurrentCartableRoleId"
+                    select-class="inputBox select2" value="@ViewBag.Roles">
+        </select-box>
+        <select-box id="NextCartableRoleId" asp-for="NextCartableRoleId" name="NextCartableRoleId" reverse="true" title="@localizer["NextCartableRoleId"]"
+                    div-class="form-group col-12 col-md-4 col-lg-6   d-flex flex-column-reverse align-items-start pr-lg-2 pl-lg-2 pr-md-2 mt-3 mt-md-0"
+                    selected-value="@Model?.NextCartableRoleId"
+                    select-class="inputBox select2" value="@ViewBag.Roles">
+        </select-box>
+    </div>
+</div>

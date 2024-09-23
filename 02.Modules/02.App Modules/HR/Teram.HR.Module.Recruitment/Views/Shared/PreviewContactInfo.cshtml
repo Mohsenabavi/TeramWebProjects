@@ -1,0 +1,36 @@
+﻿@model BaseInformationModel
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.WorkWithUsController> localizer
+
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12 text-center background-color-blue color-white border-bottom border-dark infoItem">
+            @localizer["contact info"]
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["address"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-right border-bottom border-dark infoItem">
+            <span>@Model.Address</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["phone"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center border-left  overflow-wrap-break border-right border-bottom border-dark infoItem">
+            <span>@Model.Phone</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["mobile"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-right border-bottom border-dark infoItem">
+            <span>@Model.Mobile</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["email"]</span>
+        </div>
+        <div class="col-md-3 col-xs-6 text-center overflow-wrap-break border-right border-left border-bottom border-dark infoItem">
+            <span>@Model.Email</span>
+        </div>
+    </div>
+</div>

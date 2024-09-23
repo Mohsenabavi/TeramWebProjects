@@ -1,0 +1,25 @@
+﻿@model CausationModel
+@inject IStringLocalizer<Teram.QC.Module.FinalProduct.Controllers.CausationController> localizer
+
+<fieldset class="border p-2 m-2 essentialFieldSet">
+    <legend class="h6 w-auto">
+        @localizer["HasEssentialCause"]
+    </legend>
+    <div class="row">
+        <check-box asp-for="CanBeIdentifiedAtEntrance" is-required="false" name="CanBeIdentifiedAtEntrance" reverse="true" title="@localizer["CanBeIdentifiedAtEntrance"]" div-class="col-12 col-md-4 col-lg-4 d-flex flex-column-reverse align-items-start" />
+
+        <div class="HasEntitlementLicenseSection d-none">
+            <check-box asp-for="HasEntitlementLicense" is-required="false" name="HasEntitlementLicense" reverse="true" title="@localizer["HasEntitlementLicense"]" div-class="col-12 col-md-4 col-lg-12 d-flex flex-column-reverse align-items-start" />
+        </div>
+
+        <div class="OperatorSection d-none">
+
+            <select-box style="justify-content: flex-end;" reverse="true" asp-for="OperatorId"
+                        not-selected-option-title="-- یک فرد انتخاب کنید --" title="فرد خاطی"
+                        selected-value="@Model?.OperatorId"
+                        validation-required-message="@localizer["Please select a OperatorId"]"
+                        class="d-none mb-2 mr-5 ml-2 col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2" value="@ViewBag.Operators">
+            </select-box>
+        </div>
+    </div>
+</fieldset>

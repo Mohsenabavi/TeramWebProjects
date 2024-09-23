@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <OutputType>Library</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Scripts\ControlPlan.js" />
+    <None Remove="Scripts\IncomingGoodsInspection.js" />
+    <None Remove="Scripts\SheetDirection.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\ControlPlan.js" />
+    <EmbeddedResource Include="Scripts\IncomingGoodsInspection.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\SheetDirection.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.24" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Teram.Framework.Core" Version="3.1.0" />
+    <PackageReference Include="Teram.ServiceContracts" Version="3.1.0" />
+    <PackageReference Include="Teram.Web.Core" Version="3.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\01.Core\Teram.GlobalConfiguration\Teram.GlobalConfiguration.csproj" />
+    <ProjectReference Include="..\..\..\01.Core Modules\Teram.Module.AttachmentsManagement\Teram.Module.AttachmentsManagement.csproj" />
+    <ProjectReference Include="..\..\..\01.Core Modules\Teram.Module.FileUploader\Teram.Module.FileUploader.csproj" />
+  </ItemGroup>
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="xcopy  /Y /R  &quot;$(ProjectDir)$(OutDir)$(TargetName)*.dll&quot;  &quot;$(SolutionDir)Teram.Web\bin\$(ConfigurationName)\net8.0\Plugins\QC Modules\&quot;" />
+	</Target>
+</Project>

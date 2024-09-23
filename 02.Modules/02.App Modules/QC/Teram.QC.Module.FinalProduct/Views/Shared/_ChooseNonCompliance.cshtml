@@ -1,0 +1,15 @@
+﻿@inject IStringLocalizer<Teram.QC.Module.FinalProduct.Controllers.FinalProductNoncomplianceController> localizer
+@model ChooseNonComplianceModel
+
+<input type="hidden" value="@Model.ControlPlanDefectId" id="PassedControlPlanDefectId" />
+<input type="hidden" value="@Model.Number" id="PalletNumber" />
+<input type="hidden" value="@Model.FinalProductInspectionId" id="PassedFinalProductInspectionId" />
+<select-box reverse="true"
+            id="NoncomplianceSelectList" title="@localizer["FinalProductNoncomplianceNumber"]" value="@Model.NonCompliancesList"
+            class="form-group  required col-md-12 mb-12 d-flex flex-column-reverse align-items-start" is-select2="true" select-class="inputBox">
+</select-box>
+
+<div class="nonComplianceForm">
+
+</div>
+

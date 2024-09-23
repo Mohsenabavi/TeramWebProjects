@@ -1,0 +1,18 @@
+﻿@model QuestionnaireModel
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.QuestionnaireController> localizer
+<div class="formInfo">
+    <form asp-action="Save" method="post" data-ajax="true" data-ajax-method="post" data-ajax-success="onSuccess">
+        <input type="hidden" asp-for="QuestionnaireId" />
+        <div class="d-flex flex-row p-0">
+            <text-box asp-for="Title" reverse="true" title="@localizer["Title"]" validation-required-message="@localizer["Please enter Title"]" div-class="col-10 col-md-10 col-lg-10 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <check-box asp-for="IsActive" name="IsActive" reverse="true" title="@localizer["IsActive"]" value="true" div-class="col-12 col-md-2 col-lg-2 d-flex flex-column-reverse align-items-start" />
+        </div>
+        <div class="form-row" style="margin-top:20px;">
+            <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                <button type="submit" class="btn btn-success">@localizer["Save"] </button>
+                <button type="button" class="btn btn-secondary resetForm resetButton">@localizer["New"] </button>
+            </div>
+        </div>
+    </form>
+</div>
+

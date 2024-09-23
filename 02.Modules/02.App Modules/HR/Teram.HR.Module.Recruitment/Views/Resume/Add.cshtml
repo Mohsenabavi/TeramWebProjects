@@ -1,0 +1,36 @@
+﻿@using Teram.Web.Core.Helper;
+@model ResumeModel
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.ResumeController> localizer
+<div class="formInfo">
+    <form asp-action="Save" method="post" data-ajax="true" data-ajax-method="post" data-ajax-success="onSuccess">
+        <input type="hidden" asp-for="Key" />      
+        <div class="row">
+            <select-box style="justify-content: flex-end;"  reverse="true" asp-for="BaseInformationId"
+                        not-selected-option-title="-- یک پرونده انتخاب کنید --" title="پرونده پرسنلی"
+                        selected-value="@Model?.BaseInformationId" 
+                        validation-required-message="@localizer["Please select a Base Information"]"
+                        class="mb-2 col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2 provinceSelector" value="@ViewBag.BaseInformationList">
+            </select-box>
+        </div>
+        <div class="row">
+            <text-box asp-for="CompanyName" reverse="true" title="@localizer["CompanyName"]" validation-required-message="@localizer["Please enter CompanyName"]" div-class="col-12 col-md-6 col-lg-4 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box asp-for="OrganizationalPosition" reverse="true" title="@localizer["OrganizationalPosition"]" validation-required-message="@localizer["Please enter OrganizationalPosition"]" div-class="col-12 col-md-6 col-lg-4 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box asp-for="Activity" reverse="true" title="@localizer["Activity"]" validation-required-message="@localizer["Please enter Activity"]" div-class="col-12 col-md-6 col-lg-4 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+        </div>
+        <div class="row">
+            <date-picker reverse="true" asp-for="StartDate" asp-for-text="StartPersianDate" id="StartDate" show-label="true" title="@localizer["StartDate"]" div-class="col-12 col-md-3 form-group col d-flex flex-column-reverse align-items-start " />
+            <date-picker reverse="true" asp-for="FinishDate" asp-for-text="FinishPersianDate" id="FinishDate" show-label="true" title="@localizer["FinishDate"]" div-class="col-12 col-md-3 form-group col d-flex flex-column-reverse align-items-start " />
+            <text-box asp-for="EndCooperationReason" reverse="true" title="@localizer["EndCooperationReason"]" validation-required-message="@localizer["Please enter EndCooperationReason"]" div-class="col-12 col-md-6 col-lg-6 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+        </div>
+        <div class="form-row" style="margin-top:20px;">
+            <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                <button type="submit" class="btn btn-success">@localizer["Save"] </button>
+                <button type="button" class="btn btn-secondary resetForm resetButton">@localizer["New"] </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+

@@ -1,0 +1,32 @@
+﻿@using Teram.Web.Core.Helper;
+@model EmergencyContactModel
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.EmergencyContactController> localizer
+<div class="formInfo">
+    <form asp-action="Save" method="post" data-ajax="true" data-ajax-method="post" data-ajax-success="onSuccess">
+        <input type="hidden" asp-for="Key" />
+        <div class="row">
+            <select-box style="justify-content: flex-end;" reverse="true" asp-for="BaseInformationId"
+                        not-selected-option-title="-- یک پرونده انتخاب کنید --" title="پرونده پرسنلی"
+                        selected-value="@Model?.BaseInformationId"
+                        validation-required-message="@localizer["Please select a Base Information"]"
+                        class="mb-2 col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2 provinceSelector" value="@ViewBag.BaseInformationList">
+            </select-box>
+        </div>
+        <div class="row">
+            <text-box asp-for="Name" reverse="true" title="@localizer["Name"]" validation-required-message="@localizer["Please enter Name"]" div-class="col-12 col-md-6 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box asp-for="LastName" reverse="true" title="@localizer["LastName"]" validation-required-message="@localizer["Please enter LastName"]" div-class="col-12 col-md-6 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box asp-for="Relation"  reverse="true" title="@localizer["Relation"]" validation-required-message="@localizer["Please enter Relation"]" div-class="col-12 col-md-6 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box asp-for="Mobile" validation-type="Mobile" reverse="true" title="@localizer["Mobile"]" validation-required-message="@localizer["Please enter Mobile"]" div-class="col-12 col-md-6 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+        </div>      
+        <div class="form-row" style="margin-top:20px;">
+            <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                <button type="submit" class="btn btn-success">@localizer["Save"] </button>
+                <button type="button" class="btn btn-secondary resetForm resetButton">@localizer["New"] </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+

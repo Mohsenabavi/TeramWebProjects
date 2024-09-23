@@ -1,0 +1,24 @@
+﻿@model List<SeatRowModel>
+<div class="row">
+    <div class="draggable ui-widget-content" style="width:100px;text-align:center;height:25px;">
+        <p>محسن نبوی</p>
+    </div>
+    <div class="draggable ui-widget-content" style="width:100px;text-align:center;height:25px;">
+        <p>مرجان بقایی</p>
+    </div>
+    <div class="draggable ui-widget-content" style="width:100px;text-align:center;height:25px;">
+        <p>نیکا سادات نبوی</p>
+    </div>
+</div>
+<br />
+@foreach (var seatRow in Model)
+{
+    <div class="row">
+        @foreach (var seat in seatRow.Seats)
+        {
+            <div class="droppable ui-widget-header mr-2" style="width:25px;text-align:center">
+                <p> @seat.SeatNumber</p>
+            </div>
+        }
+    </div>
+}

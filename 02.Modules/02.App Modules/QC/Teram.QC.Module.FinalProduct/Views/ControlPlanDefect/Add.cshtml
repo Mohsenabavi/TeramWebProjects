@@ -1,0 +1,30 @@
+﻿@using Teram.Web.Core.Helper;
+@model ControlPlanDefectModel
+@inject IStringLocalizer<Teram.QC.Module.FinalProduct.Controllers.ControlPlanDefectController> localizer
+
+<div class="formInfo">
+    <form asp-action="Save" method="post" data-ajax="true" data-ajax-method="post" data-ajax-success="onSuccess">
+        <input type="hidden" asp-for="Key" />
+        <div class="row">
+            <select-box style="justify-content: flex-end;" reverse="true" asp-for="QCControlPlanId"
+                        not-selected-option-title="-- یک طرح کنترلی انتخاب کنید --" title="طرح کنترلی"
+                        selected-value="@Model?.QCControlPlanId"
+                        validation-required-message="@localizer["Please select a ControlPlan"]"
+                        class="mb-2 col-12 col-md-12 col-lg-4 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2" value="@ViewBag.ControlPlans">
+            </select-box>
+            <select-box style="justify-content: flex-end;" reverse="true" asp-for="QCDefectId"
+                        not-selected-option-title="-- یک ایراد انتخاب کنید --" title="ایرادات"
+                        selected-value="@Model?.QCDefectId"
+                        validation-required-message="@localizer["Please select a QCDefect"]"
+                        class="mb-2 col-12 col-md-12 col-lg-4 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2" value="@ViewBag.Defects">
+            </select-box>
+            <text-box asp-for="ControlPlanDefectVal" reverse="true" validation-type="None" title="@localizer["ControlPlanDefectVal"]" validation-required-message="@localizer["Please enter ControlPlanDefectVal"]" div-class="col-12 col-md-12 col-lg-4 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+        </div>    
+        <div class="form-row" style="margin-top:20px;">
+            <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                <button type="submit" class="btn btn-success">@localizer["Save"] </button>
+                <button type="button" class="btn btn-secondary resetForm resetButton">@localizer["New"] </button>
+            </div>
+        </div>
+    </form>
+</div>

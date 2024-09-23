@@ -1,0 +1,12 @@
+﻿@model TeramRole
+@inject IViewLocalizer localizer
+<div class="container">
+    <div class="row">
+        <div class="col-xs-1">@localizer["Name"] :</div>
+        <div class="col-xs-11"><span>@Model.Name</span></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-1">@localizer["Default"] :</div>
+        <div class="col-xs-11"><span>@(Model.IsDefaultRole ? localizer["Yes"] : localizer["No"])</span></div>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+﻿@using Teram.Web.Core.Helper;
+@model EmployeeJobBackgroundModel
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.EmployeeJobBackgroundController> localizer
+<div class="formInfo">
+    <form asp-action="Save" method="post" data-ajax="true" data-ajax-method="post" enctype="multipart/form-data" data-ajax-success="onSuccess">
+        <input type="hidden" asp-for="Key" />
+        <input type="hidden" value="@Model.JobApplicantId" id="JobApplicantHidden" />
+        <div class="row">
+            <select-box style="justify-content: flex-end;" reverse="true" asp-for="JobApplicantId"
+                        not-selected-option-title="-- یک پرونده انتخاب کنید --" title="پرونده پرسنلی"
+                        value="@ViewBag.BaseInformationList"
+                        selected-value="@Model?.JobApplicantId"
+                        validation-required-message="@localizer["Please select a JobApplicant"]"
+                        class="mb-2 col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2 provinceSelector">
+            </select-box>
+        </div>
+        <div class="row">
+            <text-box asp-for="JobTitle" is-readonly="true" reverse="true" title="@localizer["JobTitle"]" validation-required-message="@localizer["Please enter JobTitle"]" div-class="col-3 col-md-3 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <check-box asp-for="PerformanceIsApproved" name="PerformanceIsApproved" reverse="true" title="@localizer["PerformanceIsApproved"]" value="true" div-class="col-12 col-md-2 col-lg-2 d-flex flex-column-reverse align-items-start" />
+            <check-box asp-for="MoralityIsApproved" name="MoralityIsApproved" reverse="true" title="@localizer["MoralityIsApproved"]" value="true" div-class="col-12 col-md-2 col-lg-2 d-flex flex-column-reverse align-items-start" />
+            <check-box asp-for="ResumeIsMatch" name="ResumeIsMatch" reverse="true" title="@localizer["ResumeIsMatch"]" value="true" div-class="col-12 col-md-2 col-lg-2 d-flex flex-column-reverse align-items-start" />
+            <check-box asp-for="DisciplineIsApproved" name="DisciplineIsApproved" reverse="true" title="@localizer["DisciplineIsApproved"]" value="true" div-class="col-12 col-md-2 col-lg-2 d-flex flex-column-reverse align-items-start" />
+        </div>      
+        <div class="row">
+            <text-box asp-for="ApprovePerson" reverse="true" title="@localizer["ApprovePerson"]" validation-required-message="@localizer["Please enter ApprovePerson"]" div-class="col-4 col-md-4 col-lg-4 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box asp-for="ApprovePersonRemarks" reverse="true" title="@localizer["ApprovePersonRemarks"]" validation-required-message="@localizer["Please enter ApprovePersonRemarks"]" div-class="col-8 col-md-8 col-lg-8 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+        </div>            
+        <div class="row">
+            <text-box asp-for="FinalStatement" reverse="true" title="@localizer["FinalStatement"]" validation-required-message="@localizer["Please enter FinalStatement"]" div-class="col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+        </div>
+        <div class="row">
+            <div class=" col-xs-12 col-md-6 col-lg-4 mt-2">
+                <label class="forms-label mb-0">@localizer["ApproveStatus"] </label>
+                <select asp-for="ApproveStatus" name="ApproveStatus" required
+                        class="form-control select2"
+                        asp-items="Html.GetEnumSelectList<BackgroundJobApproveStatus>()">
+                    <option>@localizer["select item"]</option>
+                </select>
+            </div>
+        </div>
+        <div class="row mt-5">
+            @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.BackgroundAttchament1, FileAccept = ".jpg, .png,.jfif, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+            @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.BackgroundAttchament2, FileAccept = ".jpg, .png,.jfif, .jpeg|image/*,.pdf ,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+        </div>
+        <div class="form-row" style="margin-top:20px;">
+            <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                <button type="submit" class="btn btn-success">@localizer["Save"] </button>
+                <button type="button" class="btn btn-secondary resetForm resetButton">@localizer["New"] </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+

@@ -1,0 +1,62 @@
+﻿
+.infoItem {
+    height: 40px;
+    padding-top: 5px;
+}
+
+.preview {
+    font-family: iransans;
+    font-weight: bold;
+    background-color: white !important;
+}
+
+.infoRow {
+    min-height: 30px;
+}
+
+.background-color-gray {
+    background-color: #808080;
+}
+
+
+.background-color-purple {
+    background-color: #874a9a;
+}
+
+.background-color-purple-light {
+    background-color: #decde2;
+}
+
+.background-color-blue {
+    background-color: #003B71;
+}
+
+.background-color-blue-light {
+    background-color: #d1dde8;
+}
+
+.color-white {
+    color: white;
+}
+
+.overflow-wrap-break {
+    overflow-wrap: break-word;
+}
+
+.report-label {
+    background: #E8E8E8;
+}
+
+.wide-border-bottom {
+    border-bottom: 1px solid !important;
+}
+
+.workWithUsContainer {
+    font-size: 0.9rem !important;
+}
+
+@media (max-width: 576px) {
+    .LogoEntekhabForm {
+        height: 84px;
+    }
+}

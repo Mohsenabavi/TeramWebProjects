@@ -1,0 +1,51 @@
+﻿@model OrganizationChartModel
+@inject IStringLocalizer<Teram.HR.Module.OC.Controllers.OrganizationChartController> localizer
+
+
+<div class="formInfo">
+    <form asp-action="Save" method="post" data-ajax="true" data-ajax-method="post" data-ajax-success="OnAddSuccess">
+        <input type="hidden" asp-for="Key" />    
+        <div class="row" style="min-height:500px">
+            <div class="card col-12 col-md-12 col-lg-12">
+                <div class="card-header bg-info" style="font-weight:bold">
+                    @localizer["Organization Chart View"]
+                </div>
+                <div class="card-body bg-light">
+                    <div id="jstree"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <text-box asp-for="PersonnelCode" reverse="true" title="@localizer["PersonnelCode"]" validation-required-message="@localizer["Please enter PersonnelCode"]" div-class="col-4 col-md-4 col-lg-4 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box asp-for="FirstName" reverse="true" title="@localizer["FirstName"]" validation-required-message="@localizer["Please enter FirstName"]" div-class="col-4 col-md-4 col-lg-4 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box asp-for="LastName" reverse="true" title="@localizer["LastName"]" validation-required-message="@localizer["Please enter LastName"]" div-class="col-4 col-md-4 col-lg-4 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+        </div>
+        <div class="row">
+            <select-box style="justify-content: flex-end;" reverse="true" asp-for="ParentOrganizationChartId" data-id="@Model?.ParentOrganizationChartId"
+                        not-selected-option-title="-- یک سمت انتخاب کنید --" title="گره پدر"
+                        selected-value="@Model?.ParentOrganizationChartId"
+                        validation-required-message="@localizer["Please select a ParentOrganizationChart"]"
+                        class="mb-2 col-4 col-md-4 col-lg-4 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2">
+            </select-box>
+            <select-box style="justify-content: flex-end;" reverse="true" asp-for="PositionId" data-id="@Model?.PositionId"
+                        not-selected-option-title="-- یک سمت انتخاب کنید --" title="سمت سازمانی"
+                        selected-value="@Model?.PositionId"
+                        validation-required-message="@localizer["Please select a Position"]" 
+                        class="mb-2 col-4 col-md-4 col-lg-4 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2">
+            </select-box>
+            <select-box style="justify-content: flex-end;" reverse="true" asp-for="UserId" data-id="@Model?.UserId"
+                        not-selected-option-title="-- یک کاربری انتخاب کنید --" title="کاربری"
+                        selected-value="@Model?.UserId"
+                        validation-required-message="@localizer["Please select a User"]"
+                        class="mb-2 col-4 col-md-4 col-lg-4 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2">
+            </select-box>
+        </div>
+        <div class="form-row" style="margin-top:20px;">
+            <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                <button type="submit" class="btn btn-success">@localizer["Save"] </button>
+                <button type="button" class="btn btn-secondary resetForm resetButton">@localizer["New"] </button>
+            </div>
+        </div>
+    </form>
+</div>
+

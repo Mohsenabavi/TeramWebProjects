@@ -1,0 +1,26 @@
+﻿@model List<SMSHistoryModel>;
+@using Teram.Framework.Core.Logic;
+@using Teram.Module.SmsSender.Models
+
+
+<div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-xs-12 alert alert-success" role="alert">
+        پیام های ارسال شده
+    </div>
+</div>
+
+@if (Model.Any())
+{
+    var index = 1;
+
+    @foreach (var item in Model.OrderByDescending(x => x.SendDate))
+    {
+        <div class="row justify-content-right d-flex pr-4 pl-2" style="border:1px solid #aaa; border-radius:5px;margin-bottom:5px;width:95%;margin:0 auto;margin-top:5px">
+            <span style="float:right" class="alert  w-100 col-10 col-sm-10 col-md-10 col-xs-10">@string.Concat(index, " - ", item.MessageContext)</span>
+            <span style="float:left;margin-top:15px" class="w-100 col-2 col-sm-2 col-md-2 col-xs-2">@item.SendDatePersian</span>
+        </div>
+        index++;
+    }
+}
+
+

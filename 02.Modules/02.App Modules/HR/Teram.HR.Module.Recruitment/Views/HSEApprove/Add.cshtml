@@ -1,0 +1,61 @@
+﻿@using Teram.Web.Core.Helper;
+@model HSEGridModel
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.HSEApproveController> localizer
+<div class="formInfo">
+    <form asp-action="Save" method="post" data-ajax="true" data-ajax-method="post" data-ajax-success="onSuccess" enctype="multipart/form-data">
+        <input type="hidden" asp-for="JobApplicantId" />
+        <input type="hidden" asp-for="ProcessStatus" />
+        <input type="hidden" asp-for="BaseInformationApproveStatus" />
+        <div class="row">
+            <div class=" col-xs-12 col-md-6 col-lg-6 mt-2">
+                <label class="forms-label mb-0">@localizer["ApproveStatus"] </label>
+                <select asp-for="OccupationalMedicineApproveStatus" name="OccupationalMedicineApproveStatus" required
+                        class="form-control select2"
+                        asp-items="Html.GetEnumSelectList<OccupationalMedicineApproveStatus>()">
+                    <option>@localizer["select item"]</option>
+                </select>
+            </div>
+            <date-picker reverse="true" asp-for-text="PersinaOccupationalMedicineDate" asp-for="OccupationalMedicineDate" id="OccupationalMedicineDate" show-label="true" title="@localizer["OccupationalMedicineDate"]" div-class="col-12 col-md-6 form-group col d-flex flex-column-reverse align-items-start " />
+        </div>
+        <div class="row">
+            <text-box asp-for="OccupationalMedicineRemarks" validation-type="None" reverse="true" title="@localizer["OccupationalMedicineRemarks"]" validation-required-message="@localizer["Please enter ApproveDate"]" div-class="col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+        </div>
+        <div class="row">
+            @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.FileSummary, FileAccept = ".pdf" })
+            @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.Referral, FileAccept = ".pdf" })
+        </div>
+        <div class="form-row" style="margin-top:20px;">
+            <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                <button type="submit" class="btn btn-success">@localizer["Save"] </button>
+            </div>
+        </div>
+    </form>
+    <div class="card">
+        <div class="card-header bg-info" style="font-weight:bold">
+            @localizer["FilterData"] <small class="searchStatus"></small>
+        </div>
+        <div class="card-body bg-light">
+            <div class="row">
+                <input type="hidden" id="ViewInprogressStatus" />
+                <text-box id="FirstNameFilter" name="NationalCodeFilter" reverse="true" validation-type="Persian" title="@localizer["FirstName"]" div-class="col-12 col-md-6 col-lg-2 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+                <text-box id="LastNameFilter" name="NationalCodeFilter" reverse="true" validation-type="Persian" title="@localizer["LastName"]" div-class="col-12 col-md-6 col-lg-2 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+                <text-box id="PersonnelCodeFilter" name="PersonnelCodeFilter" reverse="true" validation-type="Number" title="@localizer["PersonnelCode"]" div-class="col-12 col-md-6 col-lg-2 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+                <text-box id="NationalCodeFilter" name="NationalCodeFilter" reverse="true" validation-type="Number" title="@localizer["NationalCode"]" div-class="col-12 col-md-6 col-lg-2 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />               
+                <select-box style="justify-content: flex-end;" id="ProcessStatusFilter" reverse="true" name="InspectionFormStatus" not-selected-option-title="-- یک وضعیت انتخاب کنید --" title="وضعیت"
+                            validation-required-message="@localizer["Please select a Status"]" value="Html.GetEnumSelectList<ProcessStatus>().Where(x => int.Parse(x.Value) >=(int)ProcessStatus.AdmittingToDoExpriments).ToList()"
+                            class="col-12 col-md-6 col-lg-4 d-flex flex-column-reverse align-items-start" select-class="inputBox select2">
+                </select-box>
+            </div>
+            <div class="form-row" style="margin-top:20px;">
+                <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                    <button id="btnSearch" type="button" class="btn btn-success shouldReloadGrid"><i class="fa fa-search"></i>@localizer["Search"] </button>
+                    <button id="reset" class="btn btn-danger resetForm shouldReloadGrid" type="reset">@localizer["Remove Filter"]</button>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

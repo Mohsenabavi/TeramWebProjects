@@ -1,0 +1,25 @@
+﻿@model List<PersonQuestionnaireQuestionModel>
+
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.PersonQuestionnaireQuestionController> localizer
+
+<form asp-action="SaveAll" method="post">
+    @for (int i = 0; i < Model.Count; i++)
+    {
+
+        <div class="row"> 
+            <input asp-for="@Model[i].PersonQuestionnaireQuestionId" type="hidden" class="form-group" />
+            <input asp-for="@Model[i].QuestionnaireQuestionId" type="hidden" class="form-group" />
+            <input asp-for="@Model[i].PersonnelQuestionnaireId" type="hidden" class="form-group" />
+            <label style="margin-left:50px;" asp-for="@Model[i].Answer" class="form-group">@Model[i].QuestionnaireQuestionQuestionTitle</label>
+            <span>بلی</span><input asp-for="@Model[i].Answer" type="radio" value="Yes" class="form-group" />
+            <span>خیر</span> <input asp-for="@Model[i].Answer" type="radio" value="No" class="form-group" />
+        </div>
+    }
+
+    <div class="form-row" style="margin-top:20px;">
+        <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+            <button type="submit" class="btn btn-success">@localizer["Save"] </button>
+        </div>
+    </div>
+</form>
+

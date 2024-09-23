@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="A code must be supplied for password reset." xml:space="preserve">
+    <value>برای بازنشانی گذرواژه باید یک کد ارائه شود.</value>
+  </data>
+  <data name="Back Home" xml:space="preserve">
+    <value>بازگشت به صفحه اصلی</value>
+  </data>
+  <data name="CreateNewAccount" xml:space="preserve">
+    <value>ثبت نام در سامانه ارتباط با تامین کنندگان</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>پست الکترونیکی</value>
+  </data>
+  <data name="Error In Login" xml:space="preserve">
+    <value>نام کاربری کلمه عبور یا Captcha را کنترل نمایید</value>
+  </data>
+  <data name="ExistAccount" xml:space="preserve">
+    <value>قبلا ثبت نام کرده ام.</value>
+  </data>
+  <data name="Legal Person" xml:space="preserve">
+    <value>حقوقی</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>ورود به سامانه</value>
+  </data>
+  <data name="LoginSamane" xml:space="preserve">
+    <value>ورود به سامانه ارتباط با تامین کنندگان</value>
+  </data>
+  <data name="Model State Error" xml:space="preserve">
+    <value>اطلاعات درست وارد نشده است</value>
+  </data>
+  <data name="National Code" xml:space="preserve">
+    <value>کد ملی / شناسه ملی</value>
+  </data>
+  <data name="NationalCode" xml:space="preserve">
+    <value>کد ملی</value>
+  </data>
+  <data name="New Password" xml:space="preserve">
+    <value>کلمه عبور جدید</value>
+  </data>
+  <data name="Note Fifth" xml:space="preserve">
+    <value>استفاده از کاراکترهای فارسی در کلمه عبور مجاز نیست.</value>
+  </data>
+  <data name="Note First" xml:space="preserve">
+    <value>برای ثبت نام نوع شخص حقیقی یا حقوقی را تعیین کنید.</value>
+  </data>
+  <data name="Note Fourth" xml:space="preserve">
+    <value>کلمه عبورانتخابی حداقل 8 کاراکتر و ترکیبی از اعداد،حروف بزرگ،حروف کوچک و کاراکترهای ویژه می باشد.</value>
+  </data>
+  <data name="Note Second" xml:space="preserve">
+    <value>برای اشخاص حقیقی کد ملی و برای اشخاص حقوقی شناسه ی ملی به عنوان نام کاربری الزامی می باشد.</value>
+  </data>
+  <data name="Note Third" xml:space="preserve">
+    <value>ارائه ی آدرس ایمیل جهت دریافت کد تایید الزامی است.</value>
+  </data>
+  <data name="Notify" xml:space="preserve">
+    <value>لطفا قبل از ثبت نام به نکات زیر توجه کنید:</value>
+  </data>
+  <data name="Old Password" xml:space="preserve">
+    <value>کلمه عبور فعلی</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>رمز عبور</value>
+  </data>
+  <data name="Password Max Length Error" xml:space="preserve">
+    <value>حداکثر طول وارد شده برای رمز عبور 11 کاراکتر می باشد.</value>
+  </data>
+  <data name="Password Min Length Error" xml:space="preserve">
+    <value>طول رمز عبور کمتر از مقدار تعریف شده می باشد.</value>
+  </data>
+  <data name="Password mismatch" xml:space="preserve">
+    <value>پسورد ها با هم تطابق ندارند.</value>
+  </data>
+  <data name="Person Type" xml:space="preserve">
+    <value>نوع شخص:</value>
+  </data>
+  <data name="Please enter a valid email address." xml:space="preserve">
+    <value>لطفا ایمیل با فرمت درست وارد نمایید!</value>
+  </data>
+  <data name="Please enter correct Email" xml:space="preserve">
+    <value>لطفا ایمیل صحیح وارد نمایید!</value>
+  </data>
+  <data name="Please enter valid National Code as User Name" xml:space="preserve">
+    <value>لطفا نام کاربری ، کد ملی معتبر وارد نمایید.</value>
+  </data>
+  <data name="Please enter valid Password" xml:space="preserve">
+    <value>کلمه عبور ترکیبی از اعداد،حروف بزرگ،حروف کوچک و کاراکترهای ویژه می باشد.</value>
+  </data>
+  <data name="Please enter valid UserName" xml:space="preserve">
+    <value>نام کاربری شامل کاراکترهای انگلیسی و اعداد می تواند باشد.</value>
+  </data>
+  <data name="Please neter valid national code for real and legal person" xml:space="preserve">
+    <value>کد ملی برای اشخاص حقیقی 10 کاراکتر و برای اشخاص حقوقی 11 کاراکتر می باشد، ثبت اطلاعات امکان پذیر نیست</value>
+  </data>
+  <data name="Real Person" xml:space="preserve">
+    <value>حقیقی</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>ثبت نام </value>
+  </data>
+  <data name="Successfully addedd,Please check your email to confirm your account." xml:space="preserve">
+    <value>ثبت نام با موفقیت انجام شد ،لطفا برای فعال سازی حساب کاربری خود صندوق پست الکترونیکی خود را بررسی نمایید</value>
+  </data>
+  <data name="The field Email is required" xml:space="preserve">
+    <value>لطفا ایمیل را وارد نمایید!</value>
+  </data>
+  <data name="The field Email must be a string or array type with a maximum length of '100'." xml:space="preserve">
+    <value>حداکثر طول وارد شده برای ایمیل 100 کاراکتر می باشد.</value>
+  </data>
+  <data name="The field National Code must be a string or array type with a maximum length of '11'." xml:space="preserve">
+    <value>کد ملی برای اشخاص حقیقی 10 کاراکتر و برای اشخاص حقوقی 11 کاراکتر می باشد.</value>
+  </data>
+  <data name="The field National Code must be a string or array type with a minimum length of '10'." xml:space="preserve">
+    <value>کد ملی برای اشخاص حقیقی 10 کاراکتر و برای اشخاص حقوقی 11 کاراکتر می باشد.</value>
+  </data>
+  <data name="The field NationalCode is required" xml:space="preserve">
+    <value>لطفا کد ملی را وارد نمایید!</value>
+  </data>
+  <data name="The field Password is required" xml:space="preserve">
+    <value>لطفا رمز عبور را وارد نمایید!</value>
+  </data>
+  <data name="The field PersonType is required" xml:space="preserve">
+    <value>لطفا فیلد نوع شخص را انتخاب نمایید!</value>
+  </data>
+  <data name="The field User Name must be a string or array type with a maximum length of '11'.1" xml:space="preserve">
+    <value>نام کاربری برای اشخاص حقیقی 10 کاراکتر و برای اشخاص حقوقی 11 کاراکتر می باشد.</value>
+  </data>
+  <data name="The field User Name must be a string or array type with a minimum length of '10'.1" xml:space="preserve">
+    <value>نام کاربری برای اشخاص حقیقی 10 کاراکتر و برای اشخاص حقوقی 11 کاراکتر می باشد.</value>
+  </data>
+  <data name="The field UserName is required" xml:space="preserve">
+    <value>لطفا نام کاربری را وارد نمایید</value>
+  </data>
+  <data name="User created a new account with password." xml:space="preserve">
+    <value>کاربر جدید به همراه یک پسورد جدید ایجاد شده است. </value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>نام کاربری</value>
+  </data>
+</root>

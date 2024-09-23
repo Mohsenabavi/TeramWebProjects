@@ -1,0 +1,97 @@
+﻿@using Teram.Web.Core.Helper;
+@model JobApplicantModel
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.JobApplicantControlPanelController> localizer
+
+<div class="formInfo">
+
+    
+
+    <form asp-action="Save" method="post" data-ajax="true" data-ajax-method="post" data-ajax-success="onSuccess" enctype="multipart/form-data">
+        <input type="hidden" asp-for="JobApplicantId" />
+        <input type="hidden" asp-for="BaseInformationApproveDate" />
+        <input type="hidden" asp-for="BaseInformationApprovedBy" />
+        <input type="hidden" asp-for="BaseInformationApproveStatus" />
+        <input type="hidden" asp-for="NoBadBackgroundDone" />
+        <input type="hidden" asp-for="NoBadBackgroundDate" />
+        <input type="hidden" asp-for="NoBadBackgroundApprovedBy" />
+        <input type="hidden" asp-for="NoAddictionDone" />
+        <input type="hidden" asp-for="NoAddictionApprovedBy" />
+        <input type="hidden" asp-for="NoAddictionDate" />
+        <input type="hidden" asp-for="OccupationalMedicineApprovedBy" />
+        <input type="hidden" asp-for="OccupationalMedicineDate" />
+        <input type="hidden" asp-for="OccupationalMedicineApproveStatus" />
+        <input type="hidden" asp-for="OccupationalMedicineRemarks" />
+        <input type="hidden" asp-for="ProcessStatus" />
+        <input type="hidden" asp-for="OccupationalMedicineDone" />
+        <input type="hidden" asp-for="FlowType" />
+
+        <div class="row">
+            <text-box asp-for="NationalCode" validation-type="NationalCode" reverse="true" title="@localizer["NationalCode"]" validation-required-message="@localizer["Please enter NationalCode"]" div-class="col-12 col-md-3 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box asp-for="FirstName" validation-type="Persian" reverse="true" title="@localizer["FirstName"]" validation-required-message="@localizer["Please enter FirstName"]" div-class="col-12 col-md-3 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box asp-for="LastName" validation-type="Persian" reverse="true" title="@localizer["LastName"]" validation-required-message="@localizer["Please enter LastName"]" div-class="col-12 col-md-3 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box asp-for="MobileNumber" validation-type="Mobile" reverse="true" title="@localizer["MobileNumber"]" validation-required-message="@localizer["Please enter MobileNumber"]" div-class="col-12 col-md-3 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box asp-for="PersonnelCode" validation-type="Number" reverse="true" title="@localizer["PersonnelCode"]" validation-required-message="@localizer["Please enter PersonnelCode"]" div-class="col-12 col-md-3 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <select-box asp-for="JobPositionId" reverse="true" show-not-selected-option-title="false"
+                        title="@localizer["JobPosition"]"
+                        select-class="inputBox" value="@ViewBag.JobPositions"
+                        selected-value="@Model?.JobPositionId"
+                        div-class="col-xs-12 col-md-3 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2">
+            </select-box>
+            <div class=" col-xs-12 col-md-6 col-lg-3 mt-2">
+                <label class="forms-label mb-0">@localizer["JobCategory"] </label>
+                <select asp-for="JobCategory" name="JobCategory" required
+                        class="form-control select2"
+                        asp-items="Html.GetEnumSelectList<JobCategory>()">
+                    <option>@localizer["select JobCategory"]</option>
+                </select>
+            </div>
+            <date-picker reverse="true" asp-for="ExpreminetDeadline" asp-for-text="ExpreminetDeadlineText" id="ExpreminetDeadline" show-label="true" title="@localizer["ExpreminetDeadline"]" div-class="col-12 col-md-3 form-group col d-flex flex-column-reverse align-items-start " />
+            <text-box asp-for="Address" reverse="true" validation-type="None" title="@localizer["Address"]" validation-required-message="@localizer["Please enter address"]" div-class="col-xs-12 col-md-9 col-lg-9  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box asp-for="PromissoryNoteAmount" oninput="formatNumber()" validation-type="None" reverse="true" title="@localizer["PromissoryNoteAmount"]" validation-required-message="@localizer["Please enter PromissoryNoteAmount"]" div-class="col-12 col-md-3 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <check-box asp-for="NeededForBackgroundCheck" name="NeededForBackgroundCheck" reverse="true" title="@localizer["NeededForBackgroundCheck"]" div-class="col-12 col-md-3 col-lg-3 d-flex flex-column-reverse align-items-start" />
+            @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.PersonalImage, FileAccept = ".jpg, .png,.jfif,.jpeg|image/*,*.jpeg,*.tiff,*.bmp,*.gif,*.webp" })
+            @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.Resume, FileAccept = ".pdf" })
+        </div>
+        <div class="form-row" style="margin-top:20px;">
+            <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                <button type="submit" class="btn btn-success">@localizer["Save"] </button>
+                <button type="button" class="btn btn-secondary resetForm resetButton">@localizer["New"] </button>
+            </div>
+        </div>
+    </form>
+    <div class="card">
+        <div class="card-header bg-info" style="font-weight:bold">
+            @localizer["FilterData"] <small class="searchStatus"></small>
+        </div>
+        <div class="card-body bg-light">
+            <div class="row">
+                <input type="hidden" id="ViewInprogressStatus" />
+                <text-box id="FirstNameFilter" name="NationalCodeFilter" reverse="true" validation-type="Persian" title="@localizer["FirstName"]" div-class="col-12 col-md-6 col-lg-2 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+                <text-box id="LastNameFilter" name="NationalCodeFilter" reverse="true" validation-type="Persian" title="@localizer["LastName"]" div-class="col-12 col-md-6 col-lg-2 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+                <text-box id="PersonnelCodeFilter" name="PersonnelCodeFilter" reverse="true" validation-type="Number" title="@localizer["PersonnelCode"]" div-class="col-12 col-md-6 col-lg-2 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+                <text-box id="NationalCodeFilter" name="NationalCodeFilter" reverse="true" validation-type="Number" title="@localizer["NationalCode"]" div-class="col-12 col-md-6 col-lg-2 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+                <select-box style="justify-content: flex-end;" id="FlowTypeFilter" reverse="true" name="InspectionFormStatus" not-selected-option-title="-- یک وضعیت انتخاب کنید --" title="وضعیت"
+                            validation-required-message="@localizer["Please select a Status"]" value="Html.GetEnumSelectList<FlowType>().ToList()"
+                            class="col-12 col-md-6 col-lg-2 d-flex flex-column-reverse align-items-start" select-class="inputBox select2">
+                </select-box>
+                <select-box style="justify-content: flex-end;" id="ProcessStatusFilter" reverse="true" name="InspectionFormStatus" not-selected-option-title="-- یک وضعیت انتخاب کنید --" title="وضعیت"
+                            validation-required-message="@localizer["Please select a Status"]" value="Html.GetEnumSelectList<ProcessStatus>().ToList()"
+                            class="col-12 col-md-6 col-lg-2 d-flex flex-column-reverse align-items-start" select-class="inputBox select2">
+                </select-box>
+            </div>
+            <div class="form-row" style="margin-top:20px;">
+                <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                    <button id="btnSearch" type="button" class="btn btn-success shouldReloadGrid"><i class="fa fa-search"></i>@localizer["Search"] </button>
+                    <button id="reset" class="btn btn-danger resetForm shouldReloadGrid" type="reset">@localizer["Remove Filter"]</button>
+                    <button id="ViewAll" type="button" class="btn btn-info">@localizer["ViewAll"] </button>
+                    <button id="ViewInprogress" type="button" class="btn btn-warning">@localizer["ViewInprogress"] </button>
+                    <button id="exportexel" type="button" class="btn btn-success">@localizer["ExcelPrint"] </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

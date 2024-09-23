@@ -1,0 +1,23 @@
+﻿@model CausationModel
+@inject IStringLocalizer<Teram.QC.Module.FinalProduct.Controllers.CausationController> localizer
+
+<fieldset class="border hrFiledSet p-2 m-2">
+    <legend class="h6 w-auto">
+        @localizer["HasHRCause"]
+    </legend>
+    <div class="row chooseReason">
+        <select-box style="justify-content: flex-end;" reverse="true" asp-for="WrongdoerId"
+                    not-selected-option-title="-- یک فرد انتخاب کنید --" title="فرد خاطی"
+                    selected-value="@Model?.WrongdoerId"
+                    validation-required-message="@localizer["Please select a WrongdoerId"]"
+                    class="d-none mb-2 col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2" value="@ViewBag.Operators">
+        </select-box>
+        <check-box asp-for="IsCaseError" is-required="false" name="IsCaseError" reverse="true" title="@localizer["IsCaseError"]" div-class="col-12 col-md-6 col-lg-6 d-flex flex-column-reverse align-items-start" />     
+        <check-box asp-for="IsLackOfFit" is-required="false" name="IsLackOfFit" reverse="true" title="@localizer["IsLackOfFit"]" div-class="col-12 col-md-6 col-lg-6 d-flex flex-column-reverse align-items-start" />
+    </div>
+    <div class="row lackOfFitSection d-none">
+        <check-box asp-for="HasLackOfFitWorkerAndJob" is-required="false" name="HasLackOfFitWorkerAndJob" reverse="true" title="@localizer["HasLackOfFitWorkerAndJob"]" div-class="col-12 col-md-4 col-lg-4 d-flex flex-column-reverse align-items-start" />
+        <check-box asp-for="HasLackOfEducation" is-required="false" name="HasLackOfEducation" reverse="true" title="@localizer["HasLackOfEducation"]" div-class="col-12 col-md-4 col-lg-4 d-flex flex-column-reverse align-items-start" />
+        <check-box asp-for="HasFailureOfDefineJob" is-required="false" name="HasFailureOfDefineJob" reverse="true" title="@localizer["HasFailureOfDefineJob"]" div-class="col-12 col-md-4 col-lg-4 d-flex flex-column-reverse align-items-start" />
+    </div>
+</fieldset>

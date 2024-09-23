@@ -1,0 +1,24 @@
+﻿@model TokenParameterModel 
+@inject IStringLocalizer<Teram.Module.Authentication.Controllers.TokenParameterController> localizer
+@inject IStringLocalizer<SharedResource> sharedResourceLocalizer
+
+
+<div id="formInfo">
+    <form asp-action="Save" method="post" data-ajax="true" data-ajax-method="post" data-ajax-success="onSuccess">
+        <input type="hidden" asp-for="TokenParameterId" />
+        <div class="form-row">
+            <div class="col-xs-12 col-lg-4 col-md-4 form-group">
+                <label asp-for="Name">@localizer["Name"]</label>
+                <input asp-for="Name" class="form-control" required="required" data-required="required" data-val-required="@localizer["Please enter name"]"  />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div> 
+           
+        </div>
+        <div class="form-row">
+            <div class="form-group col-xs-12 col-md-12 col-lg-12" style="text-align:center;">
+                <button type="submit" class="btn btn-success">@localizer["Submit"] </button> 
+                <button id="reset" class="btn btn-secondary resetForm">@localizer["New"] </button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,13 @@
+﻿@inject IStringLocalizer<Teram.Web.Controllers.HomeController> Localizer
+
+@{
+    var defaultThemeName = "Default";
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name;
+    Layout = "~/wwwroot/Themes/" + defaultThemeName + "/Layouts/" + culture + "/Identity/_Identity.cshtml";
+}
+
+    <header>
+        <h1 class="text-danger">404</h1>
+        <h2 class="text-danger">@Localizer["Not Found Page"]</h2>
+        <input type="button" value="بازگشت" onclick="window.history.go(-1); return false;" class="backBtn" />
+    </header>

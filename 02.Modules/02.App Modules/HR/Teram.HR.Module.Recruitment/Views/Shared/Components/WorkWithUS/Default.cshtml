@@ -1,0 +1,274 @@
+﻿@using Teram.HR.Module.Recruitment.Models.WorkWithUs;
+@using Teram.Web.Core.Helper;
+@model BaseInformationModel
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.WorkWithUsController> localizer
+
+
+
+@if (!@Model.IsShow && !Model.HasAlreadyRegistered)
+{
+
+    <div class="card card-primary card-outline border-info">
+
+        <div class="card-header bg-dark text-light p-1">
+            <h5 class="card-title mt-2 mr-2"><i class=" text-info"></i> @localizer["Base Information"]</h5>
+            <div class="card-tools">
+            </div>
+        </div>
+        <div class="card-body">
+            @await Component.InvokeAsync("ViewStepsComponent")
+            <div id="formInfo">
+                <div role="alert">
+                    <h6 class="alert alert-danger">پیش از بررسی سوابق امکان ثبت اطلاعات پایه وجود ندارد</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+else if (Model.HasAlreadyRegistered)
+{
+    <div class="card card-primary card-outline border-info">
+        <div class="card-header bg-dark text-light p-1">
+            <h5 class="card-title mt-2 mr-2"><i class=" text-info"></i> @localizer["Base Information"]</h5>
+            <div class="card-tools">
+            </div>
+        </div>
+        <div class="card-body">
+            @await Component.InvokeAsync("ViewStepsComponent")
+            <div id="formInfo">
+                <div class="alert alert-info alert-message-primary" role="alert">
+                    <h3>اطلاعات شما قبلاً در سامانه ثبت شده است  </h3>
+                </div>
+                <div class="preview">
+                    <Partial name="Preview" model="Model" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+else
+
+{
+    <form id="frmWorkWithUs" asp-action="ViewInfoToApprove" asp-controller="WorkWithUS" method="post" data-ajax="true" data-ajax-method="post" enctype="multipart/form-data" data-ajax-success="successSubmitForm">
+        <input type="hidden" asp-for="JobApplicantId" />
+        <input type="hidden" asp-for="FlowType" />
+        <div class="col-lg-12 workWithUsContainer">
+            <div class="card card-primary card-outline border-info">
+                @await Component.InvokeAsync("ViewStepsComponent")
+                <div class="card-header bg-dark text-light p-1">
+                    <h5 class="card-title mt-2 mr-2"><i class=" text-info"></i> @localizer["Base Information"]</h5>
+                    <div class="card-tools">
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="formInfo">
+                        <div class="alert alert-info alert-message-primary" role="alert">
+                            <ul>
+                                <li>
+                                    @localizer["Fields marked with an asterisk (*) are required"]
+                                </li>
+                            </ul>
+                        </div>
+
+                        <fieldset class="border p-2 m-2">
+                            <h6 class="bg-info  p-2 rounded text-light text-center"> @localizer["personal info"]</h6>
+                            <partial name="_PersonalInfo" model="Model" />
+                        </fieldset>
+
+                        <fieldset class="border p-2 m-2 mriedPersonalInfo">
+                            <h6 class="bg-info  p-2 rounded text-light text-center"> @localizer["partner personal info"]</h6>
+                            <partial name="_MariedPersonalInfo" model="Model" />
+                        </fieldset>
+
+                        <fieldset class="border p-2 m-2">
+                            <div class="row">
+                                <div class="form-group col-xs-12 col-lg-6 col-md-6 form-group required">
+                                    <div class=" text-right">
+                                        <label class="forms-label">@localizer["HasWorkingRelatives"]</label>
+                                        <div class="text-left">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="HasWorkingRelatives" asp-for="HasWorkingRelatives" id="rdHasWorkingRelativesYes" value="True" data-required="required" data-val-required="@localizer["Please enter HasWorkingRelatives"]">
+                                                <label class="forms-label m-2" tabindex="1">@localizer["Yes"]</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="HasWorkingRelatives" asp-for="HasWorkingRelatives" id="rdHasWorkingRelativesNo" value="False" data-required="required" data-val-required="@localizer["Please enter HasWorkingRelatives"]">
+                                                <label class="forms-label m-2" tabindex="2">@localizer["No"]</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span asp-validation-for="HasWorkingRelatives" class="text-danger"></span>
+                                </div>
+
+                                <text-box asp-for="WorkingRelatives" id="WorkingRelatives" reverse="true" validation-type="Persian" title="@localizer["WorkingRelatives"]" validation-required-message="@localizer["Please enter WorkingRelatives"]" div-class="col-xs-12 col-md-6 col-lg-6  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-xs-12 col-lg-6 col-md-6 form-group required">
+                                    <div class=" text-right">
+                                        <label class="forms-label">@localizer["HasWorkingRelativeInPackingCompanies"]</label>
+                                        <div class="text-left">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="HasWorkingRelativeInPackingCompanies" asp-for="HasWorkingRelativeInPackingCompanies" id="rdHasWorkingRelativeInPackingCompaniesYes" value="True" data-required="required" data-val-required="@localizer["Please enter HasWorkingRelativeInPackingCompanies"]">
+                                                <label class="forms-label m-2" tabindex="1">@localizer["Yes"]</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="HasWorkingRelativeInPackingCompanies" asp-for="HasWorkingRelativeInPackingCompanies" id="rdHasWorkingRelativeInPackingCompaniesNo" value="False" data-required="required" data-val-required="@localizer["Please enter HasWorkingRelativeInPackingCompanies"]">
+                                                <label class="forms-label m-2" tabindex="2">@localizer["No"]</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span asp-validation-for="HasWorkingRelativeInPackingCompanies" class="text-danger"></span>
+                                </div>
+                                <text-box asp-for="WorkingRelativeInPackingCompanyName" id="WorkingRelativeInPackingCompanyName" reverse="true" validation-type="Persian" title="@localizer["WorkingRelativeInPackingCompanyName"]" validation-required-message="@localizer["Please enter WorkingRelativeInPackingCompanyName"]" div-class="col-xs-12 col-md-6 col-lg-6  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+                            </div>
+                        </fieldset>
+                        <fieldset class="border p-2 m-2">
+                            <h6 class="bg-info  p-2 rounded text-light pr-3 text-center">
+                                @localizer["contact info"]
+                            </h6>
+                            <partial name="_ContactInfo" model="Model" />
+                        </fieldset>
+
+
+                        <fieldset class="border p-2 m-2 militaryArea d-none">
+                            <h6 class="bg-info  p-2 rounded text-light pr-3 text-center">
+                                @localizer["military service"]
+                            </h6>
+                            <partial name="_MilitaryService" model="Model" />
+                        </fieldset>
+                        <fieldset class="border m-2 p-2">
+                            <h6 class="bg-info  p-2 rounded text-light pr-3 text-center">
+                                @localizer["Training Records"]
+                            </h6>
+                            <div class="form-row">
+                                <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center mt-1">
+                                    <button type="button" id="addTrainingRecord" class="btn btn-success float-right w-100">@localizer["add education background"] </button>
+                                </div>
+                            </div>
+                            <partial name="_TrainingRecord" model="Model.TrainingRecords" />
+                            <div id="TrainingRecordrow"></div>
+                        </fieldset>
+                        <fieldset class="border m-1 p-1">
+                            <div class="row">
+                                <text-box asp-for="ThesisTitle" reverse="true" validation-type="Persian" title="@localizer["ThesisTitle"]" validation-required-message="@localizer["Please enter FreeTimeActivities"]" div-class="col-xs-12 col-md-12 col-lg-12  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+                            </div>
+                            <div class="row">
+                                <text-box asp-for="SpecialAcademicAchievements" reverse="true" validation-type="Persian" title="@localizer["SpecialAcademicAchievements"]" validation-required-message="@localizer["Please enter SpecialAcademicAchievements"]" div-class="col-xs-12 col-md-12 col-lg-12  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="border m-1 p-1">
+                            <h6 class="bg-info  p-2 rounded text-light pr-3 text-center">
+                                @localizer["Resume"]
+                            </h6>
+                            <div class="form-row">
+                                <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center mt-1">
+                                    <button type="button" id="addResume" class="btn btn-success float-right w-100">@localizer["add resume"] </button>
+                                </div>
+                            </div>
+                            <partial name="_Resume" model="Model.Resumes" />
+                            <div id="resumerow"></div>
+                        </fieldset>
+                        <fieldset class="border m-1 p-1">
+                            <div class="row">
+                                <text-box asp-for="CurrentJobActivity" reverse="true" validation-type="Persian" title="@localizer["CurrentJobActivity"]" validation-required-message="@localizer["Please enter CurrentJobActivity"]" div-class="col-xs-12 col-md-9 col-lg-9  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+                                <text-box asp-for="CurrntSalary" reverse="true" validation-type="None" title="@localizer["CurrntSalary"]" validation-required-message="@localizer["Please enter CurrntSalary"]" div-class="col-xs-12 col-md-3 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+                            </div>
+                            <div class="row">
+                                <text-box asp-for="SpecialWorkSuccesses" reverse="true" validation-type="Persian" title="@localizer["SpecialWorkSuccesses"]" validation-required-message="@localizer["Please enter SpecialWorkSuccesses"]" div-class="col-xs-12 col-md-12 col-lg-12  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="border m-1 p-1">
+                            <h6 class="bg-info  p-2 rounded text-light pr-3 text-center">
+                                @localizer["Languages"] <small>@localizer["Language Description"]</small>
+                            </h6>
+                            <div class="form-row">
+                                <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center mt-1">
+                                    <button type="button" id="addLanguage" class="btn btn-success float-right w-100">@localizer["add Language"] </button>
+                                </div>
+                            </div>
+                            <partial name="_PersonnelLanguages" model="Model.PersonnelLanguages" />
+                            <div id="languagerow"></div>
+                        </fieldset>
+
+                        <fieldset class="border m-1 p-1">
+                            <h6 class="bg-info  p-2 rounded text-light pr-3 text-center">
+                                @localizer["Computer Skills"] <small>@localizer["Computer Skills Description"]</small>
+                            </h6>
+                            <div class="form-row">
+                                <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center mt-1">
+                                    <button type="button" id="addSkill" class="btn btn-success float-right w-100">@localizer["add Skill"] </button>
+                                </div>
+                            </div>
+                            <partial name="_PersonnelComputerSkill" model="Model.PersonnelComputerSkills" />
+                            <div id="skillrow"></div>
+                        </fieldset>
+
+                        <fieldset class="border m-1 p-1">
+                            <h6 class="bg-info  p-2 rounded text-light pr-3 text-center">
+                                @localizer["Emeregancy Contact"]
+                            </h6>
+                            <div class="form-row">
+                                <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center mt-2">
+                                    <button type="button" id="addEmergencyContacts" class="btn btn-success float-right w-100">@localizer["add Emeregancy Contact"] </button>
+                                </div>
+                            </div>
+                            <partial name="_EmergencyContact" model="Model.EmergencyContacts" />
+                            <div id="EmergencyContactsrow"></div>
+
+                        </fieldset>
+
+                        <fieldset class="border m-1 p-1">
+                            <h6 class="bg-info  p-2 rounded text-light pr-3 text-center">
+                                @localizer["Education"]
+                            </h6>
+                            <div class="form-row">
+                                <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center mt-2">
+                                    <button type="button" id="addEducation" class="btn btn-success float-right w-100">@localizer["add education"] </button>
+                                </div>
+                            </div>
+
+                            <partial name="_Education" model="Model.Educations" />
+
+
+                            <div id="educationrow"></div>
+                            <div class="form-row">
+                                <text-box asp-for="FreeTimeActivities" reverse="true" validation-type="None" title="@localizer["FreeTimeActivities"]" validation-required-message="@localizer["Please enter FreeTimeActivities"]" div-class="col-xs-12 col-md-12 col-lg-12  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+                            </div>
+                        </fieldset>
+
+
+                        <fieldset class="border p-2 m-2">
+                            <h6 class="bg-info  p-2 rounded text-light pr-3 text-center">
+                                @localizer["other"]
+                            </h6>
+                            <partial name="_Other" model="Model" />
+
+
+                        </fieldset>
+                        @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.Resume, FileAccept = ".pdf" })
+                        <div class="form-row">
+                            <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center mt-2">
+                                <button type="submit" id="btnSave" class="btn btn-success">@localizer["submitInformation"] </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+    <div class="previewContainer" style="display:none;width:100%;">
+    </div>
+}
+
+@Html.AddResource(PageResourceType.JavaScript, @<script src="~/lib/jquery.popupwindow/jquery.popupWindow.js"></script>)
+@Html.AddResource(PageResourceType.JavaScript, @<script src="/ExternalModule/HR/Module/Recruitment/Scripts/WorkWithUS.js"></script>)
+@Html.AddResource(PageResourceType.JavaScript, @<script src="/ExternalModule/HR/Module/Recruitment/Scripts/PreviewBaseInformation.js"></script>)
+@Html.AddResource(PageResourceType.CSS, @<link href="/ExternalModule/HR/Module/Recruitment/Style/Preview.css" rel="stylesheet" />)
+
+

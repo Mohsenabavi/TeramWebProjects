@@ -1,0 +1,278 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="x-apple-disable-message-reformatting">
+    <meta name="format-detection" content="telephone=no,address=no,email=no,date=no,url=no">
+    <meta name="color-scheme" content="light">
+    <meta name="supported-color-schemes" content="light">
+
+    <style>
+        .container-fluid {
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .row {
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        .col {
+            -ms-flex-preferred-size: 0;
+            flex-basis: 0;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+            max-width: 100%;
+        }
+
+        .emailLogo {
+            width: 96px;
+            border-radius: 7px
+        }
+
+        .footerConfirmEmail {
+            position: fixed;
+            height:50px;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #1864e6;
+            color: white;
+            text-align: center;
+        }
+
+        .font-weight-bold {
+            font-weight: 700 !important;
+        }
+
+        .text-right {
+            text-align: right !important;
+        }
+
+        .text-center {
+            text-align: center !important;
+        }
+
+        .p-3 {
+            padding: 1rem !important;
+        }
+
+        .text-dark {
+            color: #343a40 !important;
+        }
+
+        .p-2 {
+            padding: .5rem !important;
+        }
+
+        .mt-4, .my-4 {
+            margin-top: 1.5rem !important;
+        }
+
+        .d-inline-block {
+            display: inline-block !important;
+        }
+
+        .footer-top h3, h4 {
+            margin-bottom: 1.5rem;
+        }
+
+        .h4, h4 {
+            font-size: 1.5rem;
+        }
+
+        .pt-1 {
+            padding-top: 0.5rem;
+        }
+
+        .pb-1 {
+            padding-bottom: 0.5rem;
+        }
+
+        .span {
+            display: block;
+        }
+
+        .button {
+            font-size:15px ;
+            text-decoration: none;
+            background-color: #1872cc;
+            color: white !important;
+            padding: 9px 8px 8px 9px;
+            border-top: 1px solid #CCCCCC;
+            border-right: 1px solid #333333;
+            border-bottom: 1px solid #333333;
+            border-left: 1px solid #CCCCCC;
+            height:70px;
+        }
+        @font-face {
+        font-family: IRANSans;
+        font-style: normal;
+        font-weight: bold;
+        src: url('http://static.Teramgroup.com/SRM/fonts/iransans/eot/IRANSansWeb_Bold.eot');
+        src: url('http://static.Teramgroup.com/SRM/fonts/iransans/eot/IRANSansWeb_Bold.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+             url('http://static.Teramgroup.com/SRM/fonts/iransans/woff2/IRANSansWeb_Bold.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+             url('http://static.Teramgroup.com/SRM/fonts/iransans/woff/IRANSansWeb_Bold.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+             url('http://static.Teramgroup.com/SRM/fonts/iransans/ttf/IRANSansWeb_Bold.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: IRANSans;
+        font-style: normal;
+        font-weight: 500;
+        src: url('http://static.Teramgroup.com/SRM/fonts/iransans/eot/IRANSansWeb_Medium.eot');
+        src: url('http://static.Teramgroup.com/SRM/fonts/iransans/eot/IRANSansWeb_Medium.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+             url('http://static.Teramgroup.com/SRM/fonts/iransans/woff2/IRANSansWeb_Medium.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+             url('http://static.Teramgroup.com/SRM/fonts/iransans/woff/IRANSansWeb_Medium.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+             url('http://static.Teramgroup.com/SRM/fonts/iransans/ttf/IRANSansWeb_Medium.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: IRANSans;
+        font-style: normal;
+        font-weight: 300;
+        src: url('http://static.Teramgroup.com/SRM/fonts/iransans/eot/IRANSansWeb_Light.eot');
+        src: url('http://static.Teramgroup.com/SRM/fonts/iransans/eot/IRANSansWeb_Light.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+             url('http://static.Teramgroup.com/SRM/fonts/iransans/woff2/IRANSansWeb_Light.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+             url('http://static.Teramgroup.com/SRM/fonts/iransans/woff/IRANSansWeb_Light.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+             url('http://static.Teramgroup.com/SRM/fonts/iransans/ttf/IRANSansWeb_Light.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: IRANSans;
+        font-style: normal;
+        font-weight: 200;
+        src: url('http://static.Teramgroup.com/SRM/fonts/iransans/eot/IRANSansWeb_UltraLight.eot');
+        src: url('http://static.Teramgroup.com/SRM/fonts/iransans/eot/IRANSansWeb_UltraLight.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+             url('http://static.Teramgroup.com/SRM/fonts/iransans/woff2/IRANSansWeb_UltraLight.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+             url('http://static.Teramgroup.com/SRM/fonts/iransans/woff/IRANSansWeb_UltraLight.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+             url('http://static.Teramgroup.com/SRM/fonts/iransans/ttf/IRANSansWeb_UltraLight.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: IRANSans;
+        font-style: normal;
+        font-weight: normal;
+        src: url('http://static.Teramgroup.com/SRM/fonts/iransans/eot/IRANSansWeb.eot');
+        src: url('http://static.Teramgroup.com/SRM/fonts/iransans/eot/IRANSansWeb.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+             url('http://static.Teramgroup.com/SRM/fonts/iransans/woff2/IRANSansWeb.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+             url('http://static.Teramgroup.com/SRM/fonts/iransans/woff/IRANSansWeb.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+             url('http://static.Teramgroup.com/SRM/fonts/iransans/ttf/IRANSansWeb.ttf') format('truetype');
+    }
+
+
+    @font-face {
+        font-family: iranyekan;
+        font-style: normal;
+        font-weight: bold;
+        src: url('http://static.Teramgroup.com/SRM/fonts/iranYekan/eot/iranyekanwebbold.eot');
+        src: url('http://static.Teramgroup.com/SRM/fonts/iranYekan/eot/iranyekanwebbold.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+             url('http://static.Teramgroup.com/SRM/fonts/iranYekan/woff2/iranyekanwebbold.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+             url('http://static.Teramgroup.com/SRM/fonts/iranYekan/woff/iranyekanwebbold.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+             url('http://static.Teramgroup.com/SRM/fonts/iranYekan/ttf/iranyekanwebbold.ttf') format('truetype');
+    }
+
+    @font-face {
+        font-family: iranyekan;
+        font-style: normal;
+        font-weight: 300;
+        src: url('http://static.Teramgroup.com/SRM/fonts/IranYekan/eot/iranyekanweblight.eot');
+        src: url('http://static.Teramgroup.com/SRM/fonts/IranYekan/eot/iranyekanweblight.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+             url('http://static.Teramgroup.com/SRM/fonts/IranYekan/woff2/iranyekanweblight.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+             url('http://static.Teramgroup.com/SRM/fonts/IranYekan/woff/iranyekanweblight.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+             url('http://static.Teramgroup.com/SRM/fonts/IranYekan/ttf/iranyekanweblight.ttf') format('truetype');
+    }
+
+    @font-face {
+        font-family: iranyekan;
+        font-style: normal;
+        font-weight: normal;
+        src: url('http://static.Teramgroup.com/SRM/fonts/IranYekan/eot/iranyekanwebregular.eot');
+        src: url('http://static.Teramgroup.com/SRM/fonts/IranYekan/eot/iranyekanwebregular.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+             url('http://static.Teramgroup.com/SRM/fonts/IranYekan/woff2/iranyekanwebregular.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+             url('http://static.Teramgroup.com/SRM/fonts/IranYekan/woff/iranyekanwebregular.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+             url('http://static.Teramgroup.com/SRM/fonts/IranYekan/ttf/iranyekanwebregular.ttf') format('truetype');
+    }
+
+    /* Latin fonts/ (Roboto) */
+
+    @font-face {
+        font-family: roboto;
+        font-style: normal;
+        font-weight: bold;
+        src: url('http://static.Teramgroup.com/SRM/fonts//IranYekan/eot/robotobold.eot');
+        src: url('http://static.Teramgroup.com/SRM/fonts//IranYekan/eot/robotobold.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+             url('http://static.Teramgroup.com/SRM/fonts//IranYekan/woff2/robotobold.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+             url('http://static.Teramgroup.com/SRM/fonts//IranYekan/woff/robotobold.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+             url('http://static.Teramgroup.com/SRM/fonts//IranYekan/ttf/robotobold.ttf') format('truetype');
+    }
+
+    @font-face {
+        font-family: roboto;
+        font-style: normal;
+        font-weight: 300;
+        src: url('http://static.Teramgroup.com/SRM/fonts//IranYekan/eot/robotolight.eot');
+        src: url('http://static.Teramgroup.com/SRM/fonts//IranYekan/eot/robotolight.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+             url('http://static.Teramgroup.com/SRM/fonts//IranYekan/woff2/robotolight.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+             url('http://static.Teramgroup.com/SRM/fonts//IranYekan/woff/robotolight.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+             url('http://static.Teramgroup.com/SRM/fonts//IranYekan/ttf/robotolight.ttf') format('truetype');
+    }
+
+        @font-face {
+            font-family: roboto;
+            font-style: normal;
+            font-weight: normal;
+            src: url('http://static.Teramgroup.com/SRM/fonts//IranYekan/eot/robotoregular.eot');
+            src: url('http://static.Teramgroup.com/SRM/fonts//IranYekan/eot/robotoregular.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+            url('http://static.Teramgroup.com/SRM/fonts//IranYekan/woff2/robotoregular.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+            url('http://static.Teramgroup.com/SRM/fonts//IranYekan/woff/robotoregular.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+            url('http://static.Teramgroup.com/SRM/fonts//IranYekan/ttf/robotoregular.ttf') format('truetype');
+        }
+    * {
+        font-family: IranSans,tahoma !important;
+    }
+    </style>
+</head>
+<body style="direction:rtl">
+    <header>
+        <div class="container-fluid">
+            <div class="row">
+                <img src="http://static.Teramgroup.com/SRM/Images/header.jpg" style="width:100%;padding-bottom:20px" />
+            </div>
+            <div class="row">
+                <div class="col p-3">
+                    <div class="float-right">
+                    </div>
+                    <div class="float-right">
+                        <span class="text-right font-weight-bold pt-1 pb-1 span">کاربر گرامی</span>
+                        <span class="text-right font-weight-bold pt-1 pb-1 span">با سلام</span>
+                        <span class="text-right font-weight-bold pt-1 pb-1 span">به سامانه گروه صنعتی ترام چاپ خوش آمدید</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col" style="text-align: center;margin: auto;padding-bottom: 52px;">
+                <h3>لطفا جهت فعالسازی نام کاربری بر روی لینک زیر کلیک کنید</h3><br />
+                <a class="button" href="#token#" target="_blank" > فعال سازی نام کاربری </a> <br />
+            </div>
+        </div>
+    </div>
+    <footer class="footerConfirmEmail">
+        <div class="container text-center">
+            <div class="copyright" style="padding-top:15px;font-size:13px;direction:rtl">
+                &copy; کلیه حقوق مادی و معنوی این سایت متعلق به گروه <strong><span>صنعتی ترام چاپ </span></strong> میباشد.
+            </div>
+
+        </div>
+    </footer>
+</body>
+</html>

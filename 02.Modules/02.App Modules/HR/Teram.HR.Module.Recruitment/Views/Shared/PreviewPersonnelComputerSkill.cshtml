@@ -1,0 +1,52 @@
+﻿@model List<PersonnelComputerSkillModel>
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.WorkWithUsController> localizer
+
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12 text-center background-color-blue color-white border-bottom border-dark infoItem">
+            @localizer["ComputerSkill"]
+        </div>
+    </div>
+    <div class="row background-color-blue-light">
+        <div class="col-md-1 col-xs-6 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["Row Number"]</span>
+        </div>
+        <div class="col-md-11">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6 col-xs-6 text-center border-right border-bottom border-dark report-label pt-2 infoItem">
+                            <span> @localizer["ComputerSkill"]</span>
+                        </div>
+                        <div class="col-md-6 col-xs-6 text-center border-right border-bottom border-left border-dark report-label pt-2 infoItem">
+                            <span> @localizer["SkillLevel"]</span>
+                        </div>                                                          
+                    </div>
+                </div>              
+            </div>
+        </div>
+    </div>
+    @foreach (var item in Model.Select((value, index) => (value, index)))
+    {
+        <div class="row infoRow">
+            <div class="col-md-1 col-xs-6  text-center  border-bottom border-right border-dark infoItem">
+                <span>@(item.index + 1)</span>
+            </div>
+            <div class="col-md-11">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6 col-xs-6 text-center border-right border-bottom border-dark infoItem">
+                                <span>@(item.value.ComputerSkillTitle)</span>
+                            </div>
+                            <div class="col-md-6 col-xs-6 text-center border-right border-left border-bottom border-dark infoItem">
+                                <span>@(item.value.SkillLevelTitle)</span>
+                            </div>                                                                             
+                        </div>
+                    </div>                  
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

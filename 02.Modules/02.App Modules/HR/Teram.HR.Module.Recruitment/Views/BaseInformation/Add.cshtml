@@ -1,0 +1,102 @@
+﻿@using Teram.HR.Module.Recruitment.Models.WorkWithUs;
+@model BaseInformationModel
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.WorkWithUsController> localizer
+
+
+
+<form asp-action="Save" method="post" data-ajax="true" data-ajax-method="post" data-ajax-success="onSuccess" enctype="multipart/form-data">
+    <div class="row">
+
+        <input type="hidden" asp-for="Key" />
+        <input type="hidden" id="SelectedProvinceId" value="@ViewBag.ProvinceId" />
+        <input type="hidden" id="SelectedCityId" value="@Model?.BirthLocationId" />       
+        <input type="hidden" id="SelectedMilitaryServiceProvinceId" value="@ViewBag.MilitaryServiceProvinceId" />
+        <input type="hidden" id="SelectedHomeCityId" value="@Model?.HomeCityId" />
+        <input type="hidden" id="SelectedHomeCityProvinceId" value="@ViewBag.HomeCityProvinceId" />
+
+        <text-box asp-for="NationalCode" is-readonly="true" reverse="true" validation-type="NationalCode" title="@localizer["national code"]" validation-required-message="@localizer["Please enter national code"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+        <text-box asp-for="Name" reverse="true" validation-type="Persian" title="@localizer["name"]" validation-required-message="@localizer["Please enter name"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+        <text-box asp-for="Lastname" reverse="true" validation-type="Persian" title="@localizer["last name"]" validation-required-message="@localizer["Please enter last name"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+        <text-box asp-for="FatherName" reverse="true" validation-type="Persian" title="@localizer["father name"]" validation-required-message="@localizer["Please enter father name"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+        <text-box asp-for="IdentityNumber" reverse="true" validation-type="Number" title="@localizer["identity number"]" validation-required-message="@localizer["Please enter identity number"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+        <text-box asp-for="IdentitySerialNumber" reverse="true" validation-type="None" title="@localizer["Identity Serial Number"]" validation-required-message="@localizer["Please enter Identity Serial Number"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+        <text-box asp-for="Nationality" reverse="true" validation-type="Persian" title="@localizer["Nationality"]" validation-required-message="@localizer["Please enter Nationality"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+        <text-box asp-for="Citizenship" reverse="true" validation-type="Persian" title="@localizer["Citizenship"]" validation-required-message="@localizer["Please enter Citizenship"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+
+        <div class=" form-group col-xs-12 col-lg-3 col-md-6 form-group ">
+            <label class="forms-label" asp-for="BloodGroup">@localizer["blood group"] </label>
+            <select asp-for="BloodGroup"
+                    class="form-control select2"
+                    asp-items="Html.GetEnumSelectList<BloodGroup>()">
+                <option>@localizer["select item"]</option>
+            </select>
+        </div>       
+        <select-box style="justify-content: flex-end;" data-id="ProvinceId" data-cityId="BirthLocationId" name="ProvinceId" reverse="true"
+                    id="ProvinceId" not-selected-option-title="-- یک استان انتخاب کنید --" title="استان"
+                    validation-required-message="@localizer["Please select a province"]"
+                    class="col-12 col-md-6 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2 provinceSelector" value="@ViewBag.provinces">
+        </select-box>
+        <select-box style="justify-content: flex-end;" data-provinceid="ProvinceId" id="BirthLocationId" reverse="true" asp-for="BirthLocationId" name="BirthLocationId" not-selected-option-title="-- یک شهر انتخاب کنید --" title="شهر"
+                    validation-required-message="@localizer["Please select a city"]"
+                    class="col-12 col-md-3 col-lg-3 d-flex flex-column-reverse align-items-start pr-lg-2 pr-md-2" select-class="inputBox select2 citySelector">
+        </select-box>
+        <date-picker reverse="true" asp-for-text="BirthPersianDate" id="BirthDate" show-label="true" title="@localizer["birth date"]" div-class="col-12 col-md-3 form-group col d-flex flex-column-reverse align-items-start " />
+    </div>
+    <div class="row w-100">
+        <div class="form-group col-xs-12 col-lg-3 col-md-6 form-group required">
+            <div class=" text-right">
+                <label class="forms-label form-check-label">@localizer["gender"]</label>
+                <div class="form-check form-check-inline">
+                    <input @(Model?.Gender == GenderType.Male ? "checked" : "") class="form-check-input" type="radio" name="Gender" asp-for="Gender" id="rdGendermale" value="1" data-required="required" data-val-required="@localizer["Please enter gender"]">
+                    <label class="form-check-label m-2" tabindex="1">@localizer["male"]</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input @(Model?.Gender == GenderType.Female ? "checked" : "") class="form-check-input" type="radio" name="Gender" asp-for="Gender" id="rdGenderFemale" value="2" data-required="required" data-val-required="@localizer["Please enter gender"]">
+                    <label class="form-check-label m-2" tabindex="2">@localizer["female"]</label>
+                </div>
+            </div>
+            <span asp-validation-for="Gender" class="text-danger"></span>
+        </div>
+        <div class="form-group col-xs-12 col-lg-3 col-md-6 form-group required">
+            <div class=" text-right">
+                <label class="forms-label form-check-label">@localizer["marriage status"]</label>
+                <div class="form-check form-check-inline">
+                    <input @(Model?.MarriageStatus == MaritalStatus.Single ? "checked" : "") class="form-check-input" type="radio" name="MarriageStatus" asp-for="MarriageStatus" value="1" data-required="required" data-val-required="@localizer["Please enter marriage status"] >
+                    <label class="form-check-label m-2" tabindex="1">@localizer["single"]</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input @(Model?.MarriageStatus == MaritalStatus.Married ? "checked" : "") class="form-check-input" type="radio" name="MarriageStatus" asp-for="MarriageStatus" value="2" data-required="required" data-val-required="@localizer["Please enter marriage status"] >
+                    <label class="form-check-label m-2" tabindex="2">@localizer["married"]</label>
+                </div>
+            </div>
+            <span asp-validation-for="MarriageStatus" class="text-danger"></span>
+        </div>
+    </div>
+    <fieldset class="border p-2 m-2 mriedPersonalInfo">
+        <h6 class="bg-info  p-2 rounded text-light text-center"> @localizer["partner personal info"]</h6>
+        <partial name="_MariedPersonalInfo" model="Model" />
+    </fieldset>
+    <fieldset class="border p-2 m-2 militaryArea">
+        <h6 class="bg-info  p-2 rounded text-light pr-3 text-center">
+            @localizer["military service"]
+        </h6>
+        <partial name="_MilitaryService" model="Model" />
+    </fieldset>
+    <fieldset class="border p-2 m-2">
+        <h6 class="bg-info  p-2 rounded text-light pr-3 text-center">
+            @localizer["contact info"]
+        </h6>
+        <partial name="_ContactInfo" model="Model" />
+    </fieldset>
+    <fieldset class="border p-2 m-2">
+        <h6 class="bg-info  p-2 rounded text-light pr-3 text-center">
+            @localizer["other"]
+        </h6>
+        <partial name="_Other" model="Model" />
+    </fieldset>
+    <div class="form-row text-center" style="margin-top:20px;">
+        <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+            <button type="submit" class="btn btn-success">@localizer["Save"] </button>
+        </div>
+    </div>
+</form>

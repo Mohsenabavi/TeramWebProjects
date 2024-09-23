@@ -1,0 +1,13 @@
+﻿@model ComponentInformation
+@{ 
+    try
+    {
+        @await Component.InvokeAsync(Model.ComponentName, Model.Arguments);
+    }
+    catch (Exception ex)
+    {
+        <div>@ex.Message</div>
+        <h4>module not found...</h4>
+    }
+
+}

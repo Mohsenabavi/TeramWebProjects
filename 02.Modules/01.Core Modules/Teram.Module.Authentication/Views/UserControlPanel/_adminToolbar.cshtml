@@ -1,0 +1,48 @@
+﻿<a href="#" class="btn btn-xs btn-success importExcel" data-bs-toggle="modal" data-bs-target="#importExcelForm">
+    <i class="fas fa-file-excel"></i>
+</a>
+
+
+<div class="modal fade" id="importExcelForm" tabindex="-1" role="dialog" aria-labelledby="importExcelTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="importExcelTitle">ورود اطلاعات از طریق اکسل</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form asp-action="ImportFromExcel" method="post" enctype="multipart/form-data" data-ajax="true" data-ajax-method="post" data-ajax-success="onSuccess">
+                <div class="modal-body">
+                    <div class="file-input">
+                        <label for="fileuploader" class="forms-label">ارسال فایل</label>
+                        <input class="fileuploader" id="fileuploader"
+                               name="Users"
+                               type="file" data-language="fa" 
+                               data-theme="fa"
+                               data-show-caption="false"
+                               data-show-upload="false"
+                               data-browse-label="انتخاب فایل" data-remove-label="حذف"
+                               data-show-remove="true" data-multiple="true"
+                               data-upload-async="false"
+                               data-maxfile-size="925600"
+                               data-maxfile-previewsize="925600" data-rtl="true"
+                               data-initialpreview-downloadurl="true"
+                               data-enable-resumable-upload="false"
+                               data-drop-zone-enabled="true"
+                               data-initial-preview-as-data="true"
+                               data-overwrite-initial="false"
+                               data-prefer-Iconic-preview="true"
+                               data-purify-html="true"
+                               data-autoupload="false"
+                               data-allowed-file-extensions='["xlsx"]'>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">ورود اطلاعات</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

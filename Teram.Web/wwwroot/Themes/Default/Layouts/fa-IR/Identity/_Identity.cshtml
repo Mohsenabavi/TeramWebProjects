@@ -1,0 +1,38 @@
+﻿@using Microsoft.AspNetCore.Hosting
+@using Microsoft.AspNetCore.Mvc.ViewEngines
+@using Teram.Web.Core
+@inject IWebHostEnvironment Environment
+@inject ICompositeViewEngine Engine
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/lib/notiflix/notiflix-3.2.4.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/fontawesome/css/all.min.css" asp-append-version="true">
+    <link href="~/css/fontiran.css" rel="stylesheet" />
+    <link href="~/lib/BoxIcons/css/boxicons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/identity.css" />
+</head>
+<body>
+    <div class="mainContainer registerContainer">
+        <div class="container">
+            <main role="main" class="pb-3">
+                <div class="row">
+                    <div class="col-xs-6 col-md-12 col-lg-12 pr-5">
+                        @RenderBody()
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/notiflix/notiflix-3.2.4.min.js"></script>
+    <script src="~/js/teram.js" asp-append-version="true"></script>
+    <script src="~/js/identity.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

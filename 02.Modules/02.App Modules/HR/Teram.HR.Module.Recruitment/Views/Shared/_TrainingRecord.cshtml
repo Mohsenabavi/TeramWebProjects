@@ -1,0 +1,53 @@
+﻿@using Teram.HR.Module.Recruitment.Models.WorkWithUs;
+@model TrainingRecordModel
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.WorkWithUsController> localizer
+
+@{
+    int index = ViewBag.index == null ? 0 : ViewBag.index;
+    List<TrainingRecordModel> TrainingRecordModels = new List<TrainingRecordModel>();
+    for (int i = 0; i <= index; i++)
+    {
+        TrainingRecordModels.Add(new TrainingRecordModel());
+    }
+}
+
+<div class="education-background-row">
+    <i class="fas fa-times-circle text-danger removeInfo" id="removeTrainingRecord"></i>
+    <div class="row">
+        <select-box style="justify-content: flex-end;" reverse="true" asp-for="EducationGrade" name="TrainingRecords[@index].EducationGrade"
+                    not-selected-option-title="@localizer["select item"]" title="@localizer["education grade"]"
+                    validation-required-message="@localizer["select item"]"
+                    class="mb-2 col-12 col-md-6 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2 provinceSelector" value="Html.GetEnumSelectList<EducationGrade>().ToList()">
+        </select-box>       
+        <text-box asp-for="CollegeName" is-required="true" name="TrainingRecords[@index].CollegeName" reverse="true" validation-type="Persian" title="@localizer["collage name"]" validation-required-message="@localizer["Please enter collage name"]" div-class="col-xs-12 col-md-6 col-lg-2  d-flex flex-column-reverse align-items-start" />
+        <text-box asp-for="Field" is-required="true" name="TrainingRecords[@index].Field" reverse="true" validation-type="Persian" title="@localizer["field"]" validation-required-message="@localizer["Please enter field"]" div-class="col-xs-12 col-md-6 col-lg-2  d-flex flex-column-reverse align-items-start" />
+        <text-box asp-for="Average" is-required="true" name="TrainingRecords[@index].Average" is-required="true" reverse="true" validation-type="Decimal" title="@localizer["average"]" validation-required-message="@localizer["Please enter average"]" div-class="col-xs-12 col-md-6 col-lg-1  d-flex flex-column-reverse align-items-start" />
+        <div class="form-group col-xs-12 col-md-6 col-lg-2 ">
+            <label class="forms-label mb-0">@localizer["start date"] </label>
+            <div class="input-group mt-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text cursor-pointer"><i class="fa fa-calendar"></i></span>
+                </div>
+                <input type="text" asp-for="StartDate" class="form-control pDatePicker startDateTraining" name="TrainingRecords[@index].PersianStartDate" autocomplete="off" />
+                <input id="StartDateTraining-@index" type="hidden" name="TrainingRecords[@index].StartDate">
+            </div>       
+        </div>
+        <div class="form-group col-xs-12 col-md-6 col-lg-2">
+            <label class="forms-label mb-0">@localizer["end date"] </label>
+            <div class="input-group mt-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text cursor-pointer"><i class="fa fa-calendar"></i></span>
+                </div>
+                <input type="text" asp-for="EndDate" class="form-control pDatePicker endDateTraining" name="TrainingRecords[@index].PersianEndDate" autocomplete="off" />
+                <input id="EndDateTraining-@index" type="hidden" name="TrainingRecords[@index].EndDate">
+            </div>
+        </div>
+    </div>
+    <hr />
+</div>
+
+
+
+
+
+

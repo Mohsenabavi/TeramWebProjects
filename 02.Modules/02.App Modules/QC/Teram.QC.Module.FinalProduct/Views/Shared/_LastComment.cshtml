@@ -1,0 +1,48 @@
+﻿@model FinalProductNoncomplianceModel
+@inject IStringLocalizer<Teram.QC.Module.FinalProduct.Controllers.EditFinalProductNoncomplianceController> localizer
+
+<div class="card">
+    <div class="card-header bg-info" style="font-weight:bold">
+        @localizer["LastComment"]
+    </div>
+    <div class="card-body bg-light">
+        @if (Model.FinalProductNonComplianceCartableItems != null && Model.FinalProductNonComplianceCartableItems.Count>0)
+        {
+            var lastRefferal = Model.FinalProductNonComplianceCartableItems.OrderByDescending(x => x.InputDate).FirstOrDefault();
+            if (lastRefferal != null)
+            {
+                <div class='row'>
+                    <div class="form-group col-xs-12 col-lg-4 col-md-2 form-group">
+                        <label class="forms-label mb-0">@localizer["SourceUserName"] </label>
+                        <input value="@lastRefferal.SourceUserName" readonly type="text" class=" form-control" />
+                    </div>
+                    <div class="form-group col-xs-12 col-lg-4 col-md-2 form-group">
+                        <label class="forms-label mb-0">@localizer["DestinationUserName"] </label>
+                        <input value="@lastRefferal.DestinationUserName" readonly type="text" class=" form-control" />
+                    </div>
+                    <div class="form-group col-xs-12 col-lg-4 col-md-2 form-group">
+                        <label class="forms-label mb-0">@localizer["PersianInputDate"] </label>
+                        <input value="@lastRefferal.InputDatePersian" readonly type="text" class=" form-control" />
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class="form-group col-xs-12 col-lg-12 col-md-6 form-group">
+                        <label class="forms-label mb-0">@localizer["Comments"] </label>
+                        <input value="@lastRefferal.Comments" readonly type="text" class="form-control text-bold" style="color:#8a0c0c" />
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div id="formInfo">
+                <div class="alert alert-info alert-message-primary" role="alert">
+                    <h3>ارجاعاتی برای  این  فرم یافت نشد</h3>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+

@@ -1,0 +1,258 @@
+﻿@using Teram.HR.Module.FileUploader.Models
+@model FinalProductNoncomplianceModel
+@inject IStringLocalizer<Teram.QC.Module.FinalProduct.Controllers.EditFinalProductNoncomplianceController> localizer
+
+<div class="bootboxParent">
+    <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">@localizer["InspectionItemDetails"]</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">@localizer["References"]</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="card">
+                <div class="card-header bg-info" style="font-weight:bold">
+                    @localizer["NonComplianeSummary"] <small class="searchStatus"></small>
+                </div>
+                <div class="card-body bg-light">
+
+                    <div class="row">
+                        <text-box reverse="true" title="@localizer["FinalProductNoncomplianceNumber"]" asp-for="@Model.FinalProductNoncomplianceNumber" validation-type=Number is-readonly="true"
+                                  div-class="col-md-6 col-lg-3 mb-3 d-flex flex-column-reverse align-items-start" />
+                        <text-box reverse="true" title="@localizer["OrderNo"]" asp-for="@Model.OrderNo" validation-type=Number is-readonly="true"
+                                  div-class="col-md-6 col-lg-3 mb-3 d-flex flex-column-reverse align-items-start" />
+                        <text-box reverse="true" title="@localizer["ProductName"]" asp-for="@Model.ProductName" validation-type=Number is-readonly="true"
+                                  div-class="col-md-6 col-lg-6 mb-3 d-flex flex-column-reverse align-items-start" />
+                    </div>
+                    <div class="row">
+                        <text-box reverse="true" title="@localizer["ControlPlanDefectTitle"]" asp-for="@Model.ControlPlanDefectTitle" validation-type=Number is-readonly="true"
+                                  div-class="col-md-12 col-lg-12 mb-3 d-flex flex-column-reverse align-items-start" />
+                    </div>
+                    <div class="row">
+                        <text-box reverse="true" title="@localizer["TracingCodes"]" asp-for="@Model.TracingCodes" is-readonly="true"
+                                  div-class="col-md-6 col-lg-12 mb-3 d-flex flex-column-reverse align-items-start" />
+                    </div>
+                    <div class="row">
+                        <text-box reverse="true" title="@localizer["TotalCount"]" asp-for="@Model.TotalCount" validation-type=Number is-readonly="true"
+                                  div-class="col-md-6 col-lg-3 mb-3 d-flex flex-column-reverse align-items-start" />
+                        <text-box reverse="true" title="@localizer["PalletCount"]" asp-for="@Model.PalletCount" validation-type=Number is-readonly="true"
+                                  div-class="col-md-6 col-lg-3 mb-3 d-flex flex-column-reverse align-items-start" />
+                        <text-box reverse="true" title="@localizer["ReturnedCount"]" asp-for="@Model.ReturnedCount" validation-type=Number is-readonly="true"
+                                  div-class="col-md-6 col-lg-3 mb-3 d-flex flex-column-reverse align-items-start" />
+                        <text-box reverse="true" title="@localizer["ReturnedPalletsCount"]" asp-for="@Model.ReturnedPalletsCount" validation-type=Number is-readonly="true"
+                                  div-class="col-md-6 col-lg-3 mb-3 d-flex flex-column-reverse align-items-start" />
+                    </div>
+                    <div class="row">
+                        <text-box reverse="true" title="@localizer["OrderNonCompliancePercent"]" asp-for="@Model.OrderNonCompliancePercent" validation-type=Number is-readonly="true"
+                                  div-class="col-md-6 col-lg-6 mb-3 d-flex flex-column-reverse align-items-start" />
+                        <text-box reverse="true" title="@localizer["ReturnedNonCompliancePercent"]" asp-for="@Model.ReturnedNonCompliancePercent" validation-type=Number is-readonly="true"
+                                  div-class="col-md-6 col-lg-6 mb-3 d-flex flex-column-reverse align-items-start" />
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header bg-info" style="font-weight:bold">
+                    @localizer["Attachments"] <small class="searchStatus"></small>
+                </div>
+                <div class="card-body bg-light">
+                    <div class="form-row">
+                        @if (Model.FinalProductNoncomplianceFiles != null && Model.FinalProductNoncomplianceFiles.Count > 0)
+                        {
+                            @foreach (var item in Model.FinalProductNoncomplianceFiles)
+                            {
+                                <div class="col-12 col-xs-12 col-md-6 col-lg-3 p-2" style="border:1px solid #aaa">
+                                    <div class='d-flex flex-column aligh-items-center justify-content-center text-center' style="position:relative;">
+                                        <a href="@item.ImageSrc" target="_blank" style="overflow:hidden">
+
+                                            @if (@item.FileExtension.ToString().ToLower() == "pdf")
+                                            {
+                                                <img src="/icons/pdfIcon.png" style="height:150px; object-fit:cover">
+                                            }
+                                            else
+                                            {
+                                                <img src="@item.ImageSrc" style="height:150px; object-fit:cover">
+                                            }
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.SalesUnitCartableItems!=null && Model.SalesUnitCartableItems.Any())
+            {
+                <partial name="_SalesUnitComments" model="@Model.SalesUnitCartableItems" />
+            }
+            @if (Model.ReferralStatus == ReferralStatus.ReferredToProductionManager)
+            {
+                <div class="card">
+                    <div class="card-header bg-info" style="font-weight:bold">
+                        @localizer["Information"] <small class="searchStatus"></small>
+                    </div>
+                    <div class="card-body bg-light">
+                        <partial name="_NoncomplianceDetailSampleSummaryReadOnly" model="@Model.NoncomplianceDetailSampleSummary" />
+                    </div>
+                </div>
+            }
+
+            @if (Model.ReferralStatus == ReferralStatus.ReferredToReviewers && Model.FormStatus == FormStatus.RequestForReviewByOthers)
+            {
+                <div class="card">
+                    <div class="card-header bg-info" style="font-weight:bold">
+                        @localizer["Information"] <small class="searchStatus"></small>
+                    </div>
+                    <div class="card-body bg-light">
+                        <partial name="_NoncomplianceDetailSampleSummaryReadOnly" model="@Model.NoncomplianceDetailSampleSummary" />
+                    </div>
+                </div>
+            }
+
+            <partial name="_LastComment" model="@Model" />
+
+            <div class="card">
+                <div class="card-header bg-info" style="font-weight:bold">
+                    @localizer["Actions"] <small class="searchStatus"></small>
+                </div>
+                <div class="card-body bg-light">
+                    <div class="formInfo">
+                        <input type="hidden" id="ReferralStatus" value="@Model.ReferralStatus" />
+                        <input type="hidden" id="FormStatus" value="@Model.FormStatus" />
+                        <input type="hidden" id="FinalProductNoncomplianceId" value="@Model.FinalProductNoncomplianceId" />
+
+                        @if (Model.ReferralStatus == ReferralStatus.ReferredToQCManager && (Model.FormStatus == FormStatus.InitialRegistration) || (Model.FormStatus == FormStatus.ModifiedByQCSupervisor) || (Model.FormStatus==FormStatus.SalesUnitOpinion))
+                        {
+                            <div class="row">
+                                <select-box style="justify-content: flex-end;" reverse="true" id="ApproveStatus" name="ApproveStatus"
+                                            not-selected-option-title="-- وضعیت تایید را انتخاب کنید --" title="وضعیت تایید" value="Html.GetEnumSelectList<ApproveStatus>().Where(x=>x.Value!=((int)ApproveStatus.NotRegistered).ToString()).ToList()"
+                                            class="mb-2 col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2">
+                                </select-box>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="row hideArea d-none">
+                                <text-box reverse="true" title="@localizer["Comments"]" id="Comments" validation-type=None
+                                          class="mb-2 col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="row NeedToAdvisoryOpinionSection d-none">
+                                <section class="w-100 col-12 col-md-12 col-lg-6">
+                                    <select-box style="justify-content: flex-end;" is-select2="false" reverse="true" id="NeedToAdvisoryOpinion" name="NeedToAdvisoryOpinion"
+                                                not-selected-option-title="-- انتخاب کنید --" title="نیاز به نظر مشورتی" value="Html.GetEnumSelectList<YesNoStatus>().ToList()"
+                                                class="NeedToAdvisoryOpinion mb-2  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2">
+                                    </select-box>
+                                </section>
+                                <section class="d-none w-100 needToAdvisoryOpinionRefferralListSection col-12 col-md-12 col-lg-6">
+                                    <select-box style="justify-content: flex-end;" is-select2="false" reverse="true" id="NeedToAdvisoryOpinionRefferralList" name="NeedToAdvisoryOpinionRefferralList"
+                                                not-selected-option-title="-- انتخاب کنید --" title="ارجاع به نفر انتخابی"
+                                                class="NeedToAdvisoryOpinionRefferralList mb-2 col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2">
+                                    </select-box>
+                                </section>
+                                <section class="w-100 col-12 col-md-12 col-lg-12">
+                                    <div class="row QcManagerComments d-none">
+                                        <text-box reverse="true" title="@localizer["Comment"]" id="QcManagerComments" validation-type=Number is-readonly="false"
+                                                  div-class="col-md-12 col-lg-12 mb-3 d-flex flex-column-reverse align-items-start" />
+                                    </div>
+                                </section>
+                            </div>
+
+                            <div class="dynamicContent d-none">
+                                @if (Model.ReferralStatus == ReferralStatus.ReferredToQCManager)
+                                {
+                                    <partial name="_NoncomplianceDetailSampleSummary" model="@Model.NoncomplianceDetailSampleSummary" />
+                                }
+                            </div>
+
+                            <div class="form-row ">
+                                <div class="form-group col-xs-12 col-md-12 col-lg-12" style="text-align:center;">
+                                    <button type="button" id="btnRefferal" class="btn btn-info">@localizer["Submit"] </button>
+                                </div>
+                            </div>
+                        }
+                        @if ((Model.FormStatus == FormStatus.DeterminingReason) || (Model.FormStatus == FormStatus.ProcessCompleted) && ((Model.ReferralStatus == ReferralStatus.ReferredToQCManager) || (Model.ReferralStatus == ReferralStatus.ProcessCompleted)))
+                        {
+                            <partial name="_NoncomplianceDetailSampleSummaryReadOnly" model="@Model.NoncomplianceDetailSampleSummary" />
+
+                            if (!ViewBag.IsOperator)
+
+                            {
+                                <partial name="_Causation" model="@Model.Causation" />
+                                <partial name="_NoncomplianceDetailSampleSummaryAfterCausation" model="@Model.NoncomplianceDetailSampleSummary" />
+                            }                           
+                        }
+
+                        @if (Model.ReferralStatus == ReferralStatus.ReferredToProductionManager || (Model.ReferralStatus==ReferralStatus.ReferredToOthersForCausation))
+                        {
+                            <partial name="_Causation" model="@Model.Causation" />
+                        }
+
+                        @if (Model.ReferralStatus == ReferralStatus.ReferredToQCSupervisor && Model.FormStatus == FormStatus.QCManagerModifyOrder)
+                        {
+                            <partial name="_NoncomplianceDetailSampleSummaryEditDefect" model="@Model" />
+                        }
+
+                        @if (Model.ReferralStatus == ReferralStatus.ReferredToCollector)
+                        {
+                            <partial name="_NoncomplianceDetailSampleSummaryReadOnlyForCollector" model="@Model.NoncomplianceDetailSampleSummary" />
+                            <partial name="_NoncomplianceDetailSampleSummaryCollectorInfo" model="@Model.FinalProductNoncomplianceId" />
+                        }
+
+                        @if (Model.ReferralStatus == ReferralStatus.ReferredToISeparationUnit && Model.FormStatus == FormStatus.QCManagerApproved)
+                        {
+                            <partial name="_NoncomplianceDetailSampleSummarySeparation" model="@Model.NoncomplianceDetailSampleSummary" />
+                        }
+
+                        @if (Model.ReferralStatus == ReferralStatus.ReferredToISeparationUnit && (Model.FormStatus == FormStatus.CEOFirstOpinion || Model.FormStatus==FormStatus.CEOLastOpinion))
+                        {
+                            <partial name="_NoncomplianceDetailSampleSummarySeparationAfterCEOFirstOpinion" model="@Model.NoncomplianceDetailSampleSummary" />
+                        }
+
+                        @if (Model.ReferralStatus == ReferralStatus.ReferredToCEO && Model.FormStatus == FormStatus.QCManagerApproved)
+                        {
+                            <partial name="_NoncomplianceDetailSampleSummaryCEO" model="@Model.NoncomplianceDetailSampleSummary" />
+                        }
+
+                        @if (Model.ReferralStatus == ReferralStatus.ReferredToCEO && Model.FormStatus == FormStatus.Seperation)
+                        {
+                            <partial name="_NoncomplianceDetailSampleSummaryCEOAfterSeparation" model="@Model.NoncomplianceDetailSampleSummary" />
+                        }
+
+                        @if (Model.ReferralStatus == ReferralStatus.ReferredToQCManager && (Model.FormStatus == FormStatus.CEOLastOpinion || Model.FormStatus == FormStatus.CEOFirstOpinion))
+                        {
+                            <partial name="_NoncomplianceDetailSampleSummaryAfterCeoOpinion" model="@Model.NoncomplianceDetailSampleSummary" />
+                        }
+
+                        @if (Model.ReferralStatus == ReferralStatus.ReferredToCEO && Model.FormStatus == FormStatus.RequestForReviewByQCManager && (Model.HasFinalResult==false || Model.HasFinalResult==null))
+                        {
+                            <partial name="_NoncomplianceDetailSampleSummaryCEOFirstRevise" model="@Model.NoncomplianceDetailSampleSummary" />
+                        }
+
+                        @if (Model.ReferralStatus == ReferralStatus.ReferredToCEO && Model.FormStatus == FormStatus.RequestForReviewByQCManager && Model.HasFinalResult==true)
+                        {
+                            <partial name="_NoncomplianceDetailSampleSummaryCEOSecondRevise" model="@Model.NoncomplianceDetailSampleSummary" />
+                        }
+
+                        @if (Model.ReferralStatus == ReferralStatus.ReferredToReviewers && Model.FormStatus == FormStatus.RequestForReviewByOthers)
+                        {
+                            <partial name="_NoncomplianceDetailSampleSummaryReviewer" model="@Model.FinalProductNoncomplianceId" />
+                        }
+
+                        @if (Model.ReferralStatus == ReferralStatus.ReferredToSalesUnit)
+                        {
+                            <partial name="_NoncomplianceDetailSampleSummarySalesUnit" model="@Model.FinalProductNoncomplianceId" />
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <partial name="_RefferalHistory" model="@Model" />
+        </div>
+    </div>
+</div>

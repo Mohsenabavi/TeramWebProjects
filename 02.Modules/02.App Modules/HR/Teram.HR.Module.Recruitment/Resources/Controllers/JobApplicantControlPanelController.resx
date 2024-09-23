@@ -1,0 +1,426 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="-announcement of NoBadBackground Step" xml:space="preserve">
+    <value>اعلام دریافت گواهی عدم سوء پیشینه توسط پرسنل</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>آدرس</value>
+  </data>
+  <data name="announcement of NoAddiction Step" xml:space="preserve">
+    <value>اعلام انجام آزمایش عدم سوء مصرف مواد مخدر</value>
+  </data>
+  <data name="announcement of NoBadBackground Step" xml:space="preserve">
+    <value>اعلام دریافت گواهی عدم سوء پیشینه</value>
+  </data>
+  <data name="Approve Files Step" xml:space="preserve">
+    <value>تایید مدارک آپلود شده</value>
+  </data>
+  <data name="Approve Is not Permitted" xml:space="preserve">
+    <value>به دلایل زیر تایید پرونده امکان پذیر نیست !</value>
+  </data>
+  <data name="Approved Information Is Not Permitted For Delete" xml:space="preserve">
+    <value>حذف اطلاعات تایید شده مجاز نیست</value>
+  </data>
+  <data name="Approved Information Iss Not Permitted For Edit" xml:space="preserve">
+    <value>ویرایش اطلاعات تایید شده مجاز نیست</value>
+  </data>
+  <data name="Background Job Approve Step" xml:space="preserve">
+    <value>تایید پیشینه شغلی و تحقیقات </value>
+  </data>
+  <data name="Background Job Step" xml:space="preserve">
+    <value>تحقیقات و پیشینه شغلی</value>
+  </data>
+  <data name="Background Job Step Approved" xml:space="preserve">
+    <value>فرم پیشینه شغلی تایید شده است</value>
+  </data>
+  <data name="Background Job Step Not Approved" xml:space="preserve">
+    <value>فرم پیشینه شغلی تایید نشده است</value>
+  </data>
+  <data name="Background Job Step Not Done" xml:space="preserve">
+    <value>فرم پیشینه شغلی تکمیل نشده است</value>
+  </data>
+  <data name="backGroundJob Form Is Not Approved" xml:space="preserve">
+    <value>فرم پیشینه شغلی تایید نشده است </value>
+  </data>
+  <data name="backGroundJob Form Is Not Filled" xml:space="preserve">
+    <value>فرم پیشینه شغلی تکمیل نشده است</value>
+  </data>
+  <data name="Base Information Approved Successfully" xml:space="preserve">
+    <value>اطلاعات پایه پرسنل با موفقیت تایید شد</value>
+  </data>
+  <data name="Base Information First Approved Successfully" xml:space="preserve">
+    <value> تایید اولیه با موفقیت انجام شد</value>
+  </data>
+  <data name="Base Information Not Found" xml:space="preserve">
+    <value>اطلاعات پایه پرسنل ثبت نشده است</value>
+  </data>
+  <data name="Base Information Step" xml:space="preserve">
+    <value>تکمیل اطلاعات پایه توسط پرسنل </value>
+  </data>
+  <data name="BaseInformation Not Saved" xml:space="preserve">
+    <value>اطلاعات پایه توسط پرسنل هنوز وارد نشده است</value>
+  </data>
+  <data name="BaseInformation Saved" xml:space="preserve">
+    <value>اطلاعات پایه توسط پرسنل ثبت شده است </value>
+  </data>
+  <data name="DisApprovedSuccessfully" xml:space="preserve">
+    <value>عدم تایید با موفقیت ثبت و ابلاغ شد</value>
+  </data>
+  <data name="DocumentLetter" xml:space="preserve">
+    <value>فایل راهنما</value>
+  </data>
+  <data name="Documents Approve Step" xml:space="preserve">
+    <value>مرحله تایید مدارک</value>
+  </data>
+  <data name="Documents Approved Successfully" xml:space="preserve">
+    <value>تایید مدارک با موفقیت انجام شد</value>
+  </data>
+  <data name="Duplicate Personnel Code" xml:space="preserve">
+    <value>این شماره پرسنلی تکراری است و قبلا تخصیص داده شده است</value>
+  </data>
+  <data name="Error In Approve" xml:space="preserve">
+    <value>خطای پیش بینی نشده ای رخ داد</value>
+  </data>
+  <data name="Error In Connecting To SMS Panel" xml:space="preserve">
+    <value>خطا در اتصال به پنل پیامک</value>
+  </data>
+  <data name="Error In Final Approve" xml:space="preserve">
+    <value>خطا در تایید نهایی</value>
+  </data>
+  <data name="Error In Generate Files" xml:space="preserve">
+    <value>خطا در تولید معرفی نامه ها رخ داده است</value>
+  </data>
+  <data name="Error In Update Status" xml:space="preserve">
+    <value>خطا در به روز رسانی وضعیت تایید رخ داد</value>
+  </data>
+  <data name="ExcelPrint" xml:space="preserve">
+    <value>خروجی اکسل</value>
+  </data>
+  <data name="Expreminet Dead Line Not Found" xml:space="preserve">
+    <value>مهلت انجام آزمایشات را وارد نمایید</value>
+  </data>
+  <data name="ExpreminetDeadline" xml:space="preserve">
+    <value>مهلت انجام آزمایشات</value>
+  </data>
+  <data name="Files Approved" xml:space="preserve">
+    <value>مدارک آپلود شده تایید شده است</value>
+  </data>
+  <data name="FilterData" xml:space="preserve">
+    <value>جستجو</value>
+  </data>
+  <data name="Final Approve Step" xml:space="preserve">
+    <value>مرحله تایید نهایی کارگزینی</value>
+  </data>
+  <data name="First Approve Step" xml:space="preserve">
+    <value>مرحله تایید اولیه</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>نام</value>
+  </data>
+  <data name="Information Has Already Approved" xml:space="preserve">
+    <value>اطلاعات قبلا تایید شده است</value>
+  </data>
+  <data name="Introdction Letters" xml:space="preserve">
+    <value>نامه های معرفی نامه </value>
+  </data>
+  <data name="Introdction Letters Not Found" xml:space="preserve">
+    <value>معرفی نامه ای تا کنون صادر نشده است</value>
+  </data>
+  <data name="Introduction Files Generated Successfully" xml:space="preserve">
+    <value>معرفی نامه ها با موفقیت صادر شد</value>
+  </data>
+  <data name="Introduction Issuance Is Available After background Job Approve" xml:space="preserve">
+    <value>صدور معرفی نامه ها در مرحله تایید پیشینه شغلی امکان پذیر است</value>
+  </data>
+  <data name="Introduction Letters Created Successfully" xml:space="preserve">
+    <value>معرفی نامه ها با موفقیت صادر شد </value>
+  </data>
+  <data name="Introductyion Letters Step" xml:space="preserve">
+    <value>صدور معرفی نامه ها</value>
+  </data>
+  <data name="Introductyion Letters Step Done" xml:space="preserve">
+    <value>معرفی نامه ها صادر شده است</value>
+  </data>
+  <data name="Introductyion Letters Step Not Done" xml:space="preserve">
+    <value>معرفی نامه ها صادر نشده است</value>
+  </data>
+  <data name="Invitation Saved Successfully" xml:space="preserve">
+    <value>تاریخ دعوت به کار با موفقیت ثبت شد</value>
+  </data>
+  <data name="InvitationToWorkDate" xml:space="preserve">
+    <value>تاریخ دعوت به کار</value>
+  </data>
+  <data name="Invite" xml:space="preserve">
+    <value>ثبت تاریخ دعوت به کار</value>
+  </data>
+  <data name="Job Applicant Step" xml:space="preserve">
+    <value>تشکیل پرونده</value>
+  </data>
+  <data name="JobApplicant" xml:space="preserve">
+    <value>لیست متقاضیان استخدام</value>
+  </data>
+  <data name="JobApplicant Not Saved" xml:space="preserve">
+    <value>تشکیل پرونده انجام نشده است</value>
+  </data>
+  <data name="JobApplicant Saved" xml:space="preserve">
+    <value>تشکیل پرونده انجام شده است</value>
+  </data>
+  <data name="JobCategory" xml:space="preserve">
+    <value>دسته بندی شغل</value>
+  </data>
+  <data name="JobPosition" xml:space="preserve">
+    <value>عنوان شغلی</value>
+  </data>
+  <data name="Last Approve Status" xml:space="preserve">
+    <value>آخرین وضعیت تایید پرونده</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>نام خانوادگی</value>
+  </data>
+  <data name="ManageJobApplicants" xml:space="preserve">
+    <value>پرونده الکترونیک کارمندان</value>
+  </data>
+  <data name="MobileNumber" xml:space="preserve">
+    <value>شماره همراه</value>
+  </data>
+  <data name="NationalCode" xml:space="preserve">
+    <value>کد ملی</value>
+  </data>
+  <data name="NeededForBackgroundCheck" xml:space="preserve">
+    <value>نیاز به تایید پیشینه توسط واحد حفاظت فیزیکی</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>جدید</value>
+  </data>
+  <data name="NoAddictionDone announced" xml:space="preserve">
+    <value>اعلام شده است</value>
+  </data>
+  <data name="NoAddictionDone Not announced" xml:space="preserve">
+    <value>اعلام انجام آزمایش عدم سوء مصرف مواد توسط فرد صورت نگرفته است</value>
+  </data>
+  <data name="NoAddictionLetter" xml:space="preserve">
+    <value>نامه معرفی نامه آزمایش عدم سوء مصرف مواد</value>
+  </data>
+  <data name="NoBadBackgroundDone announced" xml:space="preserve">
+    <value>اعلام شده است</value>
+  </data>
+  <data name="NoBadBackgroundDone Not announced" xml:space="preserve">
+    <value>اعلام دریافت گواهی عدم سوء پیشینه توسط فرد صورت نگرفته است</value>
+  </data>
+  <data name="not approved" xml:space="preserve">
+    <value>تایید نشده است</value>
+  </data>
+  <data name="not uploaded" xml:space="preserve">
+    <value>بارگذاری نشده است</value>
+  </data>
+  <data name="Occupational Medicine Approve Step" xml:space="preserve">
+    <value>تاییدیه طب کار توسط واحد ایمنی و بهداشت</value>
+  </data>
+  <data name="Occupational Medicine Has Referral" xml:space="preserve">
+    <value>طب کار دارای ارجاعیه می باشد و هنوز تایید نشده است</value>
+  </data>
+  <data name="Occupational Medicine Result Approved" xml:space="preserve">
+    <value>طب کار توسط واحد ایمنی و بهداشت تایید شده است</value>
+  </data>
+  <data name="Occupational Medicine Result Not Approved" xml:space="preserve">
+    <value>نتیجه طب کار توسط واحد HSE رد شده است </value>
+  </data>
+  <data name="Occupational Medicine Result Not Filled" xml:space="preserve">
+    <value>نتیجه طب کار توسط واحد HSE هنوز وارد نشده است</value>
+  </data>
+  <data name="OccupationalMedicine is Not Done" xml:space="preserve">
+    <value>اقرار به انجام آزمایشات انجام نشده است ، تایید امکان پذیر نیست</value>
+  </data>
+  <data name="OccupationalMedicineDone Not announced" xml:space="preserve">
+    <value>اقرار به انجام آزمایشات طب کار صورت نگرفته است</value>
+  </data>
+  <data name="OccupationalMedicineLetter" xml:space="preserve">
+    <value>دانلود نامه معرفی نامه طب کار</value>
+  </data>
+  <data name="Personnel Alreday Invited" xml:space="preserve">
+    <value>پرسنل قبلا دعوت به کار شده است </value>
+  </data>
+  <data name="PersonnelCode" xml:space="preserve">
+    <value>کد پرسنلی</value>
+  </data>
+  <data name="PersonnelImageNotFound" xml:space="preserve">
+    <value>عکس پرسنلی بارگذاری نشده است</value>
+  </data>
+  <data name="Please enter address" xml:space="preserve">
+    <value>آدرس را وارد نمایید</value>
+  </data>
+  <data name="Please enter FirstName" xml:space="preserve">
+    <value>نام را وارد نمایید</value>
+  </data>
+  <data name="Please enter LastName" xml:space="preserve">
+    <value>نام خانوادگی را وارد نمایید</value>
+  </data>
+  <data name="Please enter MobileNumber" xml:space="preserve">
+    <value>شماره همراه را وارد نمایید</value>
+  </data>
+  <data name="Please enter NationalCode" xml:space="preserve">
+    <value>کد کلی را وارد نمایید</value>
+  </data>
+  <data name="Please enter PromissoryNoteAmount" xml:space="preserve">
+    <value>مبلغ سفته را وارد نمایید</value>
+  </data>
+  <data name="PromissoryNoteAmount" xml:space="preserve">
+    <value>مبلغ سفته</value>
+  </data>
+  <data name="Remove Filter" xml:space="preserve">
+    <value>حذف فیلترها</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>ذخیره</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>جستجو</value>
+  </data>
+  <data name="select JobCategory" xml:space="preserve">
+    <value>یک دسته بندی انتخاب کنید</value>
+  </data>
+  <data name="Some Files Not Approved" xml:space="preserve">
+    <value>مدارک آپلود شده به طور کامل تایید نشده است</value>
+  </data>
+  <data name="This National Code Already Exist" xml:space="preserve">
+    <value>پرونده ی این کد ملی قبلا ثبت شده است  به دلیل تکراری بودن امکان ثبت نمی باشد</value>
+  </data>
+  <data name="Upload Files Step" xml:space="preserve">
+    <value>آپلود مدارک</value>
+  </data>
+  <data name="Upload Files Step Done" xml:space="preserve">
+    <value>آپلود مدارک توسط پرسنل انجام شده است</value>
+  </data>
+  <data name="Upload Files Step not Done" xml:space="preserve">
+    <value>آپلود مدارک به صورت کامل انجام نشده است</value>
+  </data>
+  <data name="ViewAll" xml:space="preserve">
+    <value>نمایش همه</value>
+  </data>
+  <data name="ViewInprogress" xml:space="preserve">
+    <value>نمایش پرونده های در گردش</value>
+  </data>
+  <data name="You Must Assign Personnel Code Befor Final Approve" xml:space="preserve">
+    <value>قبل از تایید نهایی شماره پرسنلی فرد را وارد نمایید</value>
+  </data>
+  <data name="You Must Save Invitation Befor Final Approve" xml:space="preserve">
+    <value>در این مرحله می بایست دعوت به کار پرسنل ثبت شود ، پس از ارسال پیامک دعوت به کار امکان تایید نهایی وجود دارد</value>
+  </data>
+</root>

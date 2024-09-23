@@ -1,0 +1,52 @@
+﻿@model FlowInstructionModel
+@inject IStringLocalizer<Teram.QC.Module.FinalProduct.Controllers.FlowInstructionController> localizer
+
+<form id="frmIncomingGoods" asp-action="Save" asp-controller="FlowInstruction" method="post" data-ajax="true" data-ajax-method="post" enctype="multipart/form-data" data-ajax-success="onSuccess">
+    <partial name="_FlowInstruction" model="@Model" />
+    <fieldset class="m-1 p-1">
+        <div class="content flowInstructionConditions">
+            @if (Model?.FlowInstructionConditions == null || Model?.FlowInstructionConditions.Count == 0)
+            {
+                <partial name="_FlowInstructionCondition" model="new List<FlowInstructionConditionModel>()" view-data="ViewData" />
+            }
+            else
+            {
+                <partial name="_FlowInstructionCondition" model="Model?.FlowInstructionConditions" view-data="ViewData" />
+            }
+        </div>
+        <input type="button" class="btn btn-secondary btnCreateRow d-none" value="@localizer["AddDefect"]" />
+    </fieldset>
+    <div class="form-row">
+        <div class="form-group col-xs-12 col-md-12 col-lg-12" style="text-align:center;">
+            <button type="submit" class="btn btn-info">@localizer["Submit"] </button>
+            <button class="btn btn-secondary SpecialresetForm shouldReloadGrid" type="button" id="resetForm">@localizer["New"]</button>
+        </div>
+    </div>
+</form>
+
+<div class="flowInstructionConditionRowContainer form-row flowInstructionConditionRow conditionRow d-none">
+    <div class="flowInstructionConditionSection col-md-1">
+        <div class="text-center actionButtonContainer mt-4">
+            <div class="border-top border-right border-bottom d-inline-block px-1 pt-1 addButton" data-newrow="flowInstructionConditionRow">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+            </div>
+            <div class="border-top border-right border-bottom d-inline-block px-1 pt-1 mt-1 removeButton" data-finalProductInspectionDefectId="0">
+                <i class="fa fa-minus-circle" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-11">
+        <div class="form-row">
+            <select-box reverse="true" not-selected-option-title="-  انتخاب کنید -" name="FlowInstructionConditions[-1].FieldName"
+                        title="@localizer["FieldName"]" class="form-group  required col-md-3 mb-3 d-flex flex-column-reverse align-items-start fieldsSelectList"
+                        select-class="inputBox" value="@ViewData["FieldName"] as List<SelectListItem>"
+                        div-class="col-md-3 mb-3 d-flex flex-column-reverse align-items-start">
+            </select-box>
+            <select-box reverse="true" not-selected-option-title="-  انتخاب کنید -" name="FlowInstructionConditions[-1].FieldValue"
+                        title="@localizer["FieldValue"]" class="form-group  required col-md-3 mb-3 d-flex flex-column-reverse align-items-start fieldsSelectList"
+                        select-class="inputBox" value="@ViewData["FieldValue"] as List<SelectListItem>"
+                        div-class="col-md-3 mb-3 d-flex flex-column-reverse align-items-start">
+            </select-box>          
+        </div>
+    </div>
+</div>

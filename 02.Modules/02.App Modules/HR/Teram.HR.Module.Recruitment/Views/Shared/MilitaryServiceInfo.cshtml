@@ -1,0 +1,30 @@
+﻿@model BaseInformationModel
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.WorkWithUsController> localizer
+
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12 text-center background-color-blue color-white border-bottom border-dark">
+            @localizer["military service"]
+        </div>
+    </div>
+    <div class="row infoRow">
+        <div class="col-md-3 col-xs-12 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["military service status"]</span>
+        </div>
+        <div class="col-md-9 col-xs-12 text-center overflow-wrap-break border-right border-left border-bottom border-dark infoItem">
+            <span>@Model.MilitaryServiceStatusTitle</span>
+        </div>       
+        <div class="col-md-3 col-xs-12 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["military service start date"]</span>
+        </div>
+        <div class="col-md-3 col-xs-12 text-center overflow-wrap-break border-right border-bottom border-dark infoItem">
+            <span>@Model.PersianStartDateMilitaryService</span>
+        </div>
+        <div class="col-md-3 col-xs-12 text-center border-right border-bottom border-dark report-label infoItem">
+            <span>@localizer["military service end date"]</span>
+        </div>
+        <div class="col-md-3 col-xs-12 text-center overflow-wrap-break border-left border-right border-bottom border-dark infoItem">
+            <span>@Model.PersianEndDateMilitaryService</span>
+        </div>
+    </div>
+</div>

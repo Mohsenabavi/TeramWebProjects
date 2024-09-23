@@ -1,0 +1,49 @@
+﻿@model List<CorrectiveActionModel>
+@inject IStringLocalizer<Teram.QC.Module.FinalProduct.Controllers.CausationController> localizer
+
+@foreach (var item in Model)
+{
+    <input type="hidden" asp-for="@item.CorrectiveActionId" />
+    <div class="correctiveActionRowContainer form-row  correctiveActionRow">
+        <div class="correctiveActionSection col-md-1">
+            <div class="actionButtonContainer mt-4 mb-4 col-4 col-xs-12 col-md-12 col-lg-4">
+                <div class="border-top border-right border-bottom d-inline-block px-1 pt-1 addButton" data-newrow="correctiveActionRow">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                </div>
+                <div class="border-top border-right border-bottom d-inline-block px-1 pt-1 mt-1 removeButton" data-finalProductInspectionDefectId="0">
+                    <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-11">
+            <div class="form-row">
+                <input type="hidden" asp-for="@item.CorrectiveActionId" name="CorrectiveActions[0].CorrectiveActionId" />
+                <text-box asp-for="@item.Descriiption" is-required="true" name="CorrectiveActions[0].Descriiption" reverse="true" validation-type="None" title="@localizer["Descriiption"]" validation-required-message="@localizer["Please enter Description"]" div-class="col-xs-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+                <select-box name="CorrectiveActions[0].ActionerId" reverse="true" value="@ViewBag.Actioners"
+                            id="CorrectiveActions[0].ActionerId" title="@localizer["Actioner"]" selected-value="@item?.ActionerId" is-required="true"
+                            class="form-group  required col-md-4 mb-3 d-flex flex-column-reverse align-items-start" is-select2="false" select-class="inputBox actioners select2">
+                </select-box>
+                <div class="form-group col-xs-12 col-lg-4 col-md-4 form-group mt-2">
+                    <label class="forms-label mb-0">@localizer["ActionDate"]</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text cursor-pointer"><i class="fa fa-calendar"></i></span>
+                        </div>
+                        <input type="text" asp-for="@item.ActionDatePersian" name="CorrectiveActions[0].ActionDatePersian" class="form-control pDatePicker actionDate" autocomplete="off" required="true" />
+                        <input type="hidden" asp-for="@item.ActionDate" name="CorrectiveActions[0].ActionDate" required="true" />
+                    </div>
+                </div>
+                <select-box name="CorrectiveActions[0].ApproverId" reverse="true" value="@ViewBag.Actioners"
+                            id="CorrectiveActions[0].ApproverId" title="@localizer["Approver"]" selected-value="@item?.ApproverId" is-required="true"
+                            class="form-group  required col-md-4 mb-3 d-flex flex-column-reverse align-items-start" is-select2="false" select-class="inputBox actioners select2">
+                </select-box>
+            </div>
+        </div>
+    </div>
+    <hr />
+}
+
+
+
+
+

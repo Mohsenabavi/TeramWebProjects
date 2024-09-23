@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AcceptanceCriteria" xml:space="preserve">
+    <value>معیار پذیرش</value>
+  </data>
+  <data name="AmountOfDefects" xml:space="preserve">
+    <value>میزان عیوب </value>
+  </data>
+  <data name="AttachmentFile" xml:space="preserve">
+    <value>فایل های ضمیمه</value>
+  </data>
+  <data name="Check IsMatch And IsNot Match Options" xml:space="preserve">
+    <value>منطبق و نامنطبق بودن ردیف ها را مشخص نمایید</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>توضیحات </value>
+  </data>
+  <data name="ControlPlanCategoryTitle" xml:space="preserve">
+    <value>دسته بندی طرح کنترلی</value>
+  </data>
+  <data name="ControlPlanParameter" xml:space="preserve">
+    <value>پارامتر کنترلی</value>
+  </data>
+  <data name="Counterkind" xml:space="preserve">
+    <value>نوع طرف مقابل</value>
+  </data>
+  <data name="CreatedByUserName" xml:space="preserve">
+    <value>ایجاد کننده</value>
+  </data>
+  <data name="data Has Been Saved Successfully" xml:space="preserve">
+    <value>فرم با موفقیت ارجاع داده شد</value>
+  </data>
+  <data name="FilterData" xml:space="preserve">
+    <value>فلیتر کردن اطلاعات</value>
+  </data>
+  <data name="FinalApproveText" xml:space="preserve">
+    <value>آیا کالا تایید است ؟</value>
+  </data>
+  <data name="Form Data is Already Approved" xml:space="preserve">
+    <value>وضعیت نهایی فرم قبلاً ثبت شده است</value>
+  </data>
+  <data name="formData Approved Suucessfully" xml:space="preserve">
+    <value>وضعیت نهایی فرم با موفقیت ثبت شد</value>
+  </data>
+  <data name="GoodsCode" xml:space="preserve">
+    <value>کد محصول</value>
+  </data>
+  <data name="GoodsInfoIsApproved" xml:space="preserve">
+    <value>اطلاعات کالا مورد تایید می باشد</value>
+  </data>
+  <data name="GoodsTitle" xml:space="preserve">
+    <value>عنوان محصول</value>
+  </data>
+  <data name="HasFunctionalTest" xml:space="preserve">
+    <value>نیار به تست کاربردی دارد</value>
+  </data>
+  <data name="HasFunctionalTestText" xml:space="preserve">
+    <value>وضعیت تست کاربردی</value>
+  </data>
+  <data name="IncomingGoodsInspection" xml:space="preserve">
+    <value>کنترل کیفی اقلام ورودی</value>
+  </data>
+  <data name="IncomingGoodsInspectionCartableItems" xml:space="preserve">
+    <value>تاریخچه ارجاعات</value>
+  </data>
+  <data name="IncomingGoodsInspectionFiles" xml:space="preserve">
+    <value>عکس های ضمیمه شده</value>
+  </data>
+  <data name="IncomingGoodsInspectionItems" xml:space="preserve">
+    <value>پارامترهای کنترلی</value>
+  </data>
+  <data name="InspectionItemDetails" xml:space="preserve">
+    <value>جزییات طرح کنترلی</value>
+  </data>
+  <data name="InspectionResult" xml:space="preserve">
+    <value>نتایج عددی</value>
+  </data>
+  <data name="InspectionResultRemarks" xml:space="preserve">
+    <value>توضیحات</value>
+  </data>
+  <data name="InspectionStatus" xml:space="preserve">
+    <value>نتیجه بازرسی</value>
+  </data>
+  <data name="IsApprove" xml:space="preserve">
+    <value>تایید است</value>
+  </data>
+  <data name="IsConsignment" xml:space="preserve">
+    <value>کالا امانی می باشد</value>
+  </data>
+  <data name="IsConsignmentText" xml:space="preserve">
+    <value>وضعیت امانی</value>
+  </data>
+  <data name="IsMatch" xml:space="preserve">
+    <value>منطبق </value>
+  </data>
+  <data name="IsMatchText" xml:space="preserve">
+    <value>وضعیت انطباق</value>
+  </data>
+  <data name="IsNotApprove" xml:space="preserve">
+    <value>تایید نیست</value>
+  </data>
+  <data name="IsNotMatch" xml:space="preserve">
+    <value>نا منطبق</value>
+  </data>
+  <data name="IsSampleGoods" xml:space="preserve">
+    <value>کالا Sample می باشد</value>
+  </data>
+  <data name="IsSampleGoodsText" xml:space="preserve">
+    <value>وضعیت کالای نمونه</value>
+  </data>
+  <data name="LoadData" xml:space="preserve">
+    <value>تایید</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>عنوان محصول</value>
+  </data>
+  <data name="NeedToRefferal" xml:space="preserve">
+    <value>نیاز به ارجاع دارد</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>جدید</value>
+  </data>
+  <data name="PersianCreateDate" xml:space="preserve">
+    <value>تاریخ ایجاد</value>
+  </data>
+  <data name="PersianDocumentDate" xml:space="preserve">
+    <value>تاریخ سند</value>
+  </data>
+  <data name="PersianInputDate" xml:space="preserve">
+    <value>تاریخ ارجاع</value>
+  </data>
+  <data name="PersianTestDate" xml:space="preserve">
+    <value>تاریخ تست</value>
+  </data>
+  <data name="Please Check Final Approve Status" xml:space="preserve">
+    <value>لطفاً وضعیت تایید کالا را انتخاب نمایید</value>
+  </data>
+  <data name="Please enter GoodsCode" xml:space="preserve">
+    <value>کد محصول را وارد نمایید</value>
+  </data>
+  <data name="Please enter QualityInspectionNumber" xml:space="preserve">
+    <value>شماره سند کیفی را وارد نمایید</value>
+  </data>
+  <data name="Please enter Title" xml:space="preserve">
+    <value>طرف مقابل وارد نشده است</value>
+  </data>
+  <data name="Please enter TotalDefectiveCount" xml:space="preserve">
+    <value>میزان معیوب کل را وارد نمایید</value>
+  </data>
+  <data name="ProductionSupervisors" xml:space="preserve">
+    <value>سرپرستان تولید</value>
+  </data>
+  <data name="QualityInspectionNumber" xml:space="preserve">
+    <value>شماره سند کیفی</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>تعداد</value>
+  </data>
+  <data name="QuantityDescription" xml:space="preserve">
+    <value>تعداد نمونه گیری</value>
+  </data>
+  <data name="References" xml:space="preserve">
+    <value>ارجاعات</value>
+  </data>
+  <data name="Referral" xml:space="preserve">
+    <value>ارجاع فرم</value>
+  </data>
+  <data name="ReferredByName" xml:space="preserve">
+    <value>فرستنده</value>
+  </data>
+  <data name="ReferredToName" xml:space="preserve">
+    <value>گیرنده</value>
+  </data>
+  <data name="Refkind" xml:space="preserve">
+    <value>نوع سند مبنا</value>
+  </data>
+  <data name="Remove Filter" xml:space="preserve">
+    <value>حذف فیلتر</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>ذخیره</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>جستجو</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>طرف مقابل</value>
+  </data>
+  <data name="TotalDefectiveCount" xml:space="preserve">
+    <value>میزان معیوب کل</value>
+  </data>
+  <data name="VendorName" xml:space="preserve">
+    <value>تامین کننده</value>
+  </data>
+  <data name="You Are Not Authorized For Referral Form Based On Form Status" xml:space="preserve">
+    <value>با توجه به وضعیت فرم ، شما مجاز به ارجاع فرم نمی باشید</value>
+  </data>
+  <data name="Your data has not been saved" xml:space="preserve">
+    <value>اطلاعات ذخیره نشد</value>
+  </data>
+</root>

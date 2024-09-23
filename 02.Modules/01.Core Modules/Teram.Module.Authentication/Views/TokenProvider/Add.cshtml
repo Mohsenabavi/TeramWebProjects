@@ -1,0 +1,110 @@
+﻿@model TokenModel
+@inject IViewLocalizer localizer
+@inject IStringLocalizer<Teram.Module.Authentication.Controllers.TokenProviderController> tokenProviderControllerLocalizer
+@inject IStringLocalizer<SharedResource> sharedResourceLocalizer
+
+<div id="formInfo">
+    <input id="TokenId" type="hidden" asp-for="TokenId" />
+    <input id="Content" type="hidden" asp-for="Content" />
+    <div class="form-row">
+
+        <div class="col-xs-12 col-lg-4 col-md-4 form-group">
+            <label class="forms-label" asp-for="UserId">@tokenProviderControllerLocalizer["User"]  </label>
+            <select id="UserId" asp-for="UserId" asp-items=ViewBag.Users class="form-control select2" data-val-required="@tokenProviderControllerLocalizer["Select One User"]" name="UserId">
+                <option value="" selected="selected" disabled>@tokenProviderControllerLocalizer["Select One User"]</option>
+            </select>
+            <span asp-validation-for="UserId" class="text-danger"></span>
+        </div>
+        <div class="col-xs-12 col-lg-4 col-md-4 form-group">
+            <label for="Title">@tokenProviderControllerLocalizer["Issued For"]</label>
+            <input type="text" id="IssuedFor" asp-for="IssuedFor" class="form-control" />
+        </div>
+
+        <div class="col-xs-12 col-lg-4 col-md-4 form-group">
+            @{
+                var isEditMode = false;
+                if (Model != null)
+                {
+                    isEditMode = !(Model.TokenId == null || Model.TokenId == Guid.Empty);
+                }
+                <label asp-for="ExpireDatePersian">@tokenProviderControllerLocalizer["Expire Date"]</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text cursor-pointer" id="ExpireDateIcon" disabled="@(isEditMode ? "disabled" : null)">  <i class="fa fa-calendar"></i></span>
+                    </div>
+                    <input type="text" class="form-control pDatePickerr" id="ExpireDatePersian" asp-for="ExpireDatePersian" autocomplete="off" />
+                    @*disabled="@(isEditMode ? "disabled" : null)" )*@
+                    <input type="hidden" id="ExpireDate" name="ExpireDate" asp-for="ExpireDate">
+                </div>
+            }
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-xs-12 col-lg-4 col-md-4 form-group">
+            <label for="Title">@tokenProviderControllerLocalizer["Policy"]</label>
+            <input type="text" id="Policy" asp-for="Policy" class="form-control" />
+        </div>
+        <div class="col-xs-12 col-lg-4 col-md-4 form-group">
+            <label for="Title">@tokenProviderControllerLocalizer["Description"]</label>
+            <input type="text" id="Description" asp-for="Description" class="form-control" />
+        </div>
+        <div class="col-xs-12 col-lg-4 col-md-4 form-group" style="margin-top: 2rem;  padding-right:2rem;">
+            <input type="checkbox" id="IsActive" asp-for="IsActive" class="form-check-input" />
+            <label for="IsActive" class="form-check-label">@tokenProviderControllerLocalizer["Is Active"]</label>
+        </div>
+    </div>
+    @{
+        if (ViewBag.TokenParameters.Count > 0)
+        {
+            <fieldset>
+                <legend>@tokenProviderControllerLocalizer["Claims"]</legend>
+                <div class="container">
+                    @{
+                        var itemCount = 0;
+                        var tokenParamsCount = ViewBag.TokenParameters.Count == 1 ? 1 : 2;
+                    }
+
+                    @while (itemCount < tokenParamsCount)
+                    {
+                        @foreach (var param in ViewBag.TokenParameters)
+                        {
+                            if (itemCount == 0 || itemCount % tokenParamsCount == 0)
+                            {
+                                @:<div class="row" style="background-color:#fcfcfc;">
+                                }
+
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="row" style="border-style: solid;border-color: #ffffff;border-width: thin;">
+                                        <div class="col-xs-12 col-lg-4 col-md-4 form-group" style="margin-top: 2rem; padding-right:2rem;">
+                                            <input type="checkbox" data-class-name="@param.Name" class="form-check-input claim" @(param.Checked ? "Checked='checked'" : "") />
+                                            <label class="form-check-label">@param.Name</label>
+                                        </div>
+                                        <div class="col-xs-12 col-lg-8 col-md-8 form-group">
+                                            <label>@tokenProviderControllerLocalizer["Value"]</label>
+                                            <input id="@param.TokenParameterId" type="text" class="form-control @string.Format("{0}", @param.Name)" value="@param.Value" @(param.Checked ? "" : "disabled") />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                itemCount++;
+
+                                if (itemCount == 0 || itemCount % tokenParamsCount == 0)
+                                {
+                                @:</div>
+                            }
+                        }
+                    }
+                    @{itemCount = 0;
+                    }
+
+                </div>
+            </fieldset>
+        }
+    }
+    <div class="form-row">
+        <div class="form-group col-xs-12 col-md-12 col-lg-12" style="text-align:center;">
+            <button type="submit" class="btn btn-primary">@tokenProviderControllerLocalizer["Save"]</button>
+            <button type="reset" class="btn btn-secondary">@tokenProviderControllerLocalizer["New"] </button>
+        </div>
+    </div>
+</div>

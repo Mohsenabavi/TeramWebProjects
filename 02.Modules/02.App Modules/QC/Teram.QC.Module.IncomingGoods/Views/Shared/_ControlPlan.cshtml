@@ -1,0 +1,69 @@
+﻿@using Teram.QC.Module.IncomingGoods.Enums
+@model List<IncomingGoodsInspectionItemModel>
+
+@inject IStringLocalizer<Teram.QC.Module.IncomingGoods.Controllers.IncomingGoodsInspectionController> localizer
+
+<fieldset class="border w-100 p-4 mt-2 partialSection" style="background-color:#f1f1f1">
+
+    @if (Model != null && Model.Any())
+    {
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <div class="controlPlan-row">
+                <div class="row">
+                    <input type="hidden" value="@Model[i].ControlPlanId" name="IncomingGoodsInspectionItems[@i].ControlPlanId" asp-for="@Model[i].ControlPlanId" />
+                    <div class="form-group col-xs-12 col-lg-2 col-md-2 form-group">
+                        <label class="forms-label mb-0">@localizer["ControlPlanParameter"] </label>
+                        <input asp-for="@Model[i].ControlPlanParameter" readonly name="IncomingGoodsInspectionItems[@i].ControlPlanParameter" type="text" class="form-control font-weight-bold text-lg-right" />
+                    </div>
+                    <div class="form-group col-xs-12 col-lg-2 col-md-2 form-group">
+                        <label class="forms-label mb-0">@localizer["QuantityDescription"] </label>
+                        <input asp-for="@Model[i].QuantityDescription" readonly name="IncomingGoodsInspectionItems[@i].QuantityDescription" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group col-xs-12 col-lg-2 col-md-2 form-group">
+                        <label class="forms-label mb-0">@localizer["AcceptanceCriteria"] </label>
+                        <input asp-for="@Model[i].AcceptanceCriteria" readonly name="IncomingGoodsInspectionItems[@i].AcceptanceCriteria" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group col-xs-12 col-lg-2 col-md-2 form-group">
+                        <label class="forms-label mb-0">@localizer["InspectionResult"] </label>
+                        <input asp-for="@Model[i].InspectionResult" name="IncomingGoodsInspectionItems[@i].InspectionResult" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group col-xs-12 col-lg-2 col-md-2 form-group">
+                        <label class="forms-label mb-0">@localizer["AmountOfDefects"] </label>
+                        <input asp-for="@Model[i].AmountOfDefects" name="IncomingGoodsInspectionItems[@i].AmountOfDefects" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group col-xs-12 col-lg-2 col-md-2 form-group required">
+                        <div class="text-right">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input"
+                                       type="radio"
+                                       name="IncomingGoodsInspectionItems[@i].IsMatch"
+                                       asp-for="@Model[i].IsMatch"
+                                       id="rdGendermale"
+                                       value="True">
+                                <label class="form-check-label m-2" tabindex="1">@localizer["IsMatch"]</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input"
+                                       type="radio"
+                                       name="IncomingGoodsInspectionItems[@i].IsMatch"
+                                       asp-for="@Model[i].IsMatch"
+                                       id="rdGenderFemale"
+                                       value="False"
+                                       data-val="true">
+                                <label class="form-check-label m-2" tabindex="2">@localizer["IsNotMatch"]</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-12 col-lg-12 col-md-12 form-group">
+                        <label class="forms-label mb-0">@localizer["InspectionResultRemarks"] </label>
+                        <input asp-for="@Model[i].InspectionResultRemarks" name="IncomingGoodsInspectionItems[@i].InspectionResultRemarks" type="text" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <hr />
+        }
+    }
+</fieldset>

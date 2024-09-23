@@ -1,0 +1,51 @@
+﻿@using Teram.Web.Core.Helper;
+@model ControlPlanModel
+@inject IStringLocalizer<Teram.QC.Module.IncomingGoods.Controllers.ControlPlanController> localizer
+
+<div class="card">
+    <div class="card-header bg-info" style="font-weight:bold">
+        @localizer["FilterData"]
+    </div>
+    <div class="card-body bg-light">
+        <div class="row">
+            <select-box style="justify-content: flex-end;" reverse="true" id="FilterControlPlanCategoryId" name="FilterControlPlanCategoryId"
+                        not-selected-option-title="-- یک دسته بندی انتخاب کنید --" title="دسته بندی"                        
+                        validation-required-message="@localizer["Please select a Category"]"
+                        class="mb-2 col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2" value="@ViewBag.Categories">
+            </select-box>       
+        </div>
+        <div class="form-row" style="margin-top:20px;">
+            <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                <button id="btnSearch" type="button" class="btn btn-success shouldReloadGrid"><i class="fa fa-search"></i>@localizer["Search"] </button>
+                <button id="reset" class="btn btn-danger resetForm shouldReloadGrid" type="reset">@localizer["Remove Filter"]</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="formInfo">
+    <form asp-action="Save" method="post" data-ajax="true" data-ajax-method="post" data-ajax-success="onSuccess">
+        <input type="hidden" asp-for="Key" />
+        <div class="row">
+            <select-box style="justify-content: flex-end;" reverse="true" asp-for="ControlPlanCategoryId"
+                        not-selected-option-title="-- یک دسته بندی انتخاب کنید --" title="دسته بندی"
+                        selected-value="@Model?.ControlPlanCategoryId"
+                        validation-required-message="@localizer["Please select a Category"]"
+                        class="mb-2 col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2 provinceSelector" value="@ViewBag.Categories">
+            </select-box>
+        </div>
+        <div class="row">
+            <text-box asp-for="ControlPlanParameter" reverse="true" title="@localizer["ControlPlanParameter"]" validation-required-message="@localizer["Please enter ControlPlanParameter"]" div-class="col-4 col-md-4 col-lg-4 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box asp-for="QuantityDescription" reverse="true" title="@localizer["QuantityDescription"]" validation-required-message="@localizer["Please enter QuantityDescription"]" div-class="col-4 col-md-4 col-lg-4 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box asp-for="AcceptanceCriteria" reverse="true" title="@localizer["AcceptanceCriteria"]" validation-required-message="@localizer["Please enter AcceptanceCriteria"]" div-class="col-4 col-md-4 col-lg-4 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+        </div>
+        <div class="form-row" style="margin-top:20px;">
+            <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                <button type="submit" class="btn btn-success">@localizer["Save"] </button>
+                <button type="button" class="btn btn-secondary resetForm resetButton">@localizer["New"] </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+           

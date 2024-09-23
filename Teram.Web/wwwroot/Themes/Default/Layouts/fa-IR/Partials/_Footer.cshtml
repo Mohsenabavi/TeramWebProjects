@@ -1,0 +1,29 @@
+﻿<footer class="footer">
+	<div class="top border-bottom py-4 px-3">
+		<img src="~/Themes/OnlineDaewoo/Images/daewoo-logo.png " />
+		<div class="d-flex align-items-center">
+			<button class="btn defaultButton goUpBtn">
+				<i class="fa fa-chevron-up" aria-hidden="true"></i>
+			</button>
+		</div>
+	</div>
+	<div class="row mx-0 footerCategoryMenu border-bottom py-3 px-1">
+		@await Component.InvokeAsync("Pane", new { paneName = "Footer-Col1", pageId = Model.PageId })
+
+	</div>
+	<div class="row mx-0 footerCategoryMenu border-bottom py-3 px-1">
+		@await Component.InvokeAsync("Pane", new { paneName = "Footer-Col2", pageId = Model.PageId })
+
+	</div>
+	<div class="licenses border-bottom py-3 px-3">
+		@await Component.InvokeAsync("Pane", new { paneName = "Footer-License", pageId = Model.PageId })
+
+	</div>
+	<div class="copyrightContainer p-3">
+		<span>
+			© کلیه حقوق مادی و معنوی این سایت متعلق به گروه صنعتی ترام چاپ میباشد. | پیاده سازی و اجرا: واحد نرم
+			افزار
+			گروه صنعتی ترام چاپ
+		</span>
+	</div>
+</footer>

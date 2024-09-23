@@ -1,0 +1,62 @@
+﻿@model List<FinalProductInspectionDefectModel>
+@inject IStringLocalizer<Teram.QC.Module.FinalProduct.Controllers.FinalProductInspectionController> localizer
+
+@foreach (var item in Model)
+{
+    <input type="hidden" asp-for="@item.FinalProductInspectionId" />
+    <div class="finalProductInspectionDefectRowContainer form-row  defectRow">
+        <div class="finalProductInspectionDefectSection col-md-1">
+            <div class="text-center actionButtonContainer mt-4">
+                <div class="border-top border-right border-bottom d-inline-block px-1 pt-1 addButton" data-newrow="finalProductInspectionDefectRow">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                </div>
+                @if (!item.IsLocked)
+                {
+                    <div class="border-top border-right border-bottom d-inline-block px-1 pt-1 mt-1 removeButton @(item.FinalProductNoncomplianceNumbers==null || item.FinalProductNoncomplianceNumbers==""  ? "" : "locked")" data-finalProductInspectionDefectId="@item.FinalProductInspectionDefectId">
+                        <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-md-11">
+            <div class="form-row">
+                <input type="hidden" asp-for="@item.FinalProductInspectionDefectId" name="FinalProductInspectionDefects[0].FinalProductInspectionDefectId" />
+                @if (item.FinalProductNoncomplianceNumbers == null || item.FinalProductNoncomplianceNumbers == "")
+                {
+
+                    <select-box reverse="true" not-selected-option-title="-  انتخاب کنید -" name="FinalProductInspectionDefects[0].ControlPlanDefectId"
+                                title="@localizer["Defect"]" asp-for="@item.ControlPlanDefectId" class="form-group  required col-md-3 mb-3 d-flex flex-column-reverse align-items-start defectsSelectList"
+                                selected-value="@item.ControlPlanDefectId" is-select2="true"
+                                select-class="inputBox" value="@ViewData["DefectList"] as List<SelectListItem>"
+                                div-class="col-md-3 mb-3 d-flex flex-column-reverse align-items-start">
+                    </select-box>
+                }
+                else
+                {
+                    <input type="hidden" class="relatedControlPlanDefectId" asp-for="@item.ControlPlanDefectId" name="FinalProductInspectionDefects[0].ControlPlanDefectId" />
+                    <text-box reverse="true" title="@localizer["Defect"]" is-readonly="true" asp-for="@item.ControlPlanTitle" name="FinalProductInspectionDefects[0].ControlPlanTitle" validation-type=None
+                              div-class="col-md-3 mb-3 d-flex flex-column-reverse align-items-start" />
+                }
+                <text-box reverse="true" title="@localizer["Sample1"]" is-readonly="@(item.IsLocked)" asp-for="@item.FirstSample" name="FinalProductInspectionDefects[0].FirstSample" validation-type=Number
+                          div-class="col-md-1 mb-3 d-flex flex-column-reverse align-items-start" />
+                <text-box reverse="true" title="@localizer["Sample2"]" is-readonly="@(item.IsLocked)" asp-for="@item.SecondSample" name="FinalProductInspectionDefects[0].SecondSample" validation-type=Number
+                          div-class="col-md-1 mb-3 d-flex flex-column-reverse align-items-start" />
+                <text-box reverse="true" title="@localizer["Sample3"]" is-readonly="@(item.IsLocked)" asp-for="@item.ThirdSample" name="FinalProductInspectionDefects[0].ThirdSample" validation-type=Number
+                          div-class="col-md-1 mb-3 d-flex flex-column-reverse align-items-start" />
+                <text-box reverse="true" title="@localizer["Sample4"]" is-readonly="@(item.IsLocked)" asp-for="@item.ForthSample" name="FinalProductInspectionDefects[0].ForthSample" validation-type=Number
+                          div-class="col-md-1 mb-3 d-flex flex-column-reverse align-items-start" />
+                <text-box reverse="true" title="@localizer["NonCompliancesNumbers"]" is-readonly="true" asp-for="@item.FinalProductNoncomplianceNumbers" name="FinalProductInspectionDefects[0].FinalProductNoncomplianceNumbers" validation-type=None
+                          div-class="col-md-3 mb-3 d-flex flex-column-reverse align-items-start" />
+                <div class="col-xs-12 col-md-12 col-lg-1 actionButtonContainer mt-4" style="text-align:center;">
+                    <button type="button" class="btn btn-info w-100 btnCreateNoncompliance">@localizer["CreateNoncompliance"] </button>
+                </div>
+                <hr />
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+

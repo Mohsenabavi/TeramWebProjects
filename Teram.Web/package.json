@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "name": "asp.net",
+  "private": true,
+  "devDependencies": {
+    "persian-datepicker": "1.2.0",
+    "ckeditor5-build-full": "25.0.0",
+    "notiflix": "3.2.4",
+    "ckeditor5": "34.0.0"
+  }
+}

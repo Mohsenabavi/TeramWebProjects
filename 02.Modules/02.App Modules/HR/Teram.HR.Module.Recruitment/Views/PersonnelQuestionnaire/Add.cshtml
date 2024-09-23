@@ -1,0 +1,22 @@
+﻿@model PersonnelQuestionnaireModel
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.PersonnelQuestionnaireController> localizer
+<div class="formInfo">
+    <form asp-action="Save" method="post" data-ajax="true" data-ajax-method="post" data-ajax-success="onSuccess">
+        <input type="hidden" asp-for="PersonnelQuestionnaireId" />
+        <div class="row">
+            <select-box asp-for="QuestionnaireId" reverse="true" show-not-selected-option-title="false"
+                        title="@localizer["Questionnaire"]"
+                        select-class="inputBox" value="@ViewBag.Questionnaires"
+                        selected-value="@Model?.QuestionnaireId"
+                        div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2">
+            </select-box>
+            <text-box asp-for="NationalCode" reverse="true" validation-type="NationalCode" title="@localizer["NationalCode"]" validation-required-message="@localizer["Please enter NationalCode"]" div-class="col-xs-12 col-md-6 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+        </div>       
+        <div class="form-row" style="margin-top:20px;">
+            <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                <button type="submit" class="btn btn-success">@localizer["Save"] </button>            
+            </div>
+        </div>
+    </form>
+</div>
+

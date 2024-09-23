@@ -1,0 +1,33 @@
+﻿@using Teram.HR.Module.Recruitment.Models.WorkWithUs;
+@model PersonnelComputerSkillModel
+
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.WorkWithUsController> localizer
+
+@{
+    int index = ViewBag.index == null ? 0 : ViewBag.index;
+    List<PersonnelComputerSkillModel> personnelComputerSkill = new List<PersonnelComputerSkillModel>();
+    for (int i = 0; i <= index; i++)
+    {
+        personnelComputerSkill.Add(new PersonnelComputerSkillModel());
+    }
+}
+<div class="skill-row">
+    <i class="fas fa-times-circle text-danger removeInfo" id="removeTrainingRecord"></i>
+    <div class="row">
+        <select-box style="justify-content: flex-end;" reverse="true" is-select2="true" asp-for="ComputerSkill" name="PersonnelComputerSkills[@index].ComputerSkill"
+                    not-selected-option-title="@localizer["select item"]" title="@localizer["ComputerSkill"]"
+                    validation-required-message="@localizer["select item"]"
+                    class="col-xs-12 col-md-6 col-lg-4 mt-22 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2 provinceSelector" value="Html.GetEnumSelectList<ComputerSkill>().ToList()">
+        </select-box>
+
+        <select-box style="justify-content: flex-end;" reverse="true" is-select2="true" asp-for="SkillLevel" name="PersonnelComputerSkills[@index].SkillLevel"
+                    not-selected-option-title="@localizer["select item"]" title="@localizer["SkillLevel"]"
+                    validation-required-message="@localizer["select item"]"
+                    class="col-xs-12 col-md-6 col-lg-4 mt-22 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2 provinceSelector" value="Html.GetEnumSelectList<SkillLevel>().ToList()">
+        </select-box>          
+    </div>
+</div>
+
+
+
+

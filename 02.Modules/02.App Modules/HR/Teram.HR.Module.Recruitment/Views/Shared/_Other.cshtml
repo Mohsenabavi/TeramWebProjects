@@ -1,0 +1,114 @@
+﻿@using Teram.HR.Module.Recruitment.Models.WorkWithUs;
+@model BaseInformationModel
+@inject IStringLocalizer<Teram.HR.Module.Recruitment.Controllers.WorkWithUsController> localizer
+
+<div class="form-row mt-2">
+    <text-box asp-for="InsuranceNumber" reverse="true" validation-type="Number" title="@localizer["insurance number"]" validation-required-message="@localizer["Please enter insurance number"]" div-class="col-xs-12 col-md-3 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+    <text-box asp-for="InsuranceMonths" reverse="true" validation-type="Number" title="@localizer["insurance duration(month)"]" validation-required-message="@localizer["Please enter insurance duration(month)"]" div-class="col-xs-12 col-md-3 col-lg-3  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />   
+
+    @if (Model?.FlowType == FlowType.JobApplicant)
+    {
+        <date-picker reverse="true" is-required="true" asp-for="ReadyToWorkDate" id="ReadyToWorkDate" name="ReadyToWorkDate" asp-for-text="PersianReadyToWorkDate" show-label="true" title="@localizer["ReadyToWorkDate"]" div-class="col-12 col-md-3 col-lg-3 form-group col d-flex flex-column-reverse align-items-start " />
+    }
+
+    
+</div>
+<div class="row">
+    <div class="form-group col-xs-12 col-lg-6 col-md-6 form-group required">
+        <div class=" text-right">
+            <label class="forms-label">@localizer["HasSpecialDisease"]</label>
+            <div class="text-left">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="HasSpecialDisease" asp-for="HasSpecialDisease" id="rdHasSpecialDiseaseYes" value="True" data-required="required" data-val-required="@localizer["Please enter HasSpecialDisease"]">
+                    <label class="forms-label m-2" tabindex="1">@localizer["Yes"]</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="HasSpecialDisease" asp-for="HasSpecialDisease" id="rdHasSpecialDiseaseNo" value="False" data-required="required" data-val-required="@localizer["Please enter HasSpecialDisease"]">
+                    <label class="forms-label m-2" tabindex="2">@localizer["No"]</label>
+                </div>
+            </div>
+        </div>
+        <span asp-validation-for="HasSpecialDisease" class="text-danger"></span>
+    </div>
+    <text-box asp-for="SpecialDisease" id="SpecialDisease" reverse="true" validation-type="Persian" title="@localizer["SpecialDisease"]" validation-required-message="@localizer["Please enter SpecialDisease"]" div-class="col-xs-12 col-md-6 col-lg-6  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+</div>
+<hr />
+<div class="row">
+    <div class="form-group col-xs-12 col-lg-6 col-md-6 form-group required">
+        <div class=" text-right">
+            <label class="forms-label">@localizer["HasCriminalRecord"]</label>
+            <div class="text-left">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="HasCriminalRecord" asp-for="HasCriminalRecord" id="rdHasCriminalRecordYes" value="True" data-required="required" data-val-required="@localizer["Please enter HasWorkingRelatives"]">
+                    <label class="forms-label m-2" tabindex="1">@localizer["Yes"]</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="HasCriminalRecord" asp-for="HasCriminalRecord" id="rdHasCriminalRecordNo" value="False" data-required="required" data-val-required="@localizer["Please enter HasWorkingRelatives"]">
+                    <label class="form-label m-2" tabindex="2">@localizer["No"]</label>
+                </div>
+            </div>
+        </div>
+        <span asp-validation-for="HasCriminalRecord" class="text-danger"></span>
+    </div>
+    <text-box asp-for="CriminalRecord" id="CriminalRecord" reverse="true" validation-type="Persian" title="@localizer["CriminalRecord"]" validation-required-message="@localizer["Please enter CriminalRecord"]" div-class="col-xs-12 col-md-6 col-lg-6  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+</div>
+<hr />
+<div class="row">
+    <div class="form-group col-xs-12 col-lg-6 col-md-6 form-group required">
+        <div class=" text-right">
+            <label class="forms-label">@localizer["CanWorkInShifts"]</label>
+            <div class="text-left">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="CanWorkInShifts" asp-for="CanWorkInShifts" id="rdCanWorkInShiftsYes" value="True" data-required="required" data-val-required="@localizer["Please enter HasWorkingRelatives"]">
+                    <label class="forms-label m-2" tabindex="1">@localizer["Yes"]</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="CanWorkInShifts" asp-for="CanWorkInShifts" id="rdCanWorkInShiftsNo" value="False" data-required="required" data-val-required="@localizer["Please enter HasWorkingRelatives"]">
+                    <label class="form-label m-2" tabindex="2">@localizer["No"]</label>
+                </div>
+            </div>
+        </div>
+        <span asp-validation-for="CanWorkInShifts" class="text-danger"></span>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="form-group col-xs-12 col-lg-6 col-md-6 form-group required">
+        <div class=" text-right">
+            <label class="forms-label">@localizer["BusinessMissionAbility"]</label>
+            <div class="text-left">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="BusinessMissionAbility" asp-for="BusinessMissionAbility" id="rdBusinessMissionAbilityYes" value="True" data-required="required" data-val-required="@localizer["Please enter HasWorkingRelatives"]">
+                    <label class="forms-label m-2" tabindex="1">@localizer["Yes"]</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="BusinessMissionAbility" asp-for="BusinessMissionAbility" id="rdBusinessMissionAbilityNo" value="False" data-required="required" data-val-required="@localizer["Please enter HasWorkingRelatives"]">
+                    <label class="form-label m-2" tabindex="2">@localizer["No"]</label>
+                </div>
+            </div>
+        </div>
+        <span asp-validation-for="BusinessMissionAbility" class="text-danger"></span>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="form-group col-xs-12 col-lg-6 col-md-6 form-group required">
+        <div class=" text-right">
+            <label class="forms-label">@localizer["HasIntentionToMigrate"]</label>
+            <div class="text-left">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="HasIntentionToMigrate" asp-for="HasIntentionToMigrate" id="rdHasIntentionToMigrateYes" value="True" data-required="required" data-val-required="@localizer["Please enter HasWorkingRelatives"]">
+                    <label class="forms-label m-2" tabindex="1">@localizer["Yes"]</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="HasIntentionToMigrate" asp-for="HasIntentionToMigrate" id="rdHasIntentionToMigrateNo" value="False" data-required="required" data-val-required="@localizer["Please enter HasWorkingRelatives"]">
+                    <label class="form-label m-2" tabindex="2">@localizer["No"]</label>
+                </div>
+            </div>
+        </div>
+        <span asp-validation-for="HasIntentionToMigrate" class="text-danger"></span>
+    </div>
+</div>
+
+
+

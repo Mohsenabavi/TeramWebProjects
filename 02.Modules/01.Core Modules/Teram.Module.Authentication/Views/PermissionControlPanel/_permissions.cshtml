@@ -1,0 +1,35 @@
+﻿@model List<PermissionModel>
+@inject IViewLocalizer localizer
+@inject IStringLocalizer<Teram.Module.Authentication.Controllers.PermissionControlPanelController> sharedLocalizer
+
+
+<div class="col-5 col-sm-3 permissionItems">
+    <div class="nav flex-column nav-tabs h-100" id="vert-tabs-tab" role="tablist" aria-orientation="vertical">
+        @foreach (var item in Model)
+        {
+            <a class="nav-link" id="@item.ControllerKey-tab" data-bs-toggle ="pill" href="#@item.ControllerKey" role="tab" aria-controls="@item.ControllerKey-tab" aria-selected="false">@item.DisplayName</a>
+        }
+    </div>
+</div>
+<div class="col-7 col-sm-9 permissionItems">
+    <div class="tab-content" id="vert-tabs-tabContent">
+        @foreach (var item in Model)
+        {
+            <div class="tab-pane fade" id="@item.ControllerKey" role="tabpanel" aria-labelledby="@item.ControllerKey-tab">
+                <div class="row">
+                    @foreach (var actionItem in item.Actions)
+                    {
+                        <div class="col-lg-5">@actionItem.Displayname</div>
+                        <div class="col-lg-3">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input permissionItem" @(actionItem.HasAccess ? "Checked='checked'" : "") id="check_@actionItem.Path" value="@actionItem.Path" data-path="@actionItem.Path">
+                                <label class="custom-control-label" for="check_@actionItem.Path">@sharedLocalizer["allow"]</label>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+        }
+  </div>
+</div>

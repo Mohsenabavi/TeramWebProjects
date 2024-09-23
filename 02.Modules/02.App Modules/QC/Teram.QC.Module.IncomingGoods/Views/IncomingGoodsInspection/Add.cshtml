@@ -1,0 +1,120 @@
+﻿@using Teram.HR.Module.FileUploader.Models
+@using Teram.QC.Module.IncomingGoods.Enums
+@model IncomingGoodsInspectionModel
+@inject IStringLocalizer<Teram.QC.Module.IncomingGoods.Controllers.IncomingGoodsInspectionController> localizer
+
+@if (@Model.HasPermissionForInsertForm)
+{
+    <form id="frmIncomingGoods" asp-action="Save" asp-controller="IncomingGoodsInspection" method="post" data-ajax="true" data-ajax-method="post" enctype="multipart/form-data" data-ajax-success="onSuccess">
+        <input type="hidden" asp-for="IncomingGoodsInspectionId" />
+        <div class="col-lg-12 IncomingGoodsInspectionContainer">
+            <div class="row">
+                <text-box asp-for="QualityInspectionNumber" name="QualityInspectionNumber" reverse="true" validation-type="Number" title="@localizer["QualityInspectionNumber"]" validation-required-message="@localizer["Please enter QualityInspectionNumber"]" div-class="col-xs-4 col-md-4 col-lg-4  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+                <div class="col-xs-2 col-md-2 col-lg-2  align-items-start" style="margin-top:30px!important">
+                    <button type="button" id="btnFetchData" class="btn btn-success w-100">@localizer["LoadData"] </button>
+                </div>
+                <select-box style="justify-content: flex-end;" id="GoodsList" reverse="true" name="GoodsList" not-selected-option-title="-- یک محصول انتخاب کنید --" title="محصولات مرتبط"
+                            validation-required-message="@localizer["Please select a Product"]"
+                            class="col-12 col-md-3 col-lg-6 d-flex flex-column-reverse align-items-start" select-class="inputBox select2">
+                </select-box>              
+            </div>
+            <div class="row">
+                <text-box asp-for="GoodsCode" is-readonly="true" title="@localizer["GoodsCode"]" validation-required-message="@localizer["Please enter GoodsCode"]" div-class="col-xs-12 col-md-6 col-lg-3   align-items-start pl-lg-2 pl-md-2" />
+                <text-box id="Name" asp-for="GoodsTitle" is-readonly="true" title="@localizer["Name"]" validation-required-message="@localizer["Please enter Name"]" div-class="col-xs-12 col-md-6 col-lg-3   align-items-start pl-lg-2 pl-md-2" />
+                <text-box id="Quantity" asp-for="Quantity" is-readonly="true" title="@localizer["Quantity"]" validation-required-message="@localizer["Please enter GoodsCode"]" div-class="col-xs-12 col-md-6 col-lg-3   align-items-start pl-lg-2 pl-md-2" />
+                <text-box id="VendorName" asp-for="VendorName" is-readonly="true" title="@localizer["Title"]" validation-required-message="@localizer["Please enter Title"]" div-class="col-xs-12 col-md-6 col-lg-3   align-items-start pl-lg-2 pl-md-2" />
+                <text-box id="Counterkind" is-readonly="true" title="@localizer["Counterkind"]" validation-required-message="@localizer["Please enter GoodsCode"]" div-class="col-xs-12 col-md-6 col-lg-3  align-items-start pl-lg-2 pl-md-2" />
+                <text-box id="PersianTestDate" is-readonly="true" title="@localizer["PersianTestDate"]" validation-required-message="@localizer["Please enter GoodsCode"]" div-class="col-xs-12 col-md-6 col-lg-3   align-items-start pl-lg-2 pl-md-2" />
+                <text-box id="PersianDocumentDate" is-readonly="true" title="@localizer["PersianDocumentDate"]" validation-required-message="@localizer["Please enter Name"]" div-class="col-xs-12 col-md-6 col-lg-3   align-items-start pl-lg-2 pl-md-2" />
+                <text-box asp-for="TotalDefectiveCount" title="@localizer["TotalDefectiveCount"]" validation-required-message="@localizer["Please enter TotalDefectiveCount"]" div-class="col-xs-12 col-md-6 col-lg-3   align-items-start pl-lg-2 pl-md-2" />
+            </div>
+            <div class="row">
+                <check-box asp-for="IsConsignment" name="IsConsignment" reverse="true" title="@localizer["IsConsignment"]" div-class="col-12 col-md-2 col-lg-2 d-flex flex-column-reverse align-items-start" />
+                <check-box asp-for="IsSampleGoods" name="IsSampleGoods" reverse="true" title="@localizer["IsSampleGoods"]" div-class="col-12 col-md-2 col-lg-2 d-flex flex-column-reverse align-items-start" />
+                <check-box asp-for="HasFunctionalTest" name="HasFunctionalTest" reverse="true" title="@localizer["HasFunctionalTest"]" div-class="col-12 col-md-2 col-lg-2 d-flex flex-column-reverse align-items-start" />
+                <check-box asp-for="GoodsInfoIsApproved" name="GoodsInfoIsApproved" reverse="true" title="@localizer["GoodsInfoIsApproved"]" div-class="col-12 col-md-2 col-lg-2 d-flex flex-column-reverse align-items-start" />
+                <check-box asp-for="NeedToRefferal" name="NeedToRefferal" reverse="true" title="@localizer["NeedToRefferal"]" div-class="col-12 col-md-2 col-lg-2 d-flex flex-column-reverse align-items-start" />
+                <div class="col-xs-12 col-lg-2 form-group productionSupervisorsList d-none ">
+                    <label for="Title">@localizer["ProductionSupervisors"]</label>
+                    <select id="ReferralUserId" name="ReferralUserId" asp-for="ReferralUserId" class="form-control select2" data-val="true">
+                        <option value="-1" selected="selected">@localizer["select item"]</option>
+                    </select>
+                    <span asp-validation-for="ReferralUserId" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="hiddenSection d-none">
+            <div class="row">
+                <select-box style="justify-content: flex-end;" id="Category" reverse="true" name="Category" not-selected-option-title="-- یک دسته بندی انتخاب کنید --" title="دسته بندی"
+                            validation-required-message="@localizer["Please select a Category"]" value=@ViewBag.Categories
+                            class="col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pr-lg-2 pr-md-2" select-class="inputBox select2">
+                </select-box>
+            </div>
+            <div class="row">
+                <div id="ControlPalnsDiv"></div>
+            </div>
+            <div class="row">
+                @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.IncomingGoods1, FileAccept = ".jpg, .png, .jpeg|image/*" })
+                @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.IncomingGoods2, FileAccept = ".jpg, .png, .jpeg|image/*" })
+                @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.IncomingGoods3, FileAccept = ".jpg, .png, .jpeg|image/*" })
+                @await Component.InvokeAsync("FileUploader", new { documentType = DocumentType.IncomingGoods4, FileAccept = ".jpg, .png, .jpeg|image/*" })
+            </div>
+           
+            <div class="row finalApproveSection">
+                <div class="form-group col-xs-12 col-lg-2 col-md-2 form-group required">
+                    <label class="forms-label form-check-label text-bold">@localizer["FinalApproveText"]</label>
+                    <div class="text-right">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input"
+                                   type="radio"
+                                   name="FinalApprove"
+                                   asp-for="FinalApprove"
+                                   id="rdGendermale"
+                                   value="True">
+                            <label class="form-check-label m-2" tabindex="1">@localizer["IsApprove"]</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input"
+                                   type="radio"
+                                   name="FinalApprove"
+                                   asp-for="FinalApprove"
+                                   id="rdGenderFemale"
+                                   value="False"
+                                   data-val="true">
+                            <label class="form-check-label m-2" tabindex="2">@localizer["IsNotApprove"]</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row submitArea d-none" style="margin-top:20px;">
+                <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                    <button type="submit" class="btn btn-success">@localizer["Save"] </button>
+                    <button type="button" class="btn btn-secondary resetForm resetButton">@localizer["New"] </button>
+                </div>
+            </div>
+        </div>
+    </form>
+}
+
+<div class="card">
+    <div class="card-header bg-info" style="font-weight:bold">
+        @localizer["FilterData"]
+    </div>
+    <div class="card-body bg-light">
+        <div class="row">
+            <text-box id="QualityInspectionNumberFilter" name="QualityInspectionNumberFilter" reverse="true" validation-type="Number" title="@localizer["QualityInspectionNumber"]" div-class="col-12 col-md-6 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box id="GoodsTitleFilter" name="GoodsTitleFilter" reverse="true" validation-type="None" title="@localizer["Name"]" div-class="col-12 col-md-6 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box id="VendorNameFilter" name="VendorNameFilter" reverse="true" validation-type="Number" title="@localizer["VendorName"]" div-class="col-12 col-md-6 col-lg-3 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <select-box style="justify-content: flex-end;" id="InspectionFormStatus" reverse="true" name="InspectionFormStatus" not-selected-option-title="-- یک وضعیت انتخاب کنید --" title="وضعیت"
+                        validation-required-message="@localizer["Please select a Status"]" value="Html.GetEnumSelectList<InspectionFormStatus>().ToList()"
+                        class="col-12 col-md-6 col-lg-3 d-flex flex-column-reverse align-items-start" select-class="inputBox select2">
+            </select-box>
+        </div>
+        <div class="form-row" style="margin-top:20px;">
+            <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                <button id="btnSearch" type="button" class="btn btn-success shouldReloadGrid"><i class="fa fa-search"></i>@localizer["Search"] </button>
+                <button id="reset" class="btn btn-danger resetForm shouldReloadGrid" type="reset">@localizer["Remove Filter"]</button>
+            </div>
+        </div>
+    </div>
+</div>

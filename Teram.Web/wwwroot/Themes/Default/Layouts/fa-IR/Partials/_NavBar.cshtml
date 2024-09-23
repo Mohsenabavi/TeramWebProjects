@@ -1,0 +1,9 @@
+﻿<div class="d-flex navbarContainer px-4">
+    <button class="btn categoryBtn my-2" data-bs-toggle="offcanvas" data-bs-target="#categoryMenu"
+            aria-controls="offcanvasExample">
+        <img src="~/Themes/OnlineDaewoo/Icons/menu.svg" />
+        <span>دسته بندی</span>
+    </button>
+@await  Component.InvokeAsync("PageNavigation")
+</div>
+@await  Component.InvokeAsync("CategoriesMenu")

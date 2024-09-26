@@ -50,15 +50,15 @@ namespace Teram.QC.Module.FinalProduct.Controllers
                 OperationColumns = true,
                 HomePage = nameof(FinalProductNoncomplianceController).Replace("Controller", "") + "/index",
             };
-            this.configuration=configuration??throw new ArgumentNullException(nameof(configuration));
-            this.finalProductNoncomplianceLogic=finalProductNoncomplianceLogic??throw new ArgumentNullException(nameof(finalProductNoncomplianceLogic));
-            this.finalProductInspectionDefectLogic=finalProductInspectionDefectLogic??throw new ArgumentNullException(nameof(finalProductInspectionDefectLogic));
-            this.finalProductInspectionLogic=finalProductInspectionLogic??throw new ArgumentNullException(nameof(finalProductInspectionLogic));
-            this.finalProductNoncomplianceDetailSampleLogic=finalProductNoncomplianceDetailSampleLogic??throw new ArgumentNullException(nameof(finalProductNoncomplianceDetailSampleLogic));
-            this.finalProductNoncomplianceDetailLogic=finalProductNoncomplianceDetailLogic??throw new ArgumentNullException(nameof(finalProductNoncomplianceDetailLogic));
-            this.queryService=queryService??throw new ArgumentNullException(nameof(queryService));
-            this.controlPlanDefectLogic=controlPlanDefectLogic??throw new ArgumentNullException(nameof(controlPlanDefectLogic));
-            this.finalProductNoncomplianceFileLogic=finalProductNoncomplianceFileLogic??throw new ArgumentNullException(nameof(finalProductNoncomplianceFileLogic));
+            this.configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+            this.finalProductNoncomplianceLogic = finalProductNoncomplianceLogic ?? throw new ArgumentNullException(nameof(finalProductNoncomplianceLogic));
+            this.finalProductInspectionDefectLogic = finalProductInspectionDefectLogic ?? throw new ArgumentNullException(nameof(finalProductInspectionDefectLogic));
+            this.finalProductInspectionLogic = finalProductInspectionLogic ?? throw new ArgumentNullException(nameof(finalProductInspectionLogic));
+            this.finalProductNoncomplianceDetailSampleLogic = finalProductNoncomplianceDetailSampleLogic ?? throw new ArgumentNullException(nameof(finalProductNoncomplianceDetailSampleLogic));
+            this.finalProductNoncomplianceDetailLogic = finalProductNoncomplianceDetailLogic ?? throw new ArgumentNullException(nameof(finalProductNoncomplianceDetailLogic));
+            this.queryService = queryService ?? throw new ArgumentNullException(nameof(queryService));
+            this.controlPlanDefectLogic = controlPlanDefectLogic ?? throw new ArgumentNullException(nameof(controlPlanDefectLogic));
+            this.finalProductNoncomplianceFileLogic = finalProductNoncomplianceFileLogic ?? throw new ArgumentNullException(nameof(finalProductNoncomplianceFileLogic));
         }
         public IActionResult Index()
         {
@@ -79,8 +79,8 @@ namespace Teram.QC.Module.FinalProduct.Controllers
         {
             var relatedNonCompianceResult = finalProductNoncomplianceLogic.GetById(finalProductNonComplianceId);
             relatedNonCompianceResult.ResultEntity.LastComment = comment;
-            relatedNonCompianceResult.ResultEntity.FormStatus=FormStatus.QCManagerModifyOrder;
-            relatedNonCompianceResult.ResultEntity.IsApproved=false;
+            relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.QCManagerModifyOrder;
+            relatedNonCompianceResult.ResultEntity.IsApproved = false;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
@@ -88,8 +88,8 @@ namespace Teram.QC.Module.FinalProduct.Controllers
         {
             var relatedNonCompianceResult = finalProductNoncomplianceLogic.GetById(finalProductNonComplianceId);
             relatedNonCompianceResult.ResultEntity.LastComment = comment;
-            relatedNonCompianceResult.ResultEntity.FormStatus=FormStatus.QcManagerVoided;
-            relatedNonCompianceResult.ResultEntity.IsApproved=false;
+            relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.QcManagerVoided;
+            relatedNonCompianceResult.ResultEntity.IsApproved = false;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
@@ -97,9 +97,9 @@ namespace Teram.QC.Module.FinalProduct.Controllers
         public IActionResult TriggerQCManagerSendToSalesUnit(Guid destinationUser, int finalProductNonComplianceId, string comments)
         {
             var relatedNonCompianceResult = finalProductNoncomplianceLogic.GetById(finalProductNonComplianceId);
-            relatedNonCompianceResult.ResultEntity.FormStatus=FormStatus.QCManagerApproved;
-            relatedNonCompianceResult.ResultEntity.IsApproved=true;
-            relatedNonCompianceResult.ResultEntity.NeedToAdvisoryOpinion=true;
+            relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.QCManagerApproved;
+            relatedNonCompianceResult.ResultEntity.IsApproved = true;
+            relatedNonCompianceResult.ResultEntity.NeedToAdvisoryOpinion = true;
             relatedNonCompianceResult.ResultEntity.LastComment = comments;
             relatedNonCompianceResult.ResultEntity.DestinationUser = destinationUser;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
@@ -111,7 +111,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
 
             var relatedNonCompianceResult = finalProductNoncomplianceLogic.GetById(finalProductNonComplianceId);
             relatedNonCompianceResult.ResultEntity.LastComment = comment;
-            relatedNonCompianceResult.ResultEntity.FormStatus=FormStatus.RequestForReviewByQCManager;
+            relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.RequestForReviewByQCManager;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
@@ -120,13 +120,13 @@ namespace Teram.QC.Module.FinalProduct.Controllers
         {
 
             var opinionList = new List<OpinionType>();
-            if ((int)firstSampleOpinion>0)
+            if ((int)firstSampleOpinion > 0)
                 opinionList.Add(firstSampleOpinion);
-            if ((int)secondSampleOpinion>0)
+            if ((int)secondSampleOpinion > 0)
                 opinionList.Add(secondSampleOpinion);
-            if ((int)thirdSampleOpinion>0)
+            if ((int)thirdSampleOpinion > 0)
                 opinionList.Add(thirdSampleOpinion);
-            if ((int)forthSampleOpinion>0)
+            if ((int)forthSampleOpinion > 0)
                 opinionList.Add(forthSampleOpinion);
 
             var hasError =
@@ -167,13 +167,13 @@ namespace Teram.QC.Module.FinalProduct.Controllers
                         break;
                 }
             }
-            relatedNonCompianceResult.ResultEntity.FormStatus=FormStatus.QCManagerApproved;
-            relatedNonCompianceResult.ResultEntity.IsApproved=true;
-            relatedNonCompianceResult.ResultEntity.NeedToAdvisoryOpinion=false;
-            relatedNonCompianceResult.ResultEntity.HasSeperationOrder=(firstSampleOpinion==OpinionType.Seperation || secondSampleOpinion==OpinionType.Seperation || thirdSampleOpinion==OpinionType.Seperation || forthSampleOpinion==OpinionType.Seperation);
-            relatedNonCompianceResult.ResultEntity.NeedToRefferToCEO=(firstSampleOpinion==OpinionType.CEOOpinion || secondSampleOpinion==OpinionType.CEOOpinion || thirdSampleOpinion==OpinionType.CEOOpinion || forthSampleOpinion==OpinionType.CEOOpinion);
-            relatedNonCompianceResult.ResultEntity.HasWasteOrder=(firstSampleOpinion==OpinionType.Waste || secondSampleOpinion==OpinionType.Waste || thirdSampleOpinion==OpinionType.Waste || forthSampleOpinion==OpinionType.Waste);
-            relatedNonCompianceResult.ResultEntity.HasLeniency=(firstSampleOpinion==OpinionType.Leniency || secondSampleOpinion==OpinionType.Leniency || thirdSampleOpinion==OpinionType.Leniency || forthSampleOpinion==OpinionType.Leniency);
+            relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.QCManagerApproved;
+            relatedNonCompianceResult.ResultEntity.IsApproved = true;
+            relatedNonCompianceResult.ResultEntity.NeedToAdvisoryOpinion = false;
+            relatedNonCompianceResult.ResultEntity.HasSeperationOrder = (firstSampleOpinion == OpinionType.Seperation || secondSampleOpinion == OpinionType.Seperation || thirdSampleOpinion == OpinionType.Seperation || forthSampleOpinion == OpinionType.Seperation);
+            relatedNonCompianceResult.ResultEntity.NeedToRefferToCEO = (firstSampleOpinion == OpinionType.CEOOpinion || secondSampleOpinion == OpinionType.CEOOpinion || thirdSampleOpinion == OpinionType.CEOOpinion || forthSampleOpinion == OpinionType.CEOOpinion);
+            relatedNonCompianceResult.ResultEntity.HasWasteOrder = (firstSampleOpinion == OpinionType.Waste || secondSampleOpinion == OpinionType.Waste || thirdSampleOpinion == OpinionType.Waste || forthSampleOpinion == OpinionType.Waste);
+            relatedNonCompianceResult.ResultEntity.HasLeniency = (firstSampleOpinion == OpinionType.Leniency || secondSampleOpinion == OpinionType.Leniency || thirdSampleOpinion == OpinionType.Leniency || forthSampleOpinion == OpinionType.Leniency);
             relatedNonCompianceResult.ResultEntity.LastComment = comments;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
@@ -184,33 +184,33 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             var relatedNonCompianceResult = finalProductNoncomplianceLogic.GetById(finalProductNonComplianceId);
             var relatedDetailSamples = relatedNonCompianceResult.ResultEntity.FinalProductNoncomplianceDetails.SelectMany(x => x.FinalProductNoncomplianceDetailSamples).ToList();
 
-            var firstSampleRow = relatedDetailSamples.Where(x => x.SampleType==SampleType.FirstSample).FirstOrDefault();
-            if (firstSampleRow!=null)
+            var firstSampleRow = relatedDetailSamples.Where(x => x.SampleType == SampleType.FirstSample).FirstOrDefault();
+            if (firstSampleRow != null)
             {
-                firstSampleRow.SeparatedCount=firstSampleSeparatedCount;
+                firstSampleRow.SeparatedCount = firstSampleSeparatedCount;
                 finalProductNoncomplianceDetailSampleLogic.Update(firstSampleRow);
             }
-            var secondSampleRow = relatedDetailSamples.Where(x => x.SampleType==SampleType.SecondSample).FirstOrDefault();
-            if (secondSampleRow!=null)
+            var secondSampleRow = relatedDetailSamples.Where(x => x.SampleType == SampleType.SecondSample).FirstOrDefault();
+            if (secondSampleRow != null)
             {
-                secondSampleRow.SeparatedCount=secondSampleSeparatedCount;
+                secondSampleRow.SeparatedCount = secondSampleSeparatedCount;
                 finalProductNoncomplianceDetailSampleLogic.Update(secondSampleRow);
             }
-            var thirdSampleRow = relatedDetailSamples.Where(x => x.SampleType==SampleType.ThirdSample).FirstOrDefault();
-            if (thirdSampleRow!=null)
+            var thirdSampleRow = relatedDetailSamples.Where(x => x.SampleType == SampleType.ThirdSample).FirstOrDefault();
+            if (thirdSampleRow != null)
             {
-                thirdSampleRow.SeparatedCount=thirdSampleSeparatedCount;
+                thirdSampleRow.SeparatedCount = thirdSampleSeparatedCount;
                 finalProductNoncomplianceDetailSampleLogic.Update(thirdSampleRow);
             }
-            var forthSampleRow = relatedDetailSamples.Where(x => x.SampleType==SampleType.ForthSample).FirstOrDefault();
-            if (forthSampleRow!=null)
+            var forthSampleRow = relatedDetailSamples.Where(x => x.SampleType == SampleType.ForthSample).FirstOrDefault();
+            if (forthSampleRow != null)
             {
-                forthSampleRow.SeparatedCount=forthSampleSeparatedCount;
+                forthSampleRow.SeparatedCount = forthSampleSeparatedCount;
                 finalProductNoncomplianceDetailSampleLogic.Update(forthSampleRow);
             }
 
             relatedNonCompianceResult.ResultEntity.IsSeperated = true;
-            relatedNonCompianceResult.ResultEntity.FormStatus=FormStatus.Seperation;
+            relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.Seperation;
             relatedNonCompianceResult.ResultEntity.LastComment = "--";
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
@@ -222,32 +222,32 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             var relatedNonCompianceResult = finalProductNoncomplianceLogic.GetById(finalProductNonComplianceId);
             var relatedDetailSamples = relatedNonCompianceResult.ResultEntity.FinalProductNoncomplianceDetails.SelectMany(x => x.FinalProductNoncomplianceDetailSamples).ToList();
 
-            var firstSampleRow = relatedDetailSamples.Where(x => x.SampleType==SampleType.FirstSample).FirstOrDefault();
-            if (firstSampleRow!=null)
+            var firstSampleRow = relatedDetailSamples.Where(x => x.SampleType == SampleType.FirstSample).FirstOrDefault();
+            if (firstSampleRow != null)
             {
-                firstSampleRow.SeparatedCount=firstSampleSeparatedCount;
+                firstSampleRow.SeparatedCount = firstSampleSeparatedCount;
                 finalProductNoncomplianceDetailSampleLogic.Update(firstSampleRow);
             }
-            var secondSampleRow = relatedDetailSamples.Where(x => x.SampleType==SampleType.SecondSample).FirstOrDefault();
-            if (secondSampleRow!=null)
+            var secondSampleRow = relatedDetailSamples.Where(x => x.SampleType == SampleType.SecondSample).FirstOrDefault();
+            if (secondSampleRow != null)
             {
-                secondSampleRow.SeparatedCount=secondSampleSeparatedCount;
+                secondSampleRow.SeparatedCount = secondSampleSeparatedCount;
                 finalProductNoncomplianceDetailSampleLogic.Update(secondSampleRow);
             }
-            var thirdSampleRow = relatedDetailSamples.Where(x => x.SampleType==SampleType.ThirdSample).FirstOrDefault();
-            if (thirdSampleRow!=null)
+            var thirdSampleRow = relatedDetailSamples.Where(x => x.SampleType == SampleType.ThirdSample).FirstOrDefault();
+            if (thirdSampleRow != null)
             {
-                thirdSampleRow.SeparatedCount=thirdSampleSeparatedCount;
+                thirdSampleRow.SeparatedCount = thirdSampleSeparatedCount;
                 finalProductNoncomplianceDetailSampleLogic.Update(thirdSampleRow);
             }
-            var forthSampleRow = relatedDetailSamples.Where(x => x.SampleType==SampleType.ForthSample).FirstOrDefault();
-            if (forthSampleRow!=null)
+            var forthSampleRow = relatedDetailSamples.Where(x => x.SampleType == SampleType.ForthSample).FirstOrDefault();
+            if (forthSampleRow != null)
             {
-                forthSampleRow.SeparatedCount=forthSampleSeparatedCount;
+                forthSampleRow.SeparatedCount = forthSampleSeparatedCount;
                 finalProductNoncomplianceDetailSampleLogic.Update(forthSampleRow);
             }
             relatedNonCompianceResult.ResultEntity.IsSeperated = true;
-            relatedNonCompianceResult.ResultEntity.FormStatus=FormStatus.Seperation;
+            relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.Seperation;
             relatedNonCompianceResult.ResultEntity.LastComment = "--";
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
@@ -258,13 +258,13 @@ namespace Teram.QC.Module.FinalProduct.Controllers
         {
 
             var opinionList = new List<OpinionType>();
-            if ((int)firstSampleOpinion>0)
+            if ((int)firstSampleOpinion > 0)
                 opinionList.Add(firstSampleOpinion);
-            if ((int)secondSampleOpinion>0)
+            if ((int)secondSampleOpinion > 0)
                 opinionList.Add(secondSampleOpinion);
-            if ((int)thirdSampleOpinion>0)
+            if ((int)thirdSampleOpinion > 0)
                 opinionList.Add(thirdSampleOpinion);
-            if ((int)forthSampleOpinion>0)
+            if ((int)forthSampleOpinion > 0)
                 opinionList.Add(forthSampleOpinion);
 
             var hasError =
@@ -282,35 +282,35 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             var relatedNonCompianceResult = finalProductNoncomplianceLogic.GetById(finalProductNonComplianceId);
             var relatedDetailSamples = relatedNonCompianceResult.ResultEntity.FinalProductNoncomplianceDetails.SelectMany(x => x.FinalProductNoncomplianceDetailSamples).ToList();
 
-            var firstSampleRow = relatedDetailSamples.Where(x => x.SampleType==SampleType.FirstSample).FirstOrDefault();
-            if (firstSampleRow!=null)
+            var firstSampleRow = relatedDetailSamples.Where(x => x.SampleType == SampleType.FirstSample).FirstOrDefault();
+            if (firstSampleRow != null)
             {
-                firstSampleRow.OpinionTypeCEO=firstSampleOpinion;
+                firstSampleRow.OpinionTypeCEO = firstSampleOpinion;
                 finalProductNoncomplianceDetailSampleLogic.Update(firstSampleRow);
             }
-            var secondSampleRow = relatedDetailSamples.Where(x => x.SampleType==SampleType.SecondSample).FirstOrDefault();
-            if (secondSampleRow!=null)
+            var secondSampleRow = relatedDetailSamples.Where(x => x.SampleType == SampleType.SecondSample).FirstOrDefault();
+            if (secondSampleRow != null)
             {
-                secondSampleRow.OpinionTypeCEO=secondSampleOpinion;
+                secondSampleRow.OpinionTypeCEO = secondSampleOpinion;
                 finalProductNoncomplianceDetailSampleLogic.Update(secondSampleRow);
             }
-            var thirdSampleRow = relatedDetailSamples.Where(x => x.SampleType==SampleType.ThirdSample).FirstOrDefault();
-            if (thirdSampleRow!=null)
+            var thirdSampleRow = relatedDetailSamples.Where(x => x.SampleType == SampleType.ThirdSample).FirstOrDefault();
+            if (thirdSampleRow != null)
             {
-                thirdSampleRow.OpinionTypeCEO=thirdSampleOpinion;
+                thirdSampleRow.OpinionTypeCEO = thirdSampleOpinion;
                 finalProductNoncomplianceDetailSampleLogic.Update(thirdSampleRow);
             }
-            var forthSampleRow = relatedDetailSamples.Where(x => x.SampleType==SampleType.ForthSample).FirstOrDefault();
-            if (forthSampleRow!=null)
+            var forthSampleRow = relatedDetailSamples.Where(x => x.SampleType == SampleType.ForthSample).FirstOrDefault();
+            if (forthSampleRow != null)
             {
-                forthSampleRow.OpinionTypeCEO=forthSampleOpinion;
+                forthSampleRow.OpinionTypeCEO = forthSampleOpinion;
                 finalProductNoncomplianceDetailSampleLogic.Update(forthSampleRow);
             }
 
-            relatedNonCompianceResult.ResultEntity.FormStatus=FormStatus.CEOFirstOpinion;
-            relatedNonCompianceResult.ResultEntity.HasSeperationOrder=(firstSampleOpinion==OpinionType.Seperation || secondSampleOpinion==OpinionType.Seperation || thirdSampleOpinion==OpinionType.Seperation || forthSampleOpinion==OpinionType.Seperation);
-            relatedNonCompianceResult.ResultEntity.HasWasteOrder=(firstSampleOpinion==OpinionType.Waste || secondSampleOpinion==OpinionType.Waste || thirdSampleOpinion==OpinionType.Waste || forthSampleOpinion==OpinionType.Waste);
-            relatedNonCompianceResult.ResultEntity.HasLeniency=(firstSampleOpinion==OpinionType.Leniency || secondSampleOpinion==OpinionType.Leniency || thirdSampleOpinion==OpinionType.Leniency || forthSampleOpinion==OpinionType.Leniency);
+            relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.CEOFirstOpinion;
+            relatedNonCompianceResult.ResultEntity.HasSeperationOrder = (firstSampleOpinion == OpinionType.Seperation || secondSampleOpinion == OpinionType.Seperation || thirdSampleOpinion == OpinionType.Seperation || forthSampleOpinion == OpinionType.Seperation);
+            relatedNonCompianceResult.ResultEntity.HasWasteOrder = (firstSampleOpinion == OpinionType.Waste || secondSampleOpinion == OpinionType.Waste || thirdSampleOpinion == OpinionType.Waste || forthSampleOpinion == OpinionType.Waste);
+            relatedNonCompianceResult.ResultEntity.HasLeniency = (firstSampleOpinion == OpinionType.Leniency || secondSampleOpinion == OpinionType.Leniency || thirdSampleOpinion == OpinionType.Leniency || forthSampleOpinion == OpinionType.Leniency);
             relatedNonCompianceResult.ResultEntity.LastComment = comments;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
@@ -323,36 +323,36 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             var relatedNonCompianceResult = finalProductNoncomplianceLogic.GetById(finalProductNonComplianceId);
             var relatedDetailSamples = relatedNonCompianceResult.ResultEntity.FinalProductNoncomplianceDetails.SelectMany(x => x.FinalProductNoncomplianceDetailSamples).ToList();
 
-            var firstSampleRow = relatedDetailSamples.Where(x => x.SampleType==SampleType.FirstSample).FirstOrDefault();
-            if (firstSampleRow!=null)
+            var firstSampleRow = relatedDetailSamples.Where(x => x.SampleType == SampleType.FirstSample).FirstOrDefault();
+            if (firstSampleRow != null)
             {
-                firstSampleRow.OpinionTypeCEOFinal=firstSampleOpinion;
+                firstSampleRow.OpinionTypeCEOFinal = firstSampleOpinion;
                 finalProductNoncomplianceDetailSampleLogic.Update(firstSampleRow);
             }
-            var secondSampleRow = relatedDetailSamples.Where(x => x.SampleType==SampleType.SecondSample).FirstOrDefault();
-            if (secondSampleRow!=null)
+            var secondSampleRow = relatedDetailSamples.Where(x => x.SampleType == SampleType.SecondSample).FirstOrDefault();
+            if (secondSampleRow != null)
             {
-                secondSampleRow.OpinionTypeCEOFinal=secondSampleOpinion;
+                secondSampleRow.OpinionTypeCEOFinal = secondSampleOpinion;
                 finalProductNoncomplianceDetailSampleLogic.Update(secondSampleRow);
             }
-            var thirdSampleRow = relatedDetailSamples.Where(x => x.SampleType==SampleType.ThirdSample).FirstOrDefault();
-            if (thirdSampleRow!=null)
+            var thirdSampleRow = relatedDetailSamples.Where(x => x.SampleType == SampleType.ThirdSample).FirstOrDefault();
+            if (thirdSampleRow != null)
             {
-                thirdSampleRow.OpinionTypeCEOFinal=thirdSampleOpinion;
+                thirdSampleRow.OpinionTypeCEOFinal = thirdSampleOpinion;
                 finalProductNoncomplianceDetailSampleLogic.Update(thirdSampleRow);
             }
-            var forthSampleRow = relatedDetailSamples.Where(x => x.SampleType==SampleType.ForthSample).FirstOrDefault();
-            if (forthSampleRow!=null)
+            var forthSampleRow = relatedDetailSamples.Where(x => x.SampleType == SampleType.ForthSample).FirstOrDefault();
+            if (forthSampleRow != null)
             {
-                forthSampleRow.OpinionTypeCEOFinal=forthSampleOpinion;
+                forthSampleRow.OpinionTypeCEOFinal = forthSampleOpinion;
                 finalProductNoncomplianceDetailSampleLogic.Update(forthSampleRow);
             }
-            relatedNonCompianceResult.ResultEntity.FormStatus=FormStatus.CEOLastOpinion;
-            relatedNonCompianceResult.ResultEntity.HasFinalResult=true;
+            relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.CEOLastOpinion;
+            relatedNonCompianceResult.ResultEntity.HasFinalResult = true;
             relatedNonCompianceResult.ResultEntity.LastComment = comments;
-            relatedNonCompianceResult.ResultEntity.HasWasteOrder=(firstSampleOpinion==OpinionType.Waste || secondSampleOpinion==OpinionType.Waste || thirdSampleOpinion==OpinionType.Waste || forthSampleOpinion==OpinionType.Waste);
-            relatedNonCompianceResult.ResultEntity.HasSeperationOrder=(firstSampleOpinion==OpinionType.Seperation || secondSampleOpinion==OpinionType.Seperation || thirdSampleOpinion==OpinionType.Seperation || forthSampleOpinion==OpinionType.Seperation);
-            relatedNonCompianceResult.ResultEntity.HasLeniency=(firstSampleOpinion==OpinionType.Leniency || secondSampleOpinion==OpinionType.Leniency || thirdSampleOpinion==OpinionType.Leniency || forthSampleOpinion==OpinionType.Leniency);
+            relatedNonCompianceResult.ResultEntity.HasWasteOrder = (firstSampleOpinion == OpinionType.Waste || secondSampleOpinion == OpinionType.Waste || thirdSampleOpinion == OpinionType.Waste || forthSampleOpinion == OpinionType.Waste);
+            relatedNonCompianceResult.ResultEntity.HasSeperationOrder = (firstSampleOpinion == OpinionType.Seperation || secondSampleOpinion == OpinionType.Seperation || thirdSampleOpinion == OpinionType.Seperation || forthSampleOpinion == OpinionType.Seperation);
+            relatedNonCompianceResult.ResultEntity.HasLeniency = (firstSampleOpinion == OpinionType.Leniency || secondSampleOpinion == OpinionType.Leniency || thirdSampleOpinion == OpinionType.Leniency || forthSampleOpinion == OpinionType.Leniency);
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
@@ -363,13 +363,13 @@ namespace Teram.QC.Module.FinalProduct.Controllers
         {
 
             var opinionList = new List<OpinionType>();
-            if ((int)firstSampleOpinion>0)
+            if ((int)firstSampleOpinion > 0)
                 opinionList.Add(firstSampleOpinion);
-            if ((int)secondSampleOpinion>0)
+            if ((int)secondSampleOpinion > 0)
                 opinionList.Add(secondSampleOpinion);
-            if ((int)thirdSampleOpinion>0)
+            if ((int)thirdSampleOpinion > 0)
                 opinionList.Add(thirdSampleOpinion);
-            if ((int)forthSampleOpinion>0)
+            if ((int)forthSampleOpinion > 0)
                 opinionList.Add(forthSampleOpinion);
 
             var hasError =
@@ -387,36 +387,36 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             var relatedNonCompianceResult = finalProductNoncomplianceLogic.GetById(finalProductNonComplianceId);
             var relatedDetailSamples = relatedNonCompianceResult.ResultEntity.FinalProductNoncomplianceDetails.SelectMany(x => x.FinalProductNoncomplianceDetailSamples).ToList();
 
-            var firstSampleRow = relatedDetailSamples.Where(x => x.SampleType==SampleType.FirstSample).FirstOrDefault();
-            if (firstSampleRow!=null)
+            var firstSampleRow = relatedDetailSamples.Where(x => x.SampleType == SampleType.FirstSample).FirstOrDefault();
+            if (firstSampleRow != null)
             {
-                firstSampleRow.OpinionTypeCEO=firstSampleOpinion;
+                firstSampleRow.OpinionTypeCEO = firstSampleOpinion;
                 finalProductNoncomplianceDetailSampleLogic.Update(firstSampleRow);
             }
-            var secondSampleRow = relatedDetailSamples.Where(x => x.SampleType==SampleType.SecondSample).FirstOrDefault();
-            if (secondSampleRow!=null)
+            var secondSampleRow = relatedDetailSamples.Where(x => x.SampleType == SampleType.SecondSample).FirstOrDefault();
+            if (secondSampleRow != null)
             {
-                secondSampleRow.OpinionTypeCEO=secondSampleOpinion;
+                secondSampleRow.OpinionTypeCEO = secondSampleOpinion;
                 finalProductNoncomplianceDetailSampleLogic.Update(secondSampleRow);
             }
-            var thirdSampleRow = relatedDetailSamples.Where(x => x.SampleType==SampleType.ThirdSample).FirstOrDefault();
-            if (thirdSampleRow!=null)
+            var thirdSampleRow = relatedDetailSamples.Where(x => x.SampleType == SampleType.ThirdSample).FirstOrDefault();
+            if (thirdSampleRow != null)
             {
-                thirdSampleRow.OpinionTypeCEO=thirdSampleOpinion;
+                thirdSampleRow.OpinionTypeCEO = thirdSampleOpinion;
                 finalProductNoncomplianceDetailSampleLogic.Update(thirdSampleRow);
             }
-            var forthSampleRow = relatedDetailSamples.Where(x => x.SampleType==SampleType.ForthSample).FirstOrDefault();
-            if (forthSampleRow!=null)
+            var forthSampleRow = relatedDetailSamples.Where(x => x.SampleType == SampleType.ForthSample).FirstOrDefault();
+            if (forthSampleRow != null)
             {
-                forthSampleRow.OpinionTypeCEO=forthSampleOpinion;
+                forthSampleRow.OpinionTypeCEO = forthSampleOpinion;
                 finalProductNoncomplianceDetailSampleLogic.Update(forthSampleRow);
             }
-            relatedNonCompianceResult.ResultEntity.FormStatus=FormStatus.CEOFirstOpinion;
-            relatedNonCompianceResult.ResultEntity.HasFinalResult=false;
+            relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.CEOFirstOpinion;
+            relatedNonCompianceResult.ResultEntity.HasFinalResult = false;
             relatedNonCompianceResult.ResultEntity.LastComment = comments;
-            relatedNonCompianceResult.ResultEntity.HasWasteOrder=(firstSampleOpinion==OpinionType.Waste || secondSampleOpinion==OpinionType.Waste || thirdSampleOpinion==OpinionType.Waste || forthSampleOpinion==OpinionType.Waste);
-            relatedNonCompianceResult.ResultEntity.HasSeperationOrder=(firstSampleOpinion==OpinionType.Seperation || secondSampleOpinion==OpinionType.Seperation || thirdSampleOpinion==OpinionType.Seperation || forthSampleOpinion==OpinionType.Seperation);
-            relatedNonCompianceResult.ResultEntity.HasLeniency=(firstSampleOpinion==OpinionType.Leniency || secondSampleOpinion==OpinionType.Leniency || thirdSampleOpinion==OpinionType.Leniency || forthSampleOpinion==OpinionType.Leniency);
+            relatedNonCompianceResult.ResultEntity.HasWasteOrder = (firstSampleOpinion == OpinionType.Waste || secondSampleOpinion == OpinionType.Waste || thirdSampleOpinion == OpinionType.Waste || forthSampleOpinion == OpinionType.Waste);
+            relatedNonCompianceResult.ResultEntity.HasSeperationOrder = (firstSampleOpinion == OpinionType.Seperation || secondSampleOpinion == OpinionType.Seperation || thirdSampleOpinion == OpinionType.Seperation || forthSampleOpinion == OpinionType.Seperation);
+            relatedNonCompianceResult.ResultEntity.HasLeniency = (firstSampleOpinion == OpinionType.Leniency || secondSampleOpinion == OpinionType.Leniency || thirdSampleOpinion == OpinionType.Leniency || forthSampleOpinion == OpinionType.Leniency);
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
@@ -432,14 +432,14 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             }
 
             var relatedDetailSamples = relatedNonCompianceResult.ResultEntity.FinalProductNoncomplianceDetails.
-                SelectMany(x => x.FinalProductNoncomplianceDetailSamples).Where(x => x.OpinionTypeCEO==OpinionType.Waste).ToList();
+                SelectMany(x => x.FinalProductNoncomplianceDetailSamples).Where(x => x.OpinionTypeCEO == OpinionType.Waste).ToList();
 
             foreach (var item in relatedDetailSamples)
             {
-                item.WasteDocumentNumber=wasteDocumentNumber;
+                item.WasteDocumentNumber = wasteDocumentNumber;
                 finalProductNoncomplianceDetailSampleLogic.Update(item);
             }
-            relatedNonCompianceResult.ResultEntity.FormStatus=FormStatus.WasteOperation;
+            relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.WasteOperation;
             relatedNonCompianceResult.ResultEntity.LastComment = "--";
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
@@ -454,18 +454,27 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             {
                 return Json(new { result = "fail", message = localizer[relatedNonCompianceResult.AllMessages] });
             }
-            relatedNonCompianceResult.ResultEntity.FormStatus=FormStatus.ProcessCompleted;
+            relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.ProcessCompleted;
             relatedNonCompianceResult.ResultEntity.LastComment = "--";
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
-        public IActionResult TriggerRefferFromProuctionManager(int finalProductNonComplianceId, string comment, Guid destinationUser)
+        public IActionResult TriggerRefferFromProuctionManager(int finalProductNonComplianceId, string comment, Guid destinationUser, YesNoStatus needToAdvisoryOpinion)
         {
             var relatedNonCompianceResult = finalProductNoncomplianceLogic.GetById(finalProductNonComplianceId);
-            relatedNonCompianceResult.ResultEntity.LastComment = comment;           
-            relatedNonCompianceResult.ResultEntity.FormStatus=FormStatus.RequestForReviewByOthers;
-            relatedNonCompianceResult.ResultEntity.ReferralStatus=ReferralStatus.ReferredToOthersForCausation;
-            relatedNonCompianceResult.ResultEntity.DestinationUser=destinationUser;
+            relatedNonCompianceResult.ResultEntity.LastComment = comment;
+            relatedNonCompianceResult.ResultEntity.DestinationUser = destinationUser;
+
+            if (needToAdvisoryOpinion == YesNoStatus.No)
+            {
+                relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.RequestForReviewByOthers;
+                relatedNonCompianceResult.ResultEntity.ReferralStatus = ReferralStatus.ReferredToOthersForCausation;
+            }
+            if (needToAdvisoryOpinion == YesNoStatus.Yes)
+            {
+                relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.RequestForReviewByOthers;
+                relatedNonCompianceResult.ResultEntity.NeedToAdvisoryOpinion = true;
+            }
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
@@ -473,9 +482,9 @@ namespace Teram.QC.Module.FinalProduct.Controllers
         {
             var relatedNonCompianceResult = finalProductNoncomplianceLogic.GetById(finalProductNonComplianceId);
             relatedNonCompianceResult.ResultEntity.LastComment = " ";
-            relatedNonCompianceResult.ResultEntity.FormStatus=FormStatus.RequestForCausationbyOtherManagers;
+            relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.RequestForCausationbyOtherManagers;
             var relatedActioner = actionerLogic.GetRow(destinationUser);
-            relatedNonCompianceResult.ResultEntity.DestinationUser=relatedActioner.ResultEntity.UserId;
+            relatedNonCompianceResult.ResultEntity.DestinationUser = relatedActioner.ResultEntity.UserId;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
@@ -483,9 +492,9 @@ namespace Teram.QC.Module.FinalProduct.Controllers
         {
             var relatedNonCompianceResult = finalProductNoncomplianceLogic.GetById(finalProductNonComplianceId);
             var lastReferral = relatedNonCompianceResult.ResultEntity.FinalProductNonComplianceCartableItems.OrderByDescending(x => x.InputDatePersian).FirstOrDefault();
-            relatedNonCompianceResult.ResultEntity.DestinationUser=lastReferral.ReferredBy;
+            relatedNonCompianceResult.ResultEntity.DestinationUser = lastReferral.ReferredBy;
             relatedNonCompianceResult.ResultEntity.LastComment = comment;
-            relatedNonCompianceResult.ResultEntity.FormStatus=FormStatus.OthersOpinion;
+            relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.OthersOpinion;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
@@ -494,7 +503,14 @@ namespace Teram.QC.Module.FinalProduct.Controllers
         {
             var relatedNonCompianceResult = finalProductNoncomplianceLogic.GetById(finalProductNonComplianceId);
             relatedNonCompianceResult.ResultEntity.LastComment = comment;
-            relatedNonCompianceResult.ResultEntity.FormStatus=FormStatus.RequestForDeterminingReason;
+            if (relatedNonCompianceResult?.ResultEntity?.FinalProductNonComplianceCartableItems != null)
+            {
+                var lastRefferal = relatedNonCompianceResult?.ResultEntity?.FinalProductNonComplianceCartableItems.
+                                   OrderByDescending(x => x.FinalProductNonComplianceCartableItemId).FirstOrDefault();
+                relatedNonCompianceResult.ResultEntity.DestinationUser = lastRefferal?.ReferredBy;
+            }
+
+            relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.RequestForDeterminingReason;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
@@ -503,7 +519,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
         {
             var relatedNonCompianceResult = finalProductNoncomplianceLogic.GetById(finalProductNonComplianceId);
             relatedNonCompianceResult.ResultEntity.LastComment = comment;
-            relatedNonCompianceResult.ResultEntity.FormStatus=FormStatus.SalesUnitOpinion;
+            relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.SalesUnitOpinion;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
@@ -514,7 +530,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             var relatedNonCompianceResult = finalProductNoncomplianceLogic.GetById(finalProductNonComplianceId);
             var finalProductInspectionResult = finalProductInspectionLogic.GetByOrderNoAndProductCode(relatedNonCompianceResult.ResultEntity.OrderNo, relatedNonCompianceResult.ResultEntity.ProductCode);
             relatedNonCompianceResult.ResultEntity.LastComment = comment;
-            relatedNonCompianceResult.ResultEntity.NoncomplianceDetailSampleSummary=finalProductNoncomplianceLogic.GetSamplesSummaryData(relatedNonCompianceResult.ResultEntity, finalProductInspectionResult.ResultEntity);
+            relatedNonCompianceResult.ResultEntity.NoncomplianceDetailSampleSummary = finalProductNoncomplianceLogic.GetSamplesSummaryData(relatedNonCompianceResult.ResultEntity, finalProductInspectionResult.ResultEntity);
 
             if (relatedNonCompianceResult.ResultEntity.HasFinalResult.HasValue && relatedNonCompianceResult.ResultEntity.HasFinalResult.Value)
             {
@@ -522,9 +538,9 @@ namespace Teram.QC.Module.FinalProduct.Controllers
                 var secondSampleCEOOpinionFinal = relatedNonCompianceResult.ResultEntity.NoncomplianceDetailSampleSummary.SecondSampleOpinionCEOFinal;
                 var thirdSampleCEOOpinionFinal = relatedNonCompianceResult.ResultEntity.NoncomplianceDetailSampleSummary.ThirdSampleOpinionCEOFinal;
                 var forthSampleCEOOpinionFinal = relatedNonCompianceResult.ResultEntity.NoncomplianceDetailSampleSummary.ForthSampleOpinionCEOFinal;
-                relatedNonCompianceResult.ResultEntity.HasWasteOrder=(firstSampleCEOOpinionFinal==OpinionType.Waste || secondSampleCEOOpinionFinal==OpinionType.Waste || thirdSampleCEOOpinionFinal==OpinionType.Waste || forthSampleCEOOpinionFinal==OpinionType.Waste);
-                relatedNonCompianceResult.ResultEntity.HasSeperationOrder=(firstSampleCEOOpinionFinal==OpinionType.Seperation || secondSampleCEOOpinionFinal==OpinionType.Seperation || thirdSampleCEOOpinionFinal==OpinionType.Seperation || forthSampleCEOOpinionFinal==OpinionType.Seperation);
-                relatedNonCompianceResult.ResultEntity.HasLeniency=(firstSampleCEOOpinionFinal==OpinionType.Leniency || secondSampleCEOOpinionFinal==OpinionType.Leniency || thirdSampleCEOOpinionFinal==OpinionType.Leniency || forthSampleCEOOpinionFinal==OpinionType.Leniency);
+                relatedNonCompianceResult.ResultEntity.HasWasteOrder = (firstSampleCEOOpinionFinal == OpinionType.Waste || secondSampleCEOOpinionFinal == OpinionType.Waste || thirdSampleCEOOpinionFinal == OpinionType.Waste || forthSampleCEOOpinionFinal == OpinionType.Waste);
+                relatedNonCompianceResult.ResultEntity.HasSeperationOrder = (firstSampleCEOOpinionFinal == OpinionType.Seperation || secondSampleCEOOpinionFinal == OpinionType.Seperation || thirdSampleCEOOpinionFinal == OpinionType.Seperation || forthSampleCEOOpinionFinal == OpinionType.Seperation);
+                relatedNonCompianceResult.ResultEntity.HasLeniency = (firstSampleCEOOpinionFinal == OpinionType.Leniency || secondSampleCEOOpinionFinal == OpinionType.Leniency || thirdSampleCEOOpinionFinal == OpinionType.Leniency || forthSampleCEOOpinionFinal == OpinionType.Leniency);
             }
 
             else
@@ -534,9 +550,9 @@ namespace Teram.QC.Module.FinalProduct.Controllers
                 var secondSampleCEOOpinion = relatedNonCompianceResult.ResultEntity.NoncomplianceDetailSampleSummary.SecondSampleOpinionCEO;
                 var thirdSampleCEOOpinion = relatedNonCompianceResult.ResultEntity.NoncomplianceDetailSampleSummary.ThirdSampleOpinionCEO;
                 var forthSampleCEOOpinion = relatedNonCompianceResult.ResultEntity.NoncomplianceDetailSampleSummary.ForthSampleOpinionCEO;
-                relatedNonCompianceResult.ResultEntity.HasWasteOrder=(firstSampleCEOOpinion==OpinionType.Waste || secondSampleCEOOpinion==OpinionType.Waste || thirdSampleCEOOpinion==OpinionType.Waste || forthSampleCEOOpinion==OpinionType.Waste);
-                relatedNonCompianceResult.ResultEntity.HasSeperationOrder=(firstSampleCEOOpinion==OpinionType.Seperation || secondSampleCEOOpinion==OpinionType.Seperation || thirdSampleCEOOpinion==OpinionType.Seperation || forthSampleCEOOpinion==OpinionType.Seperation);
-                relatedNonCompianceResult.ResultEntity.HasLeniency=(firstSampleCEOOpinion==OpinionType.Leniency || secondSampleCEOOpinion==OpinionType.Leniency || thirdSampleCEOOpinion==OpinionType.Leniency || forthSampleCEOOpinion==OpinionType.Leniency);
+                relatedNonCompianceResult.ResultEntity.HasWasteOrder = (firstSampleCEOOpinion == OpinionType.Waste || secondSampleCEOOpinion == OpinionType.Waste || thirdSampleCEOOpinion == OpinionType.Waste || forthSampleCEOOpinion == OpinionType.Waste);
+                relatedNonCompianceResult.ResultEntity.HasSeperationOrder = (firstSampleCEOOpinion == OpinionType.Seperation || secondSampleCEOOpinion == OpinionType.Seperation || thirdSampleCEOOpinion == OpinionType.Seperation || forthSampleCEOOpinion == OpinionType.Seperation);
+                relatedNonCompianceResult.ResultEntity.HasLeniency = (firstSampleCEOOpinion == OpinionType.Leniency || secondSampleCEOOpinion == OpinionType.Leniency || thirdSampleCEOOpinion == OpinionType.Leniency || forthSampleCEOOpinion == OpinionType.Leniency);
             }
 
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
@@ -546,7 +562,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
         public override IActionResult Save([FromServices] ILogic<FinalProductNoncomplianceModel> service, FinalProductNoncomplianceModel model)
         {
             var addResult = new BusinessOperationResult<FinalProductNoncomplianceModel>();
-            model.FinalProductNoncomplianceType=FinalProductNoncomplianceType.HasBasis;
+            model.FinalProductNoncomplianceType = FinalProductNoncomplianceType.HasBasis;
             var files = Request.Form.Files;
 
             var checkForExist = finalProductNoncomplianceDetailLogic.GetByPalletNumberAndControlPlanDefectId(model.Number, model.ControlPlanDefectId);
@@ -558,16 +574,16 @@ namespace Teram.QC.Module.FinalProduct.Controllers
 
             using var transaction = new TransactionScope(TransactionScopeOption.Suppress, TransactionScopeAsyncFlowOption.Enabled);
 
-            if (model.FinalProductNoncomplianceId==0)
+            if (model.FinalProductNoncomplianceId == 0)
             {
-                model.FinalProductNoncomplianceDetails=new List<FinalProductNoncomplianceDetailModel>();
+                model.FinalProductNoncomplianceDetails = new List<FinalProductNoncomplianceDetailModel>();
 
-                model.FinalProductNoncomplianceNumber=finalProductNoncomplianceLogic.GetLastNonComliance().ResultEntity;
+                model.FinalProductNoncomplianceNumber = finalProductNoncomplianceLogic.GetLastNonComliance().ResultEntity;
                 var insertModel = new FinalProductNoncomplianceDetailModel
                 {
-                    Number=model.Number,
-                    FinalProductInspectionId=model.FinalProductInspectionId,
-                    FinalProductNoncomplianceDetailSamples= [
+                    Number = model.Number,
+                    FinalProductInspectionId = model.FinalProductInspectionId,
+                    FinalProductNoncomplianceDetailSamples = [
                     new() { SampleType=SampleType.FirstSample, Amount=model.NewFirstSample },
                         new() { SampleType=SampleType.SecondSample, Amount=model.NewSecondSample },
                         new() { SampleType=SampleType.ThirdSample, Amount=model.NewThirdSample },
@@ -575,7 +591,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
                     ]
                 };
                 model.FinalProductNoncomplianceDetails.Add(insertModel);
-                addResult= service.AddNew(model);
+                addResult = service.AddNew(model);
                 foreach (var file in files)
                 {
                     finalProductNoncomplianceFileLogic.SaveToDataBase(file, addResult.ResultEntity.FinalProductNoncomplianceId);
@@ -585,10 +601,10 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             {
                 var insertModel = new FinalProductNoncomplianceDetailModel
                 {
-                    Number=model.Number,
-                    FinalProductInspectionId=model.FinalProductInspectionId,
-                    FinalProductNoncomplianceId=(model.FinalProductNoncomplianceId==0) ? addResult.ResultEntity.FinalProductNoncomplianceId : model.FinalProductNoncomplianceId,
-                    FinalProductNoncomplianceDetailSamples= [
+                    Number = model.Number,
+                    FinalProductInspectionId = model.FinalProductInspectionId,
+                    FinalProductNoncomplianceId = (model.FinalProductNoncomplianceId == 0) ? addResult.ResultEntity.FinalProductNoncomplianceId : model.FinalProductNoncomplianceId,
+                    FinalProductNoncomplianceDetailSamples = [
                     new() { SampleType=SampleType.FirstSample, Amount=model.NewFirstSample },
                         new() { SampleType=SampleType.SecondSample, Amount=model.NewSecondSample },
                         new() { SampleType=SampleType.ThirdSample, Amount=model.NewThirdSample },
@@ -604,7 +620,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
 
         public IActionResult GetDefectNoComplianceData(int finalProductNoncomplianceId, int palletNumber, int controlPlanDefectId, int finalProductInspectionId)
         {
-            if (finalProductNoncomplianceId==-1)
+            if (finalProductNoncomplianceId == -1)
             {
 
                 return ShowNewnonComplianceForm(controlPlanDefectId, palletNumber, finalProductInspectionId);
@@ -630,27 +646,27 @@ namespace Teram.QC.Module.FinalProduct.Controllers
 
                 if (relatedSamples.Count > 0)
                 {
-                    var firsSample = relatedSamples.Where(x => x.SampleType==SampleType.FirstSample).FirstOrDefault();
-                    data.ResultEntity.NewFirstSample=(firsSample!=null) ? firsSample.Amount : 0;
+                    var firsSample = relatedSamples.Where(x => x.SampleType == SampleType.FirstSample).FirstOrDefault();
+                    data.ResultEntity.NewFirstSample = (firsSample != null) ? firsSample.Amount : 0;
 
-                    var secondSample = relatedSamples.Where(x => x.SampleType==SampleType.SecondSample).FirstOrDefault();
-                    data.ResultEntity.NewSecondSample=(secondSample!=null) ? secondSample.Amount : 0;
+                    var secondSample = relatedSamples.Where(x => x.SampleType == SampleType.SecondSample).FirstOrDefault();
+                    data.ResultEntity.NewSecondSample = (secondSample != null) ? secondSample.Amount : 0;
 
-                    var thirdSample = relatedSamples.Where(x => x.SampleType==SampleType.ThirdSample).FirstOrDefault();
-                    data.ResultEntity.NewThirdSample=(thirdSample!=null) ? thirdSample.Amount : 0;
+                    var thirdSample = relatedSamples.Where(x => x.SampleType == SampleType.ThirdSample).FirstOrDefault();
+                    data.ResultEntity.NewThirdSample = (thirdSample != null) ? thirdSample.Amount : 0;
 
-                    var forthSample = relatedSamples.Where(x => x.SampleType==SampleType.ForthSample).FirstOrDefault();
-                    data.ResultEntity.NewForthSample=(forthSample!=null) ? forthSample.Amount : 0;
+                    var forthSample = relatedSamples.Where(x => x.SampleType == SampleType.ForthSample).FirstOrDefault();
+                    data.ResultEntity.NewForthSample = (forthSample != null) ? forthSample.Amount : 0;
 
                 }
             }
 
             var finalProductInspectionDefectResult = finalProductInspectionDefectLogic.GetByFianalProductInspectionIdAndControlPlandefectId(finalProductInspectionId, controlPlanDefectId);
-            data.ResultEntity.Number=palletNumber;
-            data.ResultEntity.NewFirstSample=finalProductInspectionDefectResult.ResultEntity.FirstSample??0;
-            data.ResultEntity.NewSecondSample=finalProductInspectionDefectResult.ResultEntity.SecondSample??0;
-            data.ResultEntity.NewThirdSample=finalProductInspectionDefectResult.ResultEntity.ThirdSample??0;
-            data.ResultEntity.NewForthSample=finalProductInspectionDefectResult.ResultEntity.ForthSample??0;
+            data.ResultEntity.Number = palletNumber;
+            data.ResultEntity.NewFirstSample = finalProductInspectionDefectResult.ResultEntity.FirstSample ?? 0;
+            data.ResultEntity.NewSecondSample = finalProductInspectionDefectResult.ResultEntity.SecondSample ?? 0;
+            data.ResultEntity.NewThirdSample = finalProductInspectionDefectResult.ResultEntity.ThirdSample ?? 0;
+            data.ResultEntity.NewForthSample = finalProductInspectionDefectResult.ResultEntity.ForthSample ?? 0;
 
             var downloadurl = configuration.GetSection("Attachment").Get<AttachmentSection>().DownloadUrl;
 
@@ -672,9 +688,9 @@ namespace Teram.QC.Module.FinalProduct.Controllers
 
             var data = finalProductNoncomplianceLogic.GetHasBasisByOrderNoAndProductCodeAndControlPlanDefectId(orderNo, productCode, controlPlandefectId);
 
-            if (data.ResultStatus == OperationResultStatus.Successful && data.ResultEntity is not null && data.ResultEntity.Count> 0)
+            if (data.ResultStatus == OperationResultStatus.Successful && data.ResultEntity is not null && data.ResultEntity.Count > 0)
             {
-                var createNewSelectListOption = new SelectListItem { Text=localizer["Save New NonCompliance"], Value="-1" };
+                var createNewSelectListOption = new SelectListItem { Text = localizer["Save New NonCompliance"], Value = "-1" };
                 var nonCompliances = data.ResultEntity.ToSelectList(nameof(FinalProductNoncomplianceModel.FinalProductNoncomplianceNumber), nameof(FinalProductNoncomplianceModel.FinalProductNoncomplianceId));
                 var selectListOptions = new List<SelectListItem>
                 {
@@ -682,9 +698,9 @@ namespace Teram.QC.Module.FinalProduct.Controllers
                 };
                 selectListOptions.AddRange(nonCompliances);
                 viewModel.NonCompliancesList = selectListOptions;
-                viewModel.ControlPlanDefectId=controlPlandefectId;
+                viewModel.ControlPlanDefectId = controlPlandefectId;
                 viewModel.Number = number;
-                viewModel.FinalProductInspectionId=finalProductInspectionId;
+                viewModel.FinalProductInspectionId = finalProductInspectionId;
                 return PartialView("_ChooseNonCompliance", viewModel);
             }
 
@@ -705,8 +721,8 @@ namespace Teram.QC.Module.FinalProduct.Controllers
 
             if (serviceInfoResult.ResultStatus != OperationResultStatus.Successful || serviceInfoResult.ResultEntity is null)
             {
-                finalProductNoncomplianceModel.IsEmpty= true;
-                finalProductNoncomplianceModel.ErrorMessage=localizer["Pallet Info Not Found"];
+                finalProductNoncomplianceModel.IsEmpty = true;
+                finalProductNoncomplianceModel.ErrorMessage = localizer["Pallet Info Not Found"];
                 return PartialView("_AddNonCompliance", finalProductNoncomplianceModel);
             }
 
@@ -714,8 +730,8 @@ namespace Teram.QC.Module.FinalProduct.Controllers
 
             if (controlPlanDefectResult.ResultStatus != OperationResultStatus.Successful || controlPlanDefectResult.ResultEntity is null)
             {
-                finalProductNoncomplianceModel.IsEmpty= true;
-                finalProductNoncomplianceModel.ErrorMessage=localizer["Control Plan Defct Not Found"];
+                finalProductNoncomplianceModel.IsEmpty = true;
+                finalProductNoncomplianceModel.ErrorMessage = localizer["Control Plan Defct Not Found"];
                 return PartialView("_AddNonCompliance", finalProductNoncomplianceModel);
             }
 
@@ -723,29 +739,29 @@ namespace Teram.QC.Module.FinalProduct.Controllers
 
             if (finalProductInspectionDefectResult.ResultStatus != OperationResultStatus.Successful || finalProductInspectionDefectResult.ResultEntity is null)
             {
-                finalProductNoncomplianceModel.IsEmpty= true;
-                finalProductNoncomplianceModel.ErrorMessage=localizer["Inspection Details Not Found"];
+                finalProductNoncomplianceModel.IsEmpty = true;
+                finalProductNoncomplianceModel.ErrorMessage = localizer["Inspection Details Not Found"];
                 return PartialView("_AddNonCompliance", finalProductNoncomplianceModel);
             }
 
-            finalProductNoncomplianceModel.IsEmpty= false;
-            finalProductNoncomplianceModel.IsNew=true;
+            finalProductNoncomplianceModel.IsEmpty = false;
+            finalProductNoncomplianceModel.IsNew = true;
 
-            finalProductNoncomplianceModel.OrderNo=serviceInfoResult.ResultEntity.OrderNo;
-            finalProductNoncomplianceModel.ProductCode=serviceInfoResult.ResultEntity.ProductCode;
-            finalProductNoncomplianceModel.ProductName=serviceInfoResult.ResultEntity.ProductName;
-            finalProductNoncomplianceModel.ControlPlanDefectId=controlPlandefectId;
-            finalProductNoncomplianceModel.ControlPlanDefectCode=controlPlanDefectResult.ResultEntity.DefectCode;
-            finalProductNoncomplianceModel.ControlPlanDefectTitle=controlPlanDefectResult.ResultEntity.DefectTitle;
-            finalProductNoncomplianceModel.ControlPlanDefectValue=controlPlanDefectResult.ResultEntity.ControlPlanDefectVal;
-            finalProductNoncomplianceModel.Number=number;
-            finalProductNoncomplianceModel.NewFirstSample=finalProductInspectionDefectResult.ResultEntity.FirstSample ?? 0;
-            finalProductNoncomplianceModel.NewSecondSample=finalProductInspectionDefectResult.ResultEntity.SecondSample??0;
-            finalProductNoncomplianceModel.NewThirdSample=finalProductInspectionDefectResult.ResultEntity.ThirdSample ?? 0;
-            finalProductNoncomplianceModel.NewForthSample=finalProductInspectionDefectResult.ResultEntity.ForthSample ?? 0;
-            finalProductNoncomplianceModel.FinalProductInspectionId=finalProductInspectionId;
-            finalProductNoncomplianceModel.ControlPlan=controlPlanDefectResult.ResultEntity.ControlPlanTitle;
-            finalProductNoncomplianceModel.OrderTitle=serviceInfoResult.ResultEntity.OrderTitle;
+            finalProductNoncomplianceModel.OrderNo = serviceInfoResult.ResultEntity.OrderNo;
+            finalProductNoncomplianceModel.ProductCode = serviceInfoResult.ResultEntity.ProductCode;
+            finalProductNoncomplianceModel.ProductName = serviceInfoResult.ResultEntity.ProductName;
+            finalProductNoncomplianceModel.ControlPlanDefectId = controlPlandefectId;
+            finalProductNoncomplianceModel.ControlPlanDefectCode = controlPlanDefectResult.ResultEntity.DefectCode;
+            finalProductNoncomplianceModel.ControlPlanDefectTitle = controlPlanDefectResult.ResultEntity.DefectTitle;
+            finalProductNoncomplianceModel.ControlPlanDefectValue = controlPlanDefectResult.ResultEntity.ControlPlanDefectVal;
+            finalProductNoncomplianceModel.Number = number;
+            finalProductNoncomplianceModel.NewFirstSample = finalProductInspectionDefectResult.ResultEntity.FirstSample ?? 0;
+            finalProductNoncomplianceModel.NewSecondSample = finalProductInspectionDefectResult.ResultEntity.SecondSample ?? 0;
+            finalProductNoncomplianceModel.NewThirdSample = finalProductInspectionDefectResult.ResultEntity.ThirdSample ?? 0;
+            finalProductNoncomplianceModel.NewForthSample = finalProductInspectionDefectResult.ResultEntity.ForthSample ?? 0;
+            finalProductNoncomplianceModel.FinalProductInspectionId = finalProductInspectionId;
+            finalProductNoncomplianceModel.ControlPlan = controlPlanDefectResult.ResultEntity.ControlPlanTitle;
+            finalProductNoncomplianceModel.OrderTitle = serviceInfoResult.ResultEntity.OrderTitle;
 
             return PartialView("_AddNonCompliance", finalProductNoncomplianceModel);
         }

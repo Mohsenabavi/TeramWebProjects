@@ -823,7 +823,7 @@ $(document).on('click', '#btnRefferal', function () {
 
 
 $(document).on('click', '#btnRefferToOtherActioner ', function () {
-    
+
     nonComplianceId = $("#FinalProductNoncomplianceId").val();
     var destinationUser = $("#ActionerId").val();
 
@@ -849,12 +849,14 @@ $(document).on('click', '.btnRefferFromProuctionManager ', function () {
     var comments = $("#productionManagerComment").val();
     nonComplianceId = $("#FinalProductNoncomplianceId").val();
     var destinationUser = $("#OthersList").val();
+    var needToAdvisoryOpinion = $("#hasNeedToRefferToOthers").val();
 
     $.post("/FinalProductNoncompliance/TriggerRefferFromProuctionManager",
         {
             finalProductNonComplianceId: nonComplianceId,
             comment: comments,
-            destinationUser: destinationUser
+            destinationUser: destinationUser,
+            needToAdvisoryOpinion: needToAdvisoryOpinion
         }, function (content) {
 
             if (content.result == "ok") {
@@ -941,7 +943,7 @@ $(document).on("change", "#NotRelatedToProduction", function () {
     if (isChecked) {
         $('.chooseActioners').attr('style', 'display: flex !important');
         $("#btnRefferToOtherActioner").removeClass("d-none");
-        $(".InputForm").addClass("d-none");      
+        $(".InputForm").addClass("d-none");
         $(".InputForm .select2").val("").trigger("change")
         $(".InputForm :checkbox").prop('checked', false);
         $('.InputForm :input[type=text]').val('');
@@ -982,7 +984,7 @@ $(document).on('click', '.showDetailsBtn', function () {
         var altFieldvar = "#CorrectiveActions\\[" + length + "\\]\\.ActionDate";
         var customoption = { "altField": altFieldvar };
         var options = $.extend(dateOption, customoption);
-        datePickerInitilize(".actionDate", options);        
+        datePickerInitilize(".actionDate", options);
         $('.chooseActioners').attr('style', 'display: none !important');
         $("#btnRefferToOtherActioner").addClass("d-none");
     });

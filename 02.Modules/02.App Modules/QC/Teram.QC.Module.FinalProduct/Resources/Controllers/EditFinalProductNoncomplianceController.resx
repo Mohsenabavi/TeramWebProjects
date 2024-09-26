@@ -319,7 +319,7 @@
     <value>انتخاب کنید</value>
   </data>
   <data name="SendBackToProductionManager" xml:space="preserve">
-    <value>بازگرداندن به مدیر تولید</value>
+    <value>بازگرداندن به فرد علت یاب</value>
   </data>
   <data name="SendInfoToCEO" xml:space="preserve">
     <value>ارسال نظر به مدیر عامل</value>

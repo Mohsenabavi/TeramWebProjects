@@ -76,40 +76,63 @@ namespace Teram.QC.Module.FinalProduct.Services
             try
             {
                 var query = string.Format(@"                                                                               
-                    SELECT m.OrderNo,
-                    m.OrderTitle,
-                    m.Number,
-                    m.Date,
-                    m.ProductCode,
-                    m.ProductName,
-                    m.quantity,
-                    m.ControlPlan
-                    FROM (
-                    SELECT ISNULL(CONVERT(INT,ivi.Level5DLCode),CONVERT(INT,iv.Level5DLCode)) AS OrderNo,
-                    iv.Number,
-                    iv.date AS Date,
-                    (ivi.quantity) AS Quantity,
-                    p.Code AS ProductCode,
-                    p.Name AS ProductName,
-                    ROW_NUMBER() OVER (PARTITION BY iv.Number,iv.InventoryVoucherSpecificationRef ORDER BY iv.Date DESC) AS row1,
-                    ISNULL(ISNULL(pr.new_OrderNo,m1.new_name), er.new_name) AS OrderTitle,
-                    ISNULL(ISNULL(m.new_ControlMap,m1.new_ControlMap),s.new_controlmap) AS ControlPlan
-                    FROM
-                    LGS3.InventoryVoucher iv
-                    JOIN LGS3.InventoryVoucherItem ivi on iv.InventoryVoucherID=ivi.InventoryVoucherRef AND iv.InventoryVoucherSpecificationRef=124
-                    JOIN LGS3.Part p ON p.PartID=ivi.PartRef
-                    JOIN FIN3.DL dl ON CONVERT(INT , (dl.Code))=ISNULL(CONVERT(INT,ivi.Level5DLCode),CONVERT(INT,iv.Level5DLCode))
-                    LEFT JOIN [CRM-SERVER].TeramChap_MSCRM.dbo.new_ProducrOrdersBase pr ON CONVERT(INT , pr.new_name)=CONVERT(INT , (dl.Code))
-                    LEFT JOIN [CRM-SERVER].TeramChap_MSCRM.dbo.new_masterdataBase m ON m.new_masterdataId=pr.new_MasterData
-                    LEFT JOIN [CRM-SERVER].TeramChap_MSCRM.dbo.new_TestProductionorderBase t ON CONVERT(INT , t.new_name)=CONVERT(INT,(dl.Code))
-                    LEFT JOIN [CRM-SERVER].TeramChap_MSCRM.dbo.new_masterdataBase m1 ON m1.new_masterdataId=t.new_MasterData
-                    LEFT JOIN [CRM-SERVER].TeramChap_MSCRM.dbo.new_ProductOrderRanginBase R ON CONVERT(INT , R.new_name)=CONVERT(INT,(dl.Code))
-                    LEFT JOIN [CRM-SERVER].TeramChap_MSCRM.dbo.new_MasterDataOutSourceBase S ON S.new_MasterDataOutSourceId=R.new_montagemasterdata
-                    LEFT JOIN [CRM-SERVER].TeramChap_MSCRM.dbo.new_EmkansanjiRanginBasteBase er ON er.new_EmkansanjiRanginBasteId=r.new_EmkansanjiRangin
-                    WHERE ISNULL(CONVERT(INT,ivi.Level5DLCode),CONVERT(INT,iv.Level5DLCode)) <> 800000
-                    )m
-                    WHERE row1=1
-                    AND m.Number={0}", PalletNo);
+                            SELECT m.OrderNo,
+                            m.OrderTitle,
+                            m.Number,
+                            m.Date,
+                            m.ProductCode,
+                            m.ProductName,
+                            m.quantity,
+                            ISNULL(new_qc_instruction1,ISNULL(m.ControlPlan,new_qc_instruction2)) AS ControlPlan
+                            FROM (
+                            SELECT ISNULL(CONVERT(INT,ivi.Level5DLCode),CONVERT(INT,iv.Level5DLCode)) AS OrderNo,
+                            iv.Number,
+                            iv.date AS Date,
+                            (ivi.quantity) AS Quantity,
+                            p.Code AS ProductCode,
+                            p.Name AS ProductName,
+                            ROW_NUMBER() OVER (PARTITION BY iv.Number,iv.InventoryVoucherSpecificationRef ORDER BY iv.Date DESC) AS row1,
+                            ISNULL(ISNULL(pr.new_OrderNo,m1.new_name), er.new_name) AS OrderTitle,
+                            ISNULL(ISNULL(m.new_ControlMap,m1.new_ControlMap),s.new_controlmap) AS ControlPlan,
+                            CASE m.new_qc_instruction WHEN 100000001 THEN N'CP-F001'
+                            WHEN 100000002 THEN N'CP-F002'
+                            WHEN 100000003 THEN N'CP-F003'
+                            WHEN 100000004 THEN N'CP-F004'
+                            WHEN 100000005 THEN N'CP-F005'
+                            WHEN 100000006 THEN N'CP-F006'
+                            WHEN 100000007 THEN N'CP-F007'
+                            WHEN 100000008 THEN N'CP-F008'
+                            WHEN 100000009 THEN N'CP-F009'
+                            WHEN 100000010 THEN N'CP-F010'
+                            WHEN 100000011 THEN N'CP-F011'
+                            ELSE NULL END AS new_qc_instruction1,
+                            CASE m1.new_qc_instruction WHEN 100000001 THEN N'CP-F001'
+                            WHEN 100000002 THEN N'CP-F002'
+                            WHEN 100000003 THEN N'CP-F003'
+                            WHEN 100000004 THEN N'CP-F004'
+                            WHEN 100000005 THEN N'CP-F005'
+                            WHEN 100000006 THEN N'CP-F006'
+                            WHEN 100000007 THEN N'CP-F007'
+                            WHEN 100000008 THEN N'CP-F008'
+                            WHEN 100000009 THEN N'CP-F009'
+                            WHEN 100000010 THEN N'CP-F010'
+                            WHEN 100000011 THEN N'CP-F011'
+                            ELSE NULL END AS new_qc_instruction2
+                            FROM
+                            LGS3.InventoryVoucher iv
+                            JOIN LGS3.InventoryVoucherItem ivi on iv.InventoryVoucherID=ivi.InventoryVoucherRef AND iv.InventoryVoucherSpecificationRef=124
+                            JOIN LGS3.Part p ON p.PartID=ivi.PartRef
+                            JOIN FIN3.DL dl ON CONVERT(INT , (dl.Code))=ISNULL(CONVERT(INT,ivi.Level5DLCode),CONVERT(INT,iv.Level5DLCode))
+                            LEFT JOIN [CRM-SERVER].TeramChap_MSCRM.dbo.new_ProducrOrdersBase pr ON CONVERT(INT , pr.new_name)=CONVERT(INT , (dl.Code))
+                            LEFT JOIN [CRM-SERVER].TeramChap_MSCRM.dbo.new_masterdataBase m ON m.new_masterdataId=pr.new_MasterData
+                            LEFT JOIN [CRM-SERVER].TeramChap_MSCRM.dbo.new_TestProductionorderBase t ON CONVERT(INT , t.new_name)=CONVERT(INT,(dl.Code))
+                            LEFT JOIN [CRM-SERVER].TeramChap_MSCRM.dbo.new_masterdataBase m1 ON m1.new_masterdataId=t.new_MasterData
+                            LEFT JOIN [CRM-SERVER].TeramChap_MSCRM.dbo.new_ProductOrderRanginBase R ON CONVERT(INT , R.new_name)=CONVERT(INT,(dl.Code))
+                            LEFT JOIN [CRM-SERVER].TeramChap_MSCRM.dbo.new_MasterDataOutSourceBase S ON S.new_MasterDataOutSourceId=R.new_montagemasterdata
+                            LEFT JOIN [CRM-SERVER].TeramChap_MSCRM.dbo.new_EmkansanjiRanginBasteBase er ON er.new_EmkansanjiRanginBasteId=r.new_EmkansanjiRangin
+                            WHERE ISNULL(CONVERT(INT,ivi.Level5DLCode),CONVERT(INT,iv.Level5DLCode)) <> 800000
+                            )m
+                            WHERE row1=1 AND m.Number={0}", PalletNo);
                 using (var connection = new SqlConnection(rahkaranConnectionString))
                 {
                     var data = await connection.QueryFirstAsync<PalletInfoModel>(query);

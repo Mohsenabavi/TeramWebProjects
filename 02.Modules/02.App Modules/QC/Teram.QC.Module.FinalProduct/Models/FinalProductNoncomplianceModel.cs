@@ -42,12 +42,12 @@ namespace Teram.QC.Module.FinalProduct.Models
         [GridColumn(nameof(ControlPlanDefectTitle))]
         [ExportToExcel("نام ایراد")]
         public string? ControlPlanDefectTitle { get; set; }
-     
+        public Guid? ControlPlanDefectUserId { get; set; }
         public string ControlPlan { get; set; }
 
         [GridColumn(nameof(ReferralStatusText))]
         [ExportToExcel("وضعیت ارجاع")]
-        public string ReferralStatusText => (ReferralStatus>0) ? ReferralStatus.GetDescription() : "";
+        public string ReferralStatusText => (ReferralStatus > 0) ? ReferralStatus.GetDescription() : "";
 
         [GridColumn(nameof(FormStatusText))]
         [ExportToExcel("وضعیت")]
@@ -66,8 +66,8 @@ namespace Teram.QC.Module.FinalProduct.Models
         public int ForthSample { get; set; }
 
         public FinalProductNoncomplianceType FinalProductNoncomplianceType { get; set; }
-      
-        public string FinalProductNoncomplianceTypeText => (FinalProductNoncomplianceType>0) ? FinalProductNoncomplianceType.GetDescription() : "-";
+
+        public string FinalProductNoncomplianceTypeText => (FinalProductNoncomplianceType > 0) ? FinalProductNoncomplianceType.GetDescription() : "-";
 
         public DateTime CreateDate { get; set; }
 
@@ -88,12 +88,14 @@ namespace Teram.QC.Module.FinalProduct.Models
 
         public bool? HasWasteOrder { get; set; }
 
-        public bool? HasLeniency {  get; set; }
+        public bool? HasLeniency { get; set; }
+
+        public bool HasCausation { get; set; }
 
         public QualityControlManagerOpinion QualityControlManagerOpinion { get; set; }
 
         public ReferralStatus ReferralStatus { get; set; }
-     
+
         public FormStatus FormStatus { get; set; }
 
         public DateTime? LastModifyDate { get; set; }
@@ -101,7 +103,7 @@ namespace Teram.QC.Module.FinalProduct.Models
         public string? LastComment { get; set; }
 
         #region Helper Fields
-  
+
         public string? ControlPlanDefectValue { get; set; }
 
         public string? ControlPlanDefectCode { get; set; }
@@ -118,7 +120,7 @@ namespace Teram.QC.Module.FinalProduct.Models
 
         public List<FinalProductNoncomplianceDetailModel>? FinalProductNoncomplianceDetails { get; set; }
         public List<FinalProductNoncomplianceFileModel>? FinalProductNoncomplianceFiles { get; set; }
-        public List<FinalProductNonComplianceCartableItemModel>? FinalProductNonComplianceCartableItems {  get; set; }
+        public List<FinalProductNonComplianceCartableItemModel>? FinalProductNonComplianceCartableItems { get; set; }
         public List<FinalProductNonComplianceCartableItemModel>? SalesUnitCartableItems { get; set; }
 
         public string? ErrorMessage { get; set; }
@@ -143,15 +145,15 @@ namespace Teram.QC.Module.FinalProduct.Models
 
         public NoncomplianceDetailSampleSummaryModel? NoncomplianceDetailSampleSummary { get; set; }
 
-        public CausationModel? Causation { get; set;}
+        public CausationModel? Causation { get; set; }
 
         [GridColumn(nameof(CreatedByText))]
         [ExportToExcel("نام ثبت کننده")]
         public string? CreatedByText { get; set; }
 
-        public string TracingCodes {  get; set; }
+        public string TracingCodes { get; set; }
 
-        public Guid? DestinationUser {  get; set; }
+        public Guid? DestinationUser { get; set; }
 
         #endregion
 

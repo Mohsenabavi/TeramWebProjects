@@ -15,6 +15,10 @@ namespace Teram.QC.Module.FinalProduct.Models
         public string Code { get; set; }
         public string? Description { get; set; }
         public bool IsActive { get; set; }
+        public Guid? UserId {  get; set; }
+
+        [GridColumn(nameof(UserFullName))]
+        public string? UserFullName {  get; set; }
 
         [GridColumn(nameof(IsActiveText))]
         public string IsActiveText => IsActive ? "فعال" : "غیرفعال";

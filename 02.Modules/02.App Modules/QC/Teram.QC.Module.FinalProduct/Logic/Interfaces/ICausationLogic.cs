@@ -6,6 +6,6 @@ namespace Teram.QC.Module.FinalProduct.Logic.Interfaces
 {  
     public interface ICausationLogic : IBusinessOperations<CausationModel, Causation, int>
     {
-
+        BusinessOperationResult<CausationModel> GetByFinalProductNonComplianceId(int finalProductNonComplianceId);
     }
 }

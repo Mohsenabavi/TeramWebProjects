@@ -415,6 +415,23 @@ namespace Teram.QC.Module.FinalProduct.Entities
             }
         }
 
+        
+        private bool _hasCausation;
+
+        [CompareField]
+
+        [Description("علت یابی شده")]
+        public bool HasCausation
+        {
+            get { return _hasCausation; }
+            set
+            {
+                if (_hasCausation == value) return;
+                _hasCausation = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Guid? _destinationUser;
         public Guid? DestinationUser
         {

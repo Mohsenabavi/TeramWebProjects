@@ -99,6 +99,7 @@ namespace Teram.QC.Module.FinalProduct
             Mapster.TypeAdapterConfig<FinalProductNoncompliance, FinalProductNoncomplianceModel>.NewConfig()
                 .Map(x => x.ControlPlanDefectTitle, x => x.ControlPlanDefect.QCDefect.Title)
             .Map(x => x.ControlPlanDefectValue, x => x.ControlPlanDefect.ControlPlanDefectVal)
+            .Map(x => x.ControlPlanDefectUserId, x => x.ControlPlanDefect.QCDefect.UserId)
             .Map(x => x.ControlPlanDefectCode, x => x.ControlPlanDefect.QCDefect.Code);
 
             Mapster.TypeAdapterConfig<FinalProductInspectionDefect, FinalProductInspectionDefectModel>.NewConfig()

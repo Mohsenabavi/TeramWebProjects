@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Teram.QC.Module.FinalProduct.Entities.DbContext;
 
@@ -11,9 +12,11 @@ using Teram.QC.Module.FinalProduct.Entities.DbContext;
 namespace Teram.QC.Module.FinalProduct.Migrations
 {
     [DbContext(typeof(FinalProductDbContext))]
-    partial class FinalProductDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241003165339_AddHasCausation")]
+    partial class AddHasCausation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -590,7 +593,7 @@ namespace Teram.QC.Module.FinalProduct.Migrations
                     b.Property<int>("ForthSample")
                         .HasColumnType("int");
 
-                    b.Property<bool>("HasCausation")
+                    b.Property<bool?>("HasCausation")
                         .HasColumnType("bit");
 
                     b.Property<bool?>("HasFinalResult")

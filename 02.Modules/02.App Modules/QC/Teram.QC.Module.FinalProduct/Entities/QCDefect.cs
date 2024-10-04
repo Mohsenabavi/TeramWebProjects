@@ -59,6 +59,18 @@ namespace Teram.QC.Module.FinalProduct.Entities
                 OnPropertyChanged();
             }
         }
+
+        private Guid? _userId;
+        public Guid? UserId
+        {
+            get { return _userId; }
+            set
+            {
+                if (_userId == value) return;
+                _userId = value;
+                OnPropertyChanged();
+            }
+        }
         public virtual ICollection<ControlPlanDefect>? ControlPlanDefects { get; set; }
     }
 }

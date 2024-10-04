@@ -5,6 +5,7 @@ using Teram.QC.Module.FinalProduct.Entities.Causation;
 using Teram.QC.Module.FinalProduct.Logic;
 using Teram.QC.Module.FinalProduct.Logic.Interfaces;
 using Teram.QC.Module.FinalProduct.Models.CausationModels;
+using Teram.ServiceContracts;
 using Teram.Web.Core;
 using Teram.Web.Core.ControlPanel;
 
@@ -33,8 +34,8 @@ namespace Teram.QC.Module.FinalProduct.Controllers
                 OperationColumns = true,
                 HomePage = nameof(CausationController).Replace("Controller", "") + "/index",
             };
-            this.finalProductNoncomplianceLogic=finalProductNoncomplianceLogic??throw new ArgumentNullException(nameof(finalProductNoncomplianceLogic));
-            this.causationLogic=causationLogic??throw new ArgumentNullException(nameof(causationLogic));
+            this.finalProductNoncomplianceLogic = finalProductNoncomplianceLogic ?? throw new ArgumentNullException(nameof(finalProductNoncomplianceLogic));
+            this.causationLogic = causationLogic ?? throw new ArgumentNullException(nameof(causationLogic));
         }
         public IActionResult Index()
         {
@@ -49,16 +50,26 @@ namespace Teram.QC.Module.FinalProduct.Controllers
         {
             var relatedNonComplianceResult = finalProductNoncomplianceLogic.GetById(model.FinalProductNoncomplianceId);
 
-            relatedNonComplianceResult.ResultEntity.FormStatus=Enums.FormStatus.DeterminingReason;
+            relatedNonComplianceResult.ResultEntity.FormStatus = Enums.FormStatus.DeterminingReason;
 
-            relatedNonComplianceResult.ResultEntity.LastComment=" ";
+            relatedNonComplianceResult.ResultEntity.LastComment = " ";
+
+            relatedNonComplianceResult.ResultEntity.HasCausation = true;
 
             var updateResult = finalProductNoncomplianceLogic.Update(relatedNonComplianceResult.ResultEntity);
 
-            var saveCausationResult = causationLogic.Update(model);
+            var causationResult = causationLogic.GetByFinalProductNonComplianceId(model.FinalProductNoncomplianceId);
 
-            return base.Save(service, model);
+            if (causationResult.ResultStatus == OperationResultStatus.Successful && causationResult.ResultEntity is not null)
+            {
+                causationLogic.Update(model);
+                return Json(new { result = "ok", message = localizer["Saved Successfully"] });
+            }
+            else
+            {
+                causationLogic.AddNew(model);
+                return Json(new { result = "ok", message = localizer["Saved Successfully"] });
+            }
         }
     }
-
 }

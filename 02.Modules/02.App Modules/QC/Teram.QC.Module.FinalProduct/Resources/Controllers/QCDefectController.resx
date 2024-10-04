@@ -135,6 +135,9 @@
   <data name="QCDefect" xml:space="preserve">
     <value>فهرست ایرادات</value>
   </data>
+  <data name="RelatedProoductionManager" xml:space="preserve">
+    <value>مدیر تولید مرتبط</value>
+  </data>
   <data name="Remove Filter" xml:space="preserve">
     <value>حذف فیلترها</value>
   </data>

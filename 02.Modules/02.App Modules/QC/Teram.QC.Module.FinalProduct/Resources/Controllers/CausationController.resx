@@ -207,4 +207,7 @@
   <data name="Save" xml:space="preserve">
     <value>ثبت علت یابی</value>
   </data>
+  <data name="Saved Successfully" xml:space="preserve">
+    <value>اطلاعات با موفقیت ثبت شد</value>
+  </data>
 </root>

@@ -30,10 +30,12 @@ namespace Teram.QC.Module.FinalProduct.Logic
         private readonly IOperatorLogic operatorLogic;
         private readonly IFinalProductNonComplianceCartableItemLogic finalProductNonComplianceCartableItemLogic;
         private readonly IConfiguration configuration;
+        private readonly IRoleSharedService roleSharedService;
 
         public FinalProductNoncomplianceLogic(IPersistenceService<FinalProductNoncompliance> service, IUserSharedService userSharedService,
             IUserPrincipal userPrincipal, IManageCartableLogic manageCartableLogic, IFlowInstructionLogic flowInstructionLogic, IOperatorLogic operatorLogic,
-            IFinalProductNonComplianceCartableItemLogic finalProductNonComplianceCartableItemLogic, IConfiguration configuration) : base(service)
+            IFinalProductNonComplianceCartableItemLogic finalProductNonComplianceCartableItemLogic,
+            IConfiguration configuration, IRoleSharedService roleSharedService) : base(service)
         {
             AfterAdd += FinalProductNoncomplianceLogic_AfterAdd;
             AfterUpdate += FinalProductNoncomplianceLogic_AfterUpdate;
@@ -44,6 +46,7 @@ namespace Teram.QC.Module.FinalProduct.Logic
             this.operatorLogic = operatorLogic ?? throw new ArgumentNullException(nameof(operatorLogic));
             this.finalProductNonComplianceCartableItemLogic = finalProductNonComplianceCartableItemLogic ?? throw new ArgumentNullException(nameof(finalProductNonComplianceCartableItemLogic));
             this.configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+            this.roleSharedService = roleSharedService ?? throw new ArgumentNullException(nameof(roleSharedService));
         }
 
         private void FinalProductNoncomplianceLogic_AfterUpdate(TeramEntityEventArgs<FinalProductNoncompliance, FinalProductNoncomplianceModel, int> entity)
@@ -53,14 +56,30 @@ namespace Teram.QC.Module.FinalProduct.Logic
             if (nextStep.ResultStatus == OperationResultStatus.Successful && nextStep.ResultEntity is not null)
             {
                 var registeredData = entity.Model;
-                if (entity.NewEntity.DestinationUser != null)
+
+                var relatedProductionManagers = userSharedService.GetUsersInRole("ProductionManager").Result;
+                var productionManagerRole = roleSharedService.GetRoleByName("ProductionManager").Result;
+
+                var productionManagerUserIds = relatedProductionManagers.Select(x => x.UserId).ToList();
+
+                if (productionManagerRole.Id == nextStep.ResultEntity.NextCartableRoleId && entity.NewEntity.DestinationUser == null)
                 {
-                    manageCartableLogic.AddToCartable(nextStep.ResultEntity, registeredData, null, entity.NewEntity.DestinationUser);
+                    var relatedDefectUserId = entity.Model.ControlPlanDefectUserId;
+                    manageCartableLogic.AddToCartable(nextStep.ResultEntity, registeredData, null, relatedDefectUserId);
                 }
                 else
                 {
-                    manageCartableLogic.AddToCartable(nextStep.ResultEntity, registeredData);
+                    if (entity.NewEntity.DestinationUser != null)
+                    {
+                        manageCartableLogic.AddToCartable(nextStep.ResultEntity, registeredData, null, entity.NewEntity.DestinationUser);
+                    }
+                    else
+                    {
+                        manageCartableLogic.AddToCartable(nextStep.ResultEntity, registeredData);
+                    }
                 }
+
+
 
                 if (registeredData.FormStatus != nextStep.ResultEntity.FormStatus || registeredData.ReferralStatus != nextStep.ResultEntity.ToStatus)
                 {
@@ -217,11 +236,7 @@ namespace Teram.QC.Module.FinalProduct.Logic
             if (!isAdmin && !isOperator)
             {
                 var relatedCartableItems = finalProductNonComplianceCartableItemLogic.GetByUserId(currentUserId);
-                var currentUserReferralStatus = GetCurrentUserReferralStatus();
-                if (currentUserReferralStatus.Count > 0)
-                {
-                    query = query.AndAlso(x => currentUserReferralStatus.Contains(x.ReferralStatus));
-                }
+                
                 if (relatedCartableItems.ResultStatus == OperationResultStatus.Successful && relatedCartableItems.ResultEntity is not null)
                 {
                     var relatedNonComplianceIds = relatedCartableItems.ResultEntity.Select(x => x.FinalProductNoncomplianceId).ToList();
@@ -278,7 +293,9 @@ namespace Teram.QC.Module.FinalProduct.Logic
 
             var userMainRole = manageCartableLogic.GetUserMainRole();
 
-            if (userMainRole.ResultEntity.Name == "Actioners")
+            if (userMainRole.ResultEntity.Name.ToUpper() == "ACTIONERS" ||
+                userMainRole.ResultEntity.Name.ToUpper() == "CEO" ||
+                userMainRole.ResultEntity.Name.ToUpper() == "QCMANAGER")
             {
                 result.Add(ReferralStatus.ReferredToProductionManager);
             }

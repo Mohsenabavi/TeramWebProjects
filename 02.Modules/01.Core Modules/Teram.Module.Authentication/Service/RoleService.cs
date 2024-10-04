@@ -99,7 +99,7 @@ namespace Teram.Module.Authentication.Service
         }
 
         public async Task<List<Claim>> GetClaimsAsync(RoleInfo roleInfo)
-        {            
+        {
             var role = await roleManager.FindByIdAsync(roleInfo.Id.ToString());
             var result = await roleManager.GetClaimsAsync(role);
             return (List<Claim>)result;
@@ -116,17 +116,16 @@ namespace Teram.Module.Authentication.Service
 
         public async Task<RoleInfo> GetRoleByName(string roleName)
         {
-            var transaction = new TransactionScope(TransactionScopeOption.Suppress, TransactionScopeAsyncFlowOption.Enabled);
             var role = await roleManager.FindByNameAsync(roleName);
             var roleInfo = new RoleInfo
             {
+                Id = role.Id,
                 Name = role.Name,
                 NormalizedName = role.NormalizedName,
                 ConcurrencyStamp = role.ConcurrencyStamp,
                 IsDefaultRole = role.IsDefaultRole,
                 Title = role.Title,
             };
-            transaction.Complete();
             return roleInfo;
         }
 
@@ -143,7 +142,7 @@ namespace Teram.Module.Authentication.Service
         {
             var transaction = new TransactionScope(TransactionScopeOption.Suppress, TransactionScopeAsyncFlowOption.Enabled);
             var TeramRole = new TeramRole() { ConcurrencyStamp = Guid.NewGuid().ToString() };
-            TeramRole.Name = roleInfo.Name; 
+            TeramRole.Name = roleInfo.Name;
             TeramRole.Title = roleInfo.Title;
             TeramRole.IsDefaultRole = roleInfo.IsDefaultRole;
             TeramRole.NormalizedName = roleInfo.Name.ToUpper();
@@ -180,6 +179,6 @@ namespace Teram.Module.Authentication.Service
             var result = await roleManager.AddClaimAsync(role, claim);
             transaction.Complete();
             return result;
-        }       
+        }
     }
 }

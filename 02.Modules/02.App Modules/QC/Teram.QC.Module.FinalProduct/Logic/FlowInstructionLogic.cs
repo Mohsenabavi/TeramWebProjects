@@ -108,6 +108,11 @@ namespace Teram.QC.Module.FinalProduct.Logic
             {
                 query = query.AndAlso(x => x.FlowInstructionConditions.Any(condition => condition.FieldName == "HasLeniency" && condition.FieldValue.ToLower() == model.HasLeniency.Value.ToString().ToLower()));
             }
+
+            if (flowInstructionConditions.Any(x => x.FieldName == "HasCausation"))
+            {
+                query = query.AndAlso(x => x.FlowInstructionConditions.Any(condition => condition.FieldName == "HasCausation" && condition.FieldValue.ToLower() == model.HasCausation.ToString().ToLower()));
+            }
             return query;
         }
 

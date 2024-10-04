@@ -22,11 +22,18 @@
         <input type="hidden" asp-for="Key" />
         <div class="row">
             <text-box asp-for="Title" reverse="true" title="@localizer["Title"]" validation-required-message="@localizer["Please enter Title"]" div-class="col-4 col-md-4 col-lg-4 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
-            <text-box asp-for="Code" reverse="true" title="@localizer["Code"]" validation-required-message="@localizer["Please enter Code"]" div-class="col-4 col-md-4 col-lg-4 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box asp-for="Code" reverse="true" title="@localizer["Code"]" validation-required-message="@localizer["Please enter Code"]" div-class="col-4 col-md-2 col-lg-2 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <select-box style="justify-content: flex-end;" reverse="true" asp-for="UserId"
+                        not-selected-option-title="-- یک مدیر تولید انتخاب کنید --" title="مدیر تولید مربوطه"
+                        selected-value="@Model?.UserId"
+                        validation-required-message="@localizer["Please select a RelatedProoductionManager"]"
+                        class="mb-2 col-12 col-md-12 col-lg-4 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2" value="@ViewBag.RelatedProductionManager">
+            </select-box>
             <check-box asp-for="IsActive" name="IsActive" reverse="true" title="@localizer["IsActive"]" div-class="col-12 col-md-2 col-lg-2 d-flex flex-column-reverse align-items-start" />
         </div>
         <div class="row">
-            <text-box asp-for="Description" reverse="true" title="@localizer["Description"]" validation-required-message="@localizer["Please enter Description"]" div-class="col-4 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+            <text-box asp-for="Description" reverse="true" title="@localizer["Description"]" validation-required-message="@localizer["Please enter Description"]" div-class="col-4 col-md-8 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+
         </div>
         <div class="form-row" style="margin-top:20px;">
             <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">

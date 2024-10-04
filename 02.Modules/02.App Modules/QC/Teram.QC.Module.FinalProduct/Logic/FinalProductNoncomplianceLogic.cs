@@ -48,46 +48,47 @@ namespace Teram.QC.Module.FinalProduct.Logic
             this.configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             this.roleSharedService = roleSharedService ?? throw new ArgumentNullException(nameof(roleSharedService));
         }
-
         private void FinalProductNoncomplianceLogic_AfterUpdate(TeramEntityEventArgs<FinalProductNoncompliance, FinalProductNoncomplianceModel, int> entity)
         {
-            var nextStep = manageCartableLogic.GetNextStep(entity.Model);
-
-            if (nextStep.ResultStatus == OperationResultStatus.Successful && nextStep.ResultEntity is not null)
+            if (entity.NewEntity.IsTriggeredByUserAction)
             {
-                var registeredData = entity.Model;
+                var nextStep = manageCartableLogic.GetNextStep(entity.Model);
 
-                var relatedProductionManagers = userSharedService.GetUsersInRole("ProductionManager").Result;
-                var productionManagerRole = roleSharedService.GetRoleByName("ProductionManager").Result;
-
-                var productionManagerUserIds = relatedProductionManagers.Select(x => x.UserId).ToList();
-
-                if (productionManagerRole.Id == nextStep.ResultEntity.NextCartableRoleId && entity.NewEntity.DestinationUser == null)
+                if (nextStep.ResultStatus == OperationResultStatus.Successful && nextStep.ResultEntity is not null)
                 {
-                    var relatedDefectUserId = entity.Model.ControlPlanDefectUserId;
-                    manageCartableLogic.AddToCartable(nextStep.ResultEntity, registeredData, null, relatedDefectUserId);
-                }
-                else
-                {
-                    if (entity.NewEntity.DestinationUser != null)
+                    var registeredData = entity.Model;
+
+                    var relatedProductionManagers = userSharedService.GetUsersInRole("ProductionManager").Result;
+                    var productionManagerRole = roleSharedService.GetRoleByName("ProductionManager").Result;
+
+                    var productionManagerUserIds = relatedProductionManagers.Select(x => x.UserId).ToList();
+
+                    if (productionManagerRole.Id == nextStep.ResultEntity.NextCartableRoleId && entity.NewEntity.DestinationUser == null)
                     {
-                        manageCartableLogic.AddToCartable(nextStep.ResultEntity, registeredData, null, entity.NewEntity.DestinationUser);
+                        var relatedDefectUserId = entity.Model.ControlPlanDefectUserId;
+                        manageCartableLogic.AddToCartable(nextStep.ResultEntity, registeredData, null, relatedDefectUserId);
                     }
                     else
                     {
-                        manageCartableLogic.AddToCartable(nextStep.ResultEntity, registeredData);
+                        if (entity.NewEntity.DestinationUser != null)
+                        {
+                            manageCartableLogic.AddToCartable(nextStep.ResultEntity, registeredData, null, entity.NewEntity.DestinationUser);
+                        }
+                        else
+                        {
+                            manageCartableLogic.AddToCartable(nextStep.ResultEntity, registeredData);
+                        }
                     }
-                }
 
+                    if (registeredData.FormStatus != nextStep.ResultEntity.FormStatus || registeredData.ReferralStatus != nextStep.ResultEntity.ToStatus)
+                    {
 
-
-                if (registeredData.FormStatus != nextStep.ResultEntity.FormStatus || registeredData.ReferralStatus != nextStep.ResultEntity.ToStatus)
-                {
-
-                    registeredData.FormStatus = nextStep.ResultEntity.FormStatus;
-                    registeredData.ReferralStatus = nextStep.ResultEntity.ToStatus;
-                    registeredData.DestinationUser = null;
-                    var updateResult = Update(registeredData);
+                        registeredData.FormStatus = nextStep.ResultEntity.FormStatus;
+                        registeredData.ReferralStatus = nextStep.ResultEntity.ToStatus;
+                        registeredData.DestinationUser = null;
+                        registeredData.IsTriggeredByUserAction = false;
+                        var updateResult = Update(registeredData);
+                    }
                 }
             }
         }
@@ -236,7 +237,7 @@ namespace Teram.QC.Module.FinalProduct.Logic
             if (!isAdmin && !isOperator)
             {
                 var relatedCartableItems = finalProductNonComplianceCartableItemLogic.GetByUserId(currentUserId);
-                
+
                 if (relatedCartableItems.ResultStatus == OperationResultStatus.Successful && relatedCartableItems.ResultEntity is not null)
                 {
                     var relatedNonComplianceIds = relatedCartableItems.ResultEntity.Select(x => x.FinalProductNoncomplianceId).ToList();

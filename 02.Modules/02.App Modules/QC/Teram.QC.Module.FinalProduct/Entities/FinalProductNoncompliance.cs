@@ -425,9 +425,19 @@ namespace Teram.QC.Module.FinalProduct.Entities
         {
             get { return _hasCausation; }
             set
-            {
-                if (_hasCausation == value) return;
+            {               
                 _hasCausation = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isTriggeredByUserAction;
+        public bool IsTriggeredByUserAction
+        {
+            get { return _isTriggeredByUserAction; }
+            set
+            {                
+                _isTriggeredByUserAction = value;
                 OnPropertyChanged();
             }
         }

@@ -56,6 +56,10 @@ namespace Teram.QC.Module.FinalProduct.Controllers
 
             relatedNonComplianceResult.ResultEntity.HasCausation = true;
 
+            relatedNonComplianceResult.ResultEntity.IsTriggeredByUserAction = true;
+
+            relatedNonComplianceResult.ResultEntity.DestinationUser = null;
+
             var updateResult = finalProductNoncomplianceLogic.Update(relatedNonComplianceResult.ResultEntity);
 
             var causationResult = causationLogic.GetByFinalProductNonComplianceId(model.FinalProductNoncomplianceId);

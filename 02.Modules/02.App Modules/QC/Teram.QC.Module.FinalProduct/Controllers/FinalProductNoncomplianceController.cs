@@ -81,6 +81,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             relatedNonCompianceResult.ResultEntity.LastComment = comment;
             relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.QCManagerModifyOrder;
             relatedNonCompianceResult.ResultEntity.IsApproved = false;
+            relatedNonCompianceResult.ResultEntity.IsTriggeredByUserAction = true;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
@@ -90,6 +91,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             relatedNonCompianceResult.ResultEntity.LastComment = comment;
             relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.QcManagerVoided;
             relatedNonCompianceResult.ResultEntity.IsApproved = false;
+            relatedNonCompianceResult.ResultEntity.IsTriggeredByUserAction = true;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
@@ -102,6 +104,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             relatedNonCompianceResult.ResultEntity.NeedToAdvisoryOpinion = true;
             relatedNonCompianceResult.ResultEntity.LastComment = comments;
             relatedNonCompianceResult.ResultEntity.DestinationUser = destinationUser;
+            relatedNonCompianceResult.ResultEntity.IsTriggeredByUserAction = true;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
@@ -112,6 +115,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             var relatedNonCompianceResult = finalProductNoncomplianceLogic.GetById(finalProductNonComplianceId);
             relatedNonCompianceResult.ResultEntity.LastComment = comment;
             relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.RequestForReviewByQCManager;
+            relatedNonCompianceResult.ResultEntity.IsTriggeredByUserAction = true;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
@@ -175,6 +179,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             relatedNonCompianceResult.ResultEntity.HasWasteOrder = (firstSampleOpinion == OpinionType.Waste || secondSampleOpinion == OpinionType.Waste || thirdSampleOpinion == OpinionType.Waste || forthSampleOpinion == OpinionType.Waste);
             relatedNonCompianceResult.ResultEntity.HasLeniency = (firstSampleOpinion == OpinionType.Leniency || secondSampleOpinion == OpinionType.Leniency || thirdSampleOpinion == OpinionType.Leniency || forthSampleOpinion == OpinionType.Leniency);
             relatedNonCompianceResult.ResultEntity.LastComment = comments;
+            relatedNonCompianceResult.ResultEntity.IsTriggeredByUserAction = true;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
@@ -212,6 +217,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             relatedNonCompianceResult.ResultEntity.IsSeperated = true;
             relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.Seperation;
             relatedNonCompianceResult.ResultEntity.LastComment = "--";
+            relatedNonCompianceResult.ResultEntity.IsTriggeredByUserAction = true;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
@@ -249,6 +255,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             relatedNonCompianceResult.ResultEntity.IsSeperated = true;
             relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.Seperation;
             relatedNonCompianceResult.ResultEntity.LastComment = "--";
+            relatedNonCompianceResult.ResultEntity.IsTriggeredByUserAction = true;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
@@ -312,6 +319,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             relatedNonCompianceResult.ResultEntity.HasWasteOrder = (firstSampleOpinion == OpinionType.Waste || secondSampleOpinion == OpinionType.Waste || thirdSampleOpinion == OpinionType.Waste || forthSampleOpinion == OpinionType.Waste);
             relatedNonCompianceResult.ResultEntity.HasLeniency = (firstSampleOpinion == OpinionType.Leniency || secondSampleOpinion == OpinionType.Leniency || thirdSampleOpinion == OpinionType.Leniency || forthSampleOpinion == OpinionType.Leniency);
             relatedNonCompianceResult.ResultEntity.LastComment = comments;
+            relatedNonCompianceResult.ResultEntity.IsTriggeredByUserAction = true;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
@@ -353,6 +361,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             relatedNonCompianceResult.ResultEntity.HasWasteOrder = (firstSampleOpinion == OpinionType.Waste || secondSampleOpinion == OpinionType.Waste || thirdSampleOpinion == OpinionType.Waste || forthSampleOpinion == OpinionType.Waste);
             relatedNonCompianceResult.ResultEntity.HasSeperationOrder = (firstSampleOpinion == OpinionType.Seperation || secondSampleOpinion == OpinionType.Seperation || thirdSampleOpinion == OpinionType.Seperation || forthSampleOpinion == OpinionType.Seperation);
             relatedNonCompianceResult.ResultEntity.HasLeniency = (firstSampleOpinion == OpinionType.Leniency || secondSampleOpinion == OpinionType.Leniency || thirdSampleOpinion == OpinionType.Leniency || forthSampleOpinion == OpinionType.Leniency);
+            relatedNonCompianceResult.ResultEntity.IsTriggeredByUserAction = true;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
@@ -417,6 +426,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             relatedNonCompianceResult.ResultEntity.HasWasteOrder = (firstSampleOpinion == OpinionType.Waste || secondSampleOpinion == OpinionType.Waste || thirdSampleOpinion == OpinionType.Waste || forthSampleOpinion == OpinionType.Waste);
             relatedNonCompianceResult.ResultEntity.HasSeperationOrder = (firstSampleOpinion == OpinionType.Seperation || secondSampleOpinion == OpinionType.Seperation || thirdSampleOpinion == OpinionType.Seperation || forthSampleOpinion == OpinionType.Seperation);
             relatedNonCompianceResult.ResultEntity.HasLeniency = (firstSampleOpinion == OpinionType.Leniency || secondSampleOpinion == OpinionType.Leniency || thirdSampleOpinion == OpinionType.Leniency || forthSampleOpinion == OpinionType.Leniency);
+            relatedNonCompianceResult.ResultEntity.IsTriggeredByUserAction = true;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
@@ -441,6 +451,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             }
             relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.WasteOperation;
             relatedNonCompianceResult.ResultEntity.LastComment = "--";
+            relatedNonCompianceResult.ResultEntity.IsTriggeredByUserAction = true;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
@@ -456,6 +467,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             }
             relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.ProcessCompleted;
             relatedNonCompianceResult.ResultEntity.LastComment = "--";
+            relatedNonCompianceResult.ResultEntity.IsTriggeredByUserAction = true;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
@@ -475,6 +487,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
                 relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.RequestForReviewByOthers;
                 relatedNonCompianceResult.ResultEntity.NeedToAdvisoryOpinion = true;
             }
+            relatedNonCompianceResult.ResultEntity.IsTriggeredByUserAction = true;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
@@ -485,6 +498,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.RequestForCausationbyOtherManagers;
             var relatedActioner = actionerLogic.GetRow(destinationUser);
             relatedNonCompianceResult.ResultEntity.DestinationUser = relatedActioner.ResultEntity.UserId;
+            relatedNonCompianceResult.ResultEntity.IsTriggeredByUserAction = true;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
@@ -495,6 +509,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             relatedNonCompianceResult.ResultEntity.DestinationUser = lastReferral.ReferredBy;
             relatedNonCompianceResult.ResultEntity.LastComment = comment;
             relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.OthersOpinion;
+            relatedNonCompianceResult.ResultEntity.IsTriggeredByUserAction = true;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
@@ -511,6 +526,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             }
 
             relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.RequestForDeterminingReason;
+            relatedNonCompianceResult.ResultEntity.IsTriggeredByUserAction = true;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
@@ -520,6 +536,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             var relatedNonCompianceResult = finalProductNoncomplianceLogic.GetById(finalProductNonComplianceId);
             relatedNonCompianceResult.ResultEntity.LastComment = comment;
             relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.SalesUnitOpinion;
+            relatedNonCompianceResult.ResultEntity.IsTriggeredByUserAction = true;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
@@ -555,6 +572,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
                 relatedNonCompianceResult.ResultEntity.HasLeniency = (firstSampleCEOOpinion == OpinionType.Leniency || secondSampleCEOOpinion == OpinionType.Leniency || thirdSampleCEOOpinion == OpinionType.Leniency || forthSampleCEOOpinion == OpinionType.Leniency);
             }
 
+            relatedNonCompianceResult.ResultEntity.IsTriggeredByUserAction = true;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }

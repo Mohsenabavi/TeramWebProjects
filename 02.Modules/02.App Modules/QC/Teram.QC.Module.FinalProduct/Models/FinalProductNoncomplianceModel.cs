@@ -155,6 +155,7 @@ namespace Teram.QC.Module.FinalProduct.Models
 
         public Guid? DestinationUser { get; set; }
 
+        public bool IsTriggeredByUserAction { get; set; }
         #endregion
 
     }

@@ -219,6 +219,9 @@
   <data name="SampleCount" xml:space="preserve">
     <value>تعداد نمونه</value>
   </data>
+  <data name="Samples Amount Are Zero" xml:space="preserve">
+    <value>مجموع تعداد نمونه ها صفر می باشد ، ثبت مجاز نمی باشد</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>جستجو</value>
   </data>

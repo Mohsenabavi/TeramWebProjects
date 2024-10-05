@@ -49,18 +49,18 @@ namespace Teram.QC.Module.FinalProduct.Controllers
                 Title = localizer["FinalProductInspectionForm"],
                 OperationColumns = true,
                 HomePage = nameof(FinalProductInspectionController).Replace("Controller", "") + "/index",
-                ExtraScripts="/ExternalModule/QC/Module/FinalProduct/Scripts/FinalProductInspection.js",
+                ExtraScripts = "/ExternalModule/QC/Module/FinalProduct/Scripts/FinalProductInspection.js",
                 GetDataUrl = "",
                 LoadAjaxData = false,
             };
-            this.finalProductNoncomplianceLogic=finalProductNoncomplianceLogic??throw new ArgumentNullException(nameof(finalProductNoncomplianceLogic));
-            this.finalProductNoncomplianceDetailLogic=finalProductNoncomplianceDetailLogic??throw new ArgumentNullException(nameof(finalProductNoncomplianceDetailLogic));
-            this.finalProductInspectionLogic=finalProductInspectionLogic??throw new ArgumentNullException(nameof(finalProductInspectionLogic));
-            this.controlPlanDefectLogic=controlPlanDefectLogic??throw new ArgumentNullException(nameof(controlPlanDefectLogic));
-            this.userSharedService=userSharedService??throw new ArgumentNullException(nameof(userSharedService));
-            this.queryService=queryService??throw new ArgumentNullException(nameof(queryService));
-            this.qCControlPlanLogic=qCControlPlanLogic??throw new ArgumentNullException(nameof(qCControlPlanLogic));
-            this.acceptancePeriodLogic=acceptancePeriodLogic??throw new ArgumentNullException(nameof(acceptancePeriodLogic));
+            this.finalProductNoncomplianceLogic = finalProductNoncomplianceLogic ?? throw new ArgumentNullException(nameof(finalProductNoncomplianceLogic));
+            this.finalProductNoncomplianceDetailLogic = finalProductNoncomplianceDetailLogic ?? throw new ArgumentNullException(nameof(finalProductNoncomplianceDetailLogic));
+            this.finalProductInspectionLogic = finalProductInspectionLogic ?? throw new ArgumentNullException(nameof(finalProductInspectionLogic));
+            this.controlPlanDefectLogic = controlPlanDefectLogic ?? throw new ArgumentNullException(nameof(controlPlanDefectLogic));
+            this.userSharedService = userSharedService ?? throw new ArgumentNullException(nameof(userSharedService));
+            this.queryService = queryService ?? throw new ArgumentNullException(nameof(queryService));
+            this.qCControlPlanLogic = qCControlPlanLogic ?? throw new ArgumentNullException(nameof(qCControlPlanLogic));
+            this.acceptancePeriodLogic = acceptancePeriodLogic ?? throw new ArgumentNullException(nameof(acceptancePeriodLogic));
         }
 
         [ControlPanelMenu("FinalProductInspectionForm", ParentName = "FinalProductInspection", Icon = "fa fa-check-circle", PanelType = PanelType.User, Position = ControlPanelMenuPosition.LeftSideBar)]
@@ -88,10 +88,10 @@ namespace Teram.QC.Module.FinalProduct.Controllers
 
             foreach (var item in finalProductInspectionsResult.ResultEntity)
             {
-                var relatedUser = usersInfo.Where(x => x.UserId==item.CreatedBy).FirstOrDefault();
-                item.CreatedByText=(relatedUser!=null) ? $"{relatedUser.Name} {relatedUser.Family} - {relatedUser.Username} " : " ";
-                var relatednoncompianceDetail = finalProductNonComplianceDetails.ResultEntity.Where(x => x.FinalProductInspectionId==item.FinalProductInspectionId).ToList();
-                item.HasNonCompliance=(relatednoncompianceDetail.Any()) ? true : false;
+                var relatedUser = usersInfo.Where(x => x.UserId == item.CreatedBy).FirstOrDefault();
+                item.CreatedByText = (relatedUser != null) ? $"{relatedUser.Name} {relatedUser.Family} - {relatedUser.Username} " : " ";
+                var relatednoncompianceDetail = finalProductNonComplianceDetails.ResultEntity.Where(x => x.FinalProductInspectionId == item.FinalProductInspectionId).ToList();
+                item.HasNonCompliance = (relatednoncompianceDetail.Any()) ? true : false;
             }
             var totalCount = finalProductInspectionsResult?.Count ?? 0;
             return Json(new { model.Draw, recordsTotal = totalCount, recordsFiltered = totalCount, data = finalProductInspectionsResult?.ResultEntity, error = "", result = "ok" });
@@ -112,9 +112,9 @@ namespace Teram.QC.Module.FinalProduct.Controllers
                 foreach (var item in relatedNonCompliancesResult.ResultEntity)
                 {
 
-                    var relatedNonCompianceResult = nonComplianceResult.ResultEntity.Where(x => x.FinalProductNoncomplianceId==item.FinalProductNoncomplianceId).FirstOrDefault();
+                    var relatedNonCompianceResult = nonComplianceResult.ResultEntity.Where(x => x.FinalProductNoncomplianceId == item.FinalProductNoncomplianceId).FirstOrDefault();
 
-                    hasApprovedNonCompiance=(relatedNonCompianceResult!=null && relatedNonCompianceResult.IsApproved.HasValue && relatedNonCompianceResult.IsApproved.Value);
+                    hasApprovedNonCompiance = (relatedNonCompianceResult != null && relatedNonCompianceResult.IsApproved.HasValue && relatedNonCompianceResult.IsApproved.Value);
 
                     if (!hasApprovedNonCompiance)
                     {
@@ -133,13 +133,14 @@ namespace Teram.QC.Module.FinalProduct.Controllers
 
         protected override void ModifyItem(ILogic<FinalProductInspectionModel> service, int id)
         {
-            if (id>0)
+            if (id > 0)
             {
-                Model.ModelData=new FinalProductInspectionModel();
+                Model.ModelData = new FinalProductInspectionModel();
 
                 var finalProductInspectionResult = finalProductInspectionLogic.GetByFinalProductInspectionId(id);
                 if (finalProductInspectionResult.ResultStatus == OperationResultStatus.Successful && finalProductInspectionResult.ResultEntity is not null)
                 {
+
                     var registeredDataControlPlanDefectIds = finalProductInspectionResult.ResultEntity.FinalProductInspectionDefects.Select(x => x.ControlPlanDefectId).ToList();
                     var registeredNonCompliances = finalProductNoncomplianceLogic.GetByControlPlanDefectIdsAndFinalProductInspectionId(registeredDataControlPlanDefectIds, finalProductInspectionResult.ResultEntity.FinalProductInspectionId);
 
@@ -149,15 +150,15 @@ namespace Teram.QC.Module.FinalProduct.Controllers
                     {
                         bool isApproved = false;
 
-                        var relatedNonCompliances = registeredNonCompliancesDetails.Where(x => x.FinalProductNoncomplianceControlPlanDefectId==item.ControlPlanDefectId && x.FinalProductInspectionId==item.FinalProductInspectionId).ToList();
+                        var relatedNonCompliances = registeredNonCompliancesDetails.Where(x => x.FinalProductNoncomplianceControlPlanDefectId == item.ControlPlanDefectId && x.FinalProductInspectionId == item.FinalProductInspectionId).ToList();
 
                         foreach (var relatedNonCompliance in relatedNonCompliances)
                         {
-                            isApproved=relatedNonCompliance.FinalProductNoncomplianceIsApproved;
+                            isApproved = relatedNonCompliance.FinalProductNoncomplianceIsApproved;
                         }
                         var noncomplianceNumbers = relatedNonCompliances.Select(x => x.FinalProductNoncomplianceFinalProductNoncomplianceNumber).ToList();
                         item.FinalProductNoncomplianceNumbers = string.Join("-", noncomplianceNumbers);
-                        item.IsLocked=isApproved;
+                        item.IsLocked = isApproved;
                     }
                     ViewData["DefectList"] = GetDefects(finalProductInspectionResult.ResultEntity.ControlPlan);
                     ViewBag.Defects = GetDefects(finalProductInspectionResult.ResultEntity.ControlPlan);
@@ -171,20 +172,29 @@ namespace Teram.QC.Module.FinalProduct.Controllers
         {
 
             var isExceeding = false;
+            var isZeroSampleCount = false;
             var hasNoDefect = false;
 
-            if (model.FinalProductInspectionDefects!=null && model.FinalProductInspectionDefects.Count>0)
+            if (model.FinalProductInspectionDefects != null && model.FinalProductInspectionDefects.Count > 0)
             {
 
                 foreach (var item in model.FinalProductInspectionDefects)
                 {
-                    var sumOfSamples = item.FirstSample??0 + item.SecondSample??0 + item.ThirdSample??0 + item.ForthSample??0;
-                    if (sumOfSamples>model.SampleCount)
+                    var sumOfSamples = item.FirstSample ?? 0 + item.SecondSample ?? 0 + item.ThirdSample ?? 0 + item.ForthSample ?? 0;
+                    if (sumOfSamples > model.SampleCount)
                     {
-                        isExceeding=true;
+                        isExceeding = true;
+                    }
+
+                    if (sumOfSamples == 0)
+                    {
+                        isZeroSampleCount = true;
                     }
                 }
-
+                if (isZeroSampleCount)
+                {
+                    return Json(new { result = "fail", message = localizer["Samples Amount Are Zero"] });
+                }
                 if (isExceeding)
                 {
                     return Json(new { result = "fail", message = localizer["Exceeding the allowed amount"] });
@@ -195,7 +205,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
                             .Where(group => group.Count() > 1)
                             .Select(group => group.Key).ToList();
 
-                if (duplicates.Count!=0)
+                if (duplicates.Count != 0)
                 {
                     return Json(new { result = "fail", message = localizer["Duplicate Values In ControlPlan Defects"] });
                 }
@@ -254,7 +264,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
         public async Task<IActionResult> FetchPalletInfo(int palletNo)
         {
 
-            Model.ModelData=new FinalProductInspectionModel();
+            Model.ModelData = new FinalProductInspectionModel();
 
             var result = await queryService.GetPalletInfo(palletNo);
 
@@ -267,7 +277,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
 
             if (relatedControlPlanResult.ResultStatus != OperationResultStatus.Successful || relatedControlPlanResult.ResultEntity is null)
             {
-                return Json(new { result = "fail", message = localizer["Control Plan Information Not Found"] + ":" +  result.ResultEntity.ControlPlan });
+                return Json(new { result = "fail", message = localizer["Control Plan Information Not Found"] + ":" + result.ResultEntity.ControlPlan });
             }
 
             var relatedAccetancePeriodResult = acceptancePeriodLogic.GetByContrplPlanIdAndPeriod(relatedControlPlanResult.ResultEntity.QCControlPlanId, result.ResultEntity.Quantity);
@@ -277,11 +287,11 @@ namespace Teram.QC.Module.FinalProduct.Controllers
                 return Json(new { result = "fail", message = localizer["Accetance Period Information Not Found"] + ":" + result.ResultEntity.ControlPlan });
             }
 
-            result.ResultEntity.StartInterval=relatedAccetancePeriodResult.ResultEntity.StartInterval;
-            result.ResultEntity.EndInterval=relatedAccetancePeriodResult.ResultEntity.EndInterval;
-            result.ResultEntity.SampleCount=relatedAccetancePeriodResult.ResultEntity.SampleCount;
+            result.ResultEntity.StartInterval = relatedAccetancePeriodResult.ResultEntity.StartInterval;
+            result.ResultEntity.EndInterval = relatedAccetancePeriodResult.ResultEntity.EndInterval;
+            result.ResultEntity.SampleCount = relatedAccetancePeriodResult.ResultEntity.SampleCount;
 
-            Model.ModelData.ControlPlan=result.ResultEntity.ControlPlan;
+            Model.ModelData.ControlPlan = result.ResultEntity.ControlPlan;
 
             return Json(new
             {

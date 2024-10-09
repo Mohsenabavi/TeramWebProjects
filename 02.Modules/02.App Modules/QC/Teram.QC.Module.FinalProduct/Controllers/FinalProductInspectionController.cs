@@ -168,7 +168,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             Model.Key = id;
         }
 
-        public async Task<IActionResult> SaveForm([FromServices] IFinalProductInspectionLogic service, FinalProductInspectionModel model)
+        public IActionResult SaveForm([FromServices] IFinalProductInspectionLogic service, FinalProductInspectionModel model)
         {
 
             var isExceeding = false;
@@ -180,7 +180,8 @@ namespace Teram.QC.Module.FinalProduct.Controllers
 
                 foreach (var item in model.FinalProductInspectionDefects)
                 {
-                    var sumOfSamples = item.FirstSample ?? 0 + item.SecondSample ?? 0 + item.ThirdSample ?? 0 + item.ForthSample ?? 0;
+                    var sumOfSamples = 0;
+                    sumOfSamples = (item.FirstSample ?? 0) + (item.SecondSample ?? 0) + (item.ThirdSample ?? 0) + (item.ForthSample ?? 0);
                     if (sumOfSamples > model.SampleCount)
                     {
                         isExceeding = true;

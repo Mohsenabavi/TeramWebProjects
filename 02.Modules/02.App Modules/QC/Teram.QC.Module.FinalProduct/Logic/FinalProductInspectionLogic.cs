@@ -50,8 +50,11 @@ namespace Teram.QC.Module.FinalProduct.Logic
 
         public BusinessOperationResult<List<FinalProductInspectionModel>> GetByOrderNoAndProductCode(int orderNo, string productCode)
         {
-            return GetData<FinalProductInspectionModel>(x => x.OrderNo==orderNo && x.ProductCode==productCode);
+            return GetData<FinalProductInspectionModel>(x =>
+                x.OrderNo == orderNo &&
+                x.ProductCode == productCode);
         }
+
 
         public BusinessOperationResult<FinalProductInspectionModel> GetByPalletNumber(int palletNumber)
         {

@@ -28,14 +28,14 @@ namespace Teram.QC.Module.FinalProduct.Logic
             INotificationService notificationService, IEmailService emailService, ISendAsiaSMSService sendAsiaSMSService,
             IRoleSharedService roleSharedService, IFinalProductNonComplianceCartableItemLogic finalProductNonComplianceCartableItemLogic)
         {
-            this.userSharedService=userSharedService??throw new ArgumentNullException(nameof(userSharedService));
-            this.userPrincipal=userPrincipal??throw new ArgumentNullException(nameof(userPrincipal));
-            this.flowInstructionLogic=flowInstructionLogic??throw new ArgumentNullException(nameof(flowInstructionLogic));
-            this.notificationService=notificationService??throw new ArgumentNullException(nameof(notificationService));
-            this.emailService=emailService??throw new ArgumentNullException(nameof(emailService));
-            this.sendAsiaSMSService=sendAsiaSMSService??throw new ArgumentNullException(nameof(sendAsiaSMSService));
-            this.roleSharedService=roleSharedService??throw new ArgumentNullException(nameof(roleSharedService));
-            this.finalProductNonComplianceCartableItemLogic=finalProductNonComplianceCartableItemLogic??throw new ArgumentNullException(nameof(finalProductNonComplianceCartableItemLogic));
+            this.userSharedService = userSharedService ?? throw new ArgumentNullException(nameof(userSharedService));
+            this.userPrincipal = userPrincipal ?? throw new ArgumentNullException(nameof(userPrincipal));
+            this.flowInstructionLogic = flowInstructionLogic ?? throw new ArgumentNullException(nameof(flowInstructionLogic));
+            this.notificationService = notificationService ?? throw new ArgumentNullException(nameof(notificationService));
+            this.emailService = emailService ?? throw new ArgumentNullException(nameof(emailService));
+            this.sendAsiaSMSService = sendAsiaSMSService ?? throw new ArgumentNullException(nameof(sendAsiaSMSService));
+            this.roleSharedService = roleSharedService ?? throw new ArgumentNullException(nameof(roleSharedService));
+            this.finalProductNonComplianceCartableItemLogic = finalProductNonComplianceCartableItemLogic ?? throw new ArgumentNullException(nameof(finalProductNonComplianceCartableItemLogic));
         }
 
         public BusinessOperationResult<FlowInstructionModel> GetNextStep(FinalProductNoncomplianceModel model)
@@ -68,24 +68,24 @@ namespace Teram.QC.Module.FinalProduct.Logic
 
             foreach (var cartableItem in cartableItemsOfCurrentUser.ResultEntity)
             {
-                cartableItem.OutputDate=DateTime.Now;
+                cartableItem.OutputDate = DateTime.Now;
                 finalProductNonComplianceCartableItemLogic.Update(cartableItem);
             }
 
             var listOfCartableItems = new List<FinalProductNonComplianceCartableItemModel>();
 
-            if (destinationUserId!=null)
+            if (destinationUserId != null)
             {
                 var userMainRole = GetUserMainRole(destinationUserId.Value);
                 var mainRoleClaims = roleSharedService.GetClaimsAsync(userMainRole.ResultEntity).Result;
 
-                if (mainRoleClaims.Any(x => x.Value==":FinalProductNoncompliance:EmailReciverPermission"))
+                if (mainRoleClaims.Any(x => x.Value == ":FinalProductNoncompliance:EmailReciverPermission"))
                 {
                     //var emialContext = notificationService.GenerateEmailNotoification(finalProductNoncomplianceModel, destinationUser);
                     //emailService.SendEmail($"ورود عدم انطباق محصول نهایی به کارتابل - {DateTime.Now.ToPersianDate()}", emialContext, DateTime.Now, destinationUser.Email);
                 }
 
-                if (mainRoleClaims.Any(x => x.Value==":FinalProductNoncompliance:SMSReciverPermission"))
+                if (mainRoleClaims.Any(x => x.Value == ":FinalProductNoncompliance:SMSReciverPermission"))
                 {
                     //var smsContext = notificationService.GenerateSMSNotoification(finalProductNoncomplianceModel, destinationUser);
                     //sendAsiaSMSService.SendMessage(new Teram.Module.SmsSender.Models.AsiaSms.SendSmsModel
@@ -97,10 +97,10 @@ namespace Teram.QC.Module.FinalProduct.Logic
 
                 listOfCartableItems.Add(new FinalProductNonComplianceCartableItemModel
                 {
-                    InputDate= DateTime.Now,
-                    FinalProductNoncomplianceId=finalProductNoncomplianceModel.FinalProductNoncomplianceId,
-                    ReferredBy=userPrincipal.CurrentUserId,
-                    UserId=destinationUserId.Value,
+                    InputDate = DateTime.Now,
+                    FinalProductNoncomplianceId = finalProductNoncomplianceModel.FinalProductNoncomplianceId,
+                    ReferredBy = userPrincipal.CurrentUserId,
+                    UserId = destinationUserId.Value,
                 });
             }
             else
@@ -110,33 +110,33 @@ namespace Teram.QC.Module.FinalProduct.Logic
                     var userMainRole = GetUserMainRole(nextCartableUser.UserId);
                     var mainRoleClaims = roleSharedService.GetClaimsAsync(userMainRole.ResultEntity).Result;
 
-                    if (mainRoleClaims.Any(x => x.Value==":FinalProductNoncompliance:EmailReciverPermission"))
+                    if (mainRoleClaims.Any(x => x.Value == ":FinalProductNoncompliance:EmailReciverPermission"))
                     {
                         var emialContext = notificationService.GenerateEmailNotoification(finalProductNoncomplianceModel, nextCartableUser);
                         emailService.SendEmail($"ورود عدم انطباق محصول نهایی به کارتابل - {DateTime.Now.ToPersianDate()}", emialContext, DateTime.Now, nextCartableUser.Email);
                     }
 
-                    if (mainRoleClaims.Any(x => x.Value==":FinalProductNoncompliance:SMSReciverPermission"))
+                    if (mainRoleClaims.Any(x => x.Value == ":FinalProductNoncompliance:SMSReciverPermission"))
                     {
                         var smsContext = notificationService.GenerateSMSNotoification(finalProductNoncomplianceModel, nextCartableUser);
                         sendAsiaSMSService.SendMessage(new Teram.Module.SmsSender.Models.AsiaSms.SendSmsModel
                         {
-                            Receivers=nextCartableUser.PhoneNumber,
-                            SmsText=smsContext
+                            Receivers = nextCartableUser.PhoneNumber,
+                            SmsText = smsContext
                         });
                     }
                     listOfCartableItems.Add(new FinalProductNonComplianceCartableItemModel
                     {
-                        InputDate= DateTime.Now,
-                        FinalProductNoncomplianceId=finalProductNoncomplianceModel.FinalProductNoncomplianceId,
-                        ReferredBy=userPrincipal.CurrentUserId,
-                        UserId=nextCartableUser.UserId
+                        InputDate = DateTime.Now,
+                        FinalProductNoncomplianceId = finalProductNoncomplianceModel.FinalProductNoncomplianceId,
+                        ReferredBy = userPrincipal.CurrentUserId,
+                        UserId = nextCartableUser.UserId
                     });
                 }
             }
             foreach (var cartableItem in listOfCartableItems)
             {
-                cartableItem.Comments=(finalProductNoncomplianceModel.LastComment!=null) ? finalProductNoncomplianceModel.LastComment : " ";
+                cartableItem.Comments = (finalProductNoncomplianceModel.LastComment != null) ? finalProductNoncomplianceModel.LastComment : " ";
                 var addResult = finalProductNonComplianceCartableItemLogic.AddNew(cartableItem);
             }
             result.SetSuccessResult(listOfCartableItems);
@@ -154,8 +154,12 @@ namespace Teram.QC.Module.FinalProduct.Logic
             {
                 var userRoleIds = userSharedService.GetRoleIdsUser(userPrincipal.CurrentUserId).Result;
                 var userRoles = roleSharedService.GetRoleByListRoleId(userRoleIds);
-                var mainRoleOfUsser = userRoles.Where(x => x.NormalizedName!="MEMBERS" && x.NormalizedName!="ADMINISTRATORS").FirstOrDefault();
-                if (mainRoleOfUsser!=null)
+                var mainRoleOfUsser = userRoles.
+                    Where(x => x.NormalizedName != "MEMBERS"
+                    && x.NormalizedName != "OPERATIONMANAGER"
+                    && x.NormalizedName != "QA"
+                    && x.NormalizedName != "ADMINISTRATORS").FirstOrDefault();
+                if (mainRoleOfUsser != null)
                 {
                     result.SetSuccessResult(mainRoleOfUsser);
                 }
@@ -182,8 +186,8 @@ namespace Teram.QC.Module.FinalProduct.Logic
             {
                 var userRoleIds = userSharedService.GetRoleIdsUser(userId).Result;
                 var userRoles = roleSharedService.GetRoleByListRoleId(userRoleIds);
-                var mainRoleOfUsser = userRoles.Where(x => x.NormalizedName!="MEMBERS" && x.NormalizedName!="ADMINISTRATORS").FirstOrDefault();
-                if (mainRoleOfUsser!=null)
+                var mainRoleOfUsser = userRoles.Where(x => x.NormalizedName != "MEMBERS" && x.NormalizedName != "ADMINISTRATORS").FirstOrDefault();
+                if (mainRoleOfUsser != null)
                 {
                     result.SetSuccessResult(mainRoleOfUsser);
                 }
@@ -206,7 +210,7 @@ namespace Teram.QC.Module.FinalProduct.Logic
         {
             Expression<Func<FlowInstruction, bool>> query = x => true;
 
-            query = query.AndAlso(x => x.FromStatus==model.ReferralStatus && x.CurrentCartableRoleId==fromRoleId);
+            query = query.AndAlso(x => x.FromStatus == model.ReferralStatus && x.CurrentCartableRoleId == fromRoleId);
 
             if (model.IsApproved.HasValue)
             {

@@ -48,7 +48,7 @@ namespace Teram.HR.Module.Recruitment.Logic
 
                 sendAsiaSMSService.SendMessage(new Teram.Module.SmsSender.Models.AsiaSms.SendSmsModel
                 {
-                    Receivers="09131257541,09135653195",
+                    Receivers="09131257541",
                     //Receivers="09135653195",
                     SmsText=$"پرونده {entity.NewEntity.FirstName} {entity.NewEntity.LastName} در سامانه منابع انسانی ثبت گردید لطفاً نسبت به ثبت اطلاعات پیشینه شغلی ایشان اقدام فرمایید\nکدملی : {entity.NewEntity.NationalCode}"
                 });
@@ -73,7 +73,7 @@ namespace Teram.HR.Module.Recruitment.Logic
 
                         sendAsiaSMSService.SendMessage(new Teram.Module.SmsSender.Models.AsiaSms.SendSmsModel
                         {
-                            Receivers="09014988824,09135748102,09135653195",
+                            Receivers="09014988824,09375875528",
                             //Receivers="09135653195",
                             SmsText=$"اطلاعات پایه توسط {entity.NewEntity.FirstName} {entity.NewEntity.LastName} در این لحظه ثبت گردید"
                         });
@@ -81,7 +81,7 @@ namespace Teram.HR.Module.Recruitment.Logic
                     case ProcessStatus.DoumentsUploaded:
                         sendAsiaSMSService.SendMessage(new Teram.Module.SmsSender.Models.AsiaSms.SendSmsModel
                         {
-                            Receivers="09014988824,09135748102,09135653195",
+                            Receivers="09014988824,09375875528",
                             //Receivers="09135653195",
                             SmsText=$"مدارک {entity.NewEntity.FirstName} {entity.NewEntity.LastName} در این لحظه بارگذاری گردید"
                         });
@@ -89,7 +89,7 @@ namespace Teram.HR.Module.Recruitment.Logic
                     case ProcessStatus.AdmittingToDoExpriments:
                         sendAsiaSMSService.SendMessage(new Teram.Module.SmsSender.Models.AsiaSms.SendSmsModel
                         {
-                            Receivers="9010593996,09135653195",
+                            Receivers="9010593996",
                             //Receivers="09135653195",
                             SmsText=$"اقرار انجام آزمایشات توسط  {entity.NewEntity.FirstName} {entity.NewEntity.LastName} در این لحظه ثبت گردید"
                         });

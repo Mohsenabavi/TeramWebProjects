@@ -135,6 +135,8 @@ namespace Teram.QC.Module.FinalProduct.Controllers
         public IActionResult GetNonComplianceDetails(int finalProductNoncomplianceId)
         {
             var nonComplianceResult = finalProductNoncomplianceLogic.GetById(finalProductNoncomplianceId);
+
+
             var finalProductInspectionResult = finalProductInspectionLogic.GetByOrderNoAndProductCode(nonComplianceResult.ResultEntity.OrderNo, nonComplianceResult.ResultEntity.ProductCode);
 
             ViewBag.RelatedDefects=GetRelatedDefects(nonComplianceResult.ResultEntity.FinalProductNoncomplianceId);
@@ -309,6 +311,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             finalProductNoncomplianceResult.ResultEntity.FormStatus=FormStatus.ModifiedByQCSupervisor;
             finalProductNoncomplianceResult.ResultEntity.IsApproved=false;
             finalProductNoncomplianceResult.ResultEntity.LastComment=null;
+            finalProductNoncomplianceResult.ResultEntity.IsTriggeredByUserAction=true;
             finalProductNoncomplianceLogic.Update(finalProductNoncomplianceResult.ResultEntity);
             transaction.Complete();
             return Json(new { result = "ok", message = localizer["Defect Changed In NonCompliances And Related Inspection Forms"] });

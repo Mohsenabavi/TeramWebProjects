@@ -163,11 +163,10 @@ namespace Teram.HR.Module.Recruitment.Controllers
 
                 sendAsiaSMSService.SendMessage(new Teram.Module.SmsSender.Models.AsiaSms.SendSmsModel
                 {
-                    Receivers="09014988824,09135748102,09135653195",
+                    Receivers="09014988824,09375875528",
                     //Receivers="09135653195",
                     SmsText=$"وضعیت تاییدیه طب کار {relatedJobApplicant.ResultEntity.FirstName} {relatedJobApplicant.ResultEntity.LastName} در این لحظه ثبت گردید"
                 });
-
                 return base.Save(service, model);
             }
         }

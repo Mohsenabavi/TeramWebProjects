@@ -477,71 +477,49 @@ namespace Teram.QC.Module.FinalProduct.Logic
         {
             var nonComplianceResult = finalProductNoncompliance;
 
-            if (nonComplianceResult.FinalProductNoncomplianceDetails != null && nonComplianceResult.FinalProductNoncomplianceDetails.Any())
-            {
-                var finalProductInspectionIds = nonComplianceResult.FinalProductNoncomplianceDetails.Select(x => x.FinalProductInspectionId).ToList();
-                var relatedFinalInspectionWithNonCompliances = finalProductInspections.Where(x => finalProductInspectionIds.Contains(x.FinalProductInspectionId)).ToList();
-                var tracingCodes = string.Join("-", relatedFinalInspectionWithNonCompliances.Select(x => x.TracingCode).Distinct().ToList());
-                nonComplianceResult.TracingCodes = tracingCodes;
-            }
-
-            nonComplianceResult.NoncomplianceDetailSampleSummary = GetSamplesSummaryData(nonComplianceResult, finalProductInspections);
-            nonComplianceResult.SalesUnitCartableItems = finalProductNonComplianceCartableItemLogic.GetSalesUniCartableItems(finalProductNoncompliance.FinalProductNoncomplianceId).ResultEntity;
-
-            var hasPermissionForSave = userPrincipal.CurrentUser.HasClaim("Permission", ":Causation:HasLimitedAccessForCausation");
-
-            if (nonComplianceResult.Causation != null)
-            {
-                nonComplianceResult.Causation.IsEditMode = true;
-                nonComplianceResult.Causation.HasPermissionForSave = hasPermissionForSave;
-            }
-            else
-            {
-                nonComplianceResult.Causation = new CausationModel { FinalProductNoncomplianceId = nonComplianceResult.FinalProductNoncomplianceId, IsEditMode = false, HasPermissionForSave = hasPermissionForSave };
-            }
-
             if (nonComplianceResult.FinalProductNoncomplianceDetails != null && nonComplianceResult.FinalProductNoncomplianceDetails.Count > 0)
             {
+                var totalCount = finalProductInspections.Sum(x => x.TotalCount);
 
-                var relatedIds = nonComplianceResult.FinalProductNoncomplianceDetails.Where(x => x.FinalProductInspectionId.HasValue).Select(x => x.FinalProductInspectionId.Value).ToList();
+                var relatedFinalProductInspectionIds = nonComplianceResult.FinalProductNoncomplianceDetails.Where(x => x.FinalProductInspectionId.HasValue).Select(x => x.FinalProductInspectionId.Value).ToList();
 
-                var finalProductInspectionResult = finalProductInspections;
+                var returnedPallets = finalProductInspections
+                      .Where(x => relatedFinalProductInspectionIds
+                      .Contains(x.FinalProductInspectionId) && x.FinalProductInspectionDefects.Any(x => x.ControlPlanDefectId == nonComplianceResult.ControlPlanDefectId)).ToList();
 
-                var returnedPallets = finalProductInspectionResult.Where(x => relatedIds.Contains(x.FinalProductInspectionId)).ToList();
-                var totalCount = finalProductInspectionResult.Sum(x => x.TotalCount);
+                nonComplianceResult.PalletCount = finalProductInspections.Count();
+
+                nonComplianceResult.ReturnedPalletsCount = returnedPallets.Count();
                 nonComplianceResult.TotalCount = totalCount;
 
-                var sampleCount = finalProductInspectionResult.Sum(x => x.SampleCount);
-                var returnedPalletsSampleCount = returnedPallets.Sum(x => x.SampleCount);
+                var returenPalletRelatedDefects = returnedPallets.SelectMany(x => x.FinalProductInspectionDefects)
+                   .Where(x => x.ControlPlanDefectId == nonComplianceResult.ControlPlanDefectId).ToList();
 
+                var returnedPalletsFirstSampleSum = returenPalletRelatedDefects.Sum(x => x.FirstSample);
+                var returnedPalletsSecondSampleSum = returenPalletRelatedDefects.Sum(x => x.SecondSample);
+                var returnedPalletsThirdSampleSum = returenPalletRelatedDefects.Sum(x => x.ThirdSample);
+                var returnedPalletsForthSampleSum = returenPalletRelatedDefects.Sum(x => x.ForthSample);
 
-                var OrderFirstSampleSum = finalProductInspectionResult.Sum(x => x.FinalProductInspectionDefects.Sum(x => x.FirstSample));
-                var OrderSecondSampleSum = finalProductInspectionResult.Sum(x => x.FinalProductInspectionDefects.Sum(x => x.SecondSample));
-                var OrderThirdSampleSum = finalProductInspectionResult.Sum(x => x.FinalProductInspectionDefects.Sum(x => x.ThirdSample));
-                var OrderForthSampleSum = finalProductInspectionResult.Sum(x => x.FinalProductInspectionDefects.Sum(x => x.ForthSample));
-
-
-                var returnedPalletsFirstSampleSum = returnedPallets.Sum(x => x.FinalProductInspectionDefects.Sum(x => x.FirstSample));
-                var returnedPalletsSecondSampleSum = returnedPallets.Sum(x => x.FinalProductInspectionDefects.Sum(x => x.SecondSample));
-                var returnedPalletsThirdSampleSum = returnedPallets.Sum(x => x.FinalProductInspectionDefects.Sum(x => x.ThirdSample));
-                var returnedPalletsForthSampleSum = returnedPallets.Sum(x => x.FinalProductInspectionDefects.Sum(x => x.ForthSample));
-
-
-
-                var orderSamplesSum = OrderFirstSampleSum + OrderSecondSampleSum + OrderThirdSampleSum + OrderForthSampleSum ?? 0;
-                var returnedSampleSum = returnedPalletsFirstSampleSum ?? 0 + returnedPalletsSecondSampleSum ?? 0 + returnedPalletsThirdSampleSum ?? 0 + returnedPalletsForthSampleSum ?? 0;
-
-
-                nonComplianceResult.OrderNonCompliancePercent = (sampleCount != 0) ? Math.Round(((decimal)returnedSampleSum * 100) / (decimal)sampleCount, 2) : 0;
-
-                nonComplianceResult.ReturnedNonCompliancePercent = (returnedPalletsSampleCount != 0) ? Math.Round(((decimal)returnedSampleSum * 100) / (decimal)returnedPalletsSampleCount, 2) : 0;
-
-                nonComplianceResult.PalletCount = finalProductInspectionResult.Count();
+                var returnedSampleSum = (returnedPalletsFirstSampleSum ?? 0) + (returnedPalletsSecondSampleSum ?? 0) + (returnedPalletsThirdSampleSum ?? 0) + (returnedPalletsForthSampleSum ?? 0);
+                var returendPalletsTotalSampleSum = returnedPallets.Sum(x => x.SampleCount);
                 nonComplianceResult.ReturnedCount = returnedPallets.Sum(x => x.TotalCount);
-                nonComplianceResult.ReturnedPalletsCount = returnedPallets.Count();
+                nonComplianceResult.ReturnedNonCompliancePercent = (returendPalletsTotalSampleSum != 0) ? Math.Round(((decimal)returnedSampleSum * 100) / (decimal)returendPalletsTotalSampleSum, 2) : 0;
+
+                var totalSampleOfAllRelatedFinalProductInspections = finalProductInspections.Sum(x => x.SampleCount);
+
+                var sampleCount = finalProductInspections.Sum(x => x.SampleCount);
+
+                var orderRelatedDefects = finalProductInspections.SelectMany(x => x.FinalProductInspectionDefects)
+                    .Where(x => x.ControlPlanDefectId == nonComplianceResult.ControlPlanDefectId).ToList();
+
+                var OrderFirstSampleSum = orderRelatedDefects.Sum(x => x.FirstSample);
+                var OrderSecondSampleSum = orderRelatedDefects.Sum(x => x.SecondSample);
+                var OrderThirdSampleSum = orderRelatedDefects.Sum(x => x.ThirdSample);
+                var OrderForthSampleSum = orderRelatedDefects.Sum(x => x.ForthSample);
+
+                var orderSamplesSum = (OrderFirstSampleSum + OrderSecondSampleSum + OrderThirdSampleSum + OrderForthSampleSum) ?? 0; // **Unused**
 
                 var relatedNonComplainceDetailsResult = nonComplianceResult.FinalProductNoncomplianceDetails;
-
 
                 foreach (var relatedNonComplainceDetailResult in relatedNonComplainceDetailsResult)
                 {
@@ -556,7 +534,28 @@ namespace Teram.QC.Module.FinalProduct.Logic
                     relatedNonComplainceDetailResult.SecondSample = (relatedSecondSample != null) ? relatedSecondSample.Amount : 0;
                     relatedNonComplainceDetailResult.ThirdSample = (relatedThirdSample != null) ? relatedThirdSample.Amount : 0;
                     relatedNonComplainceDetailResult.ForthSample = (relatedForthSample != null) ? relatedForthSample.Amount : 0;
+                }
 
+                nonComplianceResult.OrderNonCompliancePercent = (sampleCount != 0) ? Math.Round(((decimal)returnedSampleSum * 100) / (decimal)sampleCount, 2) : 0;
+                nonComplianceResult.NoncomplianceDetailSampleSummary = GetSamplesSummaryData(nonComplianceResult, finalProductInspections);
+                nonComplianceResult.SalesUnitCartableItems = finalProductNonComplianceCartableItemLogic.GetSalesUniCartableItems(finalProductNoncompliance.FinalProductNoncomplianceId).ResultEntity;
+                if (nonComplianceResult.FinalProductNoncomplianceDetails != null && nonComplianceResult.FinalProductNoncomplianceDetails.Any())
+                {
+                    var finalProductInspectionIds = nonComplianceResult.FinalProductNoncomplianceDetails.Select(x => x.FinalProductInspectionId).ToList();
+                    var relatedFinalInspectionWithNonCompliances = finalProductInspections.Where(x => finalProductInspectionIds.Contains(x.FinalProductInspectionId)).ToList();
+                    var tracingCodes = string.Join("-", relatedFinalInspectionWithNonCompliances.Select(x => x.TracingCode).Distinct().ToList());
+                    nonComplianceResult.TracingCodes = tracingCodes;
+                }
+                var hasPermissionForSave = userPrincipal.CurrentUser.HasClaim("Permission", ":Causation:HasLimitedAccessForCausation");
+
+                if (nonComplianceResult.Causation != null)
+                {
+                    nonComplianceResult.Causation.IsEditMode = true;
+                    nonComplianceResult.Causation.HasPermissionForSave = hasPermissionForSave;
+                }
+                else
+                {
+                    nonComplianceResult.Causation = new CausationModel { FinalProductNoncomplianceId = nonComplianceResult.FinalProductNoncomplianceId, IsEditMode = false, HasPermissionForSave = hasPermissionForSave };
                 }
             }
 
@@ -572,12 +571,8 @@ namespace Teram.QC.Module.FinalProduct.Logic
                 }
             }
 
-
-
             return nonComplianceResult;
-
         }
-
         public BusinessOperationResult<List<FinalProductNoncomplianceModel>> GetByIds(List<int> finalProductNoncomplianceIds)
         {
             return GetData<FinalProductNoncomplianceModel>(x => finalProductNoncomplianceIds.Contains(x.FinalProductNoncomplianceId));

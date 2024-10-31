@@ -89,6 +89,44 @@ $(document).on('change', '#IsLackOfFit', function () {
     }
 });
 
+$(document).ready(function () {
+    $("#CloseCausation").prop('disabled', true);
+    $("#CloseCausation").css("backgroundColor", "#aaa");
+});
+
+$(document).on('change', '#FinalCausationApprove', function () {
+
+    var isChecked = $("#FinalCausationApprove").is(":checked");
+    if (isChecked) {
+        $("#CloseCausation").prop('disabled', false);
+        $("#CloseCausation").css("backgroundColor", "#57C732")
+    }
+    else {
+        $("#CloseCausation").prop('disabled', true);
+        $("#CloseCausation").css("backgroundColor", "#aaa");
+    }
+});
+
+$(document).on('click', '#CloseCausation', function () {
+
+    var nonComplianeId = $("#FinalProductNonComplianceId").val();
+    $.post("/FinalProductNoncompliance/CloseFinalProductNonCompliance",
+        {
+            finalProductNonComplianceId: nonComplianeId,
+        }, function (content) {
+            if (content.result == "ok") {
+                teram().showSuccessfullMessage(content.message.value);
+                bootbox.hideAll();
+                reloadDataTable();
+            }
+            else {
+                teram().showErrorMessage(content.message.value);
+            }
+        });
+});
+
+
+
 
 function validateForm() {
 
@@ -975,6 +1013,16 @@ $(document).on('click', '.showDetailsBtn', function () {
         indexCorrection($(section));
         var isEditMode = $("#IsEditMode").val();
         var hasPermissionForSave = $("#HasPermissionForSave").val();
+        var correctiveActionsIslocked = $("#CorrrectiveActionsIsLocked").val();
+        var islocked = $("#IsLocked").val();
+        if (islocked != undefined && islocked.toLowerCase() == "true") {
+            $(".afterCausationActions").hide();
+            $(".notRelatedToProductionSection").hide();
+        }
+        if (correctiveActionsIslocked != undefined && correctiveActionsIslocked.toLowerCase() == "true") {
+            disableCorrectiveActions();
+            $(".notRelatedToProductionSection").hide();
+        }
         if (isEditMode != undefined && isEditMode.toLowerCase() == "true") {
             showHideElementsBasedOnData(hasPermissionForSave);
         }
@@ -989,6 +1037,16 @@ $(document).on('click', '.showDetailsBtn', function () {
         $("#btnRefferToOtherActioner").addClass("d-none");
     });
 });
+
+function disableCorrectiveActions() {
+
+    $(".correctiveActions input[type=checkbox]").prop('disabled', true);
+    $(".correctiveActions input[type=text]").prop('disabled', true);
+    $(".correctiveActions").find(".select2").prop('disabled', true);
+    $(".correctiveActions #Comments").prop('disabled', false);
+    $("#btnSubmitCausation").hide();
+    $(".btnCreateRow").hide();
+}
 
 function showHideElementsBasedOnData(hasPermissionForSave) {
 

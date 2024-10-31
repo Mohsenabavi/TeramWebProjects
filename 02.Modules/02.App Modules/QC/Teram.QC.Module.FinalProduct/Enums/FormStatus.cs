@@ -65,13 +65,16 @@ namespace Teram.QC.Module.FinalProduct.Enums
         [Display(Name = "تعیین عامل عدم انطباق")]
         DeterminingReason = 14,
 
-        [Description("پایان عملیات")]
-        [Display(Name = "پایان عملیات")]
+        [Description("پایان یافته و بایگانی شده")]
+        [Display(Name = "پایان یافته و بایگانی شده")]
         ProcessCompleted = 15,
 
         [Description("ارجاع به سایر مدیران جهت علت یابی")]
         [Display(Name = "ارجاع به سایر مدیران جهت علت یابی")]
         RequestForCausationbyOtherManagers = 16,
 
+        [Description("ارجاع به سرپرست تضمین کیفیت")]
+        [Display(Name = "ارجاع به سرپرست تضمین کیفیت")]
+        RefferedToQA = 17,
     }
 }

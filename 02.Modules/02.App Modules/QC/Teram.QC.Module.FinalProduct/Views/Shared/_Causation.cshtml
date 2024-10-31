@@ -1,7 +1,7 @@
 ﻿@model CausationModel
 @inject IStringLocalizer<Teram.QC.Module.FinalProduct.Controllers.CausationController> localizer
 
-<div class="row">
+<div class="row notRelatedToProductionSection">
     <check-box name="NotRelatedToProduction" id="NotRelatedToProduction" is-required="false" reverse="true" title="@localizer["NotRelatedToProduction"]" div-class="col-12 col-md-4 col-lg-4 d-flex flex-column-reverse align-items-start mb-4" />
     <select-box name="ActionerId" asp-for="ActionerId" reverse="true" value="@ViewBag.Actioners"
                 title="@localizer["ActionerId"]" selected-value="@Model?.ActionerId" is-required="true" value="@ViewBag.Actioners"
@@ -42,6 +42,8 @@
                 <input type="hidden" asp-for="CausationId" value="@Model?.CausationId" />
                 <input type="hidden" asp-for="IsEditMode" value="@Model?.IsEditMode" />
                 <input type="hidden" asp-for="HasPermissionForSave" value="@Model?.HasPermissionForSave" />
+                <input type="hidden" asp-for="IsLocked" value="@Model?.IsLocked" />
+                <input type="hidden" asp-for="CorrrectiveActionsIsLocked" value="@Model?.CorrrectiveActionsIsLocked" />
                 <div class="row">
                     <select-box style="justify-content: flex-end;" reverse="true" asp-for="WorkStationId"
                                 not-selected-option-title="-- یک ایستگاه انتخاب کنید --" title="ایستگاه کاری" is-required="true"

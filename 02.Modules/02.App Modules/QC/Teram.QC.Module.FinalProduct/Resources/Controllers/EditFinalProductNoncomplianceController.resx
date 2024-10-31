@@ -126,6 +126,9 @@
   <data name="By Changing Control Plan Defect Duplicate Values Will Be Created" xml:space="preserve">
     <value>با تغییر  به این کد ایراد ، ایراد تکراری در فرم بازرسی ایجاد خواهد شد ، عملیات امکان پذیر نیست</value>
   </data>
+  <data name="CloseCausation" xml:space="preserve">
+    <value>ثبت پایان عملیات</value>
+  </data>
   <data name="Comment" xml:space="preserve">
     <value>نظر</value>
   </data>
@@ -157,7 +160,10 @@
     <value>فیلتر کردن اطلاعات</value>
   </data>
   <data name="FinalApproveOfNonCompliance" xml:space="preserve">
-    <value>تایید نهایی عدم انطباق و علت یابی</value>
+    <value>تایید نهایی عدم انطباق و علت یابی  و ارسال به تضمین کیفیت</value>
+  </data>
+  <data name="FinalCausationApprove" xml:space="preserve">
+    <value>تایید نهایی</value>
   </data>
   <data name="FinalProductNoncomplianceNumber" xml:space="preserve">
     <value>شماره عدم انطباق</value>

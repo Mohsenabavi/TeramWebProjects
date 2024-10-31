@@ -27,12 +27,13 @@ namespace Teram.QC.Module.FinalProduct.Models.CausationModels
         public bool? HasNotification { get; set; }
         public string? NotificationNumber { get; set; }
         public int FinalProductNoncomplianceId { get; set; }
-
         public int? WrongdoerId { get; set; }
         public List<CorrectiveActionModel>? CorrectiveActions { get; set; }
         public bool IsEditMode { get; set; }
         public string? InstructionDescription { get; set; }
         public bool HasPermissionForSave { get; set; }
+        public bool CorrrectiveActionsIsLocked {  get; set; }
+        public bool IsLocked {  get; set; }
         public int? ActionerId { get; set; }
     }
 }

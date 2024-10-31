@@ -234,6 +234,11 @@ namespace Teram.QC.Module.FinalProduct.Logic
 
             var currentUserId = userPrincipal.CurrentUserId;
 
+            if (formStatus is null)
+            {
+                query = query.AndAlso(x => x.FormStatus != FormStatus.ProcessCompleted);
+            }
+
             if (!isAdmin && !isOperator)
             {
                 var relatedCartableItems = finalProductNonComplianceCartableItemLogic.GetByUserId(currentUserId);
@@ -552,6 +557,9 @@ namespace Teram.QC.Module.FinalProduct.Logic
                 {
                     nonComplianceResult.Causation.IsEditMode = true;
                     nonComplianceResult.Causation.HasPermissionForSave = hasPermissionForSave;
+                    nonComplianceResult.Causation.CorrrectiveActionsIsLocked = (nonComplianceResult.ReferralStatus == ReferralStatus.ReferredToQA &&
+                    nonComplianceResult.FormStatus == FormStatus.RefferedToQA || nonComplianceResult.FormStatus == FormStatus.ProcessCompleted);
+                    nonComplianceResult.Causation.IsLocked = (nonComplianceResult.FinalApproveByQA);
                 }
                 else
                 {

@@ -452,6 +452,29 @@ namespace Teram.QC.Module.FinalProduct.Entities
                 OnPropertyChanged();
             }
         }
+
+        private bool _finalApproveByQA;
+        public bool FinalApproveByQA
+        {
+            get { return _finalApproveByQA; }
+            set
+            {
+                _finalApproveByQA = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DateTime _finalApproveByQADate;
+        public DateTime FinalApproveByQADate
+        {
+            get { return _finalApproveByQADate; }
+            set
+            {
+                if (_finalApproveByQADate == value) return;
+                _finalApproveByQADate = value;
+                OnPropertyChanged();
+            }
+        }
         public virtual Entities.Causation.Causation Causation { get; set; }
         public virtual ICollection<FinalProductNoncomplianceDetail>? FinalProductNoncomplianceDetails { get; set; }
         public virtual ICollection<FinalProductNoncomplianceFile>? FinalProductNoncomplianceFiles { get; set; }

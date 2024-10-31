@@ -165,6 +165,9 @@
   <data name="Number" xml:space="preserve">
     <value>شماره پالت</value>
   </data>
+  <data name="Number Cannot be edited" xml:space="preserve">
+    <value>شماره پالت قابل ویرایش نیست</value>
+  </data>
   <data name="OrderNo" xml:space="preserve">
     <value>شماره سفارش</value>
   </data>

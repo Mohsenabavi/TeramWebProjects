@@ -156,6 +156,10 @@ namespace Teram.QC.Module.FinalProduct.Models
         public Guid? DestinationUser { get; set; }
 
         public bool IsTriggeredByUserAction { get; set; }
+
+        public bool FinalApproveByQA { get; set; }
+
+        public DateTime FinalApproveByQADate { get; set; }
         #endregion
 
     }

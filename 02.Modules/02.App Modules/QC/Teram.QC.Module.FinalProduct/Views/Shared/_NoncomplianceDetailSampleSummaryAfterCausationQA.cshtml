@@ -1,0 +1,15 @@
+﻿@model NoncomplianceDetailSampleSummaryModel
+
+@inject IStringLocalizer<Teram.QC.Module.FinalProduct.Controllers.EditFinalProductNoncomplianceController> localizer
+
+<input type="hidden" id="FinalProductNonComplianceId" value="@Model.FinalProductNonComplianceId" />
+<div class="form-row ">
+    <div class="form-group col-xs-12 col-md-12 col-lg-12" style="text-align:left;">
+        <check-box id="FinalCausationApprove" reverse="true" title="@localizer["FinalCausationApprove"]" />
+        <button type="button" id="CloseCausation" class="btn btn-success">@localizer["CloseCausation"] </button>
+    </div>
+</div>
+
+
+
+

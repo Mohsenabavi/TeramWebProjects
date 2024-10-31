@@ -53,6 +53,8 @@ namespace Teram.QC.Module.FinalProduct.Enums
         [Display(Name = "ارجاع به سایرین جهت علت یابی")]
         ReferredToOthersForCausation = 12,
 
-
+        [Description("ارجاع شده به تضمین کیفیت")]
+        [Display(Name = "ارجاع شده به تضمین کیفیت")]
+        ReferredToQA = 13,
     }
 }

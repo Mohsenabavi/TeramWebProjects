@@ -43,6 +43,13 @@
     <ProjectReference Include="..\..\..\01.Core Modules\Teram.Module.FileUploader\Teram.Module.FileUploader.csproj" />
     <ProjectReference Include="..\..\..\01.Core Modules\Teram.Module.SmsSender\Teram.Module.SmsSender.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Shared\_NoncomplianceDetailSampleSummaryAfterCausationQA.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
 		<Exec Command="xcopy  /Y /R  &quot;$(ProjectDir)$(OutDir)$(TargetName)*.dll&quot;  &quot;$(SolutionDir)Teram.Web\bin\$(ConfigurationName)\net8.0\Plugins\QC Modules\&quot;" />
 	</Target>

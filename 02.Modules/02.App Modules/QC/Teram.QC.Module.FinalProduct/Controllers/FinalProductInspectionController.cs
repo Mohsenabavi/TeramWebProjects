@@ -234,6 +234,11 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             }
             else
             {
+                var existingRecord = finalProductInspectionLogic.GetRow(model.FinalProductInspectionId);
+                if (existingRecord.ResultEntity.Number != model.Number) {
+
+                    return Json(new { result = "fail", data = existingRecord.AllMessages, message = localizer["Number Cannot be edited"], id = model.FinalProductInspectionId });
+                }
                 var editResult = finalProductInspectionLogic.Update(model);
                 if (editResult.ResultStatus != OperationResultStatus.Successful)
                 {

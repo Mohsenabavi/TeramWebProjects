@@ -75,6 +75,18 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             return Content("This Is Not Actual Action");
         }
 
+
+        public IActionResult CloseFinalProductNonCompliance(int finalProductNonComplianceId)
+        {
+            var relatedNonCompianceResult = finalProductNoncomplianceLogic.GetById(finalProductNonComplianceId);
+            relatedNonCompianceResult.ResultEntity.FinalApproveByQA = true;
+            relatedNonCompianceResult.ResultEntity.FinalApproveByQADate = DateTime.Now;
+            relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.ProcessCompleted;
+            relatedNonCompianceResult.ResultEntity.ReferralStatus = ReferralStatus.ProcessCompleted;
+            finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
+            return Json(new { result = "ok", message = localizer["Successfully Approved"] });
+        }
+
         public IActionResult TriggerQCManagerModifyOrder(int finalProductNonComplianceId, string comment, ApproveStatus? approveStatus = null)
         {
             var relatedNonCompianceResult = finalProductNoncomplianceLogic.GetById(finalProductNonComplianceId);
@@ -465,7 +477,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             {
                 return Json(new { result = "fail", message = localizer[relatedNonCompianceResult.AllMessages] });
             }
-            relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.ProcessCompleted;
+            relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.RefferedToQA;
             relatedNonCompianceResult.ResultEntity.LastComment = "--";
             relatedNonCompianceResult.ResultEntity.IsTriggeredByUserAction = true;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);

@@ -84,7 +84,7 @@
                 </div>
             </div>
 
-            @if (Model.SalesUnitCartableItems!=null && Model.SalesUnitCartableItems.Any())
+            @if (Model.SalesUnitCartableItems != null && Model.SalesUnitCartableItems.Any())
             {
                 <partial name="_SalesUnitComments" model="@Model.SalesUnitCartableItems" />
             }
@@ -124,7 +124,7 @@
                         <input type="hidden" id="FormStatus" value="@Model.FormStatus" />
                         <input type="hidden" id="FinalProductNoncomplianceId" value="@Model.FinalProductNoncomplianceId" />
 
-                        @if (Model.ReferralStatus == ReferralStatus.ReferredToQCManager && (Model.FormStatus == FormStatus.InitialRegistration) || (Model.FormStatus == FormStatus.ModifiedByQCSupervisor) || (Model.FormStatus==FormStatus.SalesUnitOpinion))
+                        @if (Model.ReferralStatus == ReferralStatus.ReferredToQCManager && (Model.FormStatus == FormStatus.InitialRegistration) || (Model.FormStatus == FormStatus.ModifiedByQCSupervisor) || (Model.FormStatus == FormStatus.SalesUnitOpinion))
                         {
                             <div class="row">
                                 <select-box style="justify-content: flex-end;" reverse="true" id="ApproveStatus" name="ApproveStatus"
@@ -172,21 +172,28 @@
                                 </div>
                             </div>
                         }
-                        @if ((Model.FormStatus == FormStatus.DeterminingReason) || (Model.FormStatus == FormStatus.ProcessCompleted) && ((Model.ReferralStatus == ReferralStatus.ReferredToQCManager) || (Model.ReferralStatus == ReferralStatus.ProcessCompleted)))
+                        @if (
+                        (
+                        (Model.FormStatus == FormStatus.DeterminingReason) || (Model.FormStatus == FormStatus.ProcessCompleted)) &&(
+                        (Model.ReferralStatus == ReferralStatus.ReferredToQCManager) ||(Model.ReferralStatus == ReferralStatus.ProcessCompleted)) &&
+                        (Model.ReferralStatus != ReferralStatus.ReferredToQA))
                         {
                             <partial name="_NoncomplianceDetailSampleSummaryReadOnly" model="@Model.NoncomplianceDetailSampleSummary" />
-
                             if (!ViewBag.IsOperator)
-
                             {
                                 <partial name="_Causation" model="@Model.Causation" />
                                 <partial name="_NoncomplianceDetailSampleSummaryAfterCausation" model="@Model.NoncomplianceDetailSampleSummary" />
-                            }                           
+                            }
                         }
 
-                        @if (Model.ReferralStatus == ReferralStatus.ReferredToProductionManager || (Model.ReferralStatus==ReferralStatus.ReferredToOthersForCausation))
+                        @if (Model.ReferralStatus == ReferralStatus.ReferredToProductionManager || (Model.ReferralStatus == ReferralStatus.ReferredToOthersForCausation))
                         {
                             <partial name="_Causation" model="@Model.Causation" />
+                        }
+                        @if (Model.ReferralStatus == ReferralStatus.ReferredToQA)
+                        {
+                            <partial name="_Causation" model="@Model.Causation" />
+                            <partial name="_NoncomplianceDetailSampleSummaryAfterCausationQA" model="@Model.NoncomplianceDetailSampleSummary" />
                         }
 
                         @if (Model.ReferralStatus == ReferralStatus.ReferredToQCSupervisor && Model.FormStatus == FormStatus.QCManagerModifyOrder)
@@ -205,7 +212,7 @@
                             <partial name="_NoncomplianceDetailSampleSummarySeparation" model="@Model.NoncomplianceDetailSampleSummary" />
                         }
 
-                        @if (Model.ReferralStatus == ReferralStatus.ReferredToISeparationUnit && (Model.FormStatus == FormStatus.CEOFirstOpinion || Model.FormStatus==FormStatus.CEOLastOpinion))
+                        @if (Model.ReferralStatus == ReferralStatus.ReferredToISeparationUnit && (Model.FormStatus == FormStatus.CEOFirstOpinion || Model.FormStatus == FormStatus.CEOLastOpinion))
                         {
                             <partial name="_NoncomplianceDetailSampleSummarySeparationAfterCEOFirstOpinion" model="@Model.NoncomplianceDetailSampleSummary" />
                         }
@@ -225,12 +232,12 @@
                             <partial name="_NoncomplianceDetailSampleSummaryAfterCeoOpinion" model="@Model.NoncomplianceDetailSampleSummary" />
                         }
 
-                        @if (Model.ReferralStatus == ReferralStatus.ReferredToCEO && Model.FormStatus == FormStatus.RequestForReviewByQCManager && (Model.HasFinalResult==false || Model.HasFinalResult==null))
+                        @if (Model.ReferralStatus == ReferralStatus.ReferredToCEO && Model.FormStatus == FormStatus.RequestForReviewByQCManager && (Model.HasFinalResult == false || Model.HasFinalResult == null))
                         {
                             <partial name="_NoncomplianceDetailSampleSummaryCEOFirstRevise" model="@Model.NoncomplianceDetailSampleSummary" />
                         }
 
-                        @if (Model.ReferralStatus == ReferralStatus.ReferredToCEO && Model.FormStatus == FormStatus.RequestForReviewByQCManager && Model.HasFinalResult==true)
+                        @if (Model.ReferralStatus == ReferralStatus.ReferredToCEO && Model.FormStatus == FormStatus.RequestForReviewByQCManager && Model.HasFinalResult == true)
                         {
                             <partial name="_NoncomplianceDetailSampleSummaryCEOSecondRevise" model="@Model.NoncomplianceDetailSampleSummary" />
                         }

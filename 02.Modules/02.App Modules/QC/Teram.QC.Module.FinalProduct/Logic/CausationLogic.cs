@@ -23,7 +23,7 @@ namespace Teram.QC.Module.FinalProduct.Logic
 
         public BusinessOperationResult<CausationModel> GetByFinalProductNonComplianceId(int finalProductNonComplianceId)
         {
-            return GetFirst<CausationModel>(x=>x.FinalProductNoncomplianceId == finalProductNonComplianceId);
+            return GetFirst<CausationModel>(x => x.FinalProductNoncomplianceId == finalProductNonComplianceId);
         }
 
         private void CausationLogic_BeforeUpdate(TeramEntityEventArgs<Causation, CausationModel, int> entity)
@@ -44,7 +44,7 @@ namespace Teram.QC.Module.FinalProduct.Logic
                 }
                 var hasLimitedAccessToCausation = userPrincipal.CurrentUser.HasClaim("Permission", ":Causation:HasLimitedAccessForCausation");
 
-                if (!hasLimitedAccessToCausation)
+                if (!hasLimitedAccessToCausation && cauationResult != null)
                 {
                     cauationResult.HasHRCause = entity.NewEntity.HasHRCause;
                     cauationResult.HasMethodCause = entity.NewEntity.HasMethodCause;

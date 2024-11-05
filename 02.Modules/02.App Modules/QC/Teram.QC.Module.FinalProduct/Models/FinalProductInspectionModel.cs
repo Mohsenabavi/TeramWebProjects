@@ -30,9 +30,9 @@ namespace Teram.QC.Module.FinalProduct.Models
 
         [GridColumn(nameof(TracingCode))]
         public string TracingCode { get; set; }
-       
+
         public string ControlPlan { get; set; }
-      
+
 
         public long StartInterval { get; set; }
         public long EndInterval { get; set; }
@@ -52,8 +52,10 @@ namespace Teram.QC.Module.FinalProduct.Models
         public string HasNonComplianceText => HasNonCompliance ? "رد شده" : "تایید شده";
 
         [GridColumn(nameof(CreatedByText))]
-        public string? CreatedByText {  get; set; }
+        public string? CreatedByText { get; set; }
 
+        [GridColumn(nameof(NonCompianceHistory))]
+        public string? NonCompianceHistory { get; set; }
         public List<FinalProductInspectionDefectModel> FinalProductInspectionDefects { get; set; }
 
     }

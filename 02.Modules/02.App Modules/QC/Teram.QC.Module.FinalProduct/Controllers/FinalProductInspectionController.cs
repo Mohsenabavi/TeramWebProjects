@@ -91,7 +91,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
                 var relatedUser = usersInfo.Where(x => x.UserId == item.CreatedBy).FirstOrDefault();
                 item.CreatedByText = (relatedUser != null) ? $"{relatedUser.Name} {relatedUser.Family} - {relatedUser.Username} " : " ";
                 var relatednoncompianceDetail = finalProductNonComplianceDetails.ResultEntity.Where(x => x.FinalProductInspectionId == item.FinalProductInspectionId).ToList();
-                item.HasNonCompliance = (relatednoncompianceDetail.Any()) ? true : false;
+                item.HasNonCompliance = (relatednoncompianceDetail.Any()) ? true : false;              
             }
             var totalCount = finalProductInspectionsResult?.Count ?? 0;
             return Json(new { model.Draw, recordsTotal = totalCount, recordsFiltered = totalCount, data = finalProductInspectionsResult?.ResultEntity, error = "", result = "ok" });

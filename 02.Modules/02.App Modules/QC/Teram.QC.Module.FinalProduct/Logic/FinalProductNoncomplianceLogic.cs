@@ -234,7 +234,7 @@ namespace Teram.QC.Module.FinalProduct.Logic
 
             var currentUserId = userPrincipal.CurrentUserId;
 
-            if (formStatus is null)
+            if (!isAdmin)
             {
                 query = query.AndAlso(x => x.FormStatus != FormStatus.ProcessCompleted);
             }

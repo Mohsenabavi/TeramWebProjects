@@ -4,15 +4,15 @@ namespace Teram.QC.Module.FinalProduct.Models
 {
     public class PalletsStatusModel
     {
-        [GridColumn(nameof(Number))]
-        public string Number { get; set; }
+        [GridColumn(nameof(PalletNumber))]
+        public string PalletNumber { get; set; }
         [GridColumn(nameof(OrderNo))]
         public string OrderNo { get; set; }
         [GridColumn(nameof(ProductName))]
         public string ProductName {  get; set; }
 
-        [GridColumn(nameof(SampleCount))]
-        public int SampleCount { get; set; }
+        [GridColumn(nameof(NonComplianceCount))]
+        public int NonComplianceCount { get; set; }
 
         [GridColumn(nameof(TracingCode))]
         public string TracingCode { get; set; }

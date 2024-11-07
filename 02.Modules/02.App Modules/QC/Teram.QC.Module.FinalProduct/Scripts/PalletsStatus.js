@@ -23,7 +23,7 @@ function changeDatatableOptions() {
                 "width": "150px",
                 "responsivePriority": 2,
                 "render": function (data, type, row) {
-                    return editButton + removeButton
+                    return ''
                 }
             }
         ],

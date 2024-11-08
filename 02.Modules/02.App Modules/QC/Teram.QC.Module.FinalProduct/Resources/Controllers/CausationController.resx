@@ -138,6 +138,9 @@
   <data name="Descriiption" xml:space="preserve">
     <value>شرح اقدام اصلاحی</value>
   </data>
+  <data name="Description" xml:space="preserve">
+    <value>توضیحات</value>
+  </data>
   <data name="HasEntitlementLicense" xml:space="preserve">
     <value>مجوز ارفاقی دارد </value>
   </data>

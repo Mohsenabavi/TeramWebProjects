@@ -300,6 +300,19 @@ namespace Teram.QC.Module.FinalProduct.Entities.Causation
             }
         }
 
+
+        private string _description;
+        public string Description
+        {
+            get { return _description; }
+            set
+            {
+                if (_description == value) return;
+                _description = value;
+                OnPropertyChanged();
+            }
+        }
+
         public virtual Actioner? Actioner { get; set; }
 
         public virtual FinalProductNoncompliance? FinalProductNoncompliance { get; set; }

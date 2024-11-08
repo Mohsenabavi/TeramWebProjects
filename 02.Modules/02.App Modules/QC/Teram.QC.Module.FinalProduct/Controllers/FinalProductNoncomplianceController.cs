@@ -503,10 +503,10 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
-        public IActionResult TriggerRefferFromProuctionManagerToTherActioner([FromServices] IActionerLogic actionerLogic, int finalProductNonComplianceId, int destinationUser)
+        public IActionResult TriggerRefferFromProuctionManagerToTherActioner([FromServices] IActionerLogic actionerLogic, int finalProductNonComplianceId, int destinationUser,string comment)
         {
             var relatedNonCompianceResult = finalProductNoncomplianceLogic.GetById(finalProductNonComplianceId);
-            relatedNonCompianceResult.ResultEntity.LastComment = " ";
+            relatedNonCompianceResult.ResultEntity.LastComment = comment;
             relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.RequestForCausationbyOtherManagers;
             var relatedActioner = actionerLogic.GetRow(destinationUser);
             relatedNonCompianceResult.ResultEntity.DestinationUser = relatedActioner.ResultEntity.UserId;

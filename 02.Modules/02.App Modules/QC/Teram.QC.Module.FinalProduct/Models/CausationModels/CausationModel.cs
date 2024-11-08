@@ -32,8 +32,10 @@ namespace Teram.QC.Module.FinalProduct.Models.CausationModels
         public bool IsEditMode { get; set; }
         public string? InstructionDescription { get; set; }
         public bool HasPermissionForSave { get; set; }
-        public bool CorrrectiveActionsIsLocked {  get; set; }
-        public bool IsLocked {  get; set; }
+        public bool CorrrectiveActionsIsLocked { get; set; }
+        public bool IsLocked { get; set; }
         public int? ActionerId { get; set; }
+
+        public string Description { get; set; }
     }
 }

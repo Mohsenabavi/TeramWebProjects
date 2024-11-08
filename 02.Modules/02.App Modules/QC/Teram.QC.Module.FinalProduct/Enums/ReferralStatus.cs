@@ -32,7 +32,7 @@ namespace Teram.QC.Module.FinalProduct.Enums
         [Display(Name = "ارجاع به  مدیر عامل")]
         [Description("ارجاع به  مدیر عامل")]
         ReferredToCEO = 7,
-
+  
         [Display(Name = "ارجاع به جمعدار")]
         [Description("ارجاع به جمعدار")]
         ReferredToCollector = 8,

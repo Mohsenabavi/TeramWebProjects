@@ -864,11 +864,23 @@ $(document).on('click', '#btnRefferToOtherActioner ', function () {
 
     nonComplianceId = $("#FinalProductNoncomplianceId").val();
     var destinationUser = $("#ActionerId").val();
+    var comment = $("#RefferToOtherActionerComment").val();
+
+    if (destinationUser == null || destinationUser == undefined || destinationUser == "") {
+        teram().showErrorMessage("اقدام کننده را انتخاب نمایید");
+        return;
+    }
+
+    if (comment == null || comment == undefined || comment == "") {
+        teram().showErrorMessage("جهت ارجاع توضیحات را وارد نمایید");
+        return;
+    }
 
     $.post("/FinalProductNoncompliance/TriggerRefferFromProuctionManagerToTherActioner",
         {
             finalProductNonComplianceId: nonComplianceId,
-            destinationUser: destinationUser
+            destinationUser: destinationUser,
+            comment: comment
         }, function (content) {
 
             if (content.result == "ok") {
@@ -985,11 +997,13 @@ $(document).on("change", "#NotRelatedToProduction", function () {
         $(".InputForm .select2").val("").trigger("change")
         $(".InputForm :checkbox").prop('checked', false);
         $('.InputForm :input[type=text]').val('');
+        $('#RefferToOtherActionerComment').attr('style', 'display: flex !important');
     }
     else {
         $('.chooseActioners').attr('style', 'display: none !important');
         $("#btnRefferToOtherActioner").addClass("d-none");
         $(".InputForm").removeClass("d-none");
+        $('#RefferToOtherActionerComment').attr('style', 'display: none !important');
     }
 });
 

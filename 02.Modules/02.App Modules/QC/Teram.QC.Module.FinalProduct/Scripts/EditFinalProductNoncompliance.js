@@ -92,6 +92,7 @@ $(document).on('change', '#IsLackOfFit', function () {
 $(document).ready(function () {
     $("#CloseCausation").prop('disabled', true);
     $("#CloseCausation").css("backgroundColor", "#aaa");
+    $('#RefferToOtherActionerComment').attr('style', 'display: none !important');
 });
 
 $(document).on('change', '#FinalCausationApprove', function () {

@@ -53,8 +53,6 @@ namespace Teram.QC.Module.FinalProduct.Models
 
         [GridColumn(nameof(CreatedByText))]
         public string? CreatedByText { get; set; }
-
-        [GridColumn(nameof(NonCompianceHistory))]
         public string? NonCompianceHistory { get; set; }
         public List<FinalProductInspectionDefectModel> FinalProductInspectionDefects { get; set; }
 

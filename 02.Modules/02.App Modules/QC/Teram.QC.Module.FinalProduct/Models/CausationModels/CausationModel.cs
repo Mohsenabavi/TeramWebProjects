@@ -13,6 +13,9 @@ namespace Teram.QC.Module.FinalProduct.Models.CausationModels
         public bool? HasEquipmentCause { get; set; }
         public int? MachineId { get; set; }
         public int? OperatorId { get; set; }
+        public int? OperatorId2 { get; set; }
+        public int? OperatorId3 { get; set; }
+        public int? OperatorId4 { get; set; }
         public bool? IsLackOfFit { get; set; }
         public bool? IsCaseError { get; set; }
         public bool? HasLackOfFitWorkerAndJob { get; set; }
@@ -28,6 +31,9 @@ namespace Teram.QC.Module.FinalProduct.Models.CausationModels
         public string? NotificationNumber { get; set; }
         public int FinalProductNoncomplianceId { get; set; }
         public int? WrongdoerId { get; set; }
+        public int? WrongdoerId2 { get; set; }
+        public int? WrongdoerId3 { get; set; }
+        public int? WrongdoerId4 { get; set; }
         public List<CorrectiveActionModel>? CorrectiveActions { get; set; }
         public bool IsEditMode { get; set; }
         public string? InstructionDescription { get; set; }

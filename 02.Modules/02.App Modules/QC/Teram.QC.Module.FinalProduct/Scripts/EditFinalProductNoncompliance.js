@@ -92,7 +92,6 @@ $(document).on('change', '#IsLackOfFit', function () {
 $(document).ready(function () {
     $("#CloseCausation").prop('disabled', true);
     $("#CloseCausation").css("backgroundColor", "#aaa");
-    $('#RefferToOtherActionerComment').attr('style', 'display: none !important');
 });
 
 $(document).on('change', '#FinalCausationApprove', function () {
@@ -151,7 +150,7 @@ function validateForm() {
         var IsLackOfFit = $("#IsLackOfFit").is(":checked");
 
         if (wrongDoerId == "") {
-            teram().showErrorMessage("فرد خاطی را مشخص نمایید");
+            teram().showErrorMessage("فرد خاطی اول را مشخص نمایید");
             isValidate = false;
         }
         if (!IsCaseError && !IsLackOfFit) {
@@ -205,7 +204,7 @@ function validateForm() {
 
                 if (operatorId == "") {
                     isValidate = false;
-                    teram().showErrorMessage("فرد خاطی را وارد نمایید");
+                    teram().showErrorMessage("فرد خاطی اول را وارد نمایید");
                 }
             }
         }
@@ -998,13 +997,13 @@ $(document).on("change", "#NotRelatedToProduction", function () {
         $(".InputForm .select2").val("").trigger("change")
         $(".InputForm :checkbox").prop('checked', false);
         $('.InputForm :input[type=text]').val('');
-        $('#RefferToOtherActionerComment').attr('style', 'display: flex !important');
+        $('.RefferToOtherActionerCommentSection').removeClass('d-none').addClass('d-flex');
     }
     else {
         $('.chooseActioners').attr('style', 'display: none !important');
         $("#btnRefferToOtherActioner").addClass("d-none");
         $(".InputForm").removeClass("d-none");
-        $('#RefferToOtherActionerComment').attr('style', 'display: none !important');
+        $('.RefferToOtherActionerCommentSection').removeClass('d-flex').addClass('d-none');
     }
 });
 
@@ -1029,6 +1028,7 @@ $(document).on('click', '.showDetailsBtn', function () {
         var isEditMode = $("#IsEditMode").val();
         var hasPermissionForSave = $("#HasPermissionForSave").val();
         var correctiveActionsIslocked = $("#CorrrectiveActionsIsLocked").val();
+        $('.RefferToOtherActionerCommentSection').addClass('d-none').removeClass('d-flex');
         var islocked = $("#IsLocked").val();
         if (islocked != undefined && islocked.toLowerCase() == "true") {
             $(".afterCausationActions").hide();

@@ -7,8 +7,26 @@
     </legend>
     <div class="row chooseReason">
         <select-box style="justify-content: flex-end;" reverse="true" asp-for="WrongdoerId"
-                    not-selected-option-title="-- یک فرد انتخاب کنید --" title="فرد خاطی"
+                    not-selected-option-title="-- یک فرد انتخاب کنید --" title="فرد خاطی اول"
                     selected-value="@Model?.WrongdoerId"
+                    validation-required-message="@localizer["Please select a WrongdoerId"]"
+                    class="d-none mb-2 col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2" value="@ViewBag.Operators">
+        </select-box>
+        <select-box style="justify-content: flex-end;" reverse="true" asp-for="WrongdoerId2"
+                    not-selected-option-title="-- یک فرد انتخاب کنید --" title="فرد خاطی دوم"
+                    selected-value="@Model?.WrongdoerId2"
+                    validation-required-message="@localizer["Please select a WrongdoerId"]"
+                    class="d-none mb-2 col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2" value="@ViewBag.Operators">
+        </select-box>
+        <select-box style="justify-content: flex-end;" reverse="true" asp-for="WrongdoerId3"
+                    not-selected-option-title="-- یک فرد انتخاب کنید --" title="فرد خاطی سوم"
+                    selected-value="@Model?.WrongdoerId3"
+                    validation-required-message="@localizer["Please select a WrongdoerId"]"
+                    class="d-none mb-2 col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2" value="@ViewBag.Operators">
+        </select-box>
+        <select-box style="justify-content: flex-end;" reverse="true" asp-for="WrongdoerId4"
+                    not-selected-option-title="-- یک فرد انتخاب کنید --" title="فرد خاطی چهارم"
+                    selected-value="@Model?.WrongdoerId4"
                     validation-required-message="@localizer["Please select a WrongdoerId"]"
                     class="d-none mb-2 col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2" value="@ViewBag.Operators">
         </select-box>

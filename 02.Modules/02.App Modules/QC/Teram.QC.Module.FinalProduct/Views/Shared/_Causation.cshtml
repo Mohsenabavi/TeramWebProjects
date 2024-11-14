@@ -1,6 +1,5 @@
 ﻿@model CausationModel
 @inject IStringLocalizer<Teram.QC.Module.FinalProduct.Controllers.CausationController> localizer
-
 <div class="row notRelatedToProductionSection">
     <check-box name="NotRelatedToProduction" id="NotRelatedToProduction" is-required="false" reverse="true" title="@localizer["NotRelatedToProduction"]" div-class="col-12 col-md-4 col-lg-4 d-flex flex-column-reverse align-items-start mb-4" />
     <select-box name="ActionerId" asp-for="ActionerId" reverse="true" value="@ViewBag.Actioners"
@@ -10,7 +9,9 @@
     <div class="col-md-2 col-xs-2 d-flex mt-4 align-items-start">
         <button type="button" id="btnRefferToOtherActioner" class="btn btn-success w-100">@localizer["RefferToOtherActioner"] </button>
     </div>
-    <text-box id="RefferToOtherActionerComment" validation-type="None" reverse="true" title="@localizer["Description"]" validation-required-message="@localizer["Please enter Description"]" div-class="col-12 col-md-12 col-lg-12 d-flex mt-2 flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+    <div class="RefferToOtherActionerCommentSection col-md-12 col-xs-12 d-flex mt-4 align-items-start  d-none">
+        <text-box id="RefferToOtherActionerComment" validation-type="None" reverse="true" title="@localizer["Description"]" validation-required-message="@localizer["Please enter Description"]" div-class="d-none col-12 col-md-12 col-lg-12 d-flex mt-2 flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+    </div>
 </div>
 <div class="InputForm">
     <div class="formInfo">
@@ -71,6 +72,9 @@
                 </div>
                 <div class="essentialSection d-none">
                     <partial name="_CausationEssentials" model="@Model" />
+                </div>
+                <div class="equipmentSection d-none">
+                    <partial name="_CausationEquipment" model="@Model" />
                 </div>
                 <div class="descriptionSection">
                     <text-box asp-for="Description" validation-type="None" reverse="true" title="@localizer["Description"]" validation-required-message="@localizer["Please enter Description"]" div-class="col-12 col-md-12 col-lg-12 d-flex mt-2 flex-column-reverse align-items-start pl-lg-2 pl-md-2" />

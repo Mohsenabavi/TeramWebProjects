@@ -3,7 +3,7 @@ using Teram.Framework.Core.Domain;
 
 namespace Teram.QC.Module.FinalProduct.Entities.Causation
 {
-    [Table(nameof(Causation) +"s", Schema = "QCFP")]
+    [Table(nameof(Causation) + "s", Schema = "QCFP")]
     public class Causation : EntityBase
     {
         public int CausationId { get; set; }
@@ -87,6 +87,45 @@ namespace Teram.QC.Module.FinalProduct.Entities.Causation
             }
         }
 
+        private int _wrongdoerId2;
+        public int WrongdoerId2
+        {
+            get { return _wrongdoerId2; }
+            set
+            {
+                if (_wrongdoerId2 == value) return;
+                _wrongdoerId2 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int _wrongdoerId3;
+        public int WrongdoerId3
+        {
+            get { return _wrongdoerId3; }
+            set
+            {
+                if (_wrongdoerId3 == value) return;
+                _wrongdoerId3 = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private int _wrongdoerId4;
+        public int WrongdoerId4
+        {
+            get { return _wrongdoerId4; }
+            set
+            {
+                if (_wrongdoerId4 == value) return;
+                _wrongdoerId4 = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
         [ForeignKey(nameof(WorkStationId))]
         public virtual WorkStation? WorkStation { get; set; }
 
@@ -116,6 +155,43 @@ namespace Teram.QC.Module.FinalProduct.Entities.Causation
                 OnPropertyChanged();
             }
         }
+
+        private int? _operatorId2;
+        public int? OperatorId2
+        {
+            get { return _operatorId2; }
+            set
+            {
+                if (_operatorId2 == value) return;
+                _operatorId2 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int? _operatorId3;
+        public int? OperatorId3
+        {
+            get { return _operatorId3; }
+            set
+            {
+                if (_operatorId3 == value) return;
+                _operatorId3 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int? _operatorId4;
+        public int? OperatorId4
+        {
+            get { return _operatorId4; }
+            set
+            {
+                if (_operatorId4 == value) return;
+                _operatorId4 = value;
+                OnPropertyChanged();
+            }
+        }
+
         [ForeignKey(nameof(OperatorId))]
         public virtual Operator? Operator { get; set; }
 

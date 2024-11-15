@@ -8,7 +8,7 @@ using Teram.QC.Module.FinalProduct.Enums;
 
 namespace Teram.QC.Module.FinalProduct.Entities
 {
-    [Table(nameof(FinalProductNoncompliance) +"s", Schema = "QCFP")]
+    [Table(nameof(FinalProductNoncompliance) + "s", Schema = "QCFP")]
     public class FinalProductNoncompliance : EntityBase
     {
         public int FinalProductNoncomplianceId { get; set; }
@@ -353,7 +353,6 @@ namespace Teram.QC.Module.FinalProduct.Entities
             get { return _referralStatus; }
             set
             {
-                if (_referralStatus == value) return;
                 _referralStatus = value;
                 OnPropertyChanged();
             }
@@ -365,7 +364,6 @@ namespace Teram.QC.Module.FinalProduct.Entities
             get { return _formStatus; }
             set
             {
-                if (_formStatus == value) return;
                 _formStatus = value;
                 OnPropertyChanged();
             }
@@ -398,24 +396,24 @@ namespace Teram.QC.Module.FinalProduct.Entities
                 _lastComment = value;
                 OnPropertyChanged();
             }
-        }       
+        }
 
         private bool? _hasLeniency;
 
         [CompareField]
 
         [Description("مجوز ارفاقی دارد")]
-        public bool?  HasLeniency
+        public bool? HasLeniency
         {
             get { return _hasLeniency; }
             set
-            {               
+            {
                 _hasLeniency = value;
                 OnPropertyChanged();
             }
         }
 
-        
+
         private bool _hasCausation;
 
         [CompareField]
@@ -425,7 +423,7 @@ namespace Teram.QC.Module.FinalProduct.Entities
         {
             get { return _hasCausation; }
             set
-            {               
+            {
                 _hasCausation = value;
                 OnPropertyChanged();
             }
@@ -436,7 +434,7 @@ namespace Teram.QC.Module.FinalProduct.Entities
         {
             get { return _isTriggeredByUserAction; }
             set
-            {                
+            {
                 _isTriggeredByUserAction = value;
                 OnPropertyChanged();
             }
@@ -447,7 +445,7 @@ namespace Teram.QC.Module.FinalProduct.Entities
         {
             get { return _destinationUser; }
             set
-            {              
+            {
                 _destinationUser = value;
                 OnPropertyChanged();
             }

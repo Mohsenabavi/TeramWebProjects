@@ -120,6 +120,9 @@
   <data name="Actions" xml:space="preserve">
     <value>عملیات</value>
   </data>
+  <data name="Assignment" xml:space="preserve">
+    <value>تعیین تکلیف</value>
+  </data>
   <data name="Attachments" xml:space="preserve">
     <value>عکس های ضمیمه شده</value>
   </data>

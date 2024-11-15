@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Localization;
 using System.Transactions;
+using System.Xml.Linq;
 using Teram.Framework.Core.Extensions;
 using Teram.Framework.Core.Logic;
 using Teram.Module.AttachmentsManagement.Models;
@@ -503,7 +504,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
-        public IActionResult TriggerRefferFromProuctionManagerToTherActioner([FromServices] IActionerLogic actionerLogic, int finalProductNonComplianceId, int destinationUser,string comment)
+        public IActionResult TriggerRefferFromProuctionManagerToTherActioner([FromServices] IActionerLogic actionerLogic, int finalProductNonComplianceId, int destinationUser, string comment)
         {
             var relatedNonCompianceResult = finalProductNoncomplianceLogic.GetById(finalProductNonComplianceId);
             relatedNonCompianceResult.ResultEntity.LastComment = comment;
@@ -601,9 +602,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             {
                 return Json(new { result = "fail", id = model.FinalProductInspectionId, timeout = 8000, message = localizer["Duplicate NonCompliance"] });
             }
-
-            using var transaction = new TransactionScope(TransactionScopeOption.Suppress, TransactionScopeAsyncFlowOption.Enabled);
-
+          
             if (model.FinalProductNoncomplianceId == 0)
             {
                 model.FinalProductNoncomplianceDetails = new List<FinalProductNoncomplianceDetailModel>();
@@ -629,6 +628,8 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             }
             else
             {
+                var relatedNonCompianceDetails = finalProductNoncomplianceDetailLogic.GetByFinalProductNoncomplianceId(model.FinalProductNoncomplianceId);
+                var relatedOldSamples = relatedNonCompianceDetails.ResultEntity.SelectMany(x => x.FinalProductNoncomplianceDetailSamples).Where(x => x.Amount > 0).ToList();
                 var insertModel = new FinalProductNoncomplianceDetailModel
                 {
                     Number = model.Number,
@@ -641,10 +642,39 @@ namespace Teram.QC.Module.FinalProduct.Controllers
                         new() { SampleType=SampleType.ForthSample, Amount=model.NewForthSample },
                     ]
                 };
+                var relatedNewSamples = insertModel.FinalProductNoncomplianceDetailSamples.Where(x => x.Amount > 0).ToList();
+                var interSectionOfOldAndNewSamples = relatedOldSamples.IntersectBy(relatedNewSamples.Select(e => e.SampleType), x => x.SampleType);
+                var newSamples = relatedNewSamples.ExceptBy(relatedOldSamples.Select(e => e.SampleType), x => x.SampleType).ToList();
+
+                foreach (var item in relatedNewSamples)
+                {
+                    var oldEquivalent = relatedOldSamples.Where(x => x.SampleType == item.SampleType).FirstOrDefault();
+                    item.OpinionTypeQCManager = (oldEquivalent != null) ? oldEquivalent.OpinionTypeQCManager : 0;
+                    item.OpinionTypeCEO = (oldEquivalent != null) ? oldEquivalent.OpinionTypeCEO : 0;
+                    item.OpinionTypeCEOFinal = (oldEquivalent != null) ? oldEquivalent.OpinionTypeCEOFinal : 0;
+                }
+
+                var relatedNonComplianceResult=finalProductNoncomplianceLogic.GetById(model.FinalProductNoncomplianceId);
+
+                if (newSamples.Count != 0)
+                {
+                    relatedNonComplianceResult.ResultEntity.FormStatus = FormStatus.InitialRegistration;
+                    relatedNonComplianceResult.ResultEntity.ReferralStatus = ReferralStatus.InitialRegistration;
+                    relatedNonComplianceResult.ResultEntity.IsApproved = false;
+                    relatedNonComplianceResult.ResultEntity.HasCausation = false;
+                    relatedNonComplianceResult.ResultEntity.HasFinalResult = null;
+                    relatedNonComplianceResult.ResultEntity.HasSeperationOrder = null;
+                    relatedNonComplianceResult.ResultEntity.HasWasteOrder = null;
+                    relatedNonComplianceResult.ResultEntity.DestinationUser = null;
+                    relatedNonComplianceResult.ResultEntity.FinalApproveByQA = false;
+                    relatedNonComplianceResult.ResultEntity.FinalApproveByQADate = DateTime.MinValue;
+                    relatedNonComplianceResult.ResultEntity.IsTriggeredByUserAction = true;
+                    relatedNonComplianceResult.ResultEntity.LastComment = "توضیحات سسیتمی : برخی نمونه ها قبلا تعیین تکلیف شده است";
+                }
+
                 finalProductNoncomplianceDetailLogic.AddNew(insertModel);
-                service.Update(model);
-            }
-            transaction.Complete();
+                var result= finalProductNoncomplianceLogic.Update(relatedNonComplianceResult.ResultEntity);
+            }   
             return Json(new { result = "ok", id = model.FinalProductInspectionId, timeout = 8000, message = string.Concat(localizer["FinalProductNoncompliance"], localizer["Number"], model.FinalProductNoncomplianceNumber, localizer["Saved Successfully"]) });
         }
 

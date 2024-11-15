@@ -3,6 +3,10 @@
 
 
 <input type="hidden" id="FinalProductNonComplianceId" value="@Model.FinalProductNonComplianceId" />
+@{
+
+    var opinionList = Html.GetEnumSelectList<OpinionType>().ToList().Where(x => x.Value != ((int)OpinionType.CEOOpinion).ToString()).ToList();
+}
 
 @if (Model.FirstSampleSum > 0)
 {
@@ -19,10 +23,14 @@
             <text-box reverse="true" title="@localizer["FirstSampleOpinionText"]" asp-for="@Model.FirstSampleOpinionText" validation-type=None is-readonly="true"
                       div-class="col-md-6 col-lg-3 mb-3 d-flex flex-column-reverse align-items-start" />
 
-            <select-box style="justify-content: flex-end;" reverse="true" asp-for="@Model.FirstSampleOpinionCEO"
-                        not-selected-option-title="-- انتخاب کنید --" title="تعیین تکلیف" value="Html.GetEnumSelectList<OpinionType>().ToList().Where(x=>x.Value!=((int)OpinionType.CEOOpinion).ToString()).ToList()"
-                        class="col-md-6 col-lg-3 NeedToAdvisoryOpinion mb-2  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2 opinionList">
-            </select-box>
+            <div class=" col-xs-12 col-md-6 col-lg-3 mt-2">
+                <label class="forms-label mb-0">@localizer["Assignment"] </label>
+                <select asp-for="@Model.FirstSampleOpinionCEO" name="FirstSampleOpinionCEO" required
+                        class="form-control select2 opinionList"
+                        asp-items="@opinionList">
+                    <option value="">@localizer["select item"]</option>
+                </select>
+            </div>
         </div>
     </fieldset>
 }
@@ -43,10 +51,14 @@
             <text-box reverse="true" title="@localizer["SecondSampleOpinionText"]" asp-for="@Model.SecondSampleOpinionText" validation-type=None is-readonly="true"
                       div-class="col-md-6 col-lg-3 mb-3 d-flex flex-column-reverse align-items-start" />
 
-            <select-box style="justify-content: flex-end;" reverse="true" asp-for="@Model.SecondSampleOpinionCEO"
-                        not-selected-option-title="-- انتخاب کنید --" title="تعیین تکلیف" value="Html.GetEnumSelectList<OpinionType>().ToList().Where(x=>x.Value!=((int)OpinionType.CEOOpinion).ToString()).ToList()"
-                        class="col-md-6 col-lg-3 NeedToAdvisoryOpinion mb-2  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2 opinionList">
-            </select-box>
+            <div class=" col-xs-12 col-md-6 col-lg-3 mt-2">
+                <label class="forms-label mb-0">@localizer["Assignment"] </label>
+                <select asp-for="@Model.SecondSampleOpinionCEO" name="SecondSampleOpinionCEO" required
+                        class="form-control select2 opinionList"
+                        asp-items="@opinionList">
+                    <option value="">@localizer["select item"]</option>
+                </select>
+            </div>
 
         </div>
     </fieldset>
@@ -67,11 +79,15 @@
 
             <text-box reverse="true" title="@localizer["ThirdSampleOpinionText"]" asp-for="@Model.ThirdSampleOpinionText" validation-type=None is-readonly="true"
                       div-class="col-md-6 col-lg-3 mb-3 d-flex flex-column-reverse align-items-start" />
-            <select-box style="justify-content: flex-end;" reverse="true" asp-for="@Model.ThirdSampleOpinionCEO"
-                        not-selected-option-title="-- انتخاب کنید --" title="تعیین تکلیف" value="Html.GetEnumSelectList<OpinionType>().ToList().Where(x=>x.Value!=((int)OpinionType.CEOOpinion).ToString()).ToList()"
-                        class="col-md-6 col-lg-3 NeedToAdvisoryOpinion mb-2  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2 opinionList">
-            </select-box>
 
+            <div class=" col-xs-12 col-md-6 col-lg-3 mt-2">
+                <label class="forms-label mb-0">@localizer["Assignment"] </label>
+                <select asp-for="@Model.ThirdSampleOpinionCEO" name="ThirdSampleOpinionCEO" required
+                        class="form-control select2 opinionList"
+                        asp-items="@opinionList">
+                    <option value="">@localizer["select item"]</option>
+                </select>
+            </div>
         </div>
     </fieldset>
 }
@@ -87,13 +103,16 @@
             <text-box reverse="true" title="@localizer["Total"]" asp-for="@Model.ForthSampleTotalCount" validation-type=Number is-readonly="true"
                       div-class="col-md-6 col-lg-2 mb-3 d-flex flex-column-reverse align-items-start" />
 
-
             <text-box reverse="true" title="@localizer["ForthSampleOpinionText"]" asp-for="@Model.ForthSampleOpinionText" validation-type=None is-readonly="true"
                       div-class="col-md-6 col-lg-3 mb-3 d-flex flex-column-reverse align-items-start" />
-            <select-box style="justify-content: flex-end;" reverse="true" asp-for="@Model.ForthSampleOpinionCEO"
-                        not-selected-option-title="-- انتخاب کنید --" title="تعیین تکلیف" value="Html.GetEnumSelectList<OpinionType>().ToList().Where(x=>x.Value!=((int)OpinionType.CEOOpinion).ToString()).ToList()"
-                        class="col-md-6 col-lg-3 NeedToAdvisoryOpinion mb-2  d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2 opinionList">
-            </select-box>
+            <div class=" col-xs-12 col-md-6 col-lg-3 mt-2">
+                <label class="forms-label mb-0">@localizer["Assignment"] </label>
+                <select asp-for="@Model.ForthSampleOpinionCEO" name="ForthSampleOpinionCEO" required
+                        class="form-control select2 opinionList"
+                        asp-items="@opinionList">
+                    <option value="">@localizer["select item"]</option>
+                </select>
+            </div>
         </div>
     </fieldset>
 }

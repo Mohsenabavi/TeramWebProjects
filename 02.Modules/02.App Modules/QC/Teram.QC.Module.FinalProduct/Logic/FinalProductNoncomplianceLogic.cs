@@ -82,7 +82,6 @@ namespace Teram.QC.Module.FinalProduct.Logic
 
                     if (registeredData.FormStatus != nextStep.ResultEntity.FormStatus || registeredData.ReferralStatus != nextStep.ResultEntity.ToStatus)
                     {
-
                         registeredData.FormStatus = nextStep.ResultEntity.FormStatus;
                         registeredData.ReferralStatus = nextStep.ResultEntity.ToStatus;
                         registeredData.DestinationUser = null;

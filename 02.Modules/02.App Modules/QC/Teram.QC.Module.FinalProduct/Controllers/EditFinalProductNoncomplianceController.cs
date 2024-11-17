@@ -45,6 +45,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
         private readonly IRootCauseLogic rootCauseLogic;
         private readonly IUnitLogic unitLogic;
         private readonly IWorkStationLogic workStationLogic;
+        private readonly IRawMaterialLogic rawMaterialLogic;
 
         public EditFinalProductNoncomplianceController(ILogger<EditFinalProductNoncomplianceController> logger
             , IStringLocalizer<EditFinalProductNoncomplianceController> localizer, IFinalProductNoncomplianceLogic finalProductNoncomplianceLogic, IFinalProductNoncomplianceFileLogic finalProductNoncomplianceFileLogic,
@@ -52,7 +53,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             IFinalProductNoncomplianceDetailLogic finalProductNoncomplianceDetailLogic, IUserSharedService userSharedService,
             IFinalProductInspectionDefectLogic finalProductInspectionDefectLogic, IFinalProductInspectionLogic finalProductInspectionLogic,
             IInstructionLogic instructionLogic, IMachineLogic machineLogic, IOperatorLogic operatorLogic, IActionerLogic actionerLogic,
-            IRootCauseLogic rootCauseLogic, IUnitLogic unitLogic, IWorkStationLogic workStationLogic,
+            IRootCauseLogic rootCauseLogic, IUnitLogic unitLogic, IWorkStationLogic workStationLogic, IRawMaterialLogic rawMaterialLogic,
             IStringLocalizer<SharedResource> sharedLocalizer)
         {
             this.logger = logger;
@@ -68,28 +69,29 @@ namespace Teram.QC.Module.FinalProduct.Controllers
                 Title = localizer["EditFinalProductNoncompliance"],
                 OperationColumns = true,
                 HomePage = nameof(EditFinalProductNoncomplianceController).Replace("Controller", "") + "/index",
-                ExtraScripts="/ExternalModule/QC/Module/FinalProduct/Scripts/EditFinalProductNoncompliance.js",
-                GridId="EditFinalProductNoncomplianceGrid",
+                ExtraScripts = "/ExternalModule/QC/Module/FinalProduct/Scripts/EditFinalProductNoncompliance.js",
+                GridId = "EditFinalProductNoncomplianceGrid",
                 GetDataUrl = "",
                 LoadAjaxData = false,
             };
-            this.finalProductNoncomplianceLogic=finalProductNoncomplianceLogic??throw new ArgumentNullException(nameof(finalProductNoncomplianceLogic));
-            this.finalProductNoncomplianceFileLogic=finalProductNoncomplianceFileLogic??throw new ArgumentNullException(nameof(finalProductNoncomplianceFileLogic));
-            this.qCControlPlanLogic=qCControlPlanLogic??throw new ArgumentNullException(nameof(qCControlPlanLogic));
-            this.controlPlanDefectLogic=controlPlanDefectLogic??throw new ArgumentNullException(nameof(controlPlanDefectLogic));
-            this.userPrincipal=userPrincipal??throw new ArgumentNullException(nameof(userPrincipal));
-            this.manageCartableLogic=manageCartableLogic??throw new ArgumentNullException(nameof(manageCartableLogic));
-            this.finalProductNoncomplianceDetailLogic=finalProductNoncomplianceDetailLogic??throw new ArgumentNullException(nameof(finalProductNoncomplianceDetailLogic));
-            this.userSharedService=userSharedService??throw new ArgumentNullException(nameof(userSharedService));
-            this.finalProductInspectionDefectLogic=finalProductInspectionDefectLogic??throw new ArgumentNullException(nameof(finalProductInspectionDefectLogic));
-            this.finalProductInspectionLogic=finalProductInspectionLogic??throw new ArgumentNullException(nameof(finalProductInspectionLogic));
-            this.instructionLogic=instructionLogic??throw new ArgumentNullException(nameof(instructionLogic));
-            this.machineLogic=machineLogic??throw new ArgumentNullException(nameof(machineLogic));
-            this.operatorLogic=operatorLogic??throw new ArgumentNullException(nameof(operatorLogic));
-            this.actionerLogic=actionerLogic??throw new ArgumentNullException(nameof(actionerLogic));
-            this.rootCauseLogic=rootCauseLogic??throw new ArgumentNullException(nameof(rootCauseLogic));
-            this.unitLogic=unitLogic;
-            this.workStationLogic=workStationLogic;
+            this.finalProductNoncomplianceLogic = finalProductNoncomplianceLogic ?? throw new ArgumentNullException(nameof(finalProductNoncomplianceLogic));
+            this.finalProductNoncomplianceFileLogic = finalProductNoncomplianceFileLogic ?? throw new ArgumentNullException(nameof(finalProductNoncomplianceFileLogic));
+            this.qCControlPlanLogic = qCControlPlanLogic ?? throw new ArgumentNullException(nameof(qCControlPlanLogic));
+            this.controlPlanDefectLogic = controlPlanDefectLogic ?? throw new ArgumentNullException(nameof(controlPlanDefectLogic));
+            this.userPrincipal = userPrincipal ?? throw new ArgumentNullException(nameof(userPrincipal));
+            this.manageCartableLogic = manageCartableLogic ?? throw new ArgumentNullException(nameof(manageCartableLogic));
+            this.finalProductNoncomplianceDetailLogic = finalProductNoncomplianceDetailLogic ?? throw new ArgumentNullException(nameof(finalProductNoncomplianceDetailLogic));
+            this.userSharedService = userSharedService ?? throw new ArgumentNullException(nameof(userSharedService));
+            this.finalProductInspectionDefectLogic = finalProductInspectionDefectLogic ?? throw new ArgumentNullException(nameof(finalProductInspectionDefectLogic));
+            this.finalProductInspectionLogic = finalProductInspectionLogic ?? throw new ArgumentNullException(nameof(finalProductInspectionLogic));
+            this.instructionLogic = instructionLogic ?? throw new ArgumentNullException(nameof(instructionLogic));
+            this.machineLogic = machineLogic ?? throw new ArgumentNullException(nameof(machineLogic));
+            this.operatorLogic = operatorLogic ?? throw new ArgumentNullException(nameof(operatorLogic));
+            this.actionerLogic = actionerLogic ?? throw new ArgumentNullException(nameof(actionerLogic));
+            this.rootCauseLogic = rootCauseLogic ?? throw new ArgumentNullException(nameof(rootCauseLogic));
+            this.unitLogic = unitLogic;
+            this.workStationLogic = workStationLogic;
+            this.rawMaterialLogic = rawMaterialLogic ?? throw new ArgumentNullException(nameof(rawMaterialLogic));
         }
 
         [ControlPanelMenu("EditFinalProductNoncompliance", ParentName = "FinalProductInspection", Icon = "fa fa-ban", PanelType = PanelType.User, Position = ControlPanelMenuPosition.LeftSideBar)]
@@ -110,9 +112,9 @@ namespace Teram.QC.Module.FinalProduct.Controllers
 
             var relatedUsers = await userSharedService.GetUsersInRole("Sales");
 
-            if (relatedUsers!=null)
+            if (relatedUsers != null)
             {
-                return relatedUsers.Select(x => new SelectListItem { Text=string.Concat(x.Name, "-", x.Family), Value=x.UserId.ToString() }).ToList();
+                return relatedUsers.Select(x => new SelectListItem { Text = string.Concat(x.Name, "-", x.Family), Value = x.UserId.ToString() }).ToList();
             }
             return result;
         }
@@ -125,9 +127,9 @@ namespace Teram.QC.Module.FinalProduct.Controllers
 
             var relatedUsers = await userSharedService.GetUsersInRole("Reviewer");
 
-            if (relatedUsers!=null)
+            if (relatedUsers != null)
             {
-                return relatedUsers.Select(x => new SelectListItem { Text=string.Concat(x.Name, "-", x.Family), Value=x.UserId.ToString() }).ToList();
+                return relatedUsers.Select(x => new SelectListItem { Text = string.Concat(x.Name, "-", x.Family), Value = x.UserId.ToString() }).ToList();
             }
             return result;
         }
@@ -139,22 +141,23 @@ namespace Teram.QC.Module.FinalProduct.Controllers
 
             var finalProductInspectionResult = finalProductInspectionLogic.GetByOrderNoAndProductCode(nonComplianceResult.ResultEntity.OrderNo, nonComplianceResult.ResultEntity.ProductCode);
 
-            ViewBag.RelatedDefects=GetRelatedDefects(nonComplianceResult.ResultEntity.FinalProductNoncomplianceId);
-            ViewBag.Instructions=GetInstructions();
-            ViewBag.Machines=GetMachines();
-            ViewBag.Operators=GetOperators();
-            ViewBag.RoorCauses=GetRootCauses();
-            ViewBag.Units=GetUnits();
-            ViewBag.WorkStations=GetWorkStations();
-            ViewBag.Actioners=GetActioners();
+            ViewBag.RelatedDefects = GetRelatedDefects(nonComplianceResult.ResultEntity.FinalProductNoncomplianceId);
+            ViewBag.Instructions = GetInstructions();
+            ViewBag.Machines = GetMachines();
+            ViewBag.Operators = GetOperators();
+            ViewBag.RoorCauses = GetRootCauses();
+            ViewBag.Units = GetUnits();
+            ViewBag.WorkStations = GetWorkStations();
+            ViewBag.Actioners = GetActioners();
+            ViewBag.RawMaterials = GetRawMaterials();
             var mainRole = manageCartableLogic.GetUserMainRole();
-            if (mainRole != null && mainRole.ResultEntity.Name.ToUpper()=="OPERATOR")
+            if (mainRole != null && mainRole.ResultEntity.Name.ToUpper() == "OPERATOR")
             {
-                ViewBag.IsOperator=true;
+                ViewBag.IsOperator = true;
             }
             else
             {
-                ViewBag.IsOperator=false;
+                ViewBag.IsOperator = false;
             }
             return PartialView("_NonCompliaceDetail", finalProductNoncomplianceLogic.GetNonComplianceDetails(nonComplianceResult.ResultEntity, finalProductInspectionResult.ResultEntity));
         }
@@ -171,8 +174,8 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             }
             return data.ResultEntity.Select(x => new SelectListItem
             {
-                Text=$"{x.FirstName} {x.LastName} - {x.PostTitle} - {x.PersonnelCode}",
-                Value=x.ActionerId.ToString(),
+                Text = $"{x.FirstName} {x.LastName} - {x.PostTitle} - {x.PersonnelCode}",
+                Value = x.ActionerId.ToString(),
             }).ToList();
         }
         private List<SelectListItem> GetInstructions()
@@ -209,8 +212,8 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             }
             return operatorResult.ResultEntity.Select(x => new SelectListItem
             {
-                Text=$"{x.FirstName} {x.LastName} - {x.PersonnelCode}",
-                Value=x.OperatorId.ToString()
+                Text = $"{x.FirstName} {x.LastName} - {x.PersonnelCode}",
+                Value = x.OperatorId.ToString()
             }).ToList();
         }
 
@@ -250,6 +253,18 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             return workStationsResult.ResultEntity.ToSelectList(nameof(WorkStationModel.Title), nameof(WorkStationModel.WorkStationId));
         }
 
+        private List<SelectListItem> GetRawMaterials()
+        {
+
+            var result = new List<SelectListItem>();
+            var rawMateriasResult = rawMaterialLogic.GetAll();
+            if (rawMateriasResult.ResultStatus != OperationResultStatus.Successful || rawMateriasResult.ResultEntity is null)
+            {
+                return result;
+            }
+            return rawMateriasResult.ResultEntity.ToSelectList(nameof(RawMaterialModel.Title), nameof(RawMaterialModel.RawMaterialId));
+        }
+
         private List<SelectListItem> GetRelatedDefects(int finalProductNonComplianceId)
         {
 
@@ -261,15 +276,15 @@ namespace Teram.QC.Module.FinalProduct.Controllers
 
             return relatedControlPlanDefects.ResultEntity.Select(x => new SelectListItem
             {
-                Text=string.Concat(x.DefectCode, "-", x.DefectTitle),
-                Value=x.ControlPlanDefectId.ToString(),
+                Text = string.Concat(x.DefectCode, "-", x.DefectTitle),
+                Value = x.ControlPlanDefectId.ToString(),
 
             }).ToList();
         }
 
         protected override void ModifyItem(ILogic<FinalProductNoncomplianceModel> service, int id)
         {
-            ViewBag.ControlPlanDefects=GetRelatedDefects(id);
+            ViewBag.ControlPlanDefects = GetRelatedDefects(id);
             base.ModifyItem(service, id);
         }
 
@@ -285,19 +300,19 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             var nonCompiancesDetails = finalProductNoncomplianceResult.ResultEntity.FinalProductNoncomplianceDetails;
             var FinalProductInspectionIds = nonCompiancesDetails.Where(x => x.FinalProductInspectionId.HasValue).Select(x => x.FinalProductInspectionId.Value).ToList();
             using var transaction = new TransactionScope(TransactionScopeOption.Suppress, TransactionScopeAsyncFlowOption.Enabled);
-            if (nonCompiancesDetails!=null && FinalProductInspectionIds.Count> 0)
+            if (nonCompiancesDetails != null && FinalProductInspectionIds.Count > 0)
             {
 
                 var finalProductInspectionDefects = finalProductInspectionDefectLogic.GetByIdsAndControlPlanDefectId(FinalProductInspectionIds, finalProductNoncomplianceResult.ResultEntity.ControlPlanDefectId);
                 var registeredFinalProductInspectionDefects = finalProductInspectionDefectLogic.GetByIdsAndControlPlanDefectId(FinalProductInspectionIds, model.ControlPlanDefectId);
-                var checkForExist = registeredFinalProductInspectionDefects.ResultEntity.Where(x => x.ControlPlanDefectId==model.ControlPlanDefectId).FirstOrDefault();
-                if (checkForExist==null)
+                var checkForExist = registeredFinalProductInspectionDefects.ResultEntity.Where(x => x.ControlPlanDefectId == model.ControlPlanDefectId).FirstOrDefault();
+                if (checkForExist == null)
                 {
 
 
                     foreach (var finalProductInspectionDefect in finalProductInspectionDefects.ResultEntity)
                     {
-                        finalProductInspectionDefect.ControlPlanDefectId=model.ControlPlanDefectId;
+                        finalProductInspectionDefect.ControlPlanDefectId = model.ControlPlanDefectId;
                         finalProductInspectionDefectLogic.Update(finalProductInspectionDefect);
                     }
                 }
@@ -308,10 +323,10 @@ namespace Teram.QC.Module.FinalProduct.Controllers
                 }
             }
             finalProductNoncomplianceResult.ResultEntity.ControlPlanDefectId = model.ControlPlanDefectId;
-            finalProductNoncomplianceResult.ResultEntity.FormStatus=FormStatus.ModifiedByQCSupervisor;
-            finalProductNoncomplianceResult.ResultEntity.IsApproved=false;
-            finalProductNoncomplianceResult.ResultEntity.LastComment=null;
-            finalProductNoncomplianceResult.ResultEntity.IsTriggeredByUserAction=true;
+            finalProductNoncomplianceResult.ResultEntity.FormStatus = FormStatus.ModifiedByQCSupervisor;
+            finalProductNoncomplianceResult.ResultEntity.IsApproved = false;
+            finalProductNoncomplianceResult.ResultEntity.LastComment = null;
+            finalProductNoncomplianceResult.ResultEntity.IsTriggeredByUserAction = true;
             finalProductNoncomplianceLogic.Update(finalProductNoncomplianceResult.ResultEntity);
             transaction.Complete();
             return Json(new { result = "ok", message = localizer["Defect Changed In NonCompliances And Related Inspection Forms"] });
@@ -323,9 +338,9 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             var isOperator = false;
             var userMainRole = manageCartableLogic.GetUserMainRole();
 
-            if (userMainRole.ResultEntity != null && userMainRole.ResultEntity.Name.ToUpper()=="OPERATOR")
+            if (userMainRole.ResultEntity != null && userMainRole.ResultEntity.Name.ToUpper() == "OPERATOR")
             {
-                isOperator=true;
+                isOperator = true;
             }
             var isAdmin = (userPrincipal.CurrentUser.HasClaim("Permission", ":EditFinalProductNoncompliance:ViewAllPermission") && viewAll);
 
@@ -342,8 +357,8 @@ namespace Teram.QC.Module.FinalProduct.Controllers
 
             foreach (var item in data.ResultEntity)
             {
-                var relatedUserInfo = usersInfo.FirstOrDefault(x => x.UserId==item.CreatedBy);
-                item.CreatedByText=(relatedUserInfo!=null) ? $"{relatedUserInfo.Name} {relatedUserInfo.Family} - {relatedUserInfo.Username}" : "-";
+                var relatedUserInfo = usersInfo.FirstOrDefault(x => x.UserId == item.CreatedBy);
+                item.CreatedByText = (relatedUserInfo != null) ? $"{relatedUserInfo.Name} {relatedUserInfo.Family} - {relatedUserInfo.Username}" : "-";
             }
 
             var totalCount = data?.Count ?? 0;
@@ -367,8 +382,8 @@ namespace Teram.QC.Module.FinalProduct.Controllers
 
             foreach (var item in data.ResultEntity)
             {
-                var relatedUserInfo = usersInfo.FirstOrDefault(x => x.UserId==item.CreatedBy);
-                item.CreatedByText=(relatedUserInfo!=null) ? $"{relatedUserInfo.Name} {relatedUserInfo.Family} - {relatedUserInfo.Username}" : "-";
+                var relatedUserInfo = usersInfo.FirstOrDefault(x => x.UserId == item.CreatedBy);
+                item.CreatedByText = (relatedUserInfo != null) ? $"{relatedUserInfo.Name} {relatedUserInfo.Family} - {relatedUserInfo.Username}" : "-";
             }
 
             var excelData = data.ResultEntity.ExportListExcel("عدم انطباق محصول نهایی");

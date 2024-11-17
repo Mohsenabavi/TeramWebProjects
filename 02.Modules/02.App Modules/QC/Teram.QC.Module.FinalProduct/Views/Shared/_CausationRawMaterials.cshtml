@@ -1,0 +1,17 @@
+﻿@model CausationModel
+@inject IStringLocalizer<Teram.QC.Module.FinalProduct.Controllers.CausationController> localizer
+
+<fieldset class="border mt-2 ml-1 mr-1 p-1">
+    <legend class="h6 w-auto">
+        @localizer["HasRawMaterialCause"]
+    </legend>
+    <div class="row RawMaterialSection">
+        <select-box style="justify-content: flex-end;" reverse="true" asp-for="RawMaterialId"
+                    not-selected-option-title="-- یک مواد اولیه انتخاب کنید --" title="عنوان مواد اولیه"
+                    selected-value="@Model?.RawMaterialId"
+                    validation-required-message="@localizer["Please select a RawMaterialId"]"
+                    class="d-none mb-2 col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start" select-class="inputBox select2" value="@ViewBag.RawMaterials">
+        </select-box>
+        <text-box asp-for="RawMaterialDescription" validation-type="None" reverse="true" title="@localizer["Description"]" validation-required-message="@localizer["Please enter Description"]" div-class="col-12 col-md-12 col-lg-12 d-flex mt-2 flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
+    </div>
+</fieldset>

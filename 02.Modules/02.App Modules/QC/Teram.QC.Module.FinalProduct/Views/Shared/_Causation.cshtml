@@ -66,9 +66,7 @@
                     <partial name="_CausationMethod" model="@Model" />
                 </div>
                 <div class="rawMaterialSection d-none">
-                    <fieldset class="border p-2 m-2">
-                        <h4>به  زودی ...</h4>
-                    </fieldset>
+                    <partial name="_CausationRawMaterials" model="@Model" />
                 </div>
                 <div class="essentialSection d-none">
                     <partial name="_CausationEssentials" model="@Model" />
@@ -98,7 +96,6 @@
                     <button type="button" id="btnSubmitCausation" class="btn btn-success">@localizer["Save"] </button>
                 </div>
             </div>
-
         </form>
     </div>
     <div class="correctiveActionRowContainer form-row correctiveActionRow d-none mb-5">

@@ -143,6 +143,11 @@ function validateForm() {
         teram().showErrorMessage("هیچ یک از موارد نیروی انسانی ، روش کار ، مواد اولیه ، ملزومات و دستگاهها و تجهیزات انتخاب نشده است ");
     }
 
+    if (rawMaterialCauseIsChecked && $("#RawMaterialId").val() == "") {
+        isValidate = false;
+        teram().showErrorMessage("نوع مواد اولیه را انتخاب نمایید");
+    }
+
     if (hrCauseIsChecked) {
 
         var wrongDoerId = $("#WrongdoerId").val();

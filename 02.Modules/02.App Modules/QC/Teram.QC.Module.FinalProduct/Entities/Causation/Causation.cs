@@ -207,6 +207,33 @@ namespace Teram.QC.Module.FinalProduct.Entities.Causation
             }
         }
 
+        [ForeignKey(nameof(RawMaterialId))]
+        public RawMaterial RawMaterial { get; set; }
+
+        private int? _rawMaterialId;
+        public int? RawMaterialId
+        {
+            get { return _rawMaterialId; }
+            set
+            {
+                if (_rawMaterialId == value) return;
+                _rawMaterialId = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _rawMaterialDescription;
+        public string RawMaterialDescription
+        {
+            get { return _rawMaterialDescription; }
+            set
+            {
+                if (_rawMaterialDescription == value) return;
+                _rawMaterialDescription = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool? _isCaseError;
         public bool? IsCaseError
         {

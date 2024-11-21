@@ -13,12 +13,14 @@
     <None Remove="Scripts\FlowInstruction.js" />
     <None Remove="Scripts\PalletsStatus.js" />
     <None Remove="Scripts\WithoutBasisNonCompliance.js" />
+    <None Remove="Scripts\WronDoersReport.js" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Scripts\EditFinalProductNoncompliance.js" />
     <EmbeddedResource Include="Scripts\FinalProductInspection.js" />
     <EmbeddedResource Include="Scripts\FlowInstruction.js" />
+    <EmbeddedResource Include="Scripts\WronDoersReport.js" />
     <EmbeddedResource Include="Scripts\PalletsStatus.js" />
     <EmbeddedResource Include="Scripts\WithoutBasisNonCompliance.js" />
   </ItemGroup>

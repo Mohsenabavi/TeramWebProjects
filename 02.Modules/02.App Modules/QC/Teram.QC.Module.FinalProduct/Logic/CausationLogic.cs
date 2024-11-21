@@ -82,6 +82,63 @@ namespace Teram.QC.Module.FinalProduct.Logic
 
         }
 
+        public async Task<(List<WrongDoersListReportModel> Items, int TotalCount)> GetWrongDoerReportData(
+       int? WrongDoerId = null,
+       DateTime? statInputDate = null,
+       DateTime? endInputDate = null,
+       int skip = 0,
+       int take = 10)
+        {
+            using (var dbConnection = new SqlConnection(configuration.GetConnectionString("TeramConnectionString")))
+            {
+                await dbConnection.OpenAsync(); // Open the connection
+
+                var parameters = new DynamicParameters();
+                parameters.Add("@WrongdoerId", WrongDoerId);
+                parameters.Add("@StartDate", statInputDate);
+                parameters.Add("@EndDate", endInputDate);               
+                parameters.Add("@Skip", skip);
+                parameters.Add("@Take", take);
+                parameters.Add("@TotalCount", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                string storedProcedure = "WrongDoersResport"; // Name of your stored procedure
+
+                var spData = await dbConnection.QueryAsync<WrongDoersListReportModel>(
+                storedProcedure,
+                    parameters,
+                    commandType: CommandType.StoredProcedure
+                );
+
+                var wrongDoer1Ids = spData.Select(x => x.WrongDoerId).Distinct().ToList();
+                var wrongDoer2Ids = spData.Select(x => x.WrongDoerId2).Distinct().ToList();
+                var wrongDoer3Ids = spData.Select(x => x.WrongDoerId3).Distinct().ToList();
+                var wrongDoer4Ids = spData.Select(x => x.WrongDoerId4).Distinct().ToList();
+                var unionWrongDoersIds = wrongDoer1Ids.Union(wrongDoer2Ids).Union(wrongDoer3Ids).Union(wrongDoer4Ids).Distinct().ToList();
+                var operatorsList = operatorLogic.GetByWrongdoerIds(unionWrongDoersIds);
+
+                foreach (var item in spData)
+                {
+                    var wrongdoer1Result = operatorsList.ResultEntity.Where(x => x.OperatorId == item.WrongDoerId).FirstOrDefault();
+                    if (wrongdoer1Result != null)
+                        item.WrongDoers += string.Join("/", string.Concat(wrongdoer1Result.PersonnelCode, "-", wrongdoer1Result.FirstName, " ", wrongdoer1Result.LastName));
+                    var wrongdoer2Result = operatorsList.ResultEntity.Where(x => x.OperatorId == item.WrongDoerId2).FirstOrDefault();
+                    if (wrongdoer2Result != null)
+                        item.WrongDoers += string.Join("/", string.Concat(wrongdoer2Result.PersonnelCode, "-", wrongdoer2Result.FirstName, " ", wrongdoer2Result.LastName));
+                    var wrongdoer3Result = operatorsList.ResultEntity.Where(x => x.OperatorId == item.WrongDoerId3).FirstOrDefault();
+                    if (wrongdoer3Result != null)
+                        item.WrongDoers += string.Join("/", string.Concat(wrongdoer3Result.PersonnelCode, "-", wrongdoer3Result.FirstName, " ", wrongdoer3Result.LastName));
+                    var wrongdoer4Result = operatorsList.ResultEntity.Where(x => x.OperatorId == item.WrongDoerId4).FirstOrDefault();
+                    if (wrongdoer4Result != null)
+                        item.WrongDoers += string.Join("/", string.Concat(wrongdoer4Result.PersonnelCode, "-", wrongdoer4Result.FirstName, " ", wrongdoer4Result.LastName));
+                }
+
+                int totalCount = parameters.Get<int>("@TotalCount");
+
+                return (spData.ToList(), totalCount);
+            }
+
+        }
+
         private void CausationLogic_BeforeUpdate(TeramEntityEventArgs<Causation, CausationModel, int> entity)
         {
             var cauationResult = Service.DeferrQuery().Include(x => x.CorrectiveActions)
@@ -160,5 +217,6 @@ namespace Teram.QC.Module.FinalProduct.Logic
                 var affectedRowsCount = Service.Save();
             }
         }
+
     }
 }

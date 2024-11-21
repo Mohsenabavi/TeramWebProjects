@@ -1,0 +1,24 @@
+﻿@inject IStringLocalizer<Teram.QC.Module.FinalProduct.Controllers.WronDoersReportController> localizer
+
+<div class="card">
+    <div class="card-header bg-info" style="font-weight:bold">
+        @localizer["FilterData"] <small class="searchStatus"></small>
+    </div>
+    <div class="card-body bg-light">
+        <div class="row">     
+            <date-picker reverse="true" id="StartDate" show-label="true" title="@localizer["StartDate"]" div-class="col-12 col-md-3 form-group col d-flex flex-column-reverse align-items-start " />
+            <date-picker reverse="true" id="EndDate" show-label="true" title="@localizer["EndDate"]" div-class="col-12 col-md-3 form-group col d-flex flex-column-reverse align-items-start " />
+            <select-box style="justify-content: flex-end;" id="WrongDoerId" reverse="true" not-selected-option-title="-- یک فرد انتخاب کنید --" title="فرد خاطی"
+                        validation-required-message="@localizer["Please select a Status"]" value="@ViewBag.Operators"
+                        class="col-12 col-md-6 col-lg-3 d-flex flex-column-reverse align-items-start" select-class="inputBox select2">
+            </select-box>                
+        </div>
+        <div class="form-row" style="margin-top:20px;">
+            <div class="form-group col-xs-12 col-md-12 col-lg-12 text-center">
+                <button id="btnSearch" type="button" class="btn btn-success shouldReloadGrid"><i class="fa fa-search"></i>@localizer["Search"] </button>
+                <button id="reset" class="btn btn-danger resetForm shouldReloadGrid" type="reset">@localizer["Remove Filter"]</button>
+                <button id="exportexel" type="button" class="btn btn-success">@localizer["ExcelPrint"] </button>
+            </div>
+        </div>
+    </div>
+</div>

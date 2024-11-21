@@ -45,6 +45,13 @@ tbody tr {
     height: 70%; /* Set a high height percentage or any value you prefer */
 }
 
+.bootbox-wide .modal-dialog {
+    max-width: none; /* Remove the maximum width */
+    max-height: none; /* Remove the maximum height */
+    width: 90%; /* Set a high width percentage or any value you prefer */
+    height: 90%; /* Set a high height percentage or any value you prefer */
+}
+
 .form-check-inline {
     margin-right: 0 !important;
 }

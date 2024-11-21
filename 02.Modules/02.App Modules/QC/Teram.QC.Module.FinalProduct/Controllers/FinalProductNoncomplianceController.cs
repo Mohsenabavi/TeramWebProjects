@@ -21,6 +21,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
     public class FinalProductNoncomplianceController : ControlPanelBaseController<FinalProductNoncomplianceModel, FinalProductNoncompliance, int>
     {
         private readonly IConfiguration configuration;
+        private readonly ICausationLogic causation;
         private readonly IFinalProductNoncomplianceLogic finalProductNoncomplianceLogic;
         private readonly IFinalProductInspectionDefectLogic finalProductInspectionDefectLogic;
         private readonly IFinalProductInspectionLogic finalProductInspectionLogic;
@@ -30,7 +31,8 @@ namespace Teram.QC.Module.FinalProduct.Controllers
         private readonly IControlPlanDefectLogic controlPlanDefectLogic;
         private readonly IFinalProductNoncomplianceFileLogic finalProductNoncomplianceFileLogic;
 
-        public FinalProductNoncomplianceController(ILogger<FinalProductNoncomplianceController> logger, IConfiguration configuration
+        public FinalProductNoncomplianceController(ILogger<FinalProductNoncomplianceController> logger,
+            IConfiguration configuration, ICausationLogic causation
             , IStringLocalizer<FinalProductNoncomplianceController> localizer, IFinalProductNoncomplianceLogic finalProductNoncomplianceLogic,
             IFinalProductInspectionDefectLogic finalProductInspectionDefectLogic, IFinalProductInspectionLogic finalProductInspectionLogic, IFinalProductNoncomplianceDetailSampleLogic finalProductNoncomplianceDetailSampleLogic,
             IFinalProductNoncomplianceDetailLogic finalProductNoncomplianceDetailLogic, IQueryService queryService, IControlPlanDefectLogic controlPlanDefectLogic, IFinalProductNoncomplianceFileLogic finalProductNoncomplianceFileLogic,
@@ -52,6 +54,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
                 HomePage = nameof(FinalProductNoncomplianceController).Replace("Controller", "") + "/index",
             };
             this.configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+            this.causation = causation ?? throw new ArgumentNullException(nameof(causation));
             this.finalProductNoncomplianceLogic = finalProductNoncomplianceLogic ?? throw new ArgumentNullException(nameof(finalProductNoncomplianceLogic));
             this.finalProductInspectionDefectLogic = finalProductInspectionDefectLogic ?? throw new ArgumentNullException(nameof(finalProductInspectionDefectLogic));
             this.finalProductInspectionLogic = finalProductInspectionLogic ?? throw new ArgumentNullException(nameof(finalProductInspectionLogic));
@@ -76,7 +79,14 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             return Content("This Is Not Actual Action");
         }
 
+        [ParentalAuthorize(nameof(Index))]
+        public IActionResult GetWrongdoerReport(int wrongDoerId)
+        {
 
+            var data = causation.GetWrongDoerReport(wrongDoerId).Result;
+
+            return PartialView("_WrongDoerReport", data);
+        }
         public IActionResult CloseFinalProductNonCompliance(int finalProductNonComplianceId)
         {
             var relatedNonCompianceResult = finalProductNoncomplianceLogic.GetById(finalProductNonComplianceId);
@@ -602,7 +612,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             {
                 return Json(new { result = "fail", id = model.FinalProductInspectionId, timeout = 8000, message = localizer["Duplicate NonCompliance"] });
             }
-          
+
             if (model.FinalProductNoncomplianceId == 0)
             {
                 model.FinalProductNoncomplianceDetails = new List<FinalProductNoncomplianceDetailModel>();
@@ -654,9 +664,9 @@ namespace Teram.QC.Module.FinalProduct.Controllers
                     item.OpinionTypeCEOFinal = (oldEquivalent != null) ? oldEquivalent.OpinionTypeCEOFinal : 0;
                 }
 
-                var relatedNonComplianceResult=finalProductNoncomplianceLogic.GetById(model.FinalProductNoncomplianceId);
+                var relatedNonComplianceResult = finalProductNoncomplianceLogic.GetById(model.FinalProductNoncomplianceId);
 
-                if (newSamples.Count != 0)
+                if (newSamples.Count != 0 && relatedNonComplianceResult.ResultEntity.FormStatus!=FormStatus.InitialRegistration)
                 {
                     relatedNonComplianceResult.ResultEntity.FormStatus = FormStatus.InitialRegistration;
                     relatedNonComplianceResult.ResultEntity.ReferralStatus = ReferralStatus.InitialRegistration;
@@ -673,8 +683,8 @@ namespace Teram.QC.Module.FinalProduct.Controllers
                 }
 
                 finalProductNoncomplianceDetailLogic.AddNew(insertModel);
-                var result= finalProductNoncomplianceLogic.Update(relatedNonComplianceResult.ResultEntity);
-            }   
+                var result = finalProductNoncomplianceLogic.Update(relatedNonComplianceResult.ResultEntity);
+            }
             return Json(new { result = "ok", id = model.FinalProductInspectionId, timeout = 8000, message = string.Concat(localizer["FinalProductNoncompliance"], localizer["Number"], model.FinalProductNoncomplianceNumber, localizer["Saved Successfully"]) });
         }
 

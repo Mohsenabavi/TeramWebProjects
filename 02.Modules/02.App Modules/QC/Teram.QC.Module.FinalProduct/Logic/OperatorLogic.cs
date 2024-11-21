@@ -29,6 +29,11 @@ namespace Teram.QC.Module.FinalProduct.Logic
             return GetFirst<OperatorModel>(x => x.UserId.HasValue&&x.UserId.Value==userId);
         }
 
+        public BusinessOperationResult<List<OperatorModel>> GetByWrongdoerIds(List<int> WrongDoerIds)
+        {
+            return GetData<OperatorModel>(x => WrongDoerIds.Contains(x.OperatorId));
+        }
+
         public async Task<BusinessOperationResult<List<OperatorModel>>> UpdateEmployeesList(List<EmployeeModel> employees)
         {
             var operatorModel = employees.Select(x => new OperatorModel

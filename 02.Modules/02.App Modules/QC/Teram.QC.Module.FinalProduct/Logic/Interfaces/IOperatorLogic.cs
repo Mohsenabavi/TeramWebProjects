@@ -11,6 +11,7 @@ namespace Teram.QC.Module.FinalProduct.Logic.Interfaces
         Task<BusinessOperationResult<List<OperatorModel>>> UpdateEmployeesList(List<EmployeeModel> employees);
         BusinessOperationResult<OperatorModel> GetByNationalId(string nationalId);
         BusinessOperationResult<OperatorModel> GetByUserId(Guid? userId);
+        BusinessOperationResult<List<OperatorModel>> GetByWrongdoerIds(List<int> WrongDoerIds);
     }
 
 }

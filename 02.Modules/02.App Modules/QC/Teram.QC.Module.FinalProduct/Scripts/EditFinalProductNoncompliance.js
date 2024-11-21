@@ -1013,21 +1013,28 @@ $(document).on("change", "#NotRelatedToProduction", function () {
 });
 
 $(document).on('click', '.showDetailsBtn', function () {
-
+    // Get the clicked row and its data
     var tr = $(this).closest('tr');
-    $("#EditFinalProductNoncomplianceGrid tr").each(function () {
-        $(this).removeClass("selected");
-    });
+    $("#EditFinalProductNoncomplianceGrid tr").removeClass("selected");
     tr.addClass("selected");
     var row = table.row(tr);
     var selectedRowData = row.data();
+
+    // Open the first modal
     $.post("/EditFinalProductNoncompliance/GetNonComplianceDetails", { finalProductNoncomplianceId: selectedRowData.key }, function (content) {
-        bootbox.setDefaults({ size: 'large' });
         bootbox.dialog({
             message: content,
-            className: "bootbox-large"
+            size: 'large',
+            className: "bootbox-large",
         });
+
+        // Adjust z-index for the first modal
+        var $firstModal = $('.bootbox-large');
+        var $firstBackdrop = $('.modal-backdrop').last();
+        $firstModal.css('z-index', parseInt($firstModal.css('z-index')) + 10);
+        $firstBackdrop.css('z-index', parseInt($firstBackdrop.css('z-index')) + 5);
     }).done(function () {
+        // Additional configurations after loading the modal content
         var section = $(".correctiveActions");
         indexCorrection($(section));
         var isEditMode = $("#IsEditMode").val();
@@ -1055,8 +1062,127 @@ $(document).on('click', '.showDetailsBtn', function () {
         datePickerInitilize(".actionDate", options);
         $('.chooseActioners').attr('style', 'display: none !important');
         $("#btnRefferToOtherActioner").addClass("d-none");
+    }).fail(function () {
+        console.error("Failed to load content for the first modal.");
+        bootbox.alert("An error occurred while loading the first modal.");
     });
 });
+
+$(document).on('click', '#WdReport1', function () {
+
+    var wrongDoerId1 = $("#WrongdoerId").val();
+
+    if (wrongDoerId1 == "") {
+        teram().showErrorMessage("فرد خاطی اول را مشخص نمایید");
+        return;
+    }
+    $.post("/FinalProductNoncompliance/GetWrongdoerReport", { wrongDoerId: wrongDoerId1 }, function (content) {
+        var secondModal = bootbox.dialog({
+            message: content,
+            size: 'large',
+            className: "bootbox-wide",
+            onEscape: true,
+        });
+        var $secondModal = $('.bootbox-wide');
+        var $secondBackdrop = $('.modal-backdrop').last();
+        $secondModal.css('z-index', parseInt($secondModal.css('z-index')) + 20);
+        $secondBackdrop.css('z-index', parseInt($secondBackdrop.css('z-index')) + 10);
+        secondModal.on('hidden.bs.modal', function () {
+            var $firstModal = $('.bootbox-large');
+            if ($firstModal.length) {
+                $('body').addClass('modal-open');
+                $firstModal.css('overflow-y', 'auto');
+            }
+        });
+    });
+});
+
+$(document).on('click', '#WdReport2', function () {
+
+    var wrongDoerId2 = $("#WrongdoerId2").val();
+
+    if (wrongDoerId2 == "") {
+        teram().showErrorMessage("فرد خاطی دوم را مشخص نمایید");
+        return;
+    }
+
+    $.post("/FinalProductNoncompliance/GetWrongdoerReport", { wrongDoerId: wrongDoerId2 }, function (content) {
+        var secondModal = bootbox.dialog({
+            message: content,
+            size: 'large',
+            className: "bootbox-wide",
+            onEscape: true,
+        });
+        var $secondModal = $('.bootbox-wide');
+        var $secondBackdrop = $('.modal-backdrop').last();
+        $secondModal.css('z-index', parseInt($secondModal.css('z-index')) + 20);
+        $secondBackdrop.css('z-index', parseInt($secondBackdrop.css('z-index')) + 10);
+        secondModal.on('hidden.bs.modal', function () {
+            var $firstModal = $('.bootbox-large');
+            if ($firstModal.length) {
+                $('body').addClass('modal-open');
+                $firstModal.css('overflow-y', 'auto');
+            }
+        });
+    });
+});
+$(document).on('click', '#WdReport3', function () {
+
+    var wrongDoerId3 = $("#WrongdoerId3").val();
+    if (wrongDoerId3 == "") {
+        teram().showErrorMessage("فرد خاطی سوم را مشخص نمایید");
+        return;
+    }
+    $.post("/FinalProductNoncompliance/GetWrongdoerReport", { wrongDoerId: wrongDoerId3 }, function (content) {
+        var secondModal = bootbox.dialog({
+            message: content,
+            size: 'large',
+            className: "bootbox-wide",
+            onEscape: true,
+        });
+        var $secondModal = $('.bootbox-wide');
+        var $secondBackdrop = $('.modal-backdrop').last();
+        $secondModal.css('z-index', parseInt($secondModal.css('z-index')) + 20);
+        $secondBackdrop.css('z-index', parseInt($secondBackdrop.css('z-index')) + 10);
+        secondModal.on('hidden.bs.modal', function () {
+            var $firstModal = $('.bootbox-large');
+            if ($firstModal.length) {
+                $('body').addClass('modal-open');
+                $firstModal.css('overflow-y', 'auto');
+            }
+        });
+    });
+});
+
+$(document).on('click', '#WdReport4', function () {
+
+    var wrongDoerId4 = $("#WrongdoerId4").val();
+
+    if (wrongDoerId4 == "") {
+        teram().showErrorMessage("فرد خاطی چهارم را مشخص نمایید");
+        return;
+    }
+    $.post("/FinalProductNoncompliance/GetWrongdoerReport", { wrongDoerId: wrongDoerId4 }, function (content) {
+        var secondModal = bootbox.dialog({
+            message: content,
+            size: 'large',
+            className: "bootbox-wide",
+            onEscape: true,
+        });
+        var $secondModal = $('.bootbox-wide');
+        var $secondBackdrop = $('.modal-backdrop').last();
+        $secondModal.css('z-index', parseInt($secondModal.css('z-index')) + 20);
+        $secondBackdrop.css('z-index', parseInt($secondBackdrop.css('z-index')) + 10);
+        secondModal.on('hidden.bs.modal', function () {
+            var $firstModal = $('.bootbox-large');
+            if ($firstModal.length) {
+                $('body').addClass('modal-open');
+                $firstModal.css('overflow-y', 'auto');
+            }
+        });
+    });
+});
+
 
 function disableCorrectiveActions() {
 

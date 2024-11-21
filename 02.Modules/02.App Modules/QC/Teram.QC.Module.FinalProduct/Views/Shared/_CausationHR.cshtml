@@ -10,27 +10,39 @@
                     not-selected-option-title="-- یک فرد انتخاب کنید --" title="فرد خاطی اول"
                     selected-value="@Model?.WrongdoerId"
                     validation-required-message="@localizer["Please select a WrongdoerId"]"
-                    class="d-none mb-2 col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2" value="@ViewBag.Operators">
+                    class="d-none mb-2 col-10 col-md-10 col-lg-10 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2" value="@ViewBag.Operators">
         </select-box>
+        <div class="col-xs-12 col-md-2 col-lg-2 flex-end">
+            <button style="margin-top:27px;margin-bottom:10px" type="button" id="WdReport1" class="w-100 btn btn-success">@localizer["ViewReport"] </button>
+        </div>
         <select-box style="justify-content: flex-end;" reverse="true" asp-for="WrongdoerId2"
                     not-selected-option-title="-- یک فرد انتخاب کنید --" title="فرد خاطی دوم"
                     selected-value="@Model?.WrongdoerId2"
                     validation-required-message="@localizer["Please select a WrongdoerId"]"
-                    class="d-none mb-2 col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2" value="@ViewBag.Operators">
+                    class="d-none mb-2 col-10 col-md-10 col-lg-10 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2" value="@ViewBag.Operators">
         </select-box>
+        <div class="col-xs-12 col-md-2 col-lg-2 flex-end">
+            <button style="margin-top:27px;margin-bottom:10px" type="button" id="WdReport2" class="w-100 btn btn-success">@localizer["ViewReport"] </button>
+        </div>
         <select-box style="justify-content: flex-end;" reverse="true" asp-for="WrongdoerId3"
                     not-selected-option-title="-- یک فرد انتخاب کنید --" title="فرد خاطی سوم"
                     selected-value="@Model?.WrongdoerId3"
                     validation-required-message="@localizer["Please select a WrongdoerId"]"
-                    class="d-none mb-2 col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2" value="@ViewBag.Operators">
+                    class="d-none mb-2 col-10 col-md-10 col-lg-10 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2" value="@ViewBag.Operators">
         </select-box>
+        <div class="col-xs-12 col-md-2 col-lg-2 flex-end">
+            <button style="margin-top:27px;margin-bottom:10px" type="button" id="WdReport3" class="w-100 btn btn-success">@localizer["ViewReport"] </button>
+        </div>
         <select-box style="justify-content: flex-end;" reverse="true" asp-for="WrongdoerId4"
                     not-selected-option-title="-- یک فرد انتخاب کنید --" title="فرد خاطی چهارم"
                     selected-value="@Model?.WrongdoerId4"
                     validation-required-message="@localizer["Please select a WrongdoerId"]"
-                    class="d-none mb-2 col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2" value="@ViewBag.Operators">
+                    class="d-none mb-2 col-10 col-md-10 col-lg-10 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2" value="@ViewBag.Operators">
         </select-box>
-        <check-box asp-for="IsCaseError" is-required="false" name="IsCaseError" reverse="true" title="@localizer["IsCaseError"]" div-class="col-12 col-md-6 col-lg-6 d-flex flex-column-reverse align-items-start" />     
+        <div class="col-xs-12 col-md-2 col-lg-2 flex-end">
+            <button style="margin-top:27px;margin-bottom:10px" type="button" id="WdReport4" class="w-100 btn btn-success">@localizer["ViewReport"] </button>
+        </div>
+        <check-box asp-for="IsCaseError" is-required="false" name="IsCaseError" reverse="true" title="@localizer["IsCaseError"]" div-class="col-12 col-md-6 col-lg-6 d-flex flex-column-reverse align-items-start" />
         <check-box asp-for="IsLackOfFit" is-required="false" name="IsLackOfFit" reverse="true" title="@localizer["IsLackOfFit"]" div-class="col-12 col-md-6 col-lg-6 d-flex flex-column-reverse align-items-start" />
     </div>
     <div class="row lackOfFitSection d-none">

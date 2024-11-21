@@ -1,0 +1,66 @@
+﻿@using Teram.QC.Module.FinalProduct.Models.ReportsModels
+@model List<WrongDoerReportModel>
+
+<style>
+    body {
+        direction: rtl;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        text-align: right; /* Align text to the right */
+    }
+
+    table, th, td {
+        border: 1px solid black;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: right; /* Right-align table content */
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<h4 style="text-align: center;">گزارش خطاهای موردی</h4> <!-- Align title to the right -->
+<table id="noncomplianceTable">
+    <thead>
+        <tr>
+            <th>شماره سفارش</th>
+            <th>عنوان سفارش</th>
+            <th>ایراد</th>
+            <th>کد ایراد</th>
+            <th>ایستگاه کاری</th>
+            <th>افراد خاطی</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.OrderNu</td>
+                <td>@item.OrderTitle</td>
+                <td>@item.DefectTitle</td>
+                <td>@item.DesfectCode</td>
+                <td>@item.WorkStation</td>
+                <td>@item.WrongDoers</td>
+            </tr>
+        }
+        @if (Model.Count == 0)
+        {
+            <tr>
+                <td>موردی یافت نشد</td>
+                <td>موردی یافت نشد</td>
+                <td>موردی یافت نشد</td>
+                <td>موردی یافت نشد</td>
+                <td>موردی یافت نشد</td>
+                <td>موردی یافت نشد</td>
+            </tr>
+        }
+    </tbody>
+</table>

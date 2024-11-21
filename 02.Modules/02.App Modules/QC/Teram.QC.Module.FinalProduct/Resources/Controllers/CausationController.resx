@@ -213,4 +213,7 @@
   <data name="Saved Successfully" xml:space="preserve">
     <value>اطلاعات با موفقیت ثبت شد</value>
   </data>
+  <data name="ViewReport" xml:space="preserve">
+    <value>گزارش</value>
+  </data>
 </root>

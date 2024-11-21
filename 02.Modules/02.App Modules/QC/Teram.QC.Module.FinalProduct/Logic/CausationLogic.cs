@@ -1,4 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Dapper;
+using DocumentFormat.OpenXml.Bibliography;
+using DocumentFormat.OpenXml.Drawing.Charts;
+using Microsoft.EntityFrameworkCore;
+using System.Data;
+using System.Data.SqlClient;
 using Teram.Framework.Core.Logic;
 using Teram.Framework.Core.Service;
 using Teram.QC.Module.FinalProduct.Entities.Causation;
@@ -6,24 +11,75 @@ using Teram.QC.Module.FinalProduct.Entities.WorkFlow;
 using Teram.QC.Module.FinalProduct.Logic.Interfaces;
 using Teram.QC.Module.FinalProduct.Models;
 using Teram.QC.Module.FinalProduct.Models.CausationModels;
+using Teram.QC.Module.FinalProduct.Models.ReportsModels;
 using Teram.Web.Core.Security;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Teram.QC.Module.FinalProduct.Logic
 {
 
     public class CausationLogic : BusinessOperations<CausationModel, Causation, int>, ICausationLogic
     {
+        private readonly IConfiguration configuration;
+        private readonly IOperatorLogic operatorLogic;
         private readonly IUserPrincipal userPrincipal;
 
-        public CausationLogic(IPersistenceService<Causation> service, IUserPrincipal userPrincipal) : base(service)
+        public CausationLogic(IPersistenceService<Causation> service, IConfiguration configuration,
+            IOperatorLogic operatorLogic,
+            IUserPrincipal userPrincipal) : base(service)
         {
             BeforeUpdate += CausationLogic_BeforeUpdate;
+            this.configuration = configuration;
+            this.operatorLogic = operatorLogic ?? throw new ArgumentNullException(nameof(operatorLogic));
             this.userPrincipal = userPrincipal ?? throw new ArgumentNullException(nameof(userPrincipal));
         }
 
         public BusinessOperationResult<CausationModel> GetByFinalProductNonComplianceId(int finalProductNonComplianceId)
         {
             return GetFirst<CausationModel>(x => x.FinalProductNoncomplianceId == finalProductNonComplianceId);
+        }
+
+        public async Task<List<WrongDoerReportModel>> GetWrongDoerReport(int wrongDoerId)
+        {
+            using var dbConnection = new SqlConnection(configuration.GetConnectionString("TeramConnectionString"));
+            await dbConnection.OpenAsync();
+            var parameters = new DynamicParameters();
+            parameters.Add("@WrongdoerId", wrongDoerId);
+            string storedProcedure = "GetFinalProductNoncomplianceByWrongdoerId";
+
+            var items = await dbConnection.QueryAsync<WrongDoerReportModel>(
+            storedProcedure,
+                parameters,
+                commandType: CommandType.StoredProcedure
+            );
+
+            var spData = items.ToList();
+
+            var wrongDoer1Ids = spData.Select(x => x.wrongDoerId).Distinct().ToList();
+            var wrongDoer2Ids = spData.Select(x => x.wrongDoerId2).Distinct().ToList();
+            var wrongDoer3Ids = spData.Select(x => x.wrongDoerId3).Distinct().ToList();
+            var wrongDoer4Ids = spData.Select(x => x.wrongDoerId4).Distinct().ToList();
+            var unionWrongDoersIds = wrongDoer1Ids.Union(wrongDoer2Ids).Union(wrongDoer3Ids).Union(wrongDoer4Ids).Distinct().ToList();
+            var operatorsList = operatorLogic.GetByWrongdoerIds(unionWrongDoersIds);
+
+            foreach (var item in spData)
+            {
+                var wrongdoer1Result = operatorsList.ResultEntity.Where(x => x.OperatorId == item.wrongDoerId).FirstOrDefault();
+                if (wrongdoer1Result != null)
+                    item.WrongDoers += string.Join("/", string.Concat(wrongdoer1Result.PersonnelCode, "-", wrongdoer1Result.FirstName, " ", wrongdoer1Result.LastName));
+                var wrongdoer2Result = operatorsList.ResultEntity.Where(x => x.OperatorId == item.wrongDoerId2).FirstOrDefault();
+                if (wrongdoer2Result != null)
+                    item.WrongDoers += string.Join("/", string.Concat(wrongdoer2Result.PersonnelCode, "-", wrongdoer2Result.FirstName, " ", wrongdoer2Result.LastName));
+                var wrongdoer3Result = operatorsList.ResultEntity.Where(x => x.OperatorId == item.wrongDoerId3).FirstOrDefault();
+                if (wrongdoer3Result != null)
+                    item.WrongDoers += string.Join("/", string.Concat(wrongdoer3Result.PersonnelCode, "-", wrongdoer3Result.FirstName, " ", wrongdoer3Result.LastName));
+                var wrongdoer4Result = operatorsList.ResultEntity.Where(x => x.OperatorId == item.wrongDoerId4).FirstOrDefault();
+                if (wrongdoer4Result != null)
+                    item.WrongDoers += string.Join("/", string.Concat(wrongdoer4Result.PersonnelCode, "-", wrongdoer4Result.FirstName, " ", wrongdoer4Result.LastName));
+            }
+
+            return items.ToList();
+
         }
 
         private void CausationLogic_BeforeUpdate(TeramEntityEventArgs<Causation, CausationModel, int> entity)

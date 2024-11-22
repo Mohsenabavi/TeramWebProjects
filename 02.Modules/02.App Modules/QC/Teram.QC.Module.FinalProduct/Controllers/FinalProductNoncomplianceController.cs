@@ -207,7 +207,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
 
-        public IActionResult TriggerSaveSeparationInfo([FromServices] IFinalProductNoncomplianceDetailSampleLogic finalProductNoncomplianceDetailSampleLogic, int finalProductNonComplianceId, int firstSampleSeparatedCount, int secondSampleSeparatedCount, int thirdSampleSeparatedCount, int forthSampleSeparatedCount)
+        public IActionResult TriggerSaveSeparationInfo([FromServices] IFinalProductNoncomplianceDetailSampleLogic finalProductNoncomplianceDetailSampleLogic, int finalProductNonComplianceId, int firstSampleSeparatedCount, int secondSampleSeparatedCount, int thirdSampleSeparatedCount, int forthSampleSeparatedCount, string comment)
         {
             var relatedNonCompianceResult = finalProductNoncomplianceLogic.GetById(finalProductNonComplianceId);
             var relatedDetailSamples = relatedNonCompianceResult.ResultEntity.FinalProductNoncomplianceDetails.SelectMany(x => x.FinalProductNoncomplianceDetailSamples).ToList();
@@ -239,13 +239,13 @@ namespace Teram.QC.Module.FinalProduct.Controllers
 
             relatedNonCompianceResult.ResultEntity.IsSeperated = true;
             relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.Seperation;
-            relatedNonCompianceResult.ResultEntity.LastComment = "--";
+            relatedNonCompianceResult.ResultEntity.LastComment = comment;
             relatedNonCompianceResult.ResultEntity.IsTriggeredByUserAction = true;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
 
-        public IActionResult TriggerSaveSeparationInfoAfterCEOOpinion([FromServices] IFinalProductNoncomplianceDetailSampleLogic finalProductNoncomplianceDetailSampleLogic, int finalProductNonComplianceId, int firstSampleSeparatedCount, int secondSampleSeparatedCount, int thirdSampleSeparatedCount, int forthSampleSeparatedCount)
+        public IActionResult TriggerSaveSeparationInfoAfterCEOOpinion([FromServices] IFinalProductNoncomplianceDetailSampleLogic finalProductNoncomplianceDetailSampleLogic, int finalProductNonComplianceId, int firstSampleSeparatedCount, int secondSampleSeparatedCount, int thirdSampleSeparatedCount, int forthSampleSeparatedCount, string comments)
         {
 
             var relatedNonCompianceResult = finalProductNoncomplianceLogic.GetById(finalProductNonComplianceId);
@@ -277,7 +277,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             }
             relatedNonCompianceResult.ResultEntity.IsSeperated = true;
             relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.Seperation;
-            relatedNonCompianceResult.ResultEntity.LastComment = "--";
+            relatedNonCompianceResult.ResultEntity.LastComment = comments;
             relatedNonCompianceResult.ResultEntity.IsTriggeredByUserAction = true;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
@@ -666,7 +666,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
 
                 var relatedNonComplianceResult = finalProductNoncomplianceLogic.GetById(model.FinalProductNoncomplianceId);
 
-                if (newSamples.Count != 0 && relatedNonComplianceResult.ResultEntity.FormStatus!=FormStatus.InitialRegistration)
+                if (newSamples.Count != 0 && relatedNonComplianceResult.ResultEntity.FormStatus != FormStatus.InitialRegistration)
                 {
                     relatedNonComplianceResult.ResultEntity.FormStatus = FormStatus.InitialRegistration;
                     relatedNonComplianceResult.ResultEntity.ReferralStatus = ReferralStatus.InitialRegistration;

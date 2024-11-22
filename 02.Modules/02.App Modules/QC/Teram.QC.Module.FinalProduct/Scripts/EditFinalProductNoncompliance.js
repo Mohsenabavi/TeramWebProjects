@@ -473,14 +473,15 @@ $(document).on('click', '#btnRefferalFromSeparation', function () {
     var secondSampleSeparatedCount = $("#SecondSampleSeparatedCount").val() ?? 0;
     var thirdSampleSeparatedCount = $("#ThirdSampleSeparatedCount").val() ?? 0;
     var forthSampleSeparatedCount = $("#ForthSampleSeparatedCount").val() ?? 0;
-
+    var comment = $("#Comments").val();
     $.post("/FinalProductNoncompliance/TriggerSaveSeparationInfo",
         {
             finalProductNonComplianceId: nonComplianeId,
             firstSampleSeparatedCount: firstSampleSeparatedCount,
             secondSampleSeparatedCount: secondSampleSeparatedCount,
             thirdSampleSeparatedCount: thirdSampleSeparatedCount,
-            forthSampleSeparatedCount: forthSampleSeparatedCount
+            forthSampleSeparatedCount: forthSampleSeparatedCount,
+            comment: comment
         }, function (content) {
             if (content.result == "ok") {
                 teram().showSuccessfullMessage(content.message.value);
@@ -599,6 +600,7 @@ $(document).on('click', '#btnRefferalFromSeparationAfterCEOOpinion', function ()
     var secondSampleSeparatedCount = $("#SecondSampleSeparatedCount").val() ?? 0;
     var thirdSampleSeparatedCount = $("#ThirdSampleSeparatedCount").val() ?? 0;
     var forthSampleSeparatedCount = $("#ForthSampleSeparatedCount").val() ?? 0;
+    var comment = $("#Comments").val();
 
     $.post("/FinalProductNoncompliance/TriggerSaveSeparationInfoAfterCEOOpinion",
         {
@@ -606,7 +608,8 @@ $(document).on('click', '#btnRefferalFromSeparationAfterCEOOpinion', function ()
             firstSampleSeparatedCount: firstSampleSeparatedCount,
             secondSampleSeparatedCount: secondSampleSeparatedCount,
             thirdSampleSeparatedCount: thirdSampleSeparatedCount,
-            forthSampleSeparatedCount: forthSampleSeparatedCount
+            forthSampleSeparatedCount: forthSampleSeparatedCount,
+            comments: comment
         }, function (content) {
             if (content.result == "ok") {
                 teram().showSuccessfullMessage(content.message.value);

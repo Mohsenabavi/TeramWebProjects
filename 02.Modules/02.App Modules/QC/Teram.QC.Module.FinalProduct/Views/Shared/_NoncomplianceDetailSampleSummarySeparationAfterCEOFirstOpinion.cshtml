@@ -23,7 +23,7 @@
                       div-class="col-md-6 col-lg-2 mb-3 d-flex flex-column-reverse align-items-start" />
 
 
-            @if (Model.FirstSampleOpinionCEO == OpinionType.Seperation || Model.FirstSampleOpinionCEOFinal==OpinionType.Seperation)
+            @if (Model.FirstSampleOpinionCEO == OpinionType.Seperation || Model.FirstSampleOpinionCEOFinal == OpinionType.Seperation)
             {
                 <text-box reverse="true" title="@localizer["FirstSampleSeparatedCount"]" asp-for="@Model.FirstSampleSeparatedCount" validation-type=Number is-readonly="false"
                           div-class="col-md-6 col-lg-2 mb-3 d-flex flex-column-reverse align-items-start" />
@@ -51,7 +51,7 @@
             <text-box reverse="true" title="@localizer["SecondSampleOpinionCEOFinalText"]" asp-for="@Model.SecondSampleOpinionCEOFinalText" validation-type=None is-readonly="true"
                       div-class="col-md-6 col-lg-2 mb-3 d-flex flex-column-reverse align-items-start" />
 
-            @if (Model.SecondSampleOpinionCEO == OpinionType.Seperation || Model.SecondSampleOpinionCEOFinal==OpinionType.Seperation)
+            @if (Model.SecondSampleOpinionCEO == OpinionType.Seperation || Model.SecondSampleOpinionCEOFinal == OpinionType.Seperation)
             {
                 <text-box reverse="true" title="@localizer["SecondSampleSeparatedCount"]" asp-for="@Model.SecondSampleSeparatedCount" validation-type=Number is-readonly="false"
                           div-class="col-md-6 col-lg-2 mb-3 d-flex flex-column-reverse align-items-start" />
@@ -80,7 +80,7 @@
             <text-box reverse="true" title="@localizer["ThirdSampleOpinionCEOFinalText"]" asp-for="@Model.ThirdSampleOpinionCEOFinalText" validation-type=None is-readonly="true"
                       div-class="col-md-6 col-lg-2 mb-3 d-flex flex-column-reverse align-items-start" />
 
-            @if (Model.ThirdSampleOpinionCEO == OpinionType.Seperation || Model.ThirdSampleOpinionCEOFinal==OpinionType.Seperation)
+            @if (Model.ThirdSampleOpinionCEO == OpinionType.Seperation || Model.ThirdSampleOpinionCEOFinal == OpinionType.Seperation)
             {
                 <text-box reverse="true" title="@localizer["ThirdSampleSeparatedCount"]" asp-for="@Model.ThirdSampleSeparatedCount" validation-type=Number is-readonly="false"
                           div-class="col-md-6 col-lg-2 mb-3 d-flex flex-column-reverse align-items-start" />
@@ -106,7 +106,7 @@
             <text-box reverse="true" title="@localizer["ForthSampleOpinionCEOFinalText"]" asp-for="@Model.ForthSampleOpinionCEOFinalText" validation-type=None is-readonly="true"
                       div-class="col-md-6 col-lg-2 mb-3 d-flex flex-column-reverse align-items-start" />
 
-            @if (Model.ForthSampleOpinionCEO == OpinionType.Seperation || Model.ForthSampleOpinionCEOFinal==OpinionType.Seperation)
+            @if (Model.ForthSampleOpinionCEO == OpinionType.Seperation || Model.ForthSampleOpinionCEOFinal == OpinionType.Seperation)
             {
                 <text-box reverse="true" title="@localizer["ForthSampleSeparatedCount"]" asp-for="@Model.ForthSampleSeparatedCount" validation-type=Number is-readonly="false"
                           div-class="col-md-6 col-lg-2 mb-3 d-flex flex-column-reverse align-items-start" />
@@ -114,7 +114,10 @@
         </div>
     </fieldset>
 }
-
+<div class="row">
+    <text-box reverse="true" title="@localizer["Comment"]" id="Comments" validation-type=Number is-readonly="false"
+              div-class="col-md-12 col-lg-12 mb-3 d-flex flex-column-reverse align-items-start" />
+</div>
 <div class="form-row ">
     <div class="form-group col-xs-12 col-md-12 col-lg-12" style="text-align:center;">
         <button type="button" id="btnRefferalFromSeparationAfterCEOOpinion" class="btn btn-info">@localizer["Submit"] </button>

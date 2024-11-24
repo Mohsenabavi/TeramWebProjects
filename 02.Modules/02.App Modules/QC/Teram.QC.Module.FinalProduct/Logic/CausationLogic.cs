@@ -55,29 +55,6 @@ namespace Teram.QC.Module.FinalProduct.Logic
 
             var spData = items.ToList();
 
-            var wrongDoer1Ids = spData.Select(x => x.wrongDoerId).Distinct().ToList();
-            var wrongDoer2Ids = spData.Select(x => x.wrongDoerId2).Distinct().ToList();
-            var wrongDoer3Ids = spData.Select(x => x.wrongDoerId3).Distinct().ToList();
-            var wrongDoer4Ids = spData.Select(x => x.wrongDoerId4).Distinct().ToList();
-            var unionWrongDoersIds = wrongDoer1Ids.Union(wrongDoer2Ids).Union(wrongDoer3Ids).Union(wrongDoer4Ids).Distinct().ToList();
-            var operatorsList = operatorLogic.GetByWrongdoerIds(unionWrongDoersIds);
-
-            foreach (var item in spData)
-            {
-                var wrongdoer1Result = operatorsList.ResultEntity.Where(x => x.OperatorId == item.wrongDoerId).FirstOrDefault();
-                if (wrongdoer1Result != null)
-                    item.WrongDoers += string.Join("/", string.Concat(wrongdoer1Result.PersonnelCode, "-", wrongdoer1Result.FirstName, " ", wrongdoer1Result.LastName));
-                var wrongdoer2Result = operatorsList.ResultEntity.Where(x => x.OperatorId == item.wrongDoerId2).FirstOrDefault();
-                if (wrongdoer2Result != null)
-                    item.WrongDoers += string.Join("/", string.Concat(wrongdoer2Result.PersonnelCode, "-", wrongdoer2Result.FirstName, " ", wrongdoer2Result.LastName));
-                var wrongdoer3Result = operatorsList.ResultEntity.Where(x => x.OperatorId == item.wrongDoerId3).FirstOrDefault();
-                if (wrongdoer3Result != null)
-                    item.WrongDoers += string.Join("/", string.Concat(wrongdoer3Result.PersonnelCode, "-", wrongdoer3Result.FirstName, " ", wrongdoer3Result.LastName));
-                var wrongdoer4Result = operatorsList.ResultEntity.Where(x => x.OperatorId == item.wrongDoerId4).FirstOrDefault();
-                if (wrongdoer4Result != null)
-                    item.WrongDoers += string.Join("/", string.Concat(wrongdoer4Result.PersonnelCode, "-", wrongdoer4Result.FirstName, " ", wrongdoer4Result.LastName));
-            }
-
             return items.ToList();
 
         }
@@ -96,7 +73,7 @@ namespace Teram.QC.Module.FinalProduct.Logic
                 var parameters = new DynamicParameters();
                 parameters.Add("@WrongdoerId", WrongDoerId);
                 parameters.Add("@StartDate", statInputDate);
-                parameters.Add("@EndDate", endInputDate);               
+                parameters.Add("@EndDate", endInputDate);
                 parameters.Add("@Skip", skip);
                 parameters.Add("@Take", take);
                 parameters.Add("@TotalCount", dbType: DbType.Int32, direction: ParameterDirection.Output);

@@ -46,7 +46,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             this.causationLogic = causationLogic ?? throw new ArgumentNullException(nameof(causationLogic));
         }
 
-        [ControlPanelMenu("WronDoersReport", ParentName = "menu", Icon = "fa fa-shopping-bag", PanelType = PanelType.User, Position = ControlPanelMenuPosition.LeftSideBar)]
+        [ControlPanelMenu("WronDoersReport", ParentName = "FinalProductInspection", Icon = "fa fa-shopping-bag", PanelType = PanelType.User, Position = ControlPanelMenuPosition.LeftSideBar)]
 
         public IActionResult Index()
         {

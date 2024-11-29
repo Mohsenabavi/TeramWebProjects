@@ -41,6 +41,12 @@ namespace Teram.QC.Module.FinalProduct.Models.CausationModels
         public bool IsIdentifiableInProduction { get; set; }
         public int? FailureToIdentifyId { get; set; }
 
+        public int? FailureToIdentifyId2 {  get; set; }
+
+        public int? FailureToIdentifyId3 {  get; set; }
+
+        public int? WrongDoerInspectorId {  get; set; }
+
         public bool IsIdentifiableRawMaterialDefcets { get; set; }
 
         public ConcessionarylicenseForRawMaterialStatus? HasConcessionarylicenseForRawMaterials { get; set; }

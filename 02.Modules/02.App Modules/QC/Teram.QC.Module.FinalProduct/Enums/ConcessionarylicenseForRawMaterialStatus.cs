@@ -11,6 +11,10 @@ namespace Teram.QC.Module.FinalProduct.Enums
 
         [Display(Name = "ایراد پذیرفته شده است ")]
         [Description("ایراد پذیرفته شده است ")]
-        IsObjectionAccepted = 1,       
+        IsObjectionAccepted = 1,
+
+        [Display(Name = "خطای بازرسی")]
+        [Description("خطای بازرسی")]
+        HasInspectionError = 2,
     }
 }

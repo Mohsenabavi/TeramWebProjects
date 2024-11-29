@@ -85,6 +85,8 @@ $(document).on('change', '#IsIdentifiableInProduction', function () {
 
         $(".IsIdentifiableInProductionSection").addClass('d-none');
         $("#FailureToIdentifyId").val("");
+        $("#FailureToIdentifyId2").val("");
+        $("#FailureToIdentifyId3").val("");
     }
 });
 
@@ -141,9 +143,20 @@ $(document).on('click', '#CloseCausation', function () {
         });
 });
 
+$(document).on('change', '#HasConcessionarylicenseForRawMaterials', function () {
 
+    var hasConcessionarylicenseForRawMaterialsValue = $("#HasConcessionarylicenseForRawMaterials").val();
 
+    if (hasConcessionarylicenseForRawMaterialsValue == '2') {
 
+        $(".WrongDoerInspectorSection").removeClass('d-none');
+    }
+    else {
+
+        $(".WrongDoerInspectorSection").addClass('d-none');
+        $("#WrongDoerInspectorId").val('');
+    }
+});
 function validateForm() {
 
     var isValidate = true;
@@ -154,6 +167,7 @@ function validateForm() {
     var equipmentCauseIsChecked = $("#HasEquipmentCause").is(":checked");
     var isIdentifiableInProduction = $("#IsIdentifiableInProduction").is(":checked");
     var isIdentifiableRawMaterialDefcets = $("#IsIdentifiableRawMaterialDefcets").is(":checked");
+    var hasConcessionarylicenseForRawMaterialsValue = $("#HasConcessionarylicenseForRawMaterials").val();
 
     if (!hrCauseIsChecked && !methodCauseIsChecked && !rawMaterialCauseIsChecked && !essentialCauseIsChecked && !equipmentCauseIsChecked) {
 
@@ -175,7 +189,12 @@ function validateForm() {
         isValidate = false;
         teram().showErrorMessage("وضعیت مواد اولیه در بخش فیلدهای پس از علت یابی مواد اولیه را انتخاب نمایید");
     }
-    
+
+    if (hasConcessionarylicenseForRawMaterialsValue == '2' && ($("#WrongDoerInspectorId").val() == '') || $("#WrongDoerInspectorId").val() == null || $("#WrongDoerInspectorId").val() == undefined) {
+
+        isValidate = false;
+        teram().showErrorMessage("بازرس خاطی را انتخاب نمایید");
+    }
 
     if (hrCauseIsChecked) {
 
@@ -318,6 +337,7 @@ $(document).on('change', '#IsIdentifiableRawMaterialDefcets', function () {
     else {
         $(".HasConcessionarylicenseForRawMaterialsSection").addClass("d-none");
         $("#HasConcessionarylicenseForRawMaterials").val("");
+        $("#WrongDoerInspectorId").val("");
     }
 });
 

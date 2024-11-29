@@ -91,6 +91,18 @@
                                     validation-required-message="@localizer["Please select a FailureToIdentifyId"]"
                                     class="d-none mb-2 col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2" value="@ViewBag.Operators">
                         </select-box>
+                        <select-box style="justify-content: flex-end;" reverse="true" asp-for="FailureToIdentifyId2"
+                                    not-selected-option-title="-- یک فرد انتخاب کنید --" title="فرد خاطی"
+                                    selected-value="@Model?.FailureToIdentifyId2"
+                                    validation-required-message="@localizer["Please select a FailureToIdentifyId"]"
+                                    class="d-none mb-2 col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2" value="@ViewBag.Operators">
+                        </select-box>
+                        <select-box style="justify-content: flex-end;" reverse="true" asp-for="FailureToIdentifyId3"
+                                    not-selected-option-title="-- یک فرد انتخاب کنید --" title="فرد خاطی"
+                                    selected-value="@Model?.FailureToIdentifyId3"
+                                    validation-required-message="@localizer["Please select a FailureToIdentifyId"]"
+                                    class="d-none mb-2 col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2" value="@ViewBag.Operators">
+                        </select-box>
                     </div>
                 </div>
                 <hr />
@@ -104,6 +116,14 @@
                                 asp-items="Html.GetEnumSelectList<ConcessionarylicenseForRawMaterialStatus>().ToList()">
                             <option value="">@localizer["وضعیت را انتخاب کنید"]</option>
                         </select>
+                    </div>
+                    <div class=" col-xs-12 col-md-12 col-lg-12 mt-2 WrongDoerInspectorSection d-none">
+                        <select-box style="justify-content: flex-end;" reverse="true" asp-for="WrongDoerInspectorId"
+                                    not-selected-option-title="-- یک فرد انتخاب کنید --" title="بازرس خاطی"
+                                    selected-value="@Model?.WrongDoerInspectorId"
+                                    validation-required-message="@localizer["Please select a WrongDoerInspectorId"]"
+                                    class="d-none mb-2 col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2" value="@ViewBag.Operators">
+                        </select-box>
                     </div>
                 }
             }

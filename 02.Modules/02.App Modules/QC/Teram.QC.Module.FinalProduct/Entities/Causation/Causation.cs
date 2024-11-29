@@ -445,6 +445,30 @@ namespace Teram.QC.Module.FinalProduct.Entities.Causation
             }
         }
 
+        private int? _failureToIdentifyId2;
+        public int? FailureToIdentifyId2
+        {
+            get { return _failureToIdentifyId2; }
+            set
+            {
+                if (_failureToIdentifyId2 == value) return;
+                _failureToIdentifyId2 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int? _failureToIdentifyId3;
+        public int? FailureToIdentifyId3
+        {
+            get { return _failureToIdentifyId3; }
+            set
+            {
+                if (_failureToIdentifyId3 == value) return;
+                _failureToIdentifyId3 = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool _isIdentifiableRawMaterialDefcets;
         public bool IsIdentifiableRawMaterialDefcets
         {
@@ -464,6 +488,18 @@ namespace Teram.QC.Module.FinalProduct.Entities.Causation
             {
                 if (_hasConcessionarylicenseForRawMaterials == value) return;
                 _hasConcessionarylicenseForRawMaterials = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int? _wrongDoerInspectorId;
+        public int? WrongDoerInspectorId
+        {
+            get { return _wrongDoerInspectorId; }
+            set
+            {
+                if (_wrongDoerInspectorId == value) return;
+                _wrongDoerInspectorId = value;
                 OnPropertyChanged();
             }
         }

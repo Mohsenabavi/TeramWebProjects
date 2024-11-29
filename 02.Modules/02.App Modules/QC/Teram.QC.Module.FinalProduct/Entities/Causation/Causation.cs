@@ -273,6 +273,17 @@ namespace Teram.QC.Module.FinalProduct.Entities.Causation
             }
         }
 
+        private bool? _failureToFollowInstructions;
+        public bool? FailureToFollowInstructions
+        {
+            get { return _failureToFollowInstructions; }
+            set
+            {               
+                _failureToFollowInstructions = value;
+                OnPropertyChanged();
+            }
+        }     
+
         private bool? _hasFailureOfDefineJob;
         public bool? HasFailureOfDefineJob
         {

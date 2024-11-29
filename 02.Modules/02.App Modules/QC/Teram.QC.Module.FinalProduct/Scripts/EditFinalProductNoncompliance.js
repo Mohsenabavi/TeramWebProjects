@@ -104,6 +104,7 @@ $(document).on('change', '#IsLackOfFit', function () {
         $("#HasLackOfFitWorkerAndJob").prop('checked', false);
         $("#HasLackOfEducation").prop('checked', false);
         $("#HasFailureOfDefineJob").prop('checked', false);
+        $("#FailureToFollowInstructions").prop('checked', false);
     }
 });
 
@@ -190,7 +191,10 @@ function validateForm() {
         teram().showErrorMessage("وضعیت مواد اولیه در بخش فیلدهای پس از علت یابی مواد اولیه را انتخاب نمایید");
     }
 
-    if (hasConcessionarylicenseForRawMaterialsValue == '2' && ($("#WrongDoerInspectorId").val() == '') || $("#WrongDoerInspectorId").val() == null || $("#WrongDoerInspectorId").val() == undefined) {
+    if ((hasConcessionarylicenseForRawMaterialsValue === '2') &&
+        ($("#WrongDoerInspectorId").val() === '' ||
+            $("#WrongDoerInspectorId").val() === null ||
+            $("#WrongDoerInspectorId").val() === undefined)) {
 
         isValidate = false;
         teram().showErrorMessage("بازرس خاطی را انتخاب نمایید");
@@ -216,10 +220,11 @@ function validateForm() {
             var hasLackOfFitWorkerAndJobValue = $("#HasLackOfFitWorkerAndJob").is(":checked");
             var hasLackOfEducationValue = $("#HasLackOfEducation").is(":checked");
             var hasFailureOfDefineJobValue = $("#HasFailureOfDefineJob").is(":checked");
+            var hasFailureToFollowInstructions = $("#FailureToFollowInstructions").is(":checked");
 
-            if (!hasLackOfFitWorkerAndJobValue && !hasLackOfEducationValue && !hasFailureOfDefineJobValue) {
+            if (!hasLackOfFitWorkerAndJobValue && !hasLackOfEducationValue && !hasFailureOfDefineJobValue && !hasFailureToFollowInstructions) {
                 isValidate = false;
-                teram().showErrorMessage("یکی از موارد عدم تناسب شغل با شاغل ، نقصان آموزش و یا عدم تعریف صحیح شغل را وارد نمایید");
+                teram().showErrorMessage("یکی از موارد عدم تناسب شغل با شاغل ، نقصان آموزش ، عدم تعریف صحیح شغل و یا عدم رعایت دستورالعمل را وارد نمایید");
             }
         }
     }

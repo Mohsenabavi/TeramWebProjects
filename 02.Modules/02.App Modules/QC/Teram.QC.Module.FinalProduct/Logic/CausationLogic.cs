@@ -169,7 +169,8 @@ namespace Teram.QC.Module.FinalProduct.Logic
                     cauationResult.RawMaterialDescription = entity.NewEntity.RawMaterialDescription;
                     cauationResult.MachineryCauseId = entity.NewEntity.MachineryCauseId;
                     cauationResult.InstructionDescription = entity.NewEntity.InstructionDescription;
-                    cauationResult.Description = entity.NewEntity.Description;                   
+                    cauationResult.Description = entity.NewEntity.Description;
+                    cauationResult.FailureToFollowInstructions = entity.NewEntity.FailureToFollowInstructions;
                 }
                 else
                 {
@@ -205,7 +206,8 @@ namespace Teram.QC.Module.FinalProduct.Logic
                     entity.NewEntity.RawMaterialDescription = copyOfResult.RawMaterialDescription;
                     entity.NewEntity.MachineryCauseId = copyOfResult.MachineryCauseId;
                     entity.NewEntity.InstructionDescription = copyOfResult.InstructionDescription;
-                    entity.NewEntity.Description = copyOfResult.Description;                   
+                    entity.NewEntity.Description = copyOfResult.Description;
+                    entity.NewEntity.FailureToFollowInstructions = copyOfResult.FailureToFollowInstructions;
                 }
                 cauationResult.CorrectiveActions = (entity.NewEntity.CorrectiveActions != null && entity.NewEntity.CorrectiveActions.Count > 0) ? entity.NewEntity.CorrectiveActions.Select(x => new CorrectiveAction
                 {

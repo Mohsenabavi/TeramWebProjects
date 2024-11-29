@@ -150,6 +150,9 @@
   <data name="Description" xml:space="preserve">
     <value>توضیحات</value>
   </data>
+  <data name="FailureToFollowInstructions" xml:space="preserve">
+    <value>عدم رعایت دستورالعمل ها</value>
+  </data>
   <data name="HasEntitlementLicense" xml:space="preserve">
     <value>مجوز ارفاقی دارد </value>
   </data>

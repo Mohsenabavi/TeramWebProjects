@@ -22,6 +22,7 @@ namespace Teram.QC.Module.FinalProduct.Models.CausationModels
         public bool? HasLackOfFitWorkerAndJob { get; set; }
         public bool? HasLackOfEducation { get; set; }
         public bool? HasFailureOfDefineJob { get; set; }
+        public bool? FailureToFollowInstructions {  get; set; }
         public int? RootCauseId { get; set; }
         public int? InstructionId { get; set; }
         public int? UnitId { get; set; }

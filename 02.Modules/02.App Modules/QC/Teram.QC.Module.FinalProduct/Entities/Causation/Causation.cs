@@ -222,8 +222,8 @@ namespace Teram.QC.Module.FinalProduct.Entities.Causation
             }
         }
 
-        private string _rawMaterialDescription;
-        public string RawMaterialDescription
+        private string? _rawMaterialDescription;
+        public string? RawMaterialDescription
         {
             get { return _rawMaterialDescription; }
             set
@@ -233,6 +233,11 @@ namespace Teram.QC.Module.FinalProduct.Entities.Causation
                 OnPropertyChanged();
             }
         }
+
+        [ForeignKey(nameof(MachineryCauseId))]
+
+        public MachineryCause MachineryCause { get; set; }
+        public int? MachineryCauseId {  get; set; }
 
         private bool? _isCaseError;
         public bool? IsCaseError

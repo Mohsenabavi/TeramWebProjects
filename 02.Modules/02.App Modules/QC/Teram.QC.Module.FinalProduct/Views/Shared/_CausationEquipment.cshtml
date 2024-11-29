@@ -7,6 +7,12 @@
     </legend>
     <div class="row">
         <check-box asp-for="HasNotification" is-required="false" name="HasNotification" reverse="true" title="@localizer["HasNotification"]" div-class="col-12 col-md-4 col-lg-4 d-flex flex-column-reverse align-items-start" />
+        <select-box style="justify-content: flex-end;" reverse="true" asp-for="MachineryCauseId"
+                    not-selected-option-title="-- یک  مورد انتخاب کنید --" title="عنوان علت"
+                    selected-value="@Model?.MachineryCauseId"
+                    validation-required-message="@localizer["Please select a MachineryCauseId"]"
+                    class="d-none mb-2 col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start" select-class="inputBox select2" value="@ViewBag.MachineryCause">
+        </select-box>
         <div class="NotificationNumberSection d-none">
             <text-box asp-for="NotificationNumber" validation-type="Number" reverse="true" title="@localizer["NotificationNumber"]" validation-required-message="@localizer["Please enter NotificationNumber"]" div-class="col-12 col-md-12 col-lg-12 d-flex mt-2 flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
         </div>

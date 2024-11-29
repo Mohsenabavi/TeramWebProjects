@@ -46,6 +46,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
         private readonly IUnitLogic unitLogic;
         private readonly IWorkStationLogic workStationLogic;
         private readonly IRawMaterialLogic rawMaterialLogic;
+        private readonly IMachineryCauseLogic machineryCauseLogic;
 
         public EditFinalProductNoncomplianceController(ILogger<EditFinalProductNoncomplianceController> logger
             , IStringLocalizer<EditFinalProductNoncomplianceController> localizer, IFinalProductNoncomplianceLogic finalProductNoncomplianceLogic, IFinalProductNoncomplianceFileLogic finalProductNoncomplianceFileLogic,
@@ -54,6 +55,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             IFinalProductInspectionDefectLogic finalProductInspectionDefectLogic, IFinalProductInspectionLogic finalProductInspectionLogic,
             IInstructionLogic instructionLogic, IMachineLogic machineLogic, IOperatorLogic operatorLogic, IActionerLogic actionerLogic,
             IRootCauseLogic rootCauseLogic, IUnitLogic unitLogic, IWorkStationLogic workStationLogic, IRawMaterialLogic rawMaterialLogic,
+            IMachineryCauseLogic machineryCauseLogic,
             IStringLocalizer<SharedResource> sharedLocalizer)
         {
             this.logger = logger;
@@ -92,6 +94,7 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             this.unitLogic = unitLogic;
             this.workStationLogic = workStationLogic;
             this.rawMaterialLogic = rawMaterialLogic ?? throw new ArgumentNullException(nameof(rawMaterialLogic));
+            this.machineryCauseLogic = machineryCauseLogic ?? throw new ArgumentNullException(nameof(machineryCauseLogic));
         }
 
         [ControlPanelMenu("EditFinalProductNoncompliance", ParentName = "FinalProductInspection", Icon = "fa fa-ban", PanelType = PanelType.User, Position = ControlPanelMenuPosition.LeftSideBar)]
@@ -150,6 +153,8 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             ViewBag.WorkStations = GetWorkStations();
             ViewBag.Actioners = GetActioners();
             ViewBag.RawMaterials = GetRawMaterials();
+            ViewBag.MachineryCause = GetMachineryCauses();
+
             var mainRole = manageCartableLogic.GetUserMainRole();
             if (mainRole != null && mainRole.ResultEntity.Name.ToUpper() == "OPERATOR")
             {
@@ -263,6 +268,18 @@ namespace Teram.QC.Module.FinalProduct.Controllers
                 return result;
             }
             return rawMateriasResult.ResultEntity.ToSelectList(nameof(RawMaterialModel.Title), nameof(RawMaterialModel.RawMaterialId));
+        }
+
+        private List<SelectListItem> GetMachineryCauses()
+        {
+
+            var result = new List<SelectListItem>();
+            var machineryCauseResult = machineryCauseLogic.GetAll();
+            if (machineryCauseResult.ResultStatus != OperationResultStatus.Successful || machineryCauseResult.ResultEntity is null)
+            {
+                return result;
+            }
+            return machineryCauseResult.ResultEntity.ToSelectList(nameof(MachineryCauseModel.Title), nameof(MachineryCauseModel.MachineryCauseId));
         }
 
         private List<SelectListItem> GetRelatedDefects(int finalProductNonComplianceId)

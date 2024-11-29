@@ -157,6 +157,7 @@ namespace Teram.QC.Module.FinalProduct.Logic
                 var mainRoleOfUsser = userRoles.
                     Where(x => x.NormalizedName != "MEMBERS"
                     && x.NormalizedName != "OPERATIONMANAGER"
+                    && x.NormalizedName != "REPORTVIEWER"
                     && x.NormalizedName != "QA"
                     && x.NormalizedName != "ADMINISTRATORS").FirstOrDefault();
                 if (mainRoleOfUsser != null)

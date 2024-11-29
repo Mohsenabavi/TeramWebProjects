@@ -89,6 +89,9 @@ namespace Teram.QC.Module.FinalProduct
             services.AddScoped<IRawMaterialLogic, RawMaterialLogic>();
             services.AddScoped<ILogic<RawMaterialModel>, RawMaterialLogic>();
 
+            services.AddScoped<IMachineryCauseLogic, MachineryCauseLogic>();
+            services.AddScoped<ILogic<MachineryCauseModel>, MachineryCauseLogic>();
+
             services.AddScoped<INotificationService, NotificationService>();
 
             Mapster.TypeAdapterConfig<AcceptancePeriod, AcceptancePeriodModel>.NewConfig()

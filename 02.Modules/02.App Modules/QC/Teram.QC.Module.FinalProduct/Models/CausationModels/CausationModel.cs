@@ -35,6 +35,7 @@ namespace Teram.QC.Module.FinalProduct.Models.CausationModels
         public int? WrongdoerId3 { get; set; }
         public int? WrongdoerId4 { get; set; }
         public int? RawMaterialId { get; set; }
+        public int? MachineryCauseId { get; set; }
         public string? RawMaterialDescription { get; set; }
         public List<CorrectiveActionModel>? CorrectiveActions { get; set; }
         public bool IsEditMode { get; set; }

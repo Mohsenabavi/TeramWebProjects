@@ -218,6 +218,7 @@ function validateForm() {
     if (equipmentCauseIsChecked) {
 
         var hasNotification = $("#HasNotification").is(":checked");
+        var machineryCauseId = $("#MachineryCauseId").val();
 
         if (hasNotification) {
 
@@ -226,6 +227,12 @@ function validateForm() {
                 isValidate = false;
                 teram().showErrorMessage("شماره اعلان را وارد نمایید");
             }
+        }
+
+        if (machineryCauseId == null || machineryCauseId == "" || machineryCauseId ==undefined) {
+
+            isValidate = false;
+            teram().showErrorMessage("علت بخش ماشین آلات و تجهیزات را انتخاب نمایید");
         }
     }
     return isValidate;

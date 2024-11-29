@@ -122,7 +122,8 @@ namespace Teram.QC.Module.FinalProduct.Logic
                   .FirstOrDefault(x => x.CausationId == entity.NewEntity.CausationId);
 
             if (cauationResult != null)
-            {
+            {               
+
                 var copyOfResult = cauationResult;
 
                 if (cauationResult != null && cauationResult?.CorrectiveActions != null && cauationResult?.CorrectiveActions.Count != 0)
@@ -134,7 +135,7 @@ namespace Teram.QC.Module.FinalProduct.Logic
                 }
                 var hasLimitedAccessToCausation = userPrincipal.CurrentUser.HasClaim("Permission", ":Causation:HasLimitedAccessForCausation");
 
-                if (!hasLimitedAccessToCausation && cauationResult != null)
+                if (!hasLimitedAccessToCausation)
                 {
                     cauationResult.HasHRCause = entity.NewEntity.HasHRCause;
                     cauationResult.HasMethodCause = entity.NewEntity.HasMethodCause;
@@ -143,6 +144,9 @@ namespace Teram.QC.Module.FinalProduct.Logic
                     cauationResult.HasEquipmentCause = entity.NewEntity.HasEquipmentCause;
                     cauationResult.MachineId = entity.NewEntity.MachineId;
                     cauationResult.OperatorId = entity.NewEntity.OperatorId;
+                    cauationResult.OperatorId2 = entity.NewEntity.OperatorId2;
+                    cauationResult.OperatorId3 = entity.NewEntity.OperatorId3;
+                    cauationResult.OperatorId4 = entity.NewEntity.OperatorId4;
                     cauationResult.IsLackOfFit = entity.NewEntity.IsLackOfFit;
                     cauationResult.IsCaseError = entity.NewEntity.IsCaseError;
                     cauationResult.HasLackOfFitWorkerAndJob = entity.NewEntity.HasLackOfFitWorkerAndJob;
@@ -157,6 +161,15 @@ namespace Teram.QC.Module.FinalProduct.Logic
                     cauationResult.HasNotification = entity.NewEntity.HasNotification;
                     cauationResult.NotificationNumber = entity.NewEntity.NotificationNumber;
                     cauationResult.FinalProductNoncomplianceId = entity.NewEntity.FinalProductNoncomplianceId;
+                    cauationResult.WrongdoerId = entity.NewEntity.WrongdoerId;
+                    cauationResult.WrongdoerId2 = entity.NewEntity.WrongdoerId2;
+                    cauationResult.WrongdoerId3 = entity.NewEntity.WrongdoerId3;
+                    cauationResult.WrongdoerId4 = entity.NewEntity.WrongdoerId4;
+                    cauationResult.RawMaterialId = entity.NewEntity.RawMaterialId;
+                    cauationResult.RawMaterialDescription = entity.NewEntity.RawMaterialDescription;
+                    cauationResult.MachineryCauseId = entity.NewEntity.MachineryCauseId;
+                    cauationResult.InstructionDescription = entity.NewEntity.InstructionDescription;
+                    cauationResult.Description = entity.NewEntity.Description;                   
                 }
                 else
                 {
@@ -167,6 +180,9 @@ namespace Teram.QC.Module.FinalProduct.Logic
                     entity.NewEntity.HasEquipmentCause = copyOfResult.HasEquipmentCause;
                     entity.NewEntity.MachineId = copyOfResult.MachineId;
                     entity.NewEntity.OperatorId = copyOfResult.OperatorId;
+                    entity.NewEntity.OperatorId2 = copyOfResult.OperatorId2;
+                    entity.NewEntity.OperatorId3 = copyOfResult.OperatorId3;
+                    entity.NewEntity.OperatorId4 = copyOfResult.OperatorId4;
                     entity.NewEntity.IsLackOfFit = copyOfResult.IsLackOfFit;
                     entity.NewEntity.IsCaseError = copyOfResult.IsCaseError;
                     entity.NewEntity.HasLackOfFitWorkerAndJob = copyOfResult.HasLackOfFitWorkerAndJob;
@@ -181,6 +197,15 @@ namespace Teram.QC.Module.FinalProduct.Logic
                     entity.NewEntity.HasNotification = copyOfResult.HasNotification;
                     entity.NewEntity.NotificationNumber = copyOfResult.NotificationNumber;
                     entity.NewEntity.FinalProductNoncomplianceId = copyOfResult.FinalProductNoncomplianceId;
+                    entity.NewEntity.WrongdoerId = copyOfResult.WrongdoerId;
+                    entity.NewEntity.WrongdoerId2 = copyOfResult.WrongdoerId2;
+                    entity.NewEntity.WrongdoerId3 = copyOfResult.WrongdoerId3;
+                    entity.NewEntity.WrongdoerId4 = copyOfResult.WrongdoerId4;
+                    entity.NewEntity.RawMaterialId = copyOfResult.RawMaterialId;
+                    entity.NewEntity.RawMaterialDescription = copyOfResult.RawMaterialDescription;
+                    entity.NewEntity.MachineryCauseId = copyOfResult.MachineryCauseId;
+                    entity.NewEntity.InstructionDescription = copyOfResult.InstructionDescription;
+                    entity.NewEntity.Description = copyOfResult.Description;                   
                 }
                 cauationResult.CorrectiveActions = (entity.NewEntity.CorrectiveActions != null && entity.NewEntity.CorrectiveActions.Count > 0) ? entity.NewEntity.CorrectiveActions.Select(x => new CorrectiveAction
                 {
@@ -189,7 +214,6 @@ namespace Teram.QC.Module.FinalProduct.Logic
                     CausationId = x.CausationId,
                     ApproverId = x.ApproverId,
                     ActionDate = x.ActionDate,
-
                 }).ToList() : [];
                 var affectedRowsCount = Service.Save();
             }

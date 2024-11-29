@@ -421,6 +421,29 @@ namespace Teram.QC.Module.FinalProduct.Entities.Causation
             }
         }
 
+        private bool _isIdentifiableInProduction;
+        public bool IsIdentifiableInProduction
+        {
+            get { return _isIdentifiableInProduction; }
+            set
+            {              
+                _isIdentifiableInProduction = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int? _failureToIdentifyId;
+        public int? FailureToIdentifyId
+        {
+            get { return _failureToIdentifyId; }
+            set
+            {
+                if (_failureToIdentifyId == value) return;
+                _failureToIdentifyId = value;
+                OnPropertyChanged();
+            }
+        }
+
         public virtual Actioner? Actioner { get; set; }
 
         public virtual FinalProductNoncompliance? FinalProductNoncompliance { get; set; }

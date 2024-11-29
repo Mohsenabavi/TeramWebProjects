@@ -96,6 +96,8 @@ namespace Teram.QC.Module.FinalProduct.Models
 
         public ReferralStatus ReferralStatus { get; set; }
 
+        public bool IsRefferedToQcManager => (ReferralStatus == ReferralStatus.ReferredToQCManager);
+
         public FormStatus FormStatus { get; set; }
 
         public DateTime? LastModifyDate { get; set; }

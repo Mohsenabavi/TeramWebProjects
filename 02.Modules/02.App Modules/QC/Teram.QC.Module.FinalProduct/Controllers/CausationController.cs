@@ -50,30 +50,53 @@ namespace Teram.QC.Module.FinalProduct.Controllers
         {
             var relatedNonComplianceResult = finalProductNoncomplianceLogic.GetById(model.FinalProductNoncomplianceId);
 
-            relatedNonComplianceResult.ResultEntity.FormStatus = Enums.FormStatus.DeterminingReason;
+            if (relatedNonComplianceResult.ResultEntity == null)
+            {
+                return Json(new { result = "fail", message = localizer["Related entity not found."] });
+            }
 
-            relatedNonComplianceResult.ResultEntity.LastComment = " ";
-
-            relatedNonComplianceResult.ResultEntity.HasCausation = true;
-
-            relatedNonComplianceResult.ResultEntity.IsTriggeredByUserAction = true;
-
-            relatedNonComplianceResult.ResultEntity.DestinationUser = null;
-
-            var updateResult = finalProductNoncomplianceLogic.Update(relatedNonComplianceResult.ResultEntity);
+            // Update relatedNonComplianceResult entity
+            var relatedEntity = relatedNonComplianceResult.ResultEntity;
+            relatedEntity.FormStatus = Enums.FormStatus.DeterminingReason;
+            relatedEntity.LastComment = " ";
+            relatedEntity.HasCausation = true;
+            relatedEntity.IsTriggeredByUserAction = true;
+            relatedEntity.DestinationUser = null;
 
             var causationResult = causationLogic.GetByFinalProductNonComplianceId(model.FinalProductNoncomplianceId);
 
-            if (causationResult.ResultStatus == OperationResultStatus.Successful && causationResult.ResultEntity is not null)
+            if (causationResult.ResultStatus == OperationResultStatus.Successful && causationResult.ResultEntity != null)
             {
-                causationLogic.Update(model);
-                return Json(new { result = "ok", message = localizer["Saved Successfully"] });
+                // Update causation logic
+                var causationUpdateResult = causationLogic.Update(model);
+                if (causationUpdateResult.ResultStatus != OperationResultStatus.Successful)
+                {
+                    // Log error details (optional)
+                    return Json(new { result = "fail", message = localizer[causationUpdateResult.AllMessages] });
+                }
             }
             else
             {
-                causationLogic.AddNew(model);
-                return Json(new { result = "ok", message = localizer["Saved Successfully"] });
+                // Insert new causation logic
+                var causationInsertResult = causationLogic.AddNew(model);
+                if (causationInsertResult.ResultStatus != OperationResultStatus.Successful)
+                {
+                    // Log error details (optional)
+                    return Json(new { result = "fail", message = localizer[causationInsertResult.AllMessages] });
+                }
             }
+
+            // Update finalProductNoncomplianceLogic
+            var updateResult = finalProductNoncomplianceLogic.Update(relatedEntity);
+
+            if (updateResult.ResultStatus != OperationResultStatus.Successful)
+            {
+                // Log error details (optional)
+                return Json(new { result = "fail", message = localizer[updateResult.AllMessages] });
+            }
+
+            return Json(new { result = "ok", message = localizer["Saved Successfully"] });
+
         }
     }
 }

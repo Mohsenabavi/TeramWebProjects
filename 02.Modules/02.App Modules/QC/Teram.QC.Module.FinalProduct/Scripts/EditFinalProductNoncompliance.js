@@ -75,6 +75,22 @@ $(document).on('change', '#IsCaseError', function () {
     }
 });
 
+$(document).on('change', '#IsIdentifiableInProduction', function () {
+
+    var isChecked = $("#IsIdentifiableInProduction").is(":checked");
+    if (isChecked) {
+        $(".IsIdentifiableInProductionSection").removeClass('d-none');
+    }
+    else {
+
+        $(".IsIdentifiableInProductionSection").addClass('d-none');
+        $("#FailureToIdentifyId").val("");
+    }
+});
+
+
+
+
 $(document).on('change', '#IsLackOfFit', function () {
 
     var isChecked = $("#IsLackOfFit").is(":checked");
@@ -136,6 +152,7 @@ function validateForm() {
     var rawMaterialCauseIsChecked = $("#HasRawMaterialCause").is(":checked");
     var essentialCauseIsChecked = $("#HasEssentialCause").is(":checked");
     var equipmentCauseIsChecked = $("#HasEquipmentCause").is(":checked");
+    var isIdentifiableInProduction = $("#IsIdentifiableInProduction").is(":checked");
 
     if (!hrCauseIsChecked && !methodCauseIsChecked && !rawMaterialCauseIsChecked && !essentialCauseIsChecked && !equipmentCauseIsChecked) {
 
@@ -146,6 +163,12 @@ function validateForm() {
     if (rawMaterialCauseIsChecked && $("#RawMaterialId").val() == "") {
         isValidate = false;
         teram().showErrorMessage("نوع مواد اولیه را انتخاب نمایید");
+    }
+
+    if (isIdentifiableInProduction && ($("#FailureToIdentifyId").val() == "") || $("#FailureToIdentifyId").val() == null || $("#FailureToIdentifyId").val() == undefined) {
+
+        isValidate = false;
+        teram().showErrorMessage("فرد خاطی در بخش فیلدهایپس از علت یابی را انتخاب نمایید");
     }
 
     if (hrCauseIsChecked) {
@@ -229,7 +252,7 @@ function validateForm() {
             }
         }
 
-        if (machineryCauseId == null || machineryCauseId == "" || machineryCauseId ==undefined) {
+        if (machineryCauseId == null || machineryCauseId == "" || machineryCauseId == undefined) {
 
             isValidate = false;
             teram().showErrorMessage("علت بخش ماشین آلات و تجهیزات را انتخاب نمایید");

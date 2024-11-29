@@ -174,11 +174,11 @@
                         }
                         @if (
                         (
-                        (Model.FormStatus == FormStatus.DeterminingReason) || (Model.FormStatus == FormStatus.ProcessCompleted)) &&(
-                        (Model.ReferralStatus == ReferralStatus.ReferredToQCManager) ||(Model.ReferralStatus == ReferralStatus.ProcessCompleted)) &&
+                        (Model.FormStatus == FormStatus.DeterminingReason) || (Model.FormStatus == FormStatus.ProcessCompleted)) && (
+                        (Model.ReferralStatus == ReferralStatus.ReferredToQCManager) || (Model.ReferralStatus == ReferralStatus.ProcessCompleted)) &&
                         (Model.ReferralStatus != ReferralStatus.ReferredToQA))
                         {
-                            <partial name="_NoncomplianceDetailSampleSummaryReadOnly" model="@Model.NoncomplianceDetailSampleSummary" />
+                            <partial name="_NoncomplianceDetailSampleSummaryReadOnly" model="@Model.NoncomplianceDetailSampleSummary" />                           
                             if (!ViewBag.IsOperator)
                             {
                                 <partial name="_Causation" model="@Model.Causation" />
@@ -192,6 +192,7 @@
                         }
                         @if (Model.ReferralStatus == ReferralStatus.ReferredToQA)
                         {
+                            <partial name="_NoncomplianceDetailSampleSummaryReadOnly" model="@Model.NoncomplianceDetailSampleSummary" />
                             <partial name="_Causation" model="@Model.Causation" />
                             <partial name="_NoncomplianceDetailSampleSummaryAfterCausationQA" model="@Model.NoncomplianceDetailSampleSummary" />
                         }

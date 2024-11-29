@@ -129,6 +129,9 @@
   <data name="AddCorrectiveAction" xml:space="preserve">
     <value>افزودن اقدام اصلاحی</value>
   </data>
+  <data name="AfterCausationFields" xml:space="preserve">
+    <value>فیلدهای پس از علت یابی </value>
+  </data>
   <data name="Approver" xml:space="preserve">
     <value>تایید کننده</value>
   </data>
@@ -179,6 +182,9 @@
   </data>
   <data name="IsCaseError" xml:space="preserve">
     <value>خطای موردی</value>
+  </data>
+  <data name="IsIdentifiableInProduction" xml:space="preserve">
+    <value>در زمان بازرسی حین تولید قابل شناسایی بوده است</value>
   </data>
   <data name="IsLackOfFit" xml:space="preserve">
     <value>عدم تناسب شغل با شاغل</value>

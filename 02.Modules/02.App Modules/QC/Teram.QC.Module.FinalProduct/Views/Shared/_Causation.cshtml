@@ -78,6 +78,23 @@
                     <text-box asp-for="Description" validation-type="None" reverse="true" title="@localizer["Description"]" validation-required-message="@localizer["Please enter Description"]" div-class="col-12 col-md-12 col-lg-12 d-flex mt-2 flex-column-reverse align-items-start pl-lg-2 pl-md-2" />
                 </div>
             </div>
+            <br />
+            @if (Model.IsReferredToQCManager)
+            {
+                <div>
+                    <h6 class="bg-info  p-2 rounded text-light text-center"> @localizer["AfterCausationFields"]</h6>
+                    <check-box asp-for="IsIdentifiableInProduction" is-required="false" name="IsIdentifiableInProduction" reverse="true" title="@localizer["IsIdentifiableInProduction"]" div-class="col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start" />
+                    <div class="IsIdentifiableInProductionSection d-none">
+                        <select-box style="justify-content: flex-end;" reverse="true" asp-for="FailureToIdentifyId"
+                                    not-selected-option-title="-- یک فرد انتخاب کنید --" title="فرد خاطی"
+                                    selected-value="@Model?.FailureToIdentifyId"
+                                    validation-required-message="@localizer["Please select a FailureToIdentifyId"]"
+                                    class="d-none mb-2 col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2" value="@ViewBag.Operators">
+                        </select-box>
+                    </div>
+                </div> 
+                <hr />
+            }
             <fieldset class="m-1 p-1">
                 <div class="content correctiveActions">
                     @if (Model?.CorrectiveActions == null || Model?.CorrectiveActions.Count == 0)
@@ -95,7 +112,7 @@
                 <div class="form-group col-xs-12 col-md-12 col-lg-12 text-left">
                     <button type="button" id="btnSubmitCausation" class="btn btn-success">@localizer["Save"] </button>
                 </div>
-            </div>          
+            </div>
         </form>
     </div>
     <div class="correctiveActionRowContainer form-row correctiveActionRow d-none mb-5">

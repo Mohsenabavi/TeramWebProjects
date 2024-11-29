@@ -37,6 +37,8 @@ namespace Teram.QC.Module.FinalProduct.Models.CausationModels
         public int? RawMaterialId { get; set; }
         public int? MachineryCauseId { get; set; }
         public string? RawMaterialDescription { get; set; }
+        public bool IsIdentifiableInProduction {  get; set; }
+        public int? FailureToIdentifyId {  get; set; }
         public List<CorrectiveActionModel>? CorrectiveActions { get; set; }
         public bool IsEditMode { get; set; }
         public string? InstructionDescription { get; set; }
@@ -44,7 +46,7 @@ namespace Teram.QC.Module.FinalProduct.Models.CausationModels
         public bool CorrrectiveActionsIsLocked { get; set; }
         public bool IsLocked { get; set; }
         public int? ActionerId { get; set; }
-
         public string Description { get; set; }
+        public bool IsReferredToQCManager {  get; set; }
     }
 }

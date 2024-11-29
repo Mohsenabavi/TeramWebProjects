@@ -554,6 +554,10 @@ namespace Teram.QC.Module.FinalProduct.Logic
 
                 if (nonComplianceResult.Causation != null)
                 {
+                    if (nonComplianceResult.IsRefferedToQcManager)
+                    {
+                        nonComplianceResult.Causation.IsReferredToQCManager = true;
+                    }
                     nonComplianceResult.Causation.IsEditMode = true;
                     nonComplianceResult.Causation.HasPermissionForSave = hasPermissionForSave;
                     nonComplianceResult.Causation.CorrrectiveActionsIsLocked = (nonComplianceResult.ReferralStatus == ReferralStatus.ReferredToQA &&

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using Teram.Framework.Core.Domain;
+using Teram.QC.Module.FinalProduct.Enums;
 
 namespace Teram.QC.Module.FinalProduct.Entities.Causation
 {
@@ -440,6 +441,29 @@ namespace Teram.QC.Module.FinalProduct.Entities.Causation
             {
                 if (_failureToIdentifyId == value) return;
                 _failureToIdentifyId = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isIdentifiableRawMaterialDefcets;
+        public bool IsIdentifiableRawMaterialDefcets
+        {
+            get { return _isIdentifiableRawMaterialDefcets; }
+            set
+            {                
+                _isIdentifiableRawMaterialDefcets = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ConcessionarylicenseForRawMaterialStatus? _hasConcessionarylicenseForRawMaterials;
+        public ConcessionarylicenseForRawMaterialStatus? HasConcessionarylicenseForRawMaterials
+        {
+            get { return _hasConcessionarylicenseForRawMaterials; }
+            set
+            {
+                if (_hasConcessionarylicenseForRawMaterials == value) return;
+                _hasConcessionarylicenseForRawMaterials = value;
                 OnPropertyChanged();
             }
         }

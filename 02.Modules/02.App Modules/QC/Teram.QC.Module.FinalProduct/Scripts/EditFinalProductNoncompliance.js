@@ -153,6 +153,7 @@ function validateForm() {
     var essentialCauseIsChecked = $("#HasEssentialCause").is(":checked");
     var equipmentCauseIsChecked = $("#HasEquipmentCause").is(":checked");
     var isIdentifiableInProduction = $("#IsIdentifiableInProduction").is(":checked");
+    var isIdentifiableRawMaterialDefcets = $("#IsIdentifiableRawMaterialDefcets").is(":checked");
 
     if (!hrCauseIsChecked && !methodCauseIsChecked && !rawMaterialCauseIsChecked && !essentialCauseIsChecked && !equipmentCauseIsChecked) {
 
@@ -165,11 +166,16 @@ function validateForm() {
         teram().showErrorMessage("نوع مواد اولیه را انتخاب نمایید");
     }
 
-    if (isIdentifiableInProduction && ($("#FailureToIdentifyId").val() == "") || $("#FailureToIdentifyId").val() == null || $("#FailureToIdentifyId").val() == undefined) {
-
+    if (isIdentifiableInProduction == true && ($("#FailureToIdentifyId").val() == "" || $("#FailureToIdentifyId").val() == null || $("#FailureToIdentifyId").val() == undefined)) {
         isValidate = false;
-        teram().showErrorMessage("فرد خاطی در بخش فیلدهایپس از علت یابی را انتخاب نمایید");
+        teram().showErrorMessage("فرد خاطی در بخش فیلدهای پس از علت یابی را انتخاب نمایید");
     }
+
+    if (isIdentifiableRawMaterialDefcets == true && ($("#HasConcessionarylicenseForRawMaterials").val() == "" || $("#HasConcessionarylicenseForRawMaterials").val() == null || $("#HasConcessionarylicenseForRawMaterials").val() == undefined)) {
+        isValidate = false;
+        teram().showErrorMessage("وضعیت مواد اولیه در بخش فیلدهای پس از علت یابی مواد اولیه را انتخاب نمایید");
+    }
+    
 
     if (hrCauseIsChecked) {
 
@@ -302,6 +308,19 @@ $(document).on('change', '#HasRawMaterialCause', function () {
         $(".rawMaterialSection").addClass("d-none");
     }
 });
+
+$(document).on('change', '#IsIdentifiableRawMaterialDefcets', function () {
+
+    var isChecked = $("#IsIdentifiableRawMaterialDefcets").is(":checked");
+    if (isChecked) {
+        $(".HasConcessionarylicenseForRawMaterialsSection").removeClass("d-none");
+    }
+    else {
+        $(".HasConcessionarylicenseForRawMaterialsSection").addClass("d-none");
+        $("#HasConcessionarylicenseForRawMaterials").val("");
+    }
+});
+
 
 $(document).on('change', '#HasEssentialCause', function () {
 

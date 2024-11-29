@@ -130,13 +130,19 @@
     <value>افزودن اقدام اصلاحی</value>
   </data>
   <data name="AfterCausationFields" xml:space="preserve">
-    <value>فیلدهای پس از علت یابی </value>
+    <value>فیلدهای پس از علت یابی ( عمومی )</value>
+  </data>
+  <data name="AfterCausationFieldsForRawMaterials" xml:space="preserve">
+    <value>فیلدهای پس از علت یابی ( مواد اولیه )</value>
   </data>
   <data name="Approver" xml:space="preserve">
     <value>تایید کننده</value>
   </data>
   <data name="CanBeIdentifiedAtEntrance" xml:space="preserve">
     <value>در ورود قابل شناسایی بوده است</value>
+  </data>
+  <data name="CorrectiveActions" xml:space="preserve">
+    <value>اقدامات اصلاحی</value>
   </data>
   <data name="Descriiption" xml:space="preserve">
     <value>شرح اقدام اصلاحی</value>
@@ -185,6 +191,9 @@
   </data>
   <data name="IsIdentifiableInProduction" xml:space="preserve">
     <value>در زمان بازرسی حین تولید قابل شناسایی بوده است</value>
+  </data>
+  <data name="IsIdentifiableRawMaterialDefcets" xml:space="preserve">
+    <value>قابل شناسایی می باشد</value>
   </data>
   <data name="IsLackOfFit" xml:space="preserve">
     <value>عدم تناسب شغل با شاغل</value>

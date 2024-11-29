@@ -92,17 +92,31 @@
                                     class="d-none mb-2 col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start pl-lg-2 pl-md-2" select-class="inputBox select2" value="@ViewBag.Operators">
                         </select-box>
                     </div>
-                </div> 
+                </div>
                 <hr />
+                @if (Model.RawMaterialId > 0)
+                {
+                    <h6 class="bg-info  p-2 rounded text-light text-center"> @localizer["AfterCausationFieldsForRawMaterials"]</h6>
+                    <check-box asp-for="IsIdentifiableRawMaterialDefcets" is-required="false" name="IsIdentifiableRawMaterialDefcets" reverse="true" title="@localizer["IsIdentifiableRawMaterialDefcets"]" div-class="col-12 col-md-12 col-lg-12 d-flex flex-column-reverse align-items-start" />
+                    <div class=" col-xs-12 col-md-12 col-lg-12 mt-2 HasConcessionarylicenseForRawMaterialsSection d-none">
+                        <select asp-for="@Model.HasConcessionarylicenseForRawMaterials" name="HasConcessionarylicenseForRawMaterials" required
+                                class="form-control select2"
+                                asp-items="Html.GetEnumSelectList<ConcessionarylicenseForRawMaterialStatus>().ToList()">
+                            <option value="">@localizer["وضعیت را انتخاب کنید"]</option>
+                        </select>
+                    </div>
+                }
             }
             <fieldset class="m-1 p-1">
                 <div class="content correctiveActions">
                     @if (Model?.CorrectiveActions == null || Model?.CorrectiveActions.Count == 0)
                     {
+                        <h6 class="bg-info  p-2 rounded text-light text-center"> @localizer["CorrectiveActions"]</h6>
                         <partial name="_CorrectiveActions" model="new List<CorrectiveActionModel>()" />
                     }
                     else
                     {
+                        <h6 class="bg-info  p-2 rounded text-light text-center"> @localizer["CorrectiveActions"]</h6>
                         <partial name="_CorrectiveActions" model="Model?.CorrectiveActions" />
                     }
                 </div>

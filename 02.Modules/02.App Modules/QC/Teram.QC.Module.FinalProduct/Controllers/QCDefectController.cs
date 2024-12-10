@@ -41,7 +41,8 @@ namespace Teram.QC.Module.FinalProduct.Controllers
                 OperationColumns = true,
                 HomePage = nameof(QCDefectController).Replace("Controller", "") + "/index",
                 HasToolbar = true,
-                ToolbarName = "_adminToolbar"
+                ToolbarName = "_adminToolbar",
+                ExtraScripts = "/ExternalModule/QC/Module/FinalProduct/Scripts/QCDefectModel.js",
             };
             this.roleSharedService = roleSharedService ?? throw new ArgumentNullException(nameof(roleSharedService));
             this.userSharedService = userSharedService ?? throw new ArgumentNullException(nameof(userSharedService));
@@ -119,6 +120,24 @@ namespace Teram.QC.Module.FinalProduct.Controllers
                 return Json(new { Result = "fail", message = "درج برخی از ردیف ها با خطا مواجه شده" });
             }
         }
-    }
 
+        [ParentalAuthorize(nameof(Index))]
+        public IActionResult PrintExcel()
+        {
+            var data = qCDefectLogic.GetAll();
+
+            if (data.ResultStatus != OperationResultStatus.Successful || data.ResultEntity is null)
+            {
+                return Json(new { result = "fail", message = localizer[data.AllMessages] });
+            }
+
+            var excelData = data.ResultEntity.ExportListExcel("بازه های پذیرش");
+            if (excelData is null)
+            {
+                return Json(new { result = "fail", total = 0, rows = new List<FinalProductNoncomplianceModel>(), message = localizer["Unable to create file due to technical problems."] });
+            }
+            var fileName = "بازه های پذیرش-" + DateTime.Now.ToPersianDate();
+            return File(excelData, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName + ".xlsx");
+        }
+    }
 }

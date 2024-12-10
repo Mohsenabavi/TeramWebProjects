@@ -42,7 +42,8 @@ namespace Teram.QC.Module.FinalProduct.Controllers
                 OperationColumns = true,
                 HomePage = nameof(AcceptancePeriodController).Replace("Controller", "") + "/index",
                 HasToolbar = true,
-                ToolbarName="_adminToolbar"
+                ToolbarName="_adminToolbar",
+                ExtraScripts = "/ExternalModule/QC/Module/FinalProduct/Scripts/AcceptancePeriods.js",
             };
             this.acceptancePeriodLogic=acceptancePeriodLogic??throw new ArgumentNullException(nameof(acceptancePeriodLogic));
             this.qCControlPlanLogic=qCControlPlanLogic??throw new ArgumentNullException(nameof(qCControlPlanLogic));
@@ -122,6 +123,26 @@ namespace Teram.QC.Module.FinalProduct.Controllers
                 return result;
             }
             return data.ResultEntity.ToSelectList(nameof(QCControlPlanModel.Title), nameof(QCControlPlanModel.QCControlPlanId));
+        }
+
+
+        [ParentalAuthorize(nameof(Index))]
+        public IActionResult PrintExcel()
+        {
+            var data = acceptancePeriodLogic.GetAll();
+
+            if (data.ResultStatus != OperationResultStatus.Successful || data.ResultEntity is null)
+            {
+                return Json(new { result = "fail", message = localizer[data.AllMessages] });
+            }
+
+            var excelData = data.ResultEntity.ExportListExcel("فهرست ایرادات");
+            if (excelData is null)
+            {
+                return Json(new { result = "fail", total = 0, rows = new List<FinalProductNoncomplianceModel>(), message = localizer["Unable to create file due to technical problems."] });
+            }
+            var fileName = "فهرست ایرادات-" + DateTime.Now.ToPersianDate();
+            return File(excelData, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName + ".xlsx");
         }
     }
 

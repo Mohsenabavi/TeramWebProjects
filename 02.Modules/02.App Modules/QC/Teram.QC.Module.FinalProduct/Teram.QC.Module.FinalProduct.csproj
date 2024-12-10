@@ -8,18 +8,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Scripts\AcceptancePeriods.js" />
+    <None Remove="Scripts\ControlPlanDefect.js" />
     <None Remove="Scripts\EditFinalProductNoncompliance.js" />
     <None Remove="Scripts\FinalProductInspection.js" />
     <None Remove="Scripts\FlowInstruction.js" />
+    <None Remove="Scripts\Operator.js" />
     <None Remove="Scripts\PalletsStatus.js" />
+    <None Remove="Scripts\QCDefectModel.js" />
     <None Remove="Scripts\WithoutBasisNonCompliance.js" />
     <None Remove="Scripts\WronDoersReport.js" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Scripts\AcceptancePeriods.js" />
+    <EmbeddedResource Include="Scripts\ControlPlanDefect.js" />
     <EmbeddedResource Include="Scripts\EditFinalProductNoncompliance.js" />
     <EmbeddedResource Include="Scripts\FinalProductInspection.js" />
     <EmbeddedResource Include="Scripts\FlowInstruction.js" />
+    <EmbeddedResource Include="Scripts\Operator.js" />
+    <EmbeddedResource Include="Scripts\QCDefectModel.js" />
     <EmbeddedResource Include="Scripts\WronDoersReport.js" />
     <EmbeddedResource Include="Scripts\PalletsStatus.js" />
     <EmbeddedResource Include="Scripts\WithoutBasisNonCompliance.js" />

@@ -1,4 +1,15 @@
-﻿$(document).on("click", "#btnFetchData", function () {
+﻿$(document).on('click', '#exportexel', function () {
+    changeDatatableOptions();
+    var data = "?orderNo=" + $("#OrderNoFilter").val()
+        + "&number=" + $("#NumberFilter").val()
+        + "&productCode=" + $("#ProductCodeFilter").val()
+        + "&tracingCode=" + $("#TracingCodeFilter").val()
+        + "&orderTitle=" + $("#OrderTitleFilter").val()
+        + "&productName=" + $("#ProductNameFilter").val()
+    window.location.href = "/FinalProductInspection/PrintExcel" + data;
+});
+
+$(document).on("click", "#btnFetchData", function () {
 
     $.post("/FinalProductInspection/FetchPalletInfo",
         { palletNo: $("#Number").val() },

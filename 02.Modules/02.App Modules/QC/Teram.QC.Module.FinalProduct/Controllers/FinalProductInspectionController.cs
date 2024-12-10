@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DocumentFormat.OpenXml.Bibliography;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Localization;
 using System.Linq;
+using Teram.Framework.Core.Extensions;
 using Teram.Framework.Core.Logic;
 using Teram.Framework.Core.Service;
 using Teram.QC.Module.FinalProduct.Entities;
+using Teram.QC.Module.FinalProduct.Enums;
 using Teram.QC.Module.FinalProduct.Logic;
 using Teram.QC.Module.FinalProduct.Logic.Interfaces;
 using Teram.QC.Module.FinalProduct.Models;
@@ -16,6 +19,7 @@ using Teram.Web.Core.Attributes;
 using Teram.Web.Core.ControlPanel;
 using Teram.Web.Core.Enums;
 using Teram.Web.Core.Model;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Teram.QC.Module.FinalProduct.Controllers
 {
@@ -95,6 +99,38 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             }
             var totalCount = finalProductInspectionsResult?.Count ?? 0;
             return Json(new { model.Draw, recordsTotal = totalCount, recordsFiltered = totalCount, data = finalProductInspectionsResult?.ResultEntity, error = "", result = "ok" });
+        }
+
+        public async Task<IActionResult> PrintExcel(int orderNo, int number, string productCode, string tracingCode, string orderTitle, string productName)
+        {
+            var finalProductInspectionsResult = finalProductInspectionLogic.GetByFilter(orderNo, number, productCode, tracingCode, orderTitle, productName);
+
+            if (finalProductInspectionsResult.ResultStatus != OperationResultStatus.Successful || finalProductInspectionsResult.ResultEntity is null)
+            {
+                return Json(new { result = "fail", message = localizer[finalProductInspectionsResult.AllMessages] });
+            }
+
+            var relatedFinalProductInspectionIds = finalProductInspectionsResult.ResultEntity.Select(x => x.FinalProductInspectionId).ToList();
+            var finalProductNonComplianceDetails = finalProductNoncomplianceDetailLogic.GetByFinalProductInspectionIds(relatedFinalProductInspectionIds);
+            var createdByUserIds = finalProductInspectionsResult.ResultEntity.Select(x => x.CreatedBy).ToList();
+            var usersInfo = userSharedService.GetUserInfos(createdByUserIds);
+
+            foreach (var item in finalProductInspectionsResult.ResultEntity)
+            {
+                var relatedUser = usersInfo.Where(x => x.UserId == item.CreatedBy).FirstOrDefault();
+                item.CreatedByText = (relatedUser != null) ? $"{relatedUser.Name} {relatedUser.Family} - {relatedUser.Username} " : " ";
+                var relatednoncompianceDetail = finalProductNonComplianceDetails.ResultEntity.Where(x => x.FinalProductInspectionId == item.FinalProductInspectionId).ToList();
+                item.HasNonCompliance = (relatednoncompianceDetail.Any()) ? true : false;
+            }
+           
+            var excelData = finalProductInspectionsResult.ResultEntity.ExportListExcel("فرم های بازرسی محصول نهایی");
+            if (excelData is null)
+            {
+                return Json(new { result = "fail", total = 0, rows = new List<FinalProductNoncomplianceModel>(), message = localizer["Unable to create file due to technical problems."] });
+            }
+
+            var fileName = "فرم های بازرسی محصول نهایی-" + DateTime.Now.ToPersianDate();
+            return File(excelData, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName + ".xlsx");
         }
 
         public override IActionResult Remove([FromServices] ILogic<FinalProductInspectionModel> service, int key)

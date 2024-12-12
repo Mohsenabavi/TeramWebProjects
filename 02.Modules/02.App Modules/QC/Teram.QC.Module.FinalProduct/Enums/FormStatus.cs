@@ -76,5 +76,9 @@ namespace Teram.QC.Module.FinalProduct.Enums
         [Description("ارجاع به سرپرست تضمین کیفیت")]
         [Display(Name = "ارجاع به سرپرست تضمین کیفیت")]
         RefferedToQA = 17,
+
+        [Description("ارجاع به مدیر بهره برداری")]
+        [Display(Name = "ارجاع به مدیر بهره برداری")]
+        RefferedToOperationManager = 18,
     }
 }

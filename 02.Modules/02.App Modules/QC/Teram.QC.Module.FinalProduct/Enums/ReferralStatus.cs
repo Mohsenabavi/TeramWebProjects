@@ -56,5 +56,9 @@ namespace Teram.QC.Module.FinalProduct.Enums
         [Description("ارجاع شده به تضمین کیفیت")]
         [Display(Name = "ارجاع شده به تضمین کیفیت")]
         ReferredToQA = 13,
+
+        [Description("ارجاع به مدیر بهره برداری")]
+        [Display(Name = "ارجاع به مدیر بهره برداری")]
+        RefferedToOperationManager = 14,
     }
 }

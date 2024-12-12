@@ -335,6 +335,21 @@ namespace Teram.QC.Module.FinalProduct.Entities
             }
         }
 
+        private bool? _needToCheckByOperationManager;
+
+        [CompareField]
+
+        [Description("نیاز به بررسی علت یابی توسط مدیر بهره برداری")]
+        public bool? NeedToCheckByOperationManager
+        {
+            get { return _needToCheckByOperationManager; }
+            set
+            {
+                _needToCheckByOperationManager = value;
+                OnPropertyChanged();
+            }
+        }
+
         private QualityControlManagerOpinion _qualityControlManagerOpinion;
         public QualityControlManagerOpinion QualityControlManagerOpinion
         {

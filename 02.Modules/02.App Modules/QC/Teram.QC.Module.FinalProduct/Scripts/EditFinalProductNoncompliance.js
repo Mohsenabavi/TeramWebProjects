@@ -664,6 +664,24 @@ $(document).on('click', '#FinalApproveOfNonCompliance', function () {
         });
 });
 
+$(document).on('click', '#FinalApproveOfNonComplianceByOperationManager', function () {
+
+    var nonComplianeId = $("#FinalProductNonComplianceId").val();
+
+    $.post("/FinalProductNoncompliance/TriggerFinalApproveByOperationManager",
+        {
+            finalProductNonComplianceId: nonComplianeId,
+        }, function (content) {
+            if (content.result == "ok") {
+                teram().showSuccessfullMessage(content.message.value)
+                bootbox.hideAll();
+                reloadDataTable();
+            }
+            else {
+                teram().showErrorMessage(content.message.value);
+            }
+        });
+});
 
 
 
@@ -1031,6 +1049,47 @@ $(document).on('click', '#btnSendBackToProductionManagerFromQCManager', function
     var comments = $("#Comments").val() ?? 0;
 
     $.post("/FinalProductNoncompliance/TriggerSendBackToProductionManagerFromProuctionManager",
+        {
+            finalProductNonComplianceId: nonComplianeId,
+            comment: comments,
+        }, function (content) {
+            if (content.result == "ok") {
+                teram().showSuccessfullMessage(content.message.value);
+                bootbox.hideAll();
+                reloadDataTable();
+            }
+            else {
+                teram().showErrorMessage(content.message.value);
+            }
+        });
+});
+
+$(document).on('click', '#btnSendToOperationManager', function () {
+
+    var nonComplianeId = $("#FinalProductNonComplianceId").val();
+    var comments = $("#Comments").val();    
+    $.post("/FinalProductNoncompliance/TriggerSendToOperationManager",
+        {
+            finalProductNonComplianceId: nonComplianeId,
+            comment: comments,
+        }, function (content) {
+            if (content.result == "ok") {
+                teram().showSuccessfullMessage(content.message.value);
+                bootbox.hideAll();
+                reloadDataTable();
+            }
+            else {
+                teram().showErrorMessage(content.message.value);
+            }
+        });
+});
+
+$(document).on('click', '#btnSendBackToCauseFinderByOperationManager', function () {
+
+    var nonComplianeId = $("#FinalProductNonComplianceId").val();
+    var comments = $("#Comments").val() ?? 0;
+    alert(nonComplianeId);
+    $.post("/FinalProductNoncompliance/TriggerSendBackToCauseFinderByOperationManager",
         {
             finalProductNonComplianceId: nonComplianeId,
             comment: comments,

@@ -92,6 +92,8 @@ namespace Teram.QC.Module.FinalProduct.Models
 
         public bool HasCausation { get; set; }
 
+        public bool? NeedToCheckByOperationManager { get; set; }
+
         public QualityControlManagerOpinion QualityControlManagerOpinion { get; set; }
 
         public ReferralStatus ReferralStatus { get; set; }
@@ -162,6 +164,8 @@ namespace Teram.QC.Module.FinalProduct.Models
         public bool FinalApproveByQA { get; set; }
 
         public DateTime FinalApproveByQADate { get; set; }
+
+        public string? ForceRole;
         #endregion
 
     }

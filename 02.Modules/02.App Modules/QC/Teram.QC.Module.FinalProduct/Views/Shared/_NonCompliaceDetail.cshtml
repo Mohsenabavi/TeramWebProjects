@@ -186,6 +186,12 @@
                             }
                         }
 
+                        @if (Model.ReferralStatus == ReferralStatus.RefferedToOperationManager)
+                        {
+                            <partial name="_Causation" model="@Model.Causation" />
+                            <partial name="_NoncomplianceDetailSampleSummaryAfterCausationOperationManager" model="@Model.NoncomplianceDetailSampleSummary" />
+                        }
+
                         @if (Model.ReferralStatus == ReferralStatus.ReferredToProductionManager || (Model.ReferralStatus == ReferralStatus.ReferredToOthersForCausation))
                         {
                             <partial name="_Causation" model="@Model.Causation" />

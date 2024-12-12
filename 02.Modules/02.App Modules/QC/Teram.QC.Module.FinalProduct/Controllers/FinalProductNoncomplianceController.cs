@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Localization;
 using System.Transactions;
@@ -494,6 +495,24 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
+
+        [AllowAnonymous]
+        public IActionResult TriggerFinalApproveByOperationManager([FromServices] IFinalProductNoncomplianceDetailSampleLogic finalProductNoncomplianceDetailSampleLogic, int finalProductNonComplianceId)
+        {
+            var relatedNonCompianceResult = finalProductNoncomplianceLogic.GetById(finalProductNonComplianceId);
+
+            if (relatedNonCompianceResult.ResultStatus != OperationResultStatus.Successful || relatedNonCompianceResult.ResultEntity is null)
+            {
+                return Json(new { result = "fail", message = localizer[relatedNonCompianceResult.AllMessages] });
+            }
+            relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.RefferedToQA;
+            relatedNonCompianceResult.ResultEntity.NeedToCheckByOperationManager = true;
+            relatedNonCompianceResult.ResultEntity.ForceRole = "OPERATIONMANAGER";
+            relatedNonCompianceResult.ResultEntity.LastComment = "--";
+            relatedNonCompianceResult.ResultEntity.IsTriggeredByUserAction = true;
+            finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
+            return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
+        }
         public IActionResult TriggerRefferFromProuctionManager(int finalProductNonComplianceId, string comment, Guid destinationUser, YesNoStatus needToAdvisoryOpinion)
         {
             var relatedNonCompianceResult = finalProductNoncomplianceLogic.GetById(finalProductNonComplianceId);
@@ -549,6 +568,35 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             }
 
             relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.RequestForDeterminingReason;
+            relatedNonCompianceResult.ResultEntity.IsTriggeredByUserAction = true;
+            finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
+            return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
+        }
+
+        [AllowAnonymous]
+        public IActionResult TriggerSendBackToCauseFinderByOperationManager([FromServices] IManageCartableLogic manageCartableLogic, int finalProductNonComplianceId, string comment)
+        {
+            var relatedNonCompianceResult = finalProductNoncomplianceLogic.GetById(finalProductNonComplianceId);
+            relatedNonCompianceResult.ResultEntity.LastComment = comment;
+            if (relatedNonCompianceResult?.ResultEntity?.FinalProductNonComplianceCartableItems != null)
+            {
+                var lastCauseFinderResult = manageCartableLogic.GetLastCauseFinder(relatedNonCompianceResult.ResultEntity.FinalProductNonComplianceCartableItems);
+                relatedNonCompianceResult.ResultEntity.DestinationUser = lastCauseFinderResult.ResultEntity?.ReferredBy;
+            }
+            relatedNonCompianceResult.ResultEntity.NeedToCheckByOperationManager = true;
+            relatedNonCompianceResult.ResultEntity.ForceRole = "OPERATIONMANAGER";
+            relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.RequestForDeterminingReason;
+            relatedNonCompianceResult.ResultEntity.IsTriggeredByUserAction = true;
+            finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
+            return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
+        }
+
+        public IActionResult TriggerSendToOperationManager(int finalProductNonComplianceId, string comment)
+        {
+            var relatedNonCompianceResult = finalProductNoncomplianceLogic.GetById(finalProductNonComplianceId);
+            relatedNonCompianceResult.ResultEntity.LastComment = comment;
+            relatedNonCompianceResult.ResultEntity.NeedToCheckByOperationManager = true;
+            relatedNonCompianceResult.ResultEntity.FormStatus = FormStatus.RefferedToOperationManager;
             relatedNonCompianceResult.ResultEntity.IsTriggeredByUserAction = true;
             finalProductNoncomplianceLogic.Update(relatedNonCompianceResult.ResultEntity);
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });

@@ -292,28 +292,6 @@ namespace Teram.QC.Module.FinalProduct.Logic
             return Math.Round((sampleSum * 100) / sampleCount, 2);
         }
 
-        private List<ReferralStatus> GetCurrentUserReferralStatus()
-        {
-            var result = new List<ReferralStatus>();
-
-            var userMainRole = manageCartableLogic.GetUserMainRole();
-
-            if (userMainRole.ResultEntity.Name.ToUpper() == "ACTIONERS" ||
-                userMainRole.ResultEntity.Name.ToUpper() == "CEO" ||
-                userMainRole.ResultEntity.Name.ToUpper() == "QCMANAGER")
-            {
-                result.Add(ReferralStatus.ReferredToProductionManager);
-            }
-
-            var relatedFlowInstruction = flowInstructionLogic.GetByCurrentCartableRoleId(userMainRole.ResultEntity.Id);
-
-            foreach (var flowInstruction in relatedFlowInstruction.ResultEntity)
-            {
-                result.Add(flowInstruction.FromStatus);
-            }
-            return result.Distinct().ToList();
-        }
-
         public NoncomplianceDetailSampleSummaryModel GetSamplesSummaryData(FinalProductNoncomplianceModel relatedNonCompianceResult, List<FinalProductInspectionModel> finalProductInspections)
         {
             var detailsSamples = relatedNonCompianceResult.FinalProductNoncomplianceDetails.SelectMany(x => x.FinalProductNoncomplianceDetailSamples).ToList();

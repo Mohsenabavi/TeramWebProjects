@@ -333,6 +333,9 @@
   <data name="SendInfoToCEO" xml:space="preserve">
     <value>ارسال نظر به مدیر عامل</value>
   </data>
+  <data name="SendToOperationManager" xml:space="preserve">
+    <value>ارجاع به مدیر بهره برداری</value>
+  </data>
   <data name="SourceUserName" xml:space="preserve">
     <value>از</value>
   </data>

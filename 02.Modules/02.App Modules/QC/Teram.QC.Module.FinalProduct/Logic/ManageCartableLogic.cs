@@ -41,7 +41,7 @@ namespace Teram.QC.Module.FinalProduct.Logic
         public BusinessOperationResult<FlowInstructionModel> GetNextStep(FinalProductNoncomplianceModel model)
         {
             var result = new BusinessOperationResult<FlowInstructionModel>();
-            var userMainRole = GetUserMainRole();
+            var userMainRole = (model?.ForceRole != null) ? GetUserMainRole(model?.ForceRole) : GetUserMainRole();
             if (userMainRole.ResultStatus != OperationResultStatus.Successful || userMainRole.ResultEntity is null)
             {
                 result.SetErrorMessage("User Role Not Found");
@@ -146,37 +146,45 @@ namespace Teram.QC.Module.FinalProduct.Logic
 
 
 
-        public BusinessOperationResult<RoleInfo> GetUserMainRole()
+        public BusinessOperationResult<RoleInfo> GetUserMainRole(string? forceRole = null)
         {
             var result = new BusinessOperationResult<RoleInfo>();
-
+            var excludeRoles = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "MEMBERS", "OPERATIONMANAGER", "REPORTVIEWER", "QA", "ADMINISTRATORS" };
             try
             {
-                var userRoleIds = userSharedService.GetRoleIdsUser(userPrincipal.CurrentUserId).Result;
+                List<Guid> userRoleIds = forceRole != null
+                    ? GetRoleIdByForceRole(forceRole)
+                    : GetUserRoleIds();
+
                 var userRoles = roleSharedService.GetRoleByListRoleId(userRoleIds);
-                var mainRoleOfUsser = userRoles.
-                    Where(x => x.NormalizedName != "MEMBERS"
-                    && x.NormalizedName != "OPERATIONMANAGER"
-                    && x.NormalizedName != "REPORTVIEWER"
-                    && x.NormalizedName != "QA"
-                    && x.NormalizedName != "ADMINISTRATORS").FirstOrDefault();
-                if (mainRoleOfUsser != null)
+                var mainRole = forceRole != null
+                    ? userRoles.FirstOrDefault()
+                    : userRoles.FirstOrDefault(role => !excludeRoles.Contains(role.NormalizedName));
+
+                if (mainRole != null)
                 {
-                    result.SetSuccessResult(mainRoleOfUsser);
+                    result.SetSuccessResult(mainRole);
                 }
                 else
                 {
                     result.SetErrorMessage("Role Not Found");
                 }
-
-                return result;
             }
             catch (Exception ex)
             {
-                result.SetErrorMessage("Error In Get User Roles" + ex.Message + ex.InnerException);
-                return result;
+                result.SetErrorMessage($"Error in GetUserMainRole: {ex.Message} {ex.InnerException?.Message}");
             }
 
+            return result;
+        }
+        private List<Guid> GetRoleIdByForceRole(string forceRole)
+        {
+            var role = roleSharedService.GetRoleByName(forceRole).Result;
+            return role != null ? new List<Guid> { role.Id } : new List<Guid>();
+        }
+        private List<Guid> GetUserRoleIds()
+        {
+            return userSharedService.GetRoleIdsUser(userPrincipal.CurrentUserId).Result;
         }
 
         public BusinessOperationResult<RoleInfo> GetUserMainRole(Guid userId)
@@ -255,6 +263,32 @@ namespace Teram.QC.Module.FinalProduct.Logic
                 query = query.AndAlso(x => x.FlowInstructionConditions.Any(condition => condition.FieldName == "NeedToRefferToCEO" && condition.FieldValue.ToLower() == model.NeedToRefferToCEO.Value.ToString().ToLower()));
             }
             return query;
+        }
+
+        public BusinessOperationResult<FinalProductNonComplianceCartableItemModel> GetLastCauseFinder(List<FinalProductNonComplianceCartableItemModel> cartableItems)
+        {
+            var result = new BusinessOperationResult<FinalProductNonComplianceCartableItemModel>();
+
+            var causationRoles = new List<string> { "PRODUCTIONMANAGER", "QCManager", "CEO", "Actioners" };
+            var causationRolesResult = roleSharedService.GetAllRoles().Where(x => causationRoles.Contains(x.NormalizedName));
+            var causationRoleIds = causationRolesResult.Select(x => x.Id).ToList();
+
+            var refferedByList = cartableItems.Select(x => x.ReferredBy).ToList();
+            var refferedByRoles = userSharedService.GetRolesOfUsers(refferedByList).Result;
+
+            var referredByUserRoles = refferedByRoles.Where(x => causationRoleIds.Contains(x.RoleId)).Select(x => x.UserId).ToList();
+
+            var orderedDescRefferedByList = cartableItems.OrderByDescending(x => x.OutputDatePersian).ToList();
+
+            foreach (var item in orderedDescRefferedByList)
+            {
+                if (referredByUserRoles.Contains(item.ReferredBy))
+                {
+                    result.SetSuccessResult(item);
+                    break;
+                }
+            }
+            return result;
         }
     }
 }

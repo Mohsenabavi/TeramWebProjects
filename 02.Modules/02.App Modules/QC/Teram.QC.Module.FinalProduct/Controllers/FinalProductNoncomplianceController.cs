@@ -496,7 +496,6 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
 
-        [AllowAnonymous]
         public IActionResult TriggerFinalApproveByOperationManager([FromServices] IFinalProductNoncomplianceDetailSampleLogic finalProductNoncomplianceDetailSampleLogic, int finalProductNonComplianceId)
         {
             var relatedNonCompianceResult = finalProductNoncomplianceLogic.GetById(finalProductNonComplianceId);
@@ -573,7 +572,6 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             return Json(new { result = "ok", message = localizer["Referral Done Successfully"] });
         }
 
-        [AllowAnonymous]
         public IActionResult TriggerSendBackToCauseFinderByOperationManager([FromServices] IManageCartableLogic manageCartableLogic, int finalProductNonComplianceId, string comment)
         {
             var relatedNonCompianceResult = finalProductNoncomplianceLogic.GetById(finalProductNonComplianceId);

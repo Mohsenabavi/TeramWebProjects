@@ -543,18 +543,41 @@ $(document).on("change", "#NeedToAdvisoryOpinion", function () {
 $(document).on('click', '#btnRefferalFromSeparation', function () {
 
     var nonComplianeId = $("#FinalProductNonComplianceId").val();
-    var firstSampleSeparatedCount = $("#FirstSampleSeparatedCount").val() ?? 0;
-    var secondSampleSeparatedCount = $("#SecondSampleSeparatedCount").val() ?? 0;
-    var thirdSampleSeparatedCount = $("#ThirdSampleSeparatedCount").val() ?? 0;
-    var forthSampleSeparatedCount = $("#ForthSampleSeparatedCount").val() ?? 0;
+    var firstSampleSeparatedCount = $("#FirstSampleSeparatedCount").val();
+    var secondSampleSeparatedCount = $("#SecondSampleSeparatedCount").val()
+    var thirdSampleSeparatedCount = $("#ThirdSampleSeparatedCount").val();
+    var forthSampleSeparatedCount = $("#ForthSampleSeparatedCount").val();
     var comment = $("#Comments").val();
+    var hasError = false;
+
+    if (firstSampleSeparatedCount != undefined && firstSampleSeparatedCount == 0) {
+        teram().showErrorMessage("تعداد جداسازی نمونه اول را وارد نمایید");
+        hasError = true;
+    }
+
+    if (secondSampleSeparatedCount != undefined && secondSampleSeparatedCount == 0) {
+        teram().showErrorMessage("تعداد جداسازی نمونه دوم را وارد نمایید");
+        hasError = true;
+    }
+    if (thirdSampleSeparatedCount != undefined && thirdSampleSeparatedCount == 0) {
+        teram().showErrorMessage("تعداد جداسازی نمونه سوم را وارد نمایید");
+        hasError = true;
+    }
+    if (forthSampleSeparatedCount != undefined && forthSampleSeparatedCount == 0) {
+        teram().showErrorMessage("تعداد جداسازی نمونه چهارم را وارد نمایید");
+        hasError = true;
+    }
+
+    if (hasError)
+        return;
+
     $.post("/FinalProductNoncompliance/TriggerSaveSeparationInfo",
         {
             finalProductNonComplianceId: nonComplianeId,
-            firstSampleSeparatedCount: firstSampleSeparatedCount,
-            secondSampleSeparatedCount: secondSampleSeparatedCount,
-            thirdSampleSeparatedCount: thirdSampleSeparatedCount,
-            forthSampleSeparatedCount: forthSampleSeparatedCount,
+            firstSampleSeparatedCount: firstSampleSeparatedCount ?? 0,
+            secondSampleSeparatedCount: secondSampleSeparatedCount ?? 0,
+            thirdSampleSeparatedCount: thirdSampleSeparatedCount ?? 0,
+            forthSampleSeparatedCount: forthSampleSeparatedCount ?? 0,
             comment: comment
         }, function (content) {
             if (content.result == "ok") {
@@ -683,24 +706,44 @@ $(document).on('click', '#FinalApproveOfNonComplianceByOperationManager', functi
         });
 });
 
-
-
 $(document).on('click', '#btnRefferalFromSeparationAfterCEOOpinion', function () {
 
     var nonComplianeId = $("#FinalProductNonComplianceId").val();
-    var firstSampleSeparatedCount = $("#FirstSampleSeparatedCount").val() ?? 0;
-    var secondSampleSeparatedCount = $("#SecondSampleSeparatedCount").val() ?? 0;
-    var thirdSampleSeparatedCount = $("#ThirdSampleSeparatedCount").val() ?? 0;
-    var forthSampleSeparatedCount = $("#ForthSampleSeparatedCount").val() ?? 0;
+    var firstSampleSeparatedCount = $("#FirstSampleSeparatedCount").val();
+    var secondSampleSeparatedCount = $("#SecondSampleSeparatedCount").val();
+    var thirdSampleSeparatedCount = $("#ThirdSampleSeparatedCount").val();
+    var forthSampleSeparatedCount = $("#ForthSampleSeparatedCount").val();
     var comment = $("#Comments").val();
+    var hasError = false;
+
+    if (firstSampleSeparatedCount != undefined && firstSampleSeparatedCount == 0) {
+        teram().showErrorMessage("تعداد جداسازی نمونه اول را وارد نمایید");
+        hasError = true;
+    }
+
+    if (secondSampleSeparatedCount != undefined && secondSampleSeparatedCount == 0) {
+        teram().showErrorMessage("تعداد جداسازی نمونه دوم را وارد نمایید");
+        hasError = true;
+    }
+    if (thirdSampleSeparatedCount != undefined && thirdSampleSeparatedCount == 0) {
+        teram().showErrorMessage("تعداد جداسازی نمونه سوم را وارد نمایید");
+        hasError = true;
+    }
+    if (forthSampleSeparatedCount != undefined && forthSampleSeparatedCount == 0) {
+        teram().showErrorMessage("تعداد جداسازی نمونه چهارم را وارد نمایید");
+        hasError = true;
+    }
+
+    if (hasError)
+        return;
 
     $.post("/FinalProductNoncompliance/TriggerSaveSeparationInfoAfterCEOOpinion",
         {
             finalProductNonComplianceId: nonComplianeId,
-            firstSampleSeparatedCount: firstSampleSeparatedCount,
-            secondSampleSeparatedCount: secondSampleSeparatedCount,
-            thirdSampleSeparatedCount: thirdSampleSeparatedCount,
-            forthSampleSeparatedCount: forthSampleSeparatedCount,
+            firstSampleSeparatedCount: firstSampleSeparatedCount ?? 0,
+            secondSampleSeparatedCount: secondSampleSeparatedCount ?? 0,
+            thirdSampleSeparatedCount: thirdSampleSeparatedCount ?? 0,
+            forthSampleSeparatedCount: forthSampleSeparatedCount ?? 0,
             comments: comment
         }, function (content) {
             if (content.result == "ok") {
@@ -1067,7 +1110,7 @@ $(document).on('click', '#btnSendBackToProductionManagerFromQCManager', function
 $(document).on('click', '#btnSendToOperationManager', function () {
 
     var nonComplianeId = $("#FinalProductNonComplianceId").val();
-    var comments = $("#Comments").val();    
+    var comments = $("#Comments").val();
     $.post("/FinalProductNoncompliance/TriggerSendToOperationManager",
         {
             finalProductNonComplianceId: nonComplianeId,

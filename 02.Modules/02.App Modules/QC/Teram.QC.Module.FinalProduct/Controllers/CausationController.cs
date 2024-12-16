@@ -63,6 +63,9 @@ namespace Teram.QC.Module.FinalProduct.Controllers
             relatedEntity.IsTriggeredByUserAction = true;
             relatedEntity.DestinationUser = null;
 
+            if (relatedNonComplianceResult.ResultEntity.NeedToCheckByOperationManager is null)
+                relatedEntity.NeedToCheckByOperationManager = false;
+
             var causationResult = causationLogic.GetByFinalProductNonComplianceId(model.FinalProductNoncomplianceId);
 
             if (causationResult.ResultStatus == OperationResultStatus.Successful && causationResult.ResultEntity != null)

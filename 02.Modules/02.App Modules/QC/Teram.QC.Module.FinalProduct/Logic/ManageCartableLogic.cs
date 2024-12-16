@@ -269,7 +269,7 @@ namespace Teram.QC.Module.FinalProduct.Logic
         {
             var result = new BusinessOperationResult<FinalProductNonComplianceCartableItemModel>();
 
-            var causationRoles = new List<string> { "PRODUCTIONMANAGER", "QCManager", "CEO", "Actioners" };
+            var causationRoles = new List<string> { "PRODUCTIONMANAGER", "CEO", "Actioners" };
             var causationRolesResult = roleSharedService.GetAllRoles().Where(x => causationRoles.Contains(x.NormalizedName));
             var causationRoleIds = causationRolesResult.Select(x => x.Id).ToList();
 
@@ -278,7 +278,7 @@ namespace Teram.QC.Module.FinalProduct.Logic
 
             var referredByUserRoles = refferedByRoles.Where(x => causationRoleIds.Contains(x.RoleId)).Select(x => x.UserId).ToList();
 
-            var orderedDescRefferedByList = cartableItems.OrderByDescending(x => x.OutputDatePersian).ToList();
+            var orderedDescRefferedByList = cartableItems.Where(x=>x.OutputDate!=null).OrderByDescending(x => x.FinalProductNonComplianceCartableItemId).ToList();
 
             foreach (var item in orderedDescRefferedByList)
             {

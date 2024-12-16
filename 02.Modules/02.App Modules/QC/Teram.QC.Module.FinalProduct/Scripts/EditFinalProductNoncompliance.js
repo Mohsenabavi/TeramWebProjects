@@ -1131,7 +1131,6 @@ $(document).on('click', '#btnSendBackToCauseFinderByOperationManager', function 
 
     var nonComplianeId = $("#FinalProductNonComplianceId").val();
     var comments = $("#Comments").val() ?? 0;
-    alert(nonComplianeId);
     $.post("/FinalProductNoncompliance/TriggerSendBackToCauseFinderByOperationManager",
         {
             finalProductNonComplianceId: nonComplianeId,

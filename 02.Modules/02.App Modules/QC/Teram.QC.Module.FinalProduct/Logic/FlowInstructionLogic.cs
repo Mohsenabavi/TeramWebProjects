@@ -116,7 +116,7 @@ namespace Teram.QC.Module.FinalProduct.Logic
 
             if (flowInstructionConditions.Any(x => x.FieldName == "NeedToCheckByOperationManager"))
             {
-                query = query.AndAlso(x => x.FlowInstructionConditions.Any(condition => condition.FieldName == "NeedToCheckByOperationManager" && condition.FieldValue.ToLower() == model.HasCausation.ToString().ToLower()));
+                query = query.AndAlso(x => x.FlowInstructionConditions.Any(condition => condition.FieldName == "NeedToCheckByOperationManager" && condition.FieldValue.ToLower() == model.NeedToCheckByOperationManager.Value.ToString().ToLower()));
             }
             return query;
         }
